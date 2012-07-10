@@ -1,0 +1,57 @@
+% -*- coding: utf-8 -*-
+
+\documentclass{arco-pfc}
+\usepackage{custom}
+
+\input{metadata.tex}
+
+\begin{document}
+
+\frontmatter
+
+\pretitle
+\frontpage
+\copyrightpage
+
+\jury
+
+\input{abstract.tex}
+\tableofcontents
+\listoftables
+\listoffigures
+\lstlistoflistings
+\input{acronyms.tex}
+\input{thanks.tex}
+\dedication{A alguien muy querido y/o respetado}
+
+\mainmatter
+
+\input{intro.tex}
+\input{antecedents.tex}
+\input{objetives.tex}
+\input{methods.tex}
+\input{results.tex}
+\input{conclusions.tex}
+
+\appendix
+\appendixtitle
+\input{appendix1.tex}
+%{\scriptsize \input{GFDL.tex}}
+
+
+\backmatter
+\bibliography{main}
+\cleardoublepage
+
+% Incluye esto en tu documento como
+% atribución al autor de la plantilla
+%\attributionArcoPFC
+
+\end{document}
+
+
+% Local Variables:
+%   coding: utf-8
+%   mode: flyspell
+%   ispell-local-dictionary: "castellano8"
+% End:

@@ -1,0 +1,108 @@
+%% Buscadores para artículos científicos
+% www.scopus.com
+% dl.acm.org
+
+\chapter{Resumen}
+
+\chapter{Introducción}
+\section{Introducción}
+\section{Organización del documento}
+
+\chapter{Objetivos del proyecto}
+% (Desarrollar los objetivos expuestos en el anteproyecto)
+\section{Objetivos general}
+\section{Objetivos específicos}
+
+\chapter{Estado del arte y trabajos relacionados}
+\section{Estado del arte}
+  \subsection{La tecnología RFID}
+  \subsection{La tecnología NFC}
+  \subsection{La tecnología Bluetooth}
+  \subsection{Los servicios web}
+  \subsection{El framework .NET}
+  \subsection{La tecnología Java}
+  \subsection{Los displays táctiles}
+  \subsection{La computación móvil}
+\section{Trabajos relacionados}
+  \subsection{Estudios relacionados}
+    \subsubsection{Modelos de comercio utilizando NFC}
+    \subsubsection{Métodos de pago móvil}
+    \subsubsection{Métodos de fidelización de clientes}
+  \subsection{Aplicaciones comerciales}
+    \subsubsection{Gestión de operaciones típicas de un restaurante}
+      \begin{itemize}
+      \item \textbf{SoftRestaurant}
+        % Permite añadir productos como otros pero también permite describir
+        %los ingredientes de dichos productos (controla el uso de ingredientes).
+      \item \textbf{SaleYa}
+        % El concepto de salón similar al mío (colores que determinan el estado
+        %y editor de la planta del salón).
+      \item \textbf{RestBar}
+        % Monitor de comandas (que dicen el estado de elaboración del producto).
+      \item \textbf{FrontRest}
+        % Varios terminales comunicados, impresoras para comandas (para
+        %comunicación con la cocina) y gestión de descuentos.
+      \end{itemize} 
+    \subsubsection{Gestión de pedidos a través de dispositivos móviles}
+      \begin{itemize}
+      \item \textbf{vMenu}
+          % Los clientes pueden realizar pedidos desde su mesa a través de un
+          %dispositivo móvil o fijo.
+      \item \textbf{Brand Table}
+          % la mesa de restaurante NFC que quiere eliminar al cajero de la
+          %ecuación.
+      \end{itemize}
+    \subsubsection{Gestión de pagos}
+
+\chapter{Métodos de trabajo}
+\section{Pasos previos}
+  \subsection{Estudio de campo}
+  \subsection{Aplicación de los servicios web}
+  \subsection{Aplicación de la tecnología NFC}
+  \subsection{Aplicación de la tecnología Bluetooth}
+  \subsection{Consideraciones del escenario}
+\section{Metodología de trabajo}
+  \subsection{Prototipado incremental}
+  \subsection{Estructura general del sistema}
+  \subsection{Fases del prototipo}
+    %(subapartados fuera del índice) (Citar fases de cada una)
+      % Servicios web + base de datos
+      % Aplicación de maître
+      % Aplicación de la barra
+      % Aplicación móvil
+      % Función NFC en aplicación del maître
+      % Función NFC en aplicación de la barra
+      % Función de recomendaciones en servicios web + aplicación del maître
+\section{Herramientas}
+  \subsection{Lenguajes de programación}
+  \subsection{Aplicaciones de desarrollo}
+  \subsection{Repositorio de datos}
+  \subsection{Control de versiones}
+
+\chapter{Resultados}
+\section{Análisis de requisitos}
+  \subsection{Requisitos generales del sistema}
+  \subsection{Servicios web y base de datos}
+  \subsection{Aplicación del recibidor}
+  \subsection{Aplicación de la barra}
+  \subsection{Aplicación móvil}
+\section{Diseño e implementación de la arquitectura del sistema}
+  \subsection{Servicios web y base de datos}
+  \subsection{Aplicación del recibidor}
+  \subsection{Aplicación de la barra}
+  \subsection{Aplicación móvil}
+\section{Pruebas}
+  \subsection{Pruebas unitarias}
+  \subsection{Pruebas de campo}
+\section{Manual de usuario}
+  \subsection{Servicios web y base de datos}
+  \subsection{Aplicación del recibidor}
+  \subsection{Aplicación de la barra}
+  \subsection{Aplicación móvil}
+\section{Diagrama de Gantt del proyecto}
+\section{Estimación de costes}
+
+\chapter{Conclusiones y propuestas}
+\section{Objetivos alcanzados}
+\section{Propuestas de mejora}
+
