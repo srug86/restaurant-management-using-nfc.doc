@@ -66,7 +66,17 @@ por una aplicación específica que utilice \acs{RFID} (figura
   Las etiquetas \acs{RFID} son dispositivos pequeños, similares a una pegatina,
   que pueden incorporarse a un objeto, un animal o una persona. 
   
-  Todas las etiquetas \acs{RFID} tienen en común los siguientes elementos:
+  Todas las etiquetas \acs{RFID} tienen en común los siguientes elementos
+  (figura \ref{fig:rfidComponents}):
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{rfidComponents.png}
+      \caption{Componentes de una tarjeta \acs{RFID}.}
+      \label{fig:rfidComponents}
+    \end{center}
+  \end{figure}
+
   \begin{itemize}
     \item \textbf{Antena}. Se encarga de recibir las señales emitidas por el
   lector y de enviar la respuesta ante dichas señales.
@@ -141,21 +151,37 @@ sistema \acs{RFID}.}
   personas y animales.
   \end{itemize}
 
-    \subsubsection{La tecnología MIFARE}
+    \subsubsection{La tecnología \emph{MIFARE}}
+  \emph{MIFARE} es el estándar de la industria para interfaces de
+  tarjetas inteligentes sin contacto y lectores que operan a 13.56MHz.
+  Funcionan de acuerdo con el estándar \acs{ISO} 14443\cite{bib:mifare}.
+  
+  El alcance típico de lectura/escritura de etiquetas \emph{MIFARE} sin
+  contacto oscila entre los 2 y los 10 cm; y la capacidad más habitual está
+  entre los 1 y los 4KB de memoria \acs{EEPROM}.
 
-Philips Mifare es el estándar de la industria para la tarjeta de interfaz de contacto y de doble inteligente y tecnología que opera en el lector de 13.56Mhz. Funcionamiento, de conformidad con la norma ISO 14443, la plataforma se compone de soluciones de chips para tarjetas de interfaz sin contacto puros y dos inteligentes y dispositivos de lectura. La cartera de tarjetas cubre una amplia gama de productos para uso en aplicaciones de baja y de gama alta
-\cite{bib:mifare}.
+  Para que los datos sean leídos o escritos es necesaria una autentificación 
+  mútua entre el lector y la etiqueta, ya que el acceso a los mismos está 
+  protegidos por una clave de 48 bits. La transmisión de datos por
+  radiofrecuencia viaja encriptada.
 
-%  Philips Mifare is the industry standard for contactless and dual interface smart card and reader technology operating at 13.56Mhz. Operating in accordance with ISO 14443, the platform consists of chip solutions for pure contactless and dual interface smart cards and reader devices. The card portfolio covers a range of products for use in both low and high-end applications .
+  En la actualidad \emph{MIFARE} es una marca registrada de \emph{NXP
+  Semiconductors} (empresa fundada por \emph{Philips}). Ha vendido más de 5 mil
+  millones de tarjetas y etiquetas inteligentes y más de 50 millones de
+  componentes de lectores. Ha sido seleccionada seleccionada para la mayoría
+  de proyectos importantes con tarjetas inteligentes sin contacto en todo el
+  mundo y su cartera de productos incluye soluciones perfectas para la
+  recaudación automática de tarifas, tarjetas de fidelización, cobro en 
+  carreteras de peaje o gestión de acceso a edificios\cite{bib:urlMifare} 
+  (figura \ref{fig:mifareFamily}.
 
-El éxito de MIFARE ™
-
-MIFARE es una marca registrada de NXP Semiconductors. Con más de 5 mil millones de circuitos integrados de tarjetas inteligentes y el billete y 50 millones de lectores de componentes vendidos, MIFARE es una tecnología que ha sido seleccionado para la mayoría de los proyectos de tarjetas inteligentes sin contacto en todo el mundo y por lo tanto, se convirtió en la plataforma de mayor éxito dentro de la industria de la tarifa de recogida automática. Además, su cartera de productos atractiva incluye soluciones perfectas para las aplicaciones de otros próximos a la recolección automática de tarifas, tales como la lealtad, la carretera de peaje, gestión de acceso y los juegos
-\cite{bib:urlMifare}.
-
-%The success of MIFARE™
-
-%MIFARE is a trademark of NXP Semiconductors. With more than 5 billion smart card and ticket ICs and 50 million reader components sold, MIFARE is a technology that has been selected for most contactless smart card projects worldwide and therefore, became the most successful platform within the automatic fare collection industry. In addition, its compelling product portfolio includes perfect solutions for other applications next to automatic fare collection such as loyalty, road tolling, access management and gaming.
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{mifareFamily.png}
+      \caption{Ejemplos de etiquetas MIFARE.}
+      \label{fig:mifareFamily}
+    \end{center}
+  \end{figure}
 
   \subsection{La tecnología NFC}
   \subsection{La tecnología Bluetooth}
