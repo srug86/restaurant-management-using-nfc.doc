@@ -194,8 +194,77 @@ sistema \acs{RFID}.}
 \section{Trabajos relacionados}
   \subsection{Estudios relacionados}
     \subsubsection{Modelos de comercio utilizando NFC}
+  Los servicios que ofrece \acs{NFC} están muy diversificados y extendidos
+  por todo el mundo. Algunos de los servicios están orientados a utilizar
+  las tarjetas inteligentes como un monedero electrónico sustitutivo del
+  pago en efectivo en los medios de transporte público, otros sustituyen
+  a los clásicos cupones para premiar la fidelidad de los clientes de un
+  establecimiento, otros sirven para solicitar un servicio de entre una
+  lista de servicios disponibles (como elegir un producto dentro de una
+  lista de productos), etc.
+
+  Con el fin de integrar todos estos servicios como un proceso común de
+  comercio electrónico basado en NFC, se ha propuesto un modelo genérico
+  para el comercio móvil basado en \acs{NFC} (\acs{NMC})
+  \cite{bib:nfcCommerce}. Este modelo caracteriza los problemas y las
+  tecnologías que intervienen en cada una de las siguientes fases
+  (figura \ref{fig:nmcModel}):
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{nmcModel.png}
+      \caption{El modelo \acs{NMC}.}
+      \label{fig:nmcModel}
+    \end{center}
+  \end{figure}
+
+  \begin{itemize}
+  \item \textbf{Fase de inicialización}. Para la construcción de un servicio
+  de comercio basado en \acs{NFC} se necesitan definir cuatro componentes
+  fundamentales:
+    \begin{itemize}
+    \item \textbf{Servicio de \emph{back-end} basado en \acs{NFC}}. Este
+    servicio es el responsable de todo el intercambio de información durante
+    el proceso de comercio. Está gestionado por el proveedor de servicios 
+    basados ​​en NFC.
+    \item \textbf{Aplicación de terminal genérico \acs{GTA}}. Como el tamaño
+    de la memoria del dispositivo móvil es limitada, combiene definir una
+    aplicación genérica que permita realizar todas las gestiones comerciales.
+    \item \textbf{Funcionalidad de las etiquetas}. Definir los tipos de
+    etiquetas que se utilizarán para construir un entorno de servicios con
+    \acs{NFC} que siga el estándar \acs{NDEF}. Por ejemplo, un tipo de etiqueta
+    para iniciar la aplicación, otro para cada uno de los productos, otro
+    para seleccionar descuentos y otro para seleccionar el servicio.
+    \item \textbf{Habilitar el servicio \acs{NFC}}. La etiqueta de inicio de
+    aplicación se encargará de cargar el \acs{GTA} y de arrancar el servicio de
+    \emph{back-end}, para que el usuario pueda usarlos nada más iniciar la
+    aplicación.
+    \end{itemize}
+  \item \textbf{Fase de pedido}. Después de la inicialización el cliente ya
+  está preparado para realizar un pedido a través de un catálogo de productos:
+    \begin{itemize}
+    \item Cada \textbf{catálogo} tiene una o varias etiquetas que representan
+    los productos ofrecidos por el servicio. Cuando el dispositivo toca una
+    de estas etiquetas, la aplicación puede llamar al servicio \emph{back-end}
+    para descargar el contenido (imágenes, videos, etc.) relacionado con el
+    contenido del producto al que representa la etiqueta.
+    \item Además, cada producto puede tener opciones del tipo \emph{sabor},
+    \emph{volumen}, \emph{tamaño}; que pueden ser seleccionables a través
+    de otras etiquetas o a través de la pantalla del dispositivo.
+    \end{itemize}
+  \item \textbf{Fase de pago}.
+  \item \textbf{Fase de envío y recogida}.
+  \item \textbf{Fase de gestión de fidelización}.
+  \item \textbf{Fase de servicio}.
+  \end{itemize}
+  
+% franmalogo@hotmail.com
+
+
     \subsubsection{Métodos de pago móvil}
+
     \subsubsection{Métodos de fidelización de clientes}
+
 
   \subsection{Aplicaciones comerciales}
     \subsubsection{Gestión de operaciones típicas de un restaurante}
@@ -204,7 +273,7 @@ sistema \acs{RFID}.}
     generar facturas, realizar la función de caja registradora, \dots
       \begin{itemize}
       \item \emph{\textbf{\href{http://www.softrestaurant.com/}
-      {SoftRestaurant}}}. Es un software desarrollado por la empresa mexicana ç
+      {SoftRestaurant}}}. Es un software desarrollado por la empresa mexicana
       \emph{\href{http://www.nationalsoft.com.mx/}{National Soft}}.
       Actualmente va por la versión \emph{8.0}.
 
