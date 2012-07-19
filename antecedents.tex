@@ -223,10 +223,13 @@ sistema \acs{RFID}.}
   de comercio basado en \acs{NFC} se necesitan definir cuatro componentes
   fundamentales:
     \begin{itemize}
-    \item \textbf{Servicio de \emph{back-end} basado en \acs{NFC}}. Este
+    \item \textbf{Servicio de \emph{back-end\cite{En diseño de software el
+    \emph{front-end} es la parte del software que interactúa con el o los
+    usuarios y el \emph{back-end} es la parte que procesa la entrada desde el
+    \emph{front-end}}} basado en \acs{NFC}}. Este
     servicio es el responsable de todo el intercambio de información durante
-    el proceso de comercio. Está gestionado por el proveedor de servicios 
-    basados ​​en NFC.
+    el proceso de comercio. Está gestionado por el proveedor de servicios
+    basados en \acs{NFC}.
     \item \textbf{Aplicación de terminal genérico \acs{GTA}}. Como el tamaño
     de la memoria del dispositivo móvil es limitada, combiene definir una
     aplicación genérica que permita realizar todas las gestiones comerciales.
@@ -252,16 +255,147 @@ sistema \acs{RFID}.}
     \emph{volumen}, \emph{tamaño}; que pueden ser seleccionables a través
     de otras etiquetas o a través de la pantalla del dispositivo.
     \end{itemize}
-  \item \textbf{Fase de pago}.
-  \item \textbf{Fase de envío y recogida}.
-  \item \textbf{Fase de gestión de fidelización}.
-  \item \textbf{Fase de servicio}.
+  \item \textbf{Fase de pago}. Hay dos métodos de pago disponibles en el
+  modelo \acs{NMC}:
+    \begin{itemize}
+    \item \textbf{Modo monedero electrónico} (figura \ref{fig:e-wallet}). 
+    Después de que el cliente haya realizado un pedido, el \acs{GTA} 
+    solicitará la información del producto al servicio \emph{back-end}. Si el 
+    servicio \emph{back-end} confirma la autenticidad del usuario y de la 
+    operación, le devolverá al \acs{GTA} el importe del producto. Esta 
+    cantidad será decrementada del monedero electrónico. El monedero 
+    electrónico es un elemento seguro al que sólo se puede acceder con el 
+    permiso del servicio \emph{back-end}. Los clientes deben disponer de saldo 
+    para poder realizar un pedido (método prepago).
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{e-wallet.png}
+        \caption{Fase de pago con \emph{modo monedero electrónico}.}
+        \label{fig:e-wallet}
+      \end{center}
+    \end{figure}
+
+    \item \textbf{Modo tarjeta de crédito} (figura \ref{fig:creditCard}). 
+    Antes de utilizar este modo para llevar a cabo la transacción, el banco 
+    debe facilitar al cliente un \emph{applet\footnote{Componente de una 
+    aplicación que se ejecuta en el contexto de otro programa. No puede 
+    ejecutarse de manera independiente.}} que tiene que ser cargada en el 
+    dispositivo móvil. Una vez realizado el pedido, el \acs{GTA} almacena el 
+    número de orden como elemento seguro. Para realizar el pago, el cliente 
+    aproxima el dispositivo móvil al lector del comerciante y este lee el 
+    número de orden almacenado. El servicio de \emph{back-end} comprueba el 
+    importe a pagar y se inicia un intercambio de información entre el lector 
+    del banco y el \emph{applet} de la tarjeta de crédito. Por último, el 
+    lector del banco obtiene el código de autorización para finalizar la 
+    transacción.
+  
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{creditCard.png}
+        \caption{Fase de pago con \emph{modo tarjeta de crédito}.}
+        \label{fig:creditCard}
+      \end{center}
+    \end{figure}
+
+    \end{itemize}
+  \item \textbf{Fase de envío y recogida}. En esta fase, el cliente elige
+  la forma y el lugar en que recibe el producto o servicio. Para productos
+  físicos elegirá el lugar al que deben llevárselo o el lugar en el que quiere
+  recogerlo. Y para productos virtuales el dispositivo donde quiere
+  almacenarlo.
+  \item \textbf{Fase de gestión de fidelización}. El programa de fidelización
+  está diseñado para atraer a un cliente a consumir de nuevo. Los cupones son
+  herramientas de fidelización comunes y la tecnología \acs{NFC} hace factible
+  el concepto de \emph{cupones virtuales}.
+    \begin{itemize}
+    \item Los clientes pueden recibir cupones tocando una etiqueta que 
+    simbolice la descarga de un cupón.
+    \item A través de \acs{NFC}, utilizando el modo comunicación
+    \emph{peer-to-peer}, los clientes pueden compartir sus cupones con los
+    demás. Esto puede aprovecharse para desarrollar un programa de
+    \emph{márketing} atractivo y eficaz.
+    \end{itemize}
+  \item \textbf{Fase de servicio}. Para solicitar un servicio bastará con
+  tocar con el dispositivo móvil una etiqueta de tipo servicio. Las diferentes
+  opciones de servicio que estén disponibles serán accesibles a través de
+  otras etiquetas de servicio o mediante la selección de ese servicio en la
+  pantalla del dispositivo.
   \end{itemize}
   
-% franmalogo@hotmail.com
+  Dada su generalidad, el modelo basado en el comercio móvil \acs{NMC},
+  establece las líneas maestra a tener en cuenta a la hora de desarrollar
+  toda clase de servicios móviles; entre ellos por supuesto, un sistema de 
+  gestión de restaurantes basado en \acs{NFC}.
+
+    \subsubsection{Métodos de pago móvil a distancia}
+  Hoy en día se pueden distinguir dos tipos de pagos a distancia: los que se
+  producen de forma remota, como cuando se realizan compras por internet;
+  y los que se realizan dentro del mismo sitio donde se está
+  comprando. El primero de ellos goza de una gran popularidad, ya que se
+  considera un método fácil, cómodo y bastante seguro; y no requiere de una
+  infraestructura especial para ser implementado. El segundo en cambio,
+  aunque parece prometedor en el futuro, aún no goza de la misma aceptación, 
+  debido en parte a que los establecimientos no están dispuestos a 
+  invertir su dinero en adquirir una infraestructura adicional para permitir 
+  este tipo de pagos sin ver antes que hacerlo les reporte algún tipo de 
+  beneficio.
+
+  En la actualidad el pago a distancia por móvil (sin necesidad de contacto) 
+  se puede conseguir mediante uno de estos tres métodos:
+  \begin{description}
+  \item[SIMpass]. Es una tecnología de interfaz dual que combina la
+  tradicional tarjeta \acs{SIM} y la tarjeta \acs{RFID} en una sola tarjeta
+  estándar. La interfaz de contacto cumple con la norma \acs{ISO} 7816 y la
+  interfaz a distancia cumple con el estándar de la norma \acs{ISO} 14443.
+  \emph{SIMpass} trabaja con una frecuencia de 13,56MHz. Como no es una
+  frecuencia muy alta, es difícil minimizar el tamaño de antena. Existen dos
+  maneras de implementar dicha antena. Una, de bajo coste, es utilizando una 
+  antena plana que consta de una bobina y que se le añade a la del teléfono
+  móvil. Para la otra habría que reformar parte del hardware del teléfono
+  móvil, aunque mejora notablemente la estabilidad y fiabilidad de la
+  funcionalidad \acs{RFID}.
+
+  \item[\acs{NFC}]. Como se ha visto en secciones anteriores, \acs{NFC} es una
+  tecnología que combina la tecnología \acs{RFID} con las comunicaciones de
+  corto alcance. En el sistema \acs{NFC} propuesto se distinguen tres partes 
+  principales: el controlador, la antena y una unidad de seguridad. La unidad
+  de seguridad puede correr a cargo de la tarjeta \acs{SIM} o de la tarjeta
+  \acs{SD}. Lo malo es que, tanto en un caso como en otro, habría que integrar
+  un módulo o chip de seguridad que no viene por defecto en estas tarjetas.
+  Esto se soluciona utilizando la tecnología \acs{NFC} mejorada (\emph{eNFC}).
+  Aunque \emph{eNFC} hace uso de la tarjeta \acs{SIM}, sólo tiene que utilizar
+  el pin C6 para poder modificar la memoria \emph{EEPROM}, en vez de tener
+  que utilizar dos pines (C4 y C8) que además interferían a la hora de
+  realizar otras operaciones.
+
+    \item[Programa RF-SIM]. Combinando el módulo de comunicaciones móviles y
+  los micro módulos de radio frecuencia (\emph{RF}) de la tarjeta \acs{SIM}
+  normal, la tarjeta \emph{RF-SIM} consigue operar a 2,4GHz (una alta 
+  frecuencia que tiene una longitud de onda corta). Esto permite que, a través
+  de una antena, el módulo \emph{RF-SIM} pueda comunicarse con otros 
+  dispositivos externos a distancias entre los 10 y los 500cm, a pesar de que
+  dicho módulo tenga un tamaño muy reducido. \emph{RF-SIM} es un tipo de
+  etiqueta activa, por lo que necesita una batería para trabajar.
+  \end{description}
+
+  
+  % Comparativa
+
+%Método de SIMpass ocupó el C4 y C8 pines, que está reservado para la interfaz de alta velocidad de la tarjeta SIM de gran capacidad. Por lo tanto, tiene un conflicto de la evolución futura de la tarjeta SIM. Desde la perspectiva a largo plazo, el método SIMpass no es apto para el desarrollo. La velocidad de lectura y escritura influye en el tiempo de procesamiento de transacciones. Cuanto mayor sea la velocidad es, el tiempo más corto que se necesita, la mayor seguridad y fiabilidad es. Desde este ángulo, el método de SIMpass realiza un poco peor.
+SIMpass tiene una antena simple, que cuesta menos. En consecuencia, es más fácil a corto plazo de promoción. Sin embargo, la estabilidad de antena simple es poco mala. Si el usuario abre la tapa posterior o cambia la batería, la antena se rompería. Por lo tanto, influirá en el uso normal. Teniendo en cuenta las malas influencias, que no sugieren que se utilizará. Debido a la necesidad de reformar SIMpass dispositivo de terminal, el costo de que está cerca el método eNFC. Por lo tanto, el método SIMpass no es recomendable. RF-SIM, de menor costo, podría no ser la solución más adecuada. La distancia de reacción es el factor más significativo en el sistema RFID.
+Para el pago móvil, la distancia de reacción más corto, más seguro en la transacción. Hasta cierto punto, la distancia depende de la frecuencia de trabajo. 2,4 GHz, hizo uso de la RF-SIM, no es la más segura, obviamente. 2,4 GHz, una frecuencia pública, apoyo a la tecnología de varios, tales como Bluetooth, Wi-Fi, Zigbee, UWB.
+Por lo tanto, la interferencia de RF-SIM que sufre de la que es más. RF-SIM funciona mal en la compatibilidad, ya que las terminales punto de venta más comunes 13,56 adoptar en cambio, en 2.4GHz. RF-SIM funciona en modo de corriente activa. Es decir, el teléfono móvil no puede implementar la función RFID cuando es el poder de falla. Por lo tanto, el método de RF-SIM no es recomendable.
+NFC. Entre las soluciones NFC, NFC-SIM tiene un problema en los pines de la tarjeta SIM. Y NFC-SD ha costado más amplia que otras soluciones. Así, eNFC es una solución óptima. Los operadores pueden cooperar con la fabricación mediante la personalización de terminales. Debido a que es bueno para complementar las respectivas ventajas. Además, esta cooperación contribuye a controlar a los operadores.
 
 
-    \subsubsection{Métodos de pago móvil}
+  % Además...
+
+%NO MORE WAITING ON NFC
+%desde hace años, cuando los analistas e ingenieros de los teléfonos habló de sustitución de nuestros bolsillos, se concentraron en una sola tecnología: Near Field Communication. NFC permite a los dispositivos ubicados dentro de uno o dos centímetros el uno del otro para establecer una conexión inalámbrica.
+%Sin embargo, ocho años después de Nokia, Philips y Sony fundó el NFC Forum, la tecnología todavía no es común en los teléfonos. En los Estados Unidos, sólo dos modelos, disponibles en la red de Sprint, se han incluido con el hardware NFC para apoyar Google Wallet. (Galaxy de Verizon Wireless de teléfono Nexus tiene un chip NFC, pero la empresa bloqueó el uso de Google Wallet.) Sin duda, habrá más teléfonos con funcionalidad NFC para elegir en el futuro: Más de 100 modelos se han anunciado para 2012, según los analistas de la empresa sueca Berg Insight, más que el doble que los 40 modelos lanzados a nivel mundial en 2011.
+%Pero sólo la producción de más teléfonos con NFC no es suficiente. Tiendas todavía tenemos que añadir a los lectores NFC a todos sus cajas registradoras, y los minoristas no quieren gastar dinero en eso hasta que hay una demanda significativa. Es un clásico de la gallina y el huevo de la situación.
+%Mientras tanto, el móvil de pago de nueva creación no están esperando a que la NFC. Ellos han descubierto que la mayoría de los teléfonos móviles ya cuentan con las tecnologías disponibles para hacer el trabajo compras.
 
     \subsubsection{Métodos de fidelización de clientes}
 
@@ -304,7 +438,7 @@ sistema \acs{RFID}.}
 
       % Descripción general y foto
 
-      Dispone de un monitor de comandas (situado en la cocine) que permite
+      Dispone de un monitor de comandas (situado en la cocina) que permite
       gestionar el estado de elaboración de los platos.
 
       \item \emph{\textbf{
