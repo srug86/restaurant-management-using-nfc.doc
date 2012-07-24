@@ -174,7 +174,7 @@ cocina.
   la rusa} en el que se prima la rapidez. Los platos y las bebidas se sirven
   por la derecha y se retiran por la izquierda. Los alimentos que se sirven
   requieren poca preparación, tanto para su elaboración como para su servicio
-  (figura \ref{fig:americanService}. Es el tipo de servicio más económico.
+  (figura \ref{fig:americanService}). Es el tipo de servicio más económico.
 
   \begin{figure}[!h]
     \begin{center}
@@ -261,8 +261,10 @@ cocina.
   que contiene, valga la redundancia, dichos datos.
 
     \subsubsection{\emph{ASP .NET}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     \subsubsection{Base de datos \emph{MySQL}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \subsection{Aplicación de la tecnología \acs{NFC}}
     \subsubsection{Introducción de la tecnología \acs{NFC} en el entorno}
@@ -281,6 +283,7 @@ cocina.
   
     \subsubsection{Nokia 6131 \acs{NFC}}
   Hoy en día el número de
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %http://www.nfcon.es/2012/03/23/lista-de-telefonos-moviles-smartphones-con-nfc/
 
   % Móvil de MAmI
@@ -289,11 +292,12 @@ cocina.
   % JSR-257
 
   \subsection{Aplicación de la tecnología Bluetooth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Introducción de la tecnología \emph{Bluetooth} en el
   entorno}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Comunicación en serie}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Metodología de trabajo}
 Después de los pasos citados anteriormente se decide, para abordar el
@@ -511,29 +515,253 @@ afecta al prototipo del recibidor y al prototipo de la aplicación móvil.
 \section{Herramientas}
 En esta sección se citan las herramientas que han sido utilizadas para el 
 desarrollo de este \acs{PFC}.
+
   \subsection{Diagramas \acs{UML}}
-  % Visual Paradigm for \acs{UML} 8.3 (Community Edition)
+  Para cubrir la fase de análisis de requisitos y diseño de cada una de las
+  iteraciones propuestas se ha echado mano del \emph{\textbf{Visual Paradigm
+  for \acs{UML}}}, que es una herramienta \emph{case} de especificaciones
+  \acs{UML}, desarrollado por la empresa \emph{Visual Paradigm International}.
+
+  Con este programa se han realizado los diagramas de casos de uso, los de
+  clases, los de despliegue, los de comunicación y los de secuencia. Es decir,
+  todos los diagramas que definen la forma en la que está estructurado el
+  sistema y la forma en que se comporta.
+
+  La versión utilizada ha sido la \emph{8.3} de la \emph{Community Edition} y
+  ha sido necesario pedir una licencia para uso \emph{no comercial}.
+
   \subsection{Lenguajes de programación}
-  % C# .NET
-  % ASP .NET
-  % javame
+  El código de los distintos elementos que forman el sistema ha sido
+  implementado utilizando tres lenguajes de programación:
+
+  \begin{itemize} 
+  \item \textbf{C\#}.
+  Es un lenguaje de programación orientada a objetos
+  \acs{OO} desarrollado y estandarizado por \emph{Microsoft} como parte de
+  su plataforma \emph{.NET}.
+
+  Con este lenguaje se ha desarrollado la aplicación del \emph{recibidor} y
+  la aplicación de la \emph{barra}.
+
+  Además, se han utilizado la librería externa \emph{InTheHand.Net}, que
+  posibilita las conexiones \emph{Bluetooth} de las aplicaciones implementadas
+  en \emph{C\#} con los dispositivos móviles.
+
+  \item \textbf{ASP.NET}.
+  En realidad \emph{\acs{ASP}.NET} no puede 
+  considerarse un lenguaje de programación, más bien es un \emph{framework} 
+  que se utiliza para la construcción de sitios web dinámicos, aplicaciones 
+  web o servicios web \acs{XML}. \emph{ASP.NET} está construido sobre el
+  \emph{Common Language Runtime}, lo que permite a los programadores escribir 
+  código \emph{ASP.NET} utilizando cualquier lenguaje admitido por el
+  \emph{framework} de \emph{.NET}, como por ejemplo, el propio \emph{C\#}.
+
+  Los servicios web han sido implementados utilizando el \emph{framework}
+  \emph{ASP.NET}.
+
+  Además, para poder acceder a la base de datos, se ha utilizado una librería
+  externa a \emph{C\#} llamada \emph{MySql.Data}.
+
+  \item \textbf{SQL}.
+  \acs{SQL} es un lenguaje declarativo de acceso a bases de
+  datos relacionales que permite especificar distintos tipos de operaciones
+  sobre estas.
+
+  En este caso la base de datos a la que se accede está montada sobre un
+  \acs{SGBD} \emph{MySQL}. Esta base de datos almacena todos los datos de
+  interés con los que trabajan las dos aplicaciones del restaurante
+  (\emph{recibidor} y \emph{barra}).
+
+  \item \textbf{Java Micro Edition}.
+  Es una especificación de un subconjunto de la
+  plataforma \emph{Java} orientada a proveer una colección certificada de
+  \acs{API}s de desarrollo de software para dispositivos con recursos
+  restringidos, como son los dispositivos móviles.
+
+  \acs{JavaME} fue desarrollado mediante el Java Community Process bajo la 
+  especificación \emph{JSR 68}. La evolución de la plataforma ha propiciado el 
+  abandono de las Java Specification Request (peticiones de especificación 
+  para Java) en favor de JSRs separadas para las distintas versiones de JavaME.
+
+  Por ejemplo, para el desarrollo de la aplicación móvil se han utilizado
+  principalmente dos \acs{JSR}s:
+    \begin{itemize}
+    \item \textbf{JSR-82}. Que implementa las funcionalidades
+    propias de las comunicaciones vía \emph{Bluetooth} entre dispositivos.
+    \item \textbf{JSR-257}. Que implementa las funcionalidades propias
+    de las comunicaciones \acs{NFC}.
+    \end{itemize}
+
+  Además de estas, también se ha hecho uso de la librería
+  \emph{kxml2-min-2.3.0} que permite construir y parsear documentos o cadenas 
+  expresados en \acs{XML}.
+
+  \item \textbf{XML}.
+  Es un lenguaje de marcar desarrollado por el
+  World Wide Web Consortium (\acs{W3C}). Permite definir la gramática de
+  lenguajes específicos para estructurar documentos grandes. A diferencia de
+  otros lenguajes, \emph{XML} da soporte a bases de datos, siendo útil cuando
+  varias aplicaciones se deben comunicar entre sí o integrar información.
+
+  En este caso, se utiliza \acs{XML} para mandar información estructurada 
+  entre las aplicaciones del restaurante y los servicios web (a través de la
+  red) y entre los dispositivos móviles y las aplicaciones del restaurante 
+  (esta vez vía \emph{Bluetooth}).
+  \end{itemize}
+
   \subsection{Aplicaciones de desarrollo}
-  % Microsoft Visual Studio 2010.
-  % Netbeans IDE 7.0.1.
-  % SDK Nokia 6131 NFC.
+  Para implementar las distintas aplicaciones que conforman el sistema se
+  ha hecho uso de las siguientes herramientas de desarrollo:
+  
+  \begin{itemize}
+    \item \textbf{Microsoft Visual Studio 2010}.
+    Es un entorno de desarrollo integrado (\acs{IDE}) para sistemas operativos
+    \emph{Windows}. Soporta lenguajes de programación como \emph{Visual C++},
+    \emph{Visual C\#}, \emph{Visual J\#}, \emph{Visual Basic .NET} y
+    entornos de desarrollo web como \emph{ASP.NET}, aunque actualmente
+    se han desarrollado extensiones para muchos otros.
+
+    Este \acs{IDE} se ha utilizado para desarrollar la aplicación del
+    recibidor, la aplicación de la barra y los servicios web.
+    
+    \item \textbf{Netbeans IDE 7.0.1}.
+    Es un \acs{IDE} libre que no tiene restricciones de uso, concebido 
+    originalmente por \emph{Sun MicroSystems} para el desarrollo de proyectos
+    en lenguaje \emph{Java}, aunque actualmente existe un gran número de 
+    módulos que extienden su funcionalidad.
+
+    Este \acs{IDE} se ha usado para crear la aplicación del dispositivo móvil.
+    Para su desarrollo ha sido necesario incluir el módulo \emph{Mobility 
+    Pack}, que permite desarrollar aplicaciones en \acs{JavaME}.
+
+    \item \textbf{SDK Nokia 6131 NFC}. 
+    Es un kit de desarrollo software (\acs{SDK}) que proporciona una serie
+    de \acs{API}s de desarrollo de aplicaciones para el dispositivo móvil
+    \emph{Nokia 6131 \acs{NFC}} y, junto al \acs{IDE} \emph{Netbeans},
+    permite emular las funcionalidades implementadas sin necesidad de
+    cargarlas en un dispositivo móvil real.
+    
+    \item \textbf{phpMyAdmin 3.4.10.1}.
+    Es una herramienta escrita en \emph{PHP} que permite administrar bases
+    de datos \emph{MySQL} a través del navegador.
+
+    Ha sido la herramienta utilizada para crear y editar las tablas que
+    forman parte de la base de datos del sistema y, en general, la herramienta
+    utilizada para administrar los contenidos de dichas tablas.
+
+    Tanto los servicios web como la base de datos implementada se encuentran 
+    en la dirección: \url{161.67.140.37:3500/ServicioMobiCarta/Services.asmx}
+    que pertenece a uno de los serviciores del grupo \acs{MAmI}. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \end{itemize}
+
   \subsection{Repositorio de datos}
-  % GoogleCode
+  Para un mejor mantenimiento y accesibilidad de la información generada
+  durante el desarrollo del \acs{PFC}, se ha optado por almacenar dicha
+  información en los repositorios de \emph{Google Code}.
+
+  \emph{Google Code} es una herramienta de \emph{Google} para desarrolladores 
+  interesados en el desarrollo de proyectos \emph{open-source}. \emph{Google}
+  cede su espacio con la única condición de que la información del proyecto
+  sea accesible a todo el mundo.
+
+  La dirección de este \acs{PFC} es la siguiente:
+  \url{http://code.google.com/p/restaurant-management-using-nfc/}.
+
   \subsection{Control de versiones}
-  % Mercurial
+  \emph{``Se llama control de versiones a la gestión de los diversos cambios 
+  que se realizan sobre los elementos de algún producto o una configuración 
+  del mismo. Una versión, revisión o edición de un producto, es el estado en 
+  el que se encuentra dicho producto en un momento dado de su desarrollo o 
+  modificación.''}\cite{bib:wiki}.
+  
+  En este caso, como se trabaja con un sistema complejo, formado por varios 
+  elementos, cada elemento va generando información en cada etapa de 
+  desarrollo y en cada etapa de desarrollo se trabaja con varios archivos; es 
+  del todo recomendable registrar en un control de versiones las modificaciones
+  que se van realizando en cada uno de los archivos. Esto posibilita llevar
+  un seguimiento del cuándo, el dónde y el porqué de cada uno de los cambios;
+  y permite volver a estados (o revisiones) anteriores. Además, en colaboración
+  con el repositorio de datos, permite tener actualizado el estado de 
+  todos los archivos del proyecto aunque el desarrollo se esté realizando en 
+  distintas máquinas.
+
+  El sistema de control de versiones (\acs{SVC}) utilizado en este \acs{PFC}
+  ha sido \emph{Mercurial}. \emph{Mercurial} es un \acs{SVC} con 
+  licencia \emph{\acs{GPL} v2}, multiplataforma, escrito en \emph{Python}.
+
+  Para sistemas \emph{Linux} es habitual utilizar \emph{Mercurial} desde el
+  terminal. En sistemas \emph{Windows}, por el contrario, es más común utilizar
+  herramientas gráficas que faciliten la ejecución de las principales tareas
+  de este \acs{SVC}. En este caso, se han utilizado las siguientes herramientas
+  disponibles todas ellas en la página de \emph{Mercurial}
+  (\url{http://mercurial.selenic.com/}):
+  \begin{itemize}
+    \item \emph{\textbf{TortoiseHg 2.2.2}}. Es un conjunto de herramientas 
+    gráficas y extensiones de la \emph{shell} para \emph{Mercurial}.
+    \item \emph{\textbf{VisualHg}}. Es una extensión para \emph{Visual Studio}
+    que permite utilizar la funcionalidad de \emph{Mercurial} sobre los
+    archivos de la solución actual.
+    \item \emph{Extensión de Mercurial para Netbeans}. Como ocurre con
+    \emph{Visual Studio}, también existe una extensión que permite utilizar
+    las funcionalidades de \emph{Mercurial} sobre los archivos de los 
+    proyectos cargados.
+  \end{itemize}
+
   \subsection{Edición de imagen y gráficos vectoriales}
-  % Gimp 2.6
-  % Inkscape 0.48.3.1
+  Para la elaboración de los iconos y otras imágenes de las aplicaciones, así
+  como para la edición de las imágenes del presente documento, se han utilizado
+  los siguientes programas:
+  \begin{description}
+  \item[Gimp 2.6.] \emph{Gimp} o (\emph{\acs{GNU} Image Manipulation Program})
+  es un programa de edición de imágenes digitales en forma de mapas de bits.
+  Forma parte del proyecto \acs{GNU} y está disponible bajo la licencia
+  \acs{GPL}.
+  \item[Inkscape 0.48.3.1.] \emph{Inkscape} es un editor de gráficos 
+  vectoriales en formato \acs{SVG}. Las características \acs{SVG} soportadas
+  incluyen formas básicas, trayectorias, texto, canal alfa, transformaciones,
+  gradientes, edición de nodos, exportaciones a \acs{PNG}, agrupación de
+  elementos, etc. Al igual que \emph{Gimp}, \emph{Inkscape} también es un
+  programa multiplataforma disponible bajo la licencia \acs{GPL}.
+  \end{description}
+
   \subsection{Documentación}
-  % \LaTeX, estilo arco-pfc
+  Para la composición de este documento se ha utilizado el sistema de
+  composición de textos \LaTeX. \LaTeX es un sistema de composición muy
+  adecuado para realizar artículos académicos, tesis y libros técnicos, dado
+  que la calidad tipográfica de los documentos realizados es comparable a la
+  de una editorial científica de primera línea\cite{bib:LaTeX}. \LaTeX es
+  software libre bajo licencia \acs{LPPL}.
+
+  Además, se ha utilizado como tipo de documento la clase \emph{arco-pfc}, que
+  es una clase elaborada por el \emph{grupo \acs{ARCO}}\footnote{Grupo de
+  investigación de la \acs{UCLM} que tiene como objetivo el diseño de
+  sistemas complejos con componentes tanto hardware como software, haciendo
+  especial énfasis en aspectos como la utilización de recursos, prestaciones
+  y comunicaciones, y su aplicación al desarrollo de servicios avanzados en
+  áreas tales como la computación distribuida, inteligencia ambiental, redes
+  de sencites, \dots\cite{bib:ARCO}} para la elaboración de \acs{PFC}s y
+  \acs{TFG}s y que sigue el formato especificado por la \acs{ESI} de Ciudad 
+  Real. \emph{arco-pfc} es un proyecto libre alojado en la web
+  \url{https://bitbucket.org/arco_group/arco-pfc}.
+
   \subsection{Herramientas hardware}
-  % Nokia 6131 \acs{NFC}
-  % Etiquetas \acs{RFID} \emph{MiFare} de 1KB
-  % Monitor táctil...
+  Las aplicaciones que forman parte del sistema han sido desarrolladas en
+  varios ordenadores personales sobre sistemas operativos como: \emph{Windows
+  XP SP3}, \emph{Windows 7} y \emph{Ubuntu 12.04}.
+
+  Fuera de esto, para realizar las pruebas reales del sistema, se han utilizado
+  los siguientes medios hardware:
+  \begin{itemize}
+  \item \textbf{\emph{Nokia 6131 \acs{NFC}}}. Dispositivo donde se ejecuta
+  la aplicación móvil. Dispone de lector \acs{NFC} y conexión \emph{Bluetooth}.
+  \item \textbf{\emph{Etiquetas \acs{RFID}}}. Son de tipo \emph{Mifare} y
+  tienen 1KB de capacidad. Almacenan la información de los productos de la 
+  carta y de otras operaciones disponibles para el cliente.
+  \item \textbf{Monitor táctil}. La aplicación del recibidor y la aplicación
+  de la barra están enfocadas a la interacción táctil. Por ello es conveniente
+  realizar las pruebas sobre un dispositivo que aproveche esta característica.
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \end{itemize}
 
 % Local Variables:
 %   coding: utf-8

@@ -173,7 +173,7 @@ sistema \acs{RFID}.}
   mundo y su cartera de productos incluye soluciones perfectas para la
   recaudación automática de tarifas, tarjetas de fidelización, cobro en 
   carreteras de peaje o gestión de acceso a edificios\cite{bib:urlMifare} 
-  (figura \ref{fig:mifareFamily}.
+  (figura \ref{fig:mifareFamily}).
 
   \begin{figure}[!h]
     \begin{center}
@@ -184,12 +184,25 @@ sistema \acs{RFID}.}
   \end{figure}
 
   \subsection{La tecnología NFC}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   \subsection{La tecnología Bluetooth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   \subsection{Los servicios web}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   \subsection{El framework .NET}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   \subsection{La tecnología Java}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   \subsection{Los displays táctiles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   \subsection{La computación móvil}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Trabajos relacionados}
   \subsection{Estudios relacionados}
@@ -223,10 +236,10 @@ sistema \acs{RFID}.}
   de comercio basado en \acs{NFC} se necesitan definir cuatro componentes
   fundamentales:
     \begin{itemize}
-    \item \textbf{Servicio de \emph{back-end\cite{En diseño de software el
-    \emph{front-end} es la parte del software que interactúa con el o los
+    \item \textbf{Servicio de \emph{back-end}}\footnote{En diseño de software
+    el \emph{front-end} es la parte del software que interactúa con el o los
     usuarios y el \emph{back-end} es la parte que procesa la entrada desde el
-    \emph{front-end}}} basado en \acs{NFC}}. Este
+    \emph{front-end}} \textbf{basado en \acs{NFC}}. Este
     servicio es el responsable de todo el intercambio de información durante
     el proceso de comercio. Está gestionado por el proveedor de servicios
     basados en \acs{NFC}.
@@ -335,14 +348,13 @@ sistema \acs{RFID}.}
   comprando. El primero de ellos goza de una gran popularidad, ya que se
   considera un método fácil, cómodo y bastante seguro; y no requiere de una
   infraestructura especial para ser implementado. El segundo en cambio,
-  aunque parece prometedor en el futuro, aún no goza de la misma aceptación, 
-  debido en parte a que los establecimientos no están dispuestos a 
-  invertir su dinero en adquirir una infraestructura adicional para permitir 
-  este tipo de pagos sin ver antes que hacerlo les reporte algún tipo de 
-  beneficio.
+  aún no goza de la misma aceptación, debido, en parte, a que los 
+  establecimientos no están dispuestos a invertir su dinero en adquirir una 
+  infraestructura adicional para permitir este tipo de pagos, sin ver antes 
+  que hacerlo les reporte algún tipo de beneficio.
 
-  En la actualidad el pago a distancia por móvil (sin necesidad de contacto) 
-  se puede conseguir mediante uno de estos tres métodos:
+  En la actualidad el pago a distancia por móvil utilizando la tecnología
+  \acs{RFID} y \acs{NFC} se puede conseguir mediante uno de estos tres métodos:
   \begin{description}
   \item[SIMpass]. Es una tecnología de interfaz dual que combina la
   tradicional tarjeta \acs{SIM} y la tarjeta \acs{RFID} en una sola tarjeta
@@ -352,7 +364,7 @@ sistema \acs{RFID}.}
   frecuencia muy alta, es difícil minimizar el tamaño de antena. Existen dos
   maneras de implementar dicha antena. Una, de bajo coste, es utilizando una 
   antena plana que consta de una bobina y que se le añade a la del teléfono
-  móvil. Para la otra habría que reformar parte del hardware del teléfono
+  móvil. Para la otra, hay que reformar parte del hardware del teléfono
   móvil, aunque mejora notablemente la estabilidad y fiabilidad de la
   funcionalidad \acs{RFID}.
 
@@ -379,90 +391,380 @@ sistema \acs{RFID}.}
   etiqueta activa, por lo que necesita una batería para trabajar.
   \end{description}
 
-  
-  % Comparativa
+  Cada uno de estos métodos tiene sus ventajas e inconvenientes. Por ejemplo:
+  \begin{itemize}
+  \item Para implementar el método \emph{SIMpass} es necesario utilizar los
+  pines \emph{C4} y \emph{C8}, que están reservados para la interfaz de alta
+  velocidad de la tarjeta \acs{SIM}. Por lo tanto tiene un conflicto en la
+  evolución futura de la tarjeta \acs{SIM}. Además, aunque la antena que
+  necesita tiene un costo más asequible; la fiabilidad, el alcance y la
+  velocidad de las transacciones dejan mucho que desear. Por lo que se 
+  considera un método poco recomendable.
+  \item La distancia de reacción es el factor más significativo de un sistema
+  \acs{RFID}. Para un sistema de pago, cuanto más corta sea esta distancia
+  más segura será la transacción. El programa \emph{RF-SIM} trabaja a 2.4GHz,
+  lo que implica que la distancia de reacción sea demasiado larga como para ser
+  segura. Los sistemas inalámbricos \emph{Bluetooth}, \emph{Zigbee}
+  \footnote{Especificación de un conjunto de protocolos de alto nivel de 
+  comunicación inalámbrica para su utilización con radiodifusión digital de 
+  bajo consumo, basada en el estándar IEEE 802.15.4 de redes inalámbricas de 
+  área personal. Su objetivo son las aplicaciones que requieren comunicaciones 
+  seguras con baja tasa de envío de datos y maximización de la vida útil de 
+  sus baterías, como las aplicaciones domóticas.},
+  \acs{WiFi} o \acs{UWB}\footnote{Cualquier tecnología de radio que usa un
+  ancho de banda mayor de 500 MHz o del 25\% de la frecuencia central, de 
+  acuerdo con la FCC (Federal Communications Commission).} usan la misma 
+  frecuencia, lo que puede generar interferencias.
+  \item El sistema \emph{NFC-SIM} tiene el mismo problema con los pines que
+  \emph{RF-SIM} y \emph{NFC-SD} es una solución demasiado costosa.
+  \item \emph{eNFC} se plantea como la solución óptima para resolver todos los
+  problemas.
+  \end{itemize}
 
-%Método de SIMpass ocupó el C4 y C8 pines, que está reservado para la interfaz de alta velocidad de la tarjeta SIM de gran capacidad. Por lo tanto, tiene un conflicto de la evolución futura de la tarjeta SIM. Desde la perspectiva a largo plazo, el método SIMpass no es apto para el desarrollo. La velocidad de lectura y escritura influye en el tiempo de procesamiento de transacciones. Cuanto mayor sea la velocidad es, el tiempo más corto que se necesita, la mayor seguridad y fiabilidad es. Desde este ángulo, el método de SIMpass realiza un poco peor.
-SIMpass tiene una antena simple, que cuesta menos. En consecuencia, es más fácil a corto plazo de promoción. Sin embargo, la estabilidad de antena simple es poco mala. Si el usuario abre la tapa posterior o cambia la batería, la antena se rompería. Por lo tanto, influirá en el uso normal. Teniendo en cuenta las malas influencias, que no sugieren que se utilizará. Debido a la necesidad de reformar SIMpass dispositivo de terminal, el costo de que está cerca el método eNFC. Por lo tanto, el método SIMpass no es recomendable. RF-SIM, de menor costo, podría no ser la solución más adecuada. La distancia de reacción es el factor más significativo en el sistema RFID.
-Para el pago móvil, la distancia de reacción más corto, más seguro en la transacción. Hasta cierto punto, la distancia depende de la frecuencia de trabajo. 2,4 GHz, hizo uso de la RF-SIM, no es la más segura, obviamente. 2,4 GHz, una frecuencia pública, apoyo a la tecnología de varios, tales como Bluetooth, Wi-Fi, Zigbee, UWB.
-Por lo tanto, la interferencia de RF-SIM que sufre de la que es más. RF-SIM funciona mal en la compatibilidad, ya que las terminales punto de venta más comunes 13,56 adoptar en cambio, en 2.4GHz. RF-SIM funciona en modo de corriente activa. Es decir, el teléfono móvil no puede implementar la función RFID cuando es el poder de falla. Por lo tanto, el método de RF-SIM no es recomendable.
-NFC. Entre las soluciones NFC, NFC-SIM tiene un problema en los pines de la tarjeta SIM. Y NFC-SD ha costado más amplia que otras soluciones. Así, eNFC es una solución óptima. Los operadores pueden cooperar con la fabricación mediante la personalización de terminales. Debido a que es bueno para complementar las respectivas ventajas. Además, esta cooperación contribuye a controlar a los operadores.
-
-
-  % Además...
-
-%NO MORE WAITING ON NFC
-%desde hace años, cuando los analistas e ingenieros de los teléfonos habló de sustitución de nuestros bolsillos, se concentraron en una sola tecnología: Near Field Communication. NFC permite a los dispositivos ubicados dentro de uno o dos centímetros el uno del otro para establecer una conexión inalámbrica.
-%Sin embargo, ocho años después de Nokia, Philips y Sony fundó el NFC Forum, la tecnología todavía no es común en los teléfonos. En los Estados Unidos, sólo dos modelos, disponibles en la red de Sprint, se han incluido con el hardware NFC para apoyar Google Wallet. (Galaxy de Verizon Wireless de teléfono Nexus tiene un chip NFC, pero la empresa bloqueó el uso de Google Wallet.) Sin duda, habrá más teléfonos con funcionalidad NFC para elegir en el futuro: Más de 100 modelos se han anunciado para 2012, según los analistas de la empresa sueca Berg Insight, más que el doble que los 40 modelos lanzados a nivel mundial en 2011.
-%Pero sólo la producción de más teléfonos con NFC no es suficiente. Tiendas todavía tenemos que añadir a los lectores NFC a todos sus cajas registradoras, y los minoristas no quieren gastar dinero en eso hasta que hay una demanda significativa. Es un clásico de la gallina y el huevo de la situación.
-%Mientras tanto, el móvil de pago de nueva creación no están esperando a que la NFC. Ellos han descubierto que la mayoría de los teléfonos móviles ya cuentan con las tecnologías disponibles para hacer el trabajo compras.
+  Como se decía, aunque muchos analistas e ingenieros hablan de que los 
+  pagos mediante \acs{NFC} sustituirán a los pagos realizados por medios
+  tradicionales, esta tecnología aún no es muy común en los teléfonos. En
+  Estados Unidos, sólo dos modelos han incluido el hardware \acs{NFC}
+  que soporta el pago mediante \emph{Google Wallet}\footnote{Sistema de pago 
+  móvil desarrollado por \emph{Google} que permite a sus usuarios guardar las 
+  tarjetas de crédito, tarjetas de fidelización y tarjetas de regalo, entre 
+  otras cosas. Soporta el uso de \acs{NFC}.}. En 2012 se ha anunciado
+  la salida de más de 100 modelos con funcionalidad \acs{NFC} (doblando las 
+  cifras del 2011). Pero sólo con la producción de más teléfonos con \acs{NFC} 
+  no es suficiente. Las tiendas tienen que añadir lectores \acs{NFC} a todas
+  sus cajas registradoras y los minoristas no quieren gastar dinero en esto
+  hasta que la demanda sea significativa. Por ello, mientras que esto ocurre,
+  han aparecido nuevas formas de pago, que aprovechan las características
+  de otras tecnologías con las que cuentan los móviles, como la lectura de 
+  códigos \acs{QR}, el acelerómetro o mediante \acs{SMS}\cite{bib:noWaiting}.
 
     \subsubsection{Métodos de fidelización de clientes}
+  Uno de los atractivos que puede tener el uso de la tecnología móvil \acs{NFC}
+  es el de poder fidelizar a los clientes en el uso de un servicio. Esto es,
+  dependiendo de las operaciones realizadas por un cliente con el móvil en un
+  establecimiento, este puede ofrecerle productos que tal vez le interesen,
+  puede proponerle descuentos por su fidelidad como cliente o puede utilizar
+  el historial de todos los clientes para conocer cuáles son las tendencias
+  de consumo.
+  
+  Uno de los últimos sistemas de fidelización que se ha propuesto para sacar 
+  partido a la utilización del \acs{NFC} es \emph{\textbf{WingBonus}}.
 
+  \emph{\href{http://wingbonus.com/}{WingBonus}} es un sistema de
+  gestión de promociones formado por una aplicación web y una aplicación móvil
+  (disponible para sistemas \emph{Android}). Ha sido creada por el grupo de 
+  investigación ISCBD (Ingeniería del Software, Conocimiento y Base de datos) 
+  de la Universidad de Córdoba. Y, aunque por el momento sólo muestra 
+  promociones ficticias, tiene por objetivo servir algún día de punto de 
+  encuentro entre los clientes y sus marcas favoritas, a través de las 
+  promociones ofertadas por estos últimos.
+  
+  A través de la web, los clientes pueden descargar en su móvil cupones, 
+  descuentos o tarjetas de fidelización, que pueden ser utilizados a la hora 
+  de realizar un pago con \acs{NFC} en los establecimientos donde tengan 
+  vigencia. Es decir, si un cliente tiene un cupón de descuento para cortarse 
+  el pelo en una peluquería concreta y al pagar en dicha peluquería utiliza el 
+  sistema \acs{NFC}, el precio total a abonar por el corte de pelo se verá 
+  decrementado por el cupón de descuento.
+
+  El sistema permite dos tipos de usuarios: el usuario registrado y el usuario
+  anónimo. Los cupones disponibles para cata tipo de usuario presentan
+  características diferentes. Por ejemplo, habrá cupones en los que las
+  empresas se interesen por conocer qué tipo de personas (edad, trabajo,
+  estatus, etc) descargan y utilizan este tipo de cupones. Si la empresa no
+  se preocupa por esta información, todo el mundo podrá descargar cupones
+  como anónimo.
+
+  Todas las ofertas que se ofrecen en la web tienen un periodo concreto de
+  disponibilidad dentro del cual el cliente puede hacerse con dicha oferta
+  (figura \ref{fig:wingBonusP}). Además, las ofertas tienen un tiempo acotado
+  de validez que delimita el periodo en el que puede aplicarse dicha oferta.
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{wingBonusP.png}
+      \caption{Ejemplo de cupón ofrecido en la web de \emph{WingBonus}.}
+      \label{fig:wingBonusP}
+    \end{center}
+  \end{figure}
+
+  Los cupones de descuentos tienen la particularidad de que pueden compartirse
+  con otros usuarios \acs{NFC} mediante una comunicación \emph{peer-to-peer}.
+
+  Para las empresas asociadas, \emph{WingBonus} ofrece grandes ventajas: 
+  reducción de costos, eliminación del papel, poder llegar a más clientes,
+  eliminación de las falsificaciones, análisis de mercado, estudio de
+  tendencias, fidelización de clientes, etc.\cite{bib:wingBonus}.
 
   \subsection{Aplicaciones comerciales}
+  A continuación, se muestran varios ejemplos de cómo distintos programas
+  comerciales implementan las funcionalidades típicas de los gestores de
+  restaurantes. Además, también se exponen otras aplicaciones que permiten
+  realizar pedidos desde el sitio y sin necesidad de un camarero de ``carne y
+  hueso''.
+
     \subsubsection{Gestión de operaciones típicas de un restaurante}
     En la actualidad existe una innumerable oferta de aplicaciones que ayudan
-    a gestionar las labores típicas de un restaurante: gestionar pedidos,
-    generar facturas, realizar la función de caja registradora, \dots
-      \begin{itemize}
-      \item \emph{\textbf{\href{http://www.softrestaurant.com/}
-      {SoftRestaurant}}}. Es un software desarrollado por la empresa mexicana
-      \emph{\href{http://www.nationalsoft.com.mx/}{National Soft}}.
-      Actualmente va por la versión \emph{8.0}.
+    a gestionar las labores típicas de un restaurante, como pueden ser:
+    gestionar pedidos, generar facturas o realizar la función de caja 
+    registradora.
 
-      % Descripción general y foto
+    \begin{itemize}
+    \item Para gestionar pedidos las aplicaciones suelen contar con un panel
+    de productos en el que se van seleccionando: cantidad, producto y mesa
+    a la que va destinado (figuras \ref{fig:productsPanel} y
+    \ref{fig:productsPanel2}). Normalmente la iteración consiste en seleccionar
+    primero una mesa, seleccionar después la cantidad de productos de un
+    mismo tipo y seleccionar por último el producto.
 
-      A diferencia de otros programas de gestión de restaurantes, permite
-      describir las recetas de los productos contemplados en la carta. Es 
-      decir, permite listar los ingredientes (con sus cantidades) utilizados
-      en la elaboración de cada plato, pudiendo además gestionar el
-      \emph{stock} de esos ingredientes.
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{productsPanel.png}
+        \caption{Panel de productos del programa \emph{FrontRest}
+        \cite{bib:frontRest}.}
+        \label{fig:productsPanel}
+      \end{center}
+    \end{figure}
 
-      \item \emph{\textbf{\href{http://www.estudiolegaspi.com.ar/Salewin.html}
-      {SaleYa}}}. Es un software desarrollado por la empresa argentina 
-      \emph{\href{http://www.estudiolegaspi.com.ar/}{Estudio Legaspi}}.
-      Dispone de una versión limitada de prueba.
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{productsPanel2.png}
+        \caption{Panel de selección de cantidad del programa \emph{FrontRest}
+        \cite{bib:frontRest}.}
+        \label{fig:productsPanel2}
+      \end{center}
+    \end{figure}
 
-        % Descripción general y foto
+    Una vez terminada la iteración anterior, el pedido queda reflejado en la
+    lista de productos asignados a esa mesa (figura \ref{fig:productsList}).
 
-      Permite editar los objetos (mesas, barra, \dots) que conforman la vista 
-      del restaurante, para simular la planta del restaurante real. Además, las
-      mesas son representadas con un color u otro según su estado (libre u
-      ocupada).
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{productsList.png}
+        \caption{Lista de pedidos para la mesa 5. \emph{FrontRest}
+        \cite{bib:frontRest}.}
+        \label{fig:productsList}
+      \end{center}
+    \end{figure}
 
-      \item \emph{\textbf{\href{http://www.restbar.com/}{RestBar}}}. Es un
-      software desarrollado por la empresa mexicana
-      \emph{\href{http://www.ambit.com.mx/}{Ambit Tecnology}}. Actualmente se
-      encuentra en la versión \emph{12.03a}.
+    \item A la hora de facturar una mesa, este tipo de aplicaciones suelen
+    presentar un resumen con los datos de la mesa a facturar, la lista de
+    pedidos realizados, el importe parcial de cada uno de ellos, el importe
+    subtotal y el importe total con impuestos incluidos (figura
+    \ref{fig:bill}).
 
-      % Descripción general y foto
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=1\textwidth]{bill.png}
+        \caption{Resumen de facturación de una mesa en el programa
+        \emph{Soft Restaurant}\cite{bib:softRestaurant}.}
+        \label{fig:bill}
+      \end{center}
+    \end{figure}
 
-      Dispone de un monitor de comandas (situado en la cocina) que permite
-      gestionar el estado de elaboración de los platos.
+    Con estos datos, el camarero conoce en tiempo real cuál es la lista de
+    productos de una mesa y cuál es el importe total que los comensales deben
+    abonar en concepto de los productos consumidos.
 
-      \item \emph{\textbf{
-      \href{http://www.icg.es/?es/software-programas/restaurantes-hosteleria}
-      {FrontRest}}}. Es un software desarrollado por la empresa española
-      \emph{\href{http://www.icg.es}{ICG Software}}.
+    \item Los productos con los que estos programas trabajan, deben ser
+    editados por los responsables del restaurante. Entre los atributos que
+    estos poseen están: código, nombre, categoría o precio (figura
+    \ref{fig:editProduct}).
 
-      Dispone de varios módulos que satisfacen las necesidades de información
-      del restaurante: aplicaciones móvil para repartos a domicilio, aplicación
-      para gestionar los pedidos en la barra, aplicación móvil para tomar nota
-      de los pedidos de las mesas, impresora de comandas (para comunicación 
-      con la cocina), gestión del \emph{stock} de productos en el almacén, 
-      \dots
-      \end{itemize} 
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{editProduct.png}
+        \caption{Editor de productos del programa \emph{SaleYa}
+        \cite{bib:saleYa}.}
+        \label{fig:editProduct}
+      \end{center}
+    \end{figure}
+    \end{itemize}
+
+    Estas son las funcionalidades básicas que todo software de 
+    gestión de restaurante debe tener. Pero, aparte de estas, son muchas otras 
+    las funcionalidades que pueden ayudar a mejorar la gestión de un 
+    restaurante.
+
+    \begin{itemize}
+    \item Es muy común en casi todos los programas de gestión de restaurantes
+    buscar una representación aproximada de las partes que conforman el
+    restaurante. En un principio, lo que más interesa representar son las mesas
+    que el restaurante contiene, aunque hay aplicaciones que distinguen entre
+    la barra, las mesas del salón, las mesas de la terraza y otros objetos
+    (figura \ref{fig:tables}).
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{tables.png}
+        \caption{Mapa de un restaurante de la aplicación
+        \emph{Soft Restaurant}\cite{bib:softRestaurant}.}
+        \label{fig:tables}
+      \end{center}
+    \end{figure}
+
+    Estos mapas ayudan a los camareros a reconocer el estado en el que se
+    encuentran las mesas (ocupadas, libres, reservadas, deshabilitadas, etc.).
+    Los símbolos del mapa ayudan a ubicar dónde se encuentran los objetos
+    reales a los que representan y su color representa el estado en el que
+    se encuentran.
+
+    \item Aplicaciones como \emph{Soft Restaurant}\cite{bib:softRestaurant} o 
+    \emph{SaleYa}\cite{bib:saleYa} tienen una funcionalidad que permite 
+    describir las recetas de los productos contemplados en la carta. Es decir, 
+    permite listar los ingredientes (con sus cantidades) utilizados en la 
+    elaboración de cada plato (figura \ref{fig:ingredients}). Esto facilita la
+    gestión del \emph{stock} de esos ingredientes.
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{ingredients.png}
+        \caption{Ingredientes para la elaboración de una \emph{pizza de 
+        mozzarella}. \emph{SaleYa}\cite{bib:saleYa}.}
+        \label{fig:ingredients}
+      \end{center}
+    \end{figure}
+
+    Esta funcionalidad ayuda a los cocineros y a sus ayudantes a conocer
+    mejor cuáles son los ingredientes necesarios para la elaboración de 
+    un plato y les ayuda a gestionar de una manera más eficiente el
+    \emph{stock} de los ingredientes, según las necesidades que la 
+    elaboración de unos u otros platos demandan.
+
+    \item Una funcionalidad que puede ser muy útil a la hora de gestionar
+    los pedidos es incorporar un terminal en la cocina, para que los cocineros
+    informen del estado de preparación de las comandas (figura
+    \ref{fig:kitchen}).
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{kitchen.png}
+        \caption{Monitor de comandas de la aplicación \emph{RestBar}
+        \cite{bib:restBar}.}
+        \label{fig:kitchen}
+      \end{center}
+    \end{figure}
+    
+    La aplicación muestra qué camarero ha solicitado el plato, la hora en que
+    lo solicitó y los minutos que han pasado desde que lo hizo. Cuando los
+    productos están listos para servir, los cocineros informan a los
+    camareros cambiando el estado del pedido a través de la aplicación.
+
+    \item Si el restaurante tiene entre sus servicios el reparto a
+    domicilio, no está demás que la aplicación cuente con una funcionalidad
+    en la que quede constancia de los pedidos a domicilio que tiene pendientes
+    (figura \ref{fig:deliveries}):
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{deliveries.png}
+        \caption{Módulo que gestiona los repartos a domicilio. \emph{SaleYa}
+        \cite{bib:saleYa}.}
+        \label{fig:deliveries}
+      \end{center}
+    \end{figure}
+
+    La aplicación registra cuáles son los pedidos pendientes, qué repartidor
+    se encargará de atenderlos y dónde están los puntos de entrega.
+    \end{itemize}
+
+    El abanico de programas de gestión de restaurantes es muy diverso. A la
+    hora de adquirir uno u otro conviene determinar bien qué necesidades de
+    información se deben satisfacer, de tal forma que no se eche ninguna
+    funcionalidad en falta y que no se tengan funcionalidades incompatibles
+    con el modelo de negocio que se posee.
+
     \subsubsection{Gestión de pedidos a través de dispositivos móviles}
-      \begin{itemize}
-      \item \textbf{vMenu}
-          % Los clientes pueden realizar pedidos desde su mesa a través de un
-          %dispositivo móvil o fijo.
-      \item \textbf{Brand Table}
-          % la mesa de restaurante NFC que quiere eliminar al cajero de la
-          %ecuación.
-      \end{itemize}
-    \subsubsection{Gestión de pagos}
+    Las soluciones vistas en el apartado anterior van encaminadas a
+    facilitar las tareas propias de los camareros y cocineros del restaurante,
+    pero en ninguna de ellas se tiene en cuenta al cliente. Si el cliente es
+    capaz de realizar pedidos sin necesidad de avisar a un camarero, este
+    quedará liberado para realizar otras tareas.
+
+    A continuación, se presentan dos soluciones comerciales que buscan
+    satisfacer este objetivo:
+
+    \begin{itemize}
+    \item \textbf{vMenu}. Es un sistema ideado por la empresa \emph{Vloo} que
+    trata de reinventar la carta tradicional adentrándose en el mundo
+    interactivo actual, a través de las pantallas táctiles. Los clientes
+    disponen de un dispositivo (\emph{iPad}, tablet o pantalla) en la que
+    pueden ver los platos disponibles y realizar los pedidos (figura
+    \ref{fig:starters}).
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{starters.png}
+        \caption{Lista de productos \emph{entrantes}.}
+        \label{fig:starters}
+      \end{center}
+    \end{figure}
+
+    Los productos aparecen distribuidos por categorías y son actualizados
+    de manera instantánea. Además, los alimentos son mostrados de una forma
+    más atractiva: con fotos, ingredientes, recetas, calorías, preparación y 
+    otros datos de interés; y siempre en el idioma del comensal (figura
+    \ref{fig:meat}).
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{meat.png}
+        \caption{Información asociada al \emph{churrasco a la parrilla}.}
+        \label{fig:meat}
+      \end{center}
+    \end{figure}
+    
+    \emph{vMenu} reduce los tiempos de espera porque el cliente no necesita
+    al camarero para conocer los productos, las recomendaciones o las ofertas
+    disponibles; ni para realizar el pedido (figura \ref{fig:order}) o
+    solicitar la cuenta; y en caso de necesitarlo, dispone de una opción para
+    llamarlo desde el terminal.
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{order.png}
+        \caption{Lista de productos elegidos para un pedido.}
+        \label{fig:order}
+      \end{center}
+    \end{figure}
+
+    Por último, a parte de esta función de recogida de pedidos, \emph{vMenu} 
+    dispone de todo un sistema integral que permite gestionar las operaciones
+    básicas de un restaurante\cite{bib:VMENU}.
+
+    \item \textbf{Brand Table}. \emph{S-Digital}, una \emph{start-up} de la
+    Universidad de Sidney, ofrece este prototipo conceptual de mesa de
+    restaurante en torno a la cual se distribuyen varios menús electrónicos con
+    los que se puede interactuar utilizando un dispositivo móvil con \acs{NFC},
+    (figura \ref{fig:brandTable}) de forma que los comensales que se reúnan a 
+    su alrededor puedan seleccionar su comida favorita y pagarla
+    \emph{in situ} (utilizando \emph{Google Wallet} o \emph{Paypal Mobile}), 
+    sin necesidad de tener que esperar a ningún camarero que les tome nota del 
+    pedido (figura \ref{fig:brandTableDemo}).
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{brandTable.png}
+        \caption{Prototipo conceptual de la mesa \emph{Brand Table}.}
+        \label{fig:brandTable}
+      \end{center}
+    \end{figure}
+
+    \begin{figure}[!h]
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{brandTableDemo.png}
+        \caption{Selección de uno de los productos del restaurante
+        \emph{Subway}.}
+        \label{fig:brandTableDemo}
+      \end{center}
+    \end{figure}
+
+    Cuando el pedido está preparado, el cliente se levanta y va a recogerlo.
+    
+    Este sistema está pensado para restaurantes de comida rápida y elimina
+    completamente la labor del camarero\cite{bib:brandTable}.
+    \end{itemize}
+
 
 % Local Variables:
 %   coding: utf-8
