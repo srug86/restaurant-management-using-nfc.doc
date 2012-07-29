@@ -1,9 +1,10 @@
 % -*- coding: utf-8 -*-
 
 \chapter{Métodos de trabajo y herramientas}
-En el siguiente capítulo se expone la metodología de trabajo escogida para
-llevar a cabo el desarrollo del proyecto y se describen las principales 
-herramientas que se han utilizado para llevarlo a cabo.
+\label{chap:methods}
+\drop{E}{l} siguiente capítulo expone la metodología de trabajo escogida para
+llevar a cabo el desarrollo del proyecto y describe las principales 
+herramientas utilizadas para llevarlo a cabo.
 
 \section{Pasos previos}
 Antes de elegir una metodología concreta, conviene realizar un estudio rápido
@@ -11,6 +12,7 @@ de campo, para identificar cuáles son las partes que componen el sistema y para
 definir \emph{a grosso modo} cuáles son las necesidades de información.
 
   \subsection{Estudio de campo}
+  \label{sec:fieldStudy}
 Como todo el mundo sabe, un restaurante es un \emph{``establecimiento público 
 donde se sirven comidas y bebidas, mediante precio, para ser consumidas en el
 mismo local''} \cite{bib:rae}.
@@ -300,6 +302,7 @@ cocina.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Metodología de trabajo}
+\label{sec:workingMethodology}
 Después de los pasos citados anteriormente se decide, para abordar el
 desarrollo del proyecto, optar por una adaptación de la metodología de 
 \emph{\textbf{prototipado incremental}}.
@@ -449,6 +452,7 @@ tipo} sobre el cual implementar el sistema.
 %  \end{figure}
 
     \subsubsection{Los clientes}
+    \label{subsubsec:clients}
   Habrá dos tipos de clientes:
   \begin{enumerate}
   \item \emph{\textbf{Clientes \acs{NFC}}}. Son potenciales \emph{clientes
@@ -475,17 +479,18 @@ tipo} sobre el cual implementar el sistema.
 Como se dijo anteriormente, el prototipo del sistema se construirá de forma
 incremental a partir de varias iteraciones en las que se irán añadiendo
 nuevas funcionalidades al sistema elemental (de la primera iteración). Las
-iteraciones propuestas para el desarrollo del sistema serán las siguientes:
+iteraciones propuestas para el desarrollo del sistema son las siguientes:
 \begin{enumerate}
 \item Prototipo inicial de los servicios web y la base de datos.
 \item Prototipo inicial del recibidor y conexión con los servicios web.
 \item Prototipo inicial de la barra y conexión con los servicios web.
 \item Prototipo inicial de la aplicación móvil.
-\item Funcionalidad \acs{NFC} y \emph{Bluetooth} en el prototipo del 
-recibidor.
-\item Funcionalidad \acs{NFC} y \emph{Bluetooth} en el prototipo de la barra.
-\item Sistema recomendador en el prototipo del servicio web. Esto también
-afecta al prototipo del recibidor y al prototipo de la aplicación móvil.
+\item Conexiones \emph{Bluetooth} entre el prototipo del móvil y el del
+\emph{recibidor}.
+\item Conexiones \emph{Bluetooth} entre el prototipo del móvil y el de la
+\emph{barra}.
+\item Sistema recomendador en el servicio web. Esto afectará al prototipo del 
+recibidor y al prototipo de la aplicación móvil.
 \end{enumerate}
 
 %Como se dijo anteriormente, el prototipo del sistema que se pretende
@@ -664,7 +669,7 @@ desarrollo de este \acs{PFC}.
   cede su espacio con la única condición de que la información del proyecto
   sea accesible a todo el mundo.
 
-  La dirección de este \acs{PFC} es la siguiente:
+  La dirección de este \acs{PFC} es la siguiente:\\
   \url{http://code.google.com/p/restaurant-management-using-nfc/}.
 
   \subsection{Control de versiones}

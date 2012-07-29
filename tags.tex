@@ -1,0 +1,58 @@
+\chapter{Definición de las etiquetas \acs{RFID} utilizadas}
+\label{chap:tags}
+Uno de los elementos más importantes del sistema de \emph{mobiCarta} son las etiquetas \acs{RFID}. Todas las etiquetas utilizadas son de la clase
+\emph{Mifare} y tienen una capacidad de 1KB. Dependiendo del tamaño del
+restaurante, el sistema puede contener más o menos etiquetas, pero todas ellas
+se encuentran en la \emph{zona del recibidor} o en los menús de las mesas y 
+pertenecen a uno de estos cinco tipos:
+\begin{description}
+\item[Etiqueta del recibidor]:
+  \begin{itemize}
+  \item \textbf{app/checkpoint} .- Es uno de los tipos contenidos en el
+  \emph{Push Registry} del dispositivo móvil. Por lo tanto, cuando un
+  dispositivo móvil contacta con una etiqueta de este tipo, inicia 
+  automáticamente la aplicación, esta vez en \emph{modo registro}. Todos los 
+  \emph{clientes \acs{NFC}} deben tocar esta etiqueta para registrar su paso
+  por la \emph{zona del recibidor} para confirmar su llegada o su salida del 
+  restaurante o su intención de pagar vía \acs{NFC}. Este tipo de etiqueta no 
+  contiene ninguna información adicional.
+  \end{itemize}
+
+\item[Etiquetas de los menús]:
+  \begin{itemize}
+  \item \textbf{app/product} .- Es otro de los tipos contenidos en el
+  \emph{Push Registry} del dispositivo móvil. El contacto con esta etiqueta
+  inicia la aplicación en \emph{Modo pedido}. Cada una de las etiquetas de
+  este tipo contiene la información del nombre del producto al que representa.
+  Por lo tanto, cada contacto con una de estas etiquetas significa añadir
+  una unidad de ese tipo de producto a la lista del pedido (incluyendo el
+  primer contacto que es el que inicia la aplicación).
+  \item \textbf{app/subtract-product} .- Este tipo de etiquetas sólo son
+  captadas por la aplicación móvil cuando esta se encuentra en \emph{Modo
+  pedido}. Sirve para decrementar el número de unidades de un tipo de
+  producto de la lista del pedido: primero, tocando con el móvil esta etiqueta;
+  y después, tocando la etiqueta del producto que se desea decrementar.
+  Cada carta o menú dispondrá al menos de una etiqueta de este tipo, en un
+  lugar visible. Este tipo de etiqueta no contiene ninguna otra información 
+  adicional.
+  \item \textbf{app/send-order} .- Al igual que la anterior, este tipo de
+  etiquetas son captadas por la aplicación cuando está en \emph{Modo pedido}.
+  Sirve para enviar la lista del pedido confeccionada a la aplicación de la
+  \emph{barra}. Cada carta dispondrá de una etiqueta de este tipo.
+  Esta etiqueta no contiene ningún otro tipo de información.
+  \item \textbf{app/bill-request} .- Es el tercer tipo de etiquetas que el
+  \emph{Push Registry} contiene para esta aplicación móvil. El contacto con
+  una etiqueta de este tipo arranca la aplicación en \emph{Modo solicitar
+  factura}. Este modo genera una llamada vía \emph{Bluetooth} a la aplicación
+  de la \emph{barra}, para que esta le devuelva un resumen con la factura de
+  los pedidos que el cliente ha realizado. Cada carta dispondrá de una
+  etiqueta de este tipo. Este tipo de etiqueta tampoco contiene ninguna
+   información adicional.
+  \end{itemize}
+\end{description}
+
+Para leer y escribir rápidamente el tipo y el contenido de todas las etiquetas
+se han desarrollado dos mini-aplicaciones (\emph{Reader} y \emph{Writer},
+respectivamente). Estas dos mini-aplicaciones pueden encontrarse dentro del
+contenido extra del CD que acompaña a la presente memoria.
+

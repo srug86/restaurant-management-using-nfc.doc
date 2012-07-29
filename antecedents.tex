@@ -1,7 +1,8 @@
 % -*- coding: utf-8 -*-
 
 \chapter{Estado del arte y trabajos relacionados}
-En el siguiente capítulo se realiza una presentación de los conceptos y
+\label{chap:antecedents}
+\drop{E}{n} el siguiente capítulo se realiza una presentación de los conceptos y
 tecnologías que han sido utilizadas para la elaboración del proyecto y se hace
 un repaso de algunos de los trabajos y aplicaciones reales que han servido de
 inspiración para el diseño final del sistema.
@@ -35,14 +36,14 @@ por una aplicación específica que utilice \acs{RFID} (figura
   El origen del \acs{RFID} está relacionado con la II Guerra Mundial. Los
   radares de la época eran capaces de detectar y medir la presencia de objetos
   dentro de un rango de actuación, pero no eran capaces de identificar qué
-  clases de objetos eran identificados.
+  clase de objetos eran identificados.
 
   Durante la década de los 50 y los 60, científicos de los países más
   avanzados, trabajaron para explicar cómo podrían identificar objetos
   remotamente. Fruto de estos estudios se inventaron los primeros sistemas
   antirrobo que funcionaban con ondas de radio. El objeto en cuestión tenía 
   una etiqueta con un único bit que decía si el artículo se había pagado o no.
-  Cuando el objeto había sido pagado, se modificaba dicho bit, para los 
+  Cuando el objeto había sido pagado, se modificaba dicho bit, para que los 
   sensores de la salida no accionaran la alarma.
 
   Las primeras patentes fueron solicitadas en Estados Unidos en 1973. Mario W.
@@ -133,7 +134,7 @@ sistema \acs{RFID}.}
   Según el número de bobinas que poseen, existen dos tipos de lectores:
   \begin{itemize}
   \item \textbf{Bobina simple}. La misma bobina crea el campo magnético y
-  transmite los datos. Son las más simples y baratas que las dobles y tienen
+  transmite los datos. Son más simples y baratas que las dobles y tienen
   un alcance muy limitado.
   \item \textbf{Bobina doble}. Una de las bobinas se encarga de crear el
   campo magnético y la otra de transmitir los datos. Son caras pero tienen
@@ -168,7 +169,7 @@ sistema \acs{RFID}.}
   En la actualidad \emph{MIFARE} es una marca registrada de \emph{NXP
   Semiconductors} (empresa fundada por \emph{Philips}). Ha vendido más de 5 mil
   millones de tarjetas y etiquetas inteligentes y más de 50 millones de
-  componentes de lectores. Ha sido seleccionada seleccionada para la mayoría
+  componentes de lectores. Ha sido seleccionada para la mayoría
   de proyectos importantes con tarjetas inteligentes sin contacto en todo el
   mundo y su cartera de productos incluye soluciones perfectas para la
   recaudación automática de tarifas, tarjetas de fidelización, cobro en 
@@ -183,29 +184,40 @@ sistema \acs{RFID}.}
     \end{center}
   \end{figure}
 
+% El chorizo de las siguientes partes lo meteré más adelante...
   \subsection{La tecnología NFC}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pondré más o menos que en el apartado del RFID
 
   \subsection{La tecnología Bluetooth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pondré más o menos que en el apartado del RFID
 
   \subsection{Los servicios web}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ya veré que se me ocurre meter aquí, porque no hay mucho que explicar
 
   \subsection{El framework .NET}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% No sé si meterlo
 
   \subsection{La tecnología Java}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Explicación muy general supongo
 
   \subsection{Los displays táctiles}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Explicación superficiar supongo, nada de cómo funcionan pero sí de donde
+% y porqué se usan
 
   \subsection{La computación móvil}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tema super-amplio, tendré que decir la evolución y para qué se usan 
+% últimamente
 
 \section{Trabajos relacionados}
   \subsection{Estudios relacionados}
+  \label{subsec:related}
     \subsubsection{Modelos de comercio utilizando NFC}
   Los servicios que ofrece \acs{NFC} están muy diversificados y extendidos
   por todo el mundo. Algunos de los servicios están orientados a utilizar
@@ -218,9 +230,9 @@ sistema \acs{RFID}.}
 
   Con el fin de integrar todos estos servicios como un proceso común de
   comercio electrónico basado en NFC, se ha propuesto un modelo genérico
-  para el comercio móvil basado en \acs{NFC} (\acs{NMC})
-  \cite{bib:nfcCommerce}. Este modelo caracteriza los problemas y las
-  tecnologías que intervienen en cada una de las siguientes fases
+  para el comercio móvil basado en \acs{NFC} (o \acs{NMC}, por sus siglas
+  en inglés) \cite{bib:nfcCommerce}. Este modelo caracteriza los problemas y
+  las tecnologías que intervienen en cada una de las siguientes fases
   (figura \ref{fig:nmcModel}):
 
   \begin{figure}[!h]
@@ -243,7 +255,7 @@ sistema \acs{RFID}.}
     servicio es el responsable de todo el intercambio de información durante
     el proceso de comercio. Está gestionado por el proveedor de servicios
     basados en \acs{NFC}.
-    \item \textbf{Aplicación de terminal genérico \acs{GTA}}. Como el tamaño
+    \item \textbf{Aplicación de terminal genérico (\acs{GTA})}. Como el tamaño
     de la memoria del dispositivo móvil es limitada, combiene definir una
     aplicación genérica que permita realizar todas las gestiones comerciales.
     \item \textbf{Funcionalidad de las etiquetas}. Definir los tipos de
@@ -293,7 +305,7 @@ sistema \acs{RFID}.}
     Antes de utilizar este modo para llevar a cabo la transacción, el banco 
     debe facilitar al cliente un \emph{applet\footnote{Componente de una 
     aplicación que se ejecuta en el contexto de otro programa. No puede 
-    ejecutarse de manera independiente.}} que tiene que ser cargada en el 
+    ejecutarse de manera independiente.}} que tiene que ser cargado en el 
     dispositivo móvil. Una vez realizado el pedido, el \acs{GTA} almacena el 
     número de orden como elemento seguro. Para realizar el pago, el cliente 
     aproxima el dispositivo móvil al lector del comerciante y este lee el 
@@ -318,13 +330,13 @@ sistema \acs{RFID}.}
   recogerlo. Y para productos virtuales el dispositivo donde quiere
   almacenarlo.
   \item \textbf{Fase de gestión de fidelización}. El programa de fidelización
-  está diseñado para atraer a un cliente a consumir de nuevo. Los cupones son
+  está diseñado para incentivar al cliente a consumir de nuevo. Los cupones son
   herramientas de fidelización comunes y la tecnología \acs{NFC} hace factible
   el concepto de \emph{cupones virtuales}.
     \begin{itemize}
     \item Los clientes pueden recibir cupones tocando una etiqueta que 
     simbolice la descarga de un cupón.
-    \item A través de \acs{NFC}, utilizando el modo comunicación
+    \item A través de \acs{NFC}, utilizando el modo de comunicación
     \emph{peer-to-peer}, los clientes pueden compartir sus cupones con los
     demás. Esto puede aprovecharse para desarrollar un programa de
     \emph{márketing} atractivo y eficaz.
@@ -336,10 +348,10 @@ sistema \acs{RFID}.}
   pantalla del dispositivo.
   \end{itemize}
   
-  Dada su generalidad, el modelo basado en el comercio móvil \acs{NMC},
-  establece las líneas maestra a tener en cuenta a la hora de desarrollar
-  toda clase de servicios móviles; entre ellos por supuesto, un sistema de 
-  gestión de restaurantes basado en \acs{NFC}.
+  Dada su generalidad, el modelo basado en el comercio móvil \acs{NMC} está 
+  pensado para establecer las líneas maestras a la hora de desarrollar 
+  cualquier clase de servicios móviles; entre ellos por supuesto, un sistema
+  de gestión de restaurantes basado en \acs{NFC}.
 
     \subsubsection{Métodos de pago móvil a distancia}
   Hoy en día se pueden distinguir dos tipos de pagos a distancia: los que se
@@ -348,7 +360,7 @@ sistema \acs{RFID}.}
   comprando. El primero de ellos goza de una gran popularidad, ya que se
   considera un método fácil, cómodo y bastante seguro; y no requiere de una
   infraestructura especial para ser implementado. El segundo en cambio,
-  aún no goza de la misma aceptación, debido, en parte, a que los 
+  aún no goza de la misma aceptación, debido en parte a que los 
   establecimientos no están dispuestos a invertir su dinero en adquirir una 
   infraestructura adicional para permitir este tipo de pagos, sin ver antes 
   que hacerlo les reporte algún tipo de beneficio.
@@ -357,32 +369,32 @@ sistema \acs{RFID}.}
   \acs{RFID} y \acs{NFC} se puede conseguir mediante uno de estos tres métodos:
   \begin{description}
   \item[SIMpass]. Es una tecnología de interfaz dual que combina la
-  tradicional tarjeta \acs{SIM} y la tarjeta \acs{RFID} en una sola tarjeta
+  tradicional tarjeta \acs{SIM} y la tarjeta \acs{RFID}, en una sola tarjeta
   estándar. La interfaz de contacto cumple con la norma \acs{ISO} 7816 y la
   interfaz a distancia cumple con el estándar de la norma \acs{ISO} 14443.
   \emph{SIMpass} trabaja con una frecuencia de 13,56MHz. Como no es una
   frecuencia muy alta, es difícil minimizar el tamaño de antena. Existen dos
-  maneras de implementar dicha antena. Una, de bajo coste, es utilizando una 
-  antena plana que consta de una bobina y que se le añade a la del teléfono
-  móvil. Para la otra, hay que reformar parte del hardware del teléfono
-  móvil, aunque mejora notablemente la estabilidad y fiabilidad de la
+  maneras de implementar dicha antena. Una, de bajo coste, se lleva a cabo 
+  utilizando una antena plana que consta de una bobina y que se une a la 
+  del teléfono móvil. Para la otra, hay que reformar parte del hardware del 
+  teléfono móvil, aunque mejora notablemente la estabilidad y fiabilidad de la
   funcionalidad \acs{RFID}.
 
-  \item[\acs{NFC}]. Como se ha visto en secciones anteriores, \acs{NFC} es una
+  \item[NFC]. Como se ha visto en secciones anteriores, \acs{NFC} es una
   tecnología que combina la tecnología \acs{RFID} con las comunicaciones de
   corto alcance. En el sistema \acs{NFC} propuesto se distinguen tres partes 
   principales: el controlador, la antena y una unidad de seguridad. La unidad
   de seguridad puede correr a cargo de la tarjeta \acs{SIM} o de la tarjeta
-  \acs{SD}. Lo malo es que, tanto en un caso como en otro, habría que integrar
-  un módulo o chip de seguridad que no viene por defecto en estas tarjetas.
-  Esto se soluciona utilizando la tecnología \acs{NFC} mejorada (\emph{eNFC}).
-  Aunque \emph{eNFC} hace uso de la tarjeta \acs{SIM}, sólo tiene que utilizar
-  el pin C6 para poder modificar la memoria \emph{EEPROM}, en vez de tener
-  que utilizar dos pines (C4 y C8) que además interferían a la hora de
-  realizar otras operaciones.
+  \acs{SD}. El problema está en que, tanto en un caso como en otro, habría que 
+  integrar un módulo o chip de seguridad que no viene por defecto en estas 
+  tarjetas. Esto se soluciona utilizando la tecnología \acs{NFC} mejorada 
+  (\emph{eNFC}). Aunque \emph{eNFC} hace uso de la tarjeta \acs{SIM}, sólo 
+  tiene que utilizar el pin C6 para poder modificar la memoria \emph{EEPROM}, 
+  en vez de tener que utilizar dos pines (C4 y C8) que además interferirían a 
+  la hora de realizar otras operaciones.
 
     \item[Programa RF-SIM]. Combinando el módulo de comunicaciones móviles y
-  los micro módulos de radio frecuencia (\emph{RF}) de la tarjeta \acs{SIM}
+  los micro-módulos de radio frecuencia (\emph{RF}) de la tarjeta \acs{SIM}
   normal, la tarjeta \emph{RF-SIM} consigue operar a 2,4GHz (una alta 
   frecuencia que tiene una longitud de onda corta). Esto permite que, a través
   de una antena, el módulo \emph{RF-SIM} pueda comunicarse con otros 
@@ -390,6 +402,9 @@ sistema \acs{RFID}.}
   dicho módulo tenga un tamaño muy reducido. \emph{RF-SIM} es un tipo de
   etiqueta activa, por lo que necesita una batería para trabajar.
   \end{description}
+
+%%%%%%%%%%%%%%%%%%% He leído hasta aquí %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   Cada uno de estos métodos tiene sus ventajas e inconvenientes. Por ejemplo:
   \begin{itemize}
