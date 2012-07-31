@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Historical (Order)+>
+<!ELEMENT Order (Client, Product, Amount, Date)>
+<!ELEMENT Client (#PCDATA)>
+<!ELEMENT Product (#PCDATA)>
+<!ELEMENT Amount (#PCDATA)>
+<!ELEMENT Date (#PCDATA)>

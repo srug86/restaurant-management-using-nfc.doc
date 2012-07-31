@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Recommendations (Opening, Products)>
+<!ELEMENT Opening (#PCDATA)>
+<!ELEMENT Products (Usually, Promotional, Recommended)>
+<!ELEMENT Usually (UCategory)+>
+<!ELEMENT UCategory (UProduct, UTimes)>
+<!ATTLIST UCategory name (#PCDATA)>
+<!ELEMENT UProduct (#PCDATA)>
+<!ELEMENT UTimes (#PCDATA)>
+<!ELEMENT Promotional (PProduct)+>
+<!ELEMENT PProduct (PDiscount, PUnits)>
+<!ATTLIST PProduct name (#PCDATA)>
+<!ELEMENT PDiscount (#PCDATA)>
+<!ELEMENT PUnits (#PCDATA)>
+<!ELEMENT Recommended (RProduct)+>
+<!ELEMENT RProduct (RCategory)>
+<!ATTLIST RProduct name (#PCDATA)>
+<!ELEMENT RCategory (#PCDATA)>

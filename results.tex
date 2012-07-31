@@ -9,8 +9,7 @@ generales del sistema. A continuación, se realizará el análisis de requisitos
 programadas. Después, se analizarán las pruebas de campo realizadas sobre
 el prototipo final construido. Y por último, se presentará el manual de usuario
 de la aplicación, el \emph{diagrama de Gantt} con el seguimiento del proyecto
-y la estimación de costes a la hora de querer implantar este sistema en un
-restaurante real.
+y la estimación de costes para implantar este sistema en un restaurante real.
 
 \section{Requisitos generales del sistema}
 A continuación se listan los requisitos generales que debe satisfacer el
@@ -18,10 +17,10 @@ sistema:
 \begin{enumerate}
 \item Se pretende construir un sistema que siga las líneas maestras que
 plantea el modelo de comercio móvil basado en \acs{NFC} (o \acs{NMC}) (ver
-sección \ref{subsec:related}).
+capítulo \ref{chap:antecedents}, sección \ref{subsec:related}).
 \item El sistema está orientado a implantarse en restaurantes de tipo
-\emph{gourmet} o \emph{temático} (ver sección \ref{sec:fieldStudy}, capítulo
- \ref{chap:methods}).
+\emph{gourmet} o \emph{temático} (ver capítulo \ref{chap:methods}, sección 
+\ref{sec:fieldStudy}).
 \item El restaurante dispondrá de un terminal en la zona de entrada al salón,
 llamada también \emph{recibidor}, que estará regentado por un \emph{maître} y
 que se encargará de registrar la entrada y salida de clientes y de procurarles
@@ -46,17 +45,17 @@ deben servirse en una mesa.
 \item Se ubicará una etiqueta \acs{RFID} cerca del \emph{recibidor}. Esta
 etiqueta será usada por los clientes para iniciar la aplicación de su
 dispositivo móvil, con objeto de que esta contacte con el terminal del
-\emph{recibidor} para registrar su paso por allí. El cliente tocará esta
+\emph{recibidor} para registrar su paso por allí. El cliente tocará la
 etiqueta al llegar (para registrar su entrada) y al salir (para confirmar
 su salida) del establecimiento.
 \item Las mesas del restaurante contarán con una carta o menú formado por
 etiquetas \acs{RFID}. Cada etiqueta representará a un producto distinto.
 Cuando un cliente acerque su dispositivo móvil a una de estas etiquetas,
 aparecerá el producto al que representa como un \emph{ítem} de la lista de
-pedidos.
+productos del pedido.
 \item Las cartas o menús dispondrán de otras etiquetas que posibiliten acciones
 como: enviar pedido, solicitar factura o decrementar producto. Estas
-operaciones permitirán que el usuario se olvide del uso del teclado ya que
+operaciones permitirán que el usuario se olvide del uso del teclado, ya que
 conseguirá todo lo que quiere con sólo acercar su dispositivo a la etiqueta
 adecuada.
 \item Si el cliente no ha pagado por medios tradicionales e intenta abandonar
@@ -133,13 +132,21 @@ del restaurante.
 \end{enumerate}
 
 \subsubsection{Diseño e implementación}
+% Meter diagrama de casos de uso de los servicios web
 
+% Meter diagrama de clases de los servicios web
+
+% Hacer referencia al anexo de los XMLs diseñados para la comunicación con
+% las aplicaciones de escritorio.
+
+% Meter diagrama de entidad-interrelación de la base de datos
+% Explicar el contenido de cada una de las tablas que forman parte de la BD.
 
 \subsection{\emph{Recibidor} y conexión con servicios web}
 La aplicación del \emph{recibidor} se encargará principalmente de registrar a
 los clientes que llegan y que salen del restaurante. El prototipo resultante
-será capaz de registrar la entrada y la salida de clientes que no hacen uso
-de la tecnología \acs{NFC}.
+de esta fase será capaz de registrar la entrada y la salida de clientes que no
+hacen uso de la tecnología \acs{NFC}.
 
 \subsubsection{Análisis de requisitos}
 Los requisitos específicos de la aplicación del \emph{recibidor} son los
@@ -149,12 +156,12 @@ siguientes:
 por lo tanto, la aplicación debe estar diseñada teniendo en cuenta que no se
 dispone de teclado para la entrada de datos.
 \item La aplicación contará con un \emph{editor de escenarios} que permita
-definir la distribución actual de los objetos más característicos que forman
+definir la distribución de los objetos más característicos que forman
 parte del restaurante:
   \begin{itemize}
   \item Se podrán definir las posiciones de cada mesa, del espacio ocupado por
   el recibidor y del espacio ocupado por la barra.
-  \item Además cada mesa estará definida por un identificador único y
+  \item Además cada mesa estará definida también por un identificador único y
   por una capacidad.
   \item Cada tipo de objeto será representado por un color.
   \item El editor permitirá cargar y guardar escenarios. Los escenarios serán
@@ -164,7 +171,7 @@ parte del restaurante:
 \emph{iniciar una nueva jornada}, que reseteará los datos dinámicos
 correspondientes al estado anterior del restaurante (pedidos pendientes y
 estado de las mesas); o \emph{iniciar una jornada existente}, que cargará
-estos últimos datos.
+estos datos.
 \item Al \emph{iniciar una nueva jornada}, el usuario elegirá qué planta del
 restaurante va a utilizar para representar la distribución actual de los
 objetos que hay en él.
@@ -214,8 +221,12 @@ restaurante y le pide al \emph{servicio web} que le mande la distribución del
 salón elegido para cargarlo en pantalla. Una vez cargado, el \emph{recibidor}
 vuelve a comunicarse con el \emph{servicio web} para decirle que \emph{resetee}
 los valores almacenados de la jornada anterior. La figura \ref{fig:sdR1-phase1}
-(página \pageref{fig:sdR1-phase1}) muestra el \textbf{diagrama de secuencia} de 
-este caso de uso:
+(página \pageref{fig:sdR1-phase1}) muestra el \textbf{diagrama de secuencia} 
+de este caso de uso:
+
+% Todos los diagramas de secuencia deben ir apaisados en páginas aparte.
+% Estoy buscando cómo poder hacerlo porque utilizando \begin{sidewaysfigure}
+% no me compila bien...
 
   \begin{figure}[!h]
     \begin{center}
@@ -290,6 +301,8 @@ del caso de uso \emph{registrar salida de cliente}:
   \end{figure}
 \end{itemize}
 
+% Meter diagrama de clases del prototipo
+
 \subsection{\emph{Barra} y conexión con servicios web}
 La aplicación de la \emph{barra} se encargará principalmente de gestionar el
 estado de los pedidos de los clientes. El prototipo resultante de esta
@@ -350,7 +363,7 @@ realizados durante la sesión.
   \item \textbf{Servido}. Cuando el producto ha llegado a su destinatario, el
   estado del producto debe cambiarse a \emph{servido}.
   \item \textbf{Detenido}. En caso de producirse alguna incidencia con el
-  pedido (por ejemplo, ahora mismo falta alguna materia prima para elaborar
+  pedido (por ejemplo, falta alguna materia prima para elaborar
   el plato pero se repondrá en breve), es conveniente contar con un estado
   de \emph{excepción}.
   \item \textbf{Cobrado}. Para identificar que los pedidos de esa mesa ya han
@@ -363,7 +376,7 @@ estado de dichos pedidos, etc.
 opción de \emph{facturar} la mesa. Los datos personales suministrados por el
 cliente y los datos fiscales de la empresa almacenados en la base de datos
 servirán para generar la factura.
-%%%%%%% Estadísticas?
+%%%%%%% Meter Estadísticas de uso, si da tiempo
 \end{enumerate}
 
 \subsubsection{Diseño e implementación}
@@ -384,10 +397,11 @@ Los casos de uso más característicos de la aplicación de la \emph{barra} son
 los siguientes:
 \begin{itemize}
 \item Los casos de uso \textbf{Nueva jornada} y \textbf{Abrir jornada
-existente} son exactamente igual que los ya explicados en la aplicación
-del recibidor. Por lo tanto los diagramas de secuencia van a ser idénticos
-a los de las figuras \ref{fig:sdR1-phase1} (página \pageref{fig:sdR1-phase1}) y
-\ref{fig:sdR2-phase2} (página \pageref{fig:sdR2-phase2}), respectivamente.
+existente} son exactamente iguales que los ya explicados en la aplicación
+del \emph{recibidor}. Por lo tanto, los diagramas de secuencia van a ser 
+idénticos a los de las figuras \ref{fig:sdR1-phase1} (página
+\pageref{fig:sdR1-phase1}) y \ref{fig:sdR2-phase1} (página
+\pageref{fig:sdR2-phase1}), respectivamente.
 \item \textbf{Ver estado de una mesa}. Durante una jornada activa se tiene
 la posibilidad de observar el estado actual del salón. Para ello simplemente
 hay que seleccionar la opcion \emph{Mostrar salón}. Para conocer el estado
@@ -461,10 +475,11 @@ aplicación se encargará de decodificarla para crear un objeto de tipo
 \emph{Bill}, lo almacenará con el resto de facturas generadas y compondrá
 una ventana emergente con los datos de la factura. Una de las opciones de
 esa ventana emergente será la de \emph{Pagado}. Con ella se confirmará que
-el importe que debe la mesa ya se ha abonado. La aplicación marcará los
+el importe que debe la mesa se ha abonado. La aplicación marcará los
 pedidos para esa mesa como \emph{Pagado}s y se informará al \emph{servicio
 web} de esta operación. El \emph{servicio web} marcará también esos pedidos
-como \emph{Pagado}s y devolverá un \acs{XML} con el nuevo estado del
+como \emph{Pagado}s, los sacará de la tabla \emph{Orders} y los meterá en
+\emph{Historical} y devolverá un \acs{XML} con el nuevo estado del
 restaurante. La figura \ref{fig:sdB4-phase2} (página \pageref{fig:sdB4-phase2})
 muestra el \textbf{diagrama de secuencia} de estos dos casos de uso:
 
@@ -476,13 +491,14 @@ muestra el \textbf{diagrama de secuencia} de estos dos casos de uso:
       \label{fig:sdB4-phase2}
     \end{center}
   \end{figure}
-
 \end{itemize}
+
+% Meter diagrama de clases del prototipo
 
 \subsection{Aplicación móvil}
 Esta es la aplicación destinada a los clientes y les servirá para interactuar
 directamente con el restaurante. En esta fase se pretende construir un
-prototipo de aplicación móvil que sea capaz de interactuar con los distintos
+prototipo que sea capaz de interactuar con los distintos
 tipos de etiquetas \acs{RFID} que se definan.
 
 \subsubsection{Análisis de requisitos}
@@ -546,6 +562,8 @@ la aplicación del recibidor y de la barra.
 
 El anexo \ref{chap:tags} muestra los distintos tipos de etiquetas definidos y
 su distribución dentro del restaurante.
+
+% Meter diagrama de clases del prototipo
 
 \subsection{Comunicación \emph{Bluetooth} entre móvil y \emph{recibidor}}
 \label{subsec:mobile-receiver}
@@ -638,7 +656,7 @@ Los casos de uso \textbf{registrar llegada}, \textbf{pagar cuenta por
 de \textbf{Registrarse por \acs{NFC}}, son llevados a cabo por parte del
 cliente de forma casi idéntica, ya que el que determina el caso de uso que
 se está realizando es la aplicación del \emph{recibidor}. La figura
-\ref{fig:sdM-phase4} (figura \pageref{fig:sdM-phase4} muestra el
+\ref{fig:sdM-phase4} (página \pageref{fig:sdM-phase4}) muestra el
 \textbf{diagrama de secuencia} del caso de uso \emph{registrar entrada}:
 
   \begin{figure}[!h]
@@ -651,7 +669,7 @@ se está realizando es la aplicación del \emph{recibidor}. La figura
   \end{figure}
 
 Cuando el móvil se acerca a una etiqueta de tipo \emph{checkpoint}, se
-arranca la aplicación móvil automáticamente en \emph{modo registro}. Lo
+arranca automáticamente la aplicación móvil en \emph{modo registro}. Lo
 primero que se comprueba es que existe un archivo llamado \emph{profile.xml},
 que guarda la información de usuario del cliente. En caso de no encontrarlo,
 la aplicación insta al cliente a que rellene un formulario con sus datos.
@@ -662,10 +680,13 @@ sistema, el cliente deberá aproximar de nuevo su móvil a la etiqueta
 \emph{checkpoint}. Esta vez, la aplicación encontrará el archivo
 \emph{profile.xml}, cargará su información y buscará el servicio
 \emph{Bluetooth} que ofrece la aplicación del \emph{recibidor} para
-registrar cliente. Cuando lo encuentra le mandará la cadena con los datos
+registrar clientes. Cuando lo encuentre, le mandará la cadena con los datos
 del cliente. Finalmente, la aplicación del \emph{recibidor} confirmará que
 le ha llegado la información del cliente y que por tanto ha quedado
 registrada, en este caso, la entrada al restaurante.
+
+% Meter modificaciones del diagrama de clases del prototipo del recibidor
+% y del prototipo móvil.
 
 \subsection{Comunicación \emph{Bluetooth} entre móvil y \emph{barra}}
 \label{subsec:mobile-bar}
@@ -693,7 +714,8 @@ pedido o, en caso de solicitar la cuenta, simplemente el identificador del
 cliente y el concepto \emph{facturar mesa}. Estos datos los mandará como una
 cadena codificada con formato \acs{XML}.
 \item La respuesta de la aplicación de la \emph{barra} consistirá en una cadena 
-con un texto que indique si la operación se ha completado satisfactoriamente.
+con un texto que indique si la operación se ha completado o no 
+satisfactoriamente.
 Para la respuesta ante una solicitud de facturación, la aplicación calculará
 el importe total de lo que debe la mesa y enviará un resumen (codificado
 en formato \acs{XML}) con los productos consumidos y la cantidad a abonar.
@@ -790,6 +812,9 @@ mesa, número de factura, pedidos realizados, subtotal, descuentos, IVA e
 importe total.
 \end{itemize}
 
+% Meter modificaciones del diagrama de clases del prototipo de la barra
+% y del prototipo móvil.
+
 \subsection{Sistema recomendador}
 El objetivo del sistema recomendador es ofrecer al cliente una serie de
 servicios extra que le incentiven a seguir utilizando la tecnología \acs{NFC}
@@ -848,19 +873,39 @@ La aplicación móvil añade dos casos de uso (figura \ref{fig:ucdM-phase6}):
     \end{center}
   \end{figure}
 
+% Añadir diagrama de secuencia del recomendador en el servicio web, el la
+% aplicación de la barra y el la aplicación móvil.
+
+% Insertar esquema de cómo se calculan las recomendaciones.
+
+% Hacer referencia de que en los anexos están los diagramas de clases completos
+% de todas las aplicaciones que forman parte del sistema.
+
 \section{Pruebas}
   \subsection{Pruebas unitarias}
+% Ya veremos si me da tiempo
   \subsection{Pruebas de campo}
+% Decir cómo las he hecho y las conclusiones obtenidas.
+% Hacer referencia de que en los anexos están los formularios utilizados para
+% tomar nota de lo que piensan los usuarios de las aplicaciones.
 
 \section{Manual de usuario}
+% Lo típico: pantallazos y explicaciones...
   \subsection{Servicios web y base de datos}
   \subsection{Aplicación del recibidor}
   \subsection{Aplicación de la barra}
   \subsection{Aplicación móvil}
 
 \section{Diagrama de Gantt del proyecto}
+% Por hacer...
 
 \section{Estimación de costes}
+% ¿Debo incluir el desarrollo de este prototipo (vamos, de todo el PFC) como
+% costes? ¿A qué precio se pagaría el trabajo de un estudiante de ISI entonces?
+% Supongo que debo suponer que existen costes para transformar este prototipo
+% en una aplicación comercial y que existen unos costes de instalación y 
+% mantenimiento; además están los costes de las etiquetas, los terminales,
+% las pantallas táctiles, etc.
 
 
 % Local Variables:

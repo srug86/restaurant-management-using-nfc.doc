@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT ClientOrder (Client, Products)>
+<!ATTLIST Client dni (#PCDATA)>
+<!ELEMENT Products (Product)+>
+<!ATTLIST Product name (#PCDATA)>
+<!ATTLIST Product amount (#PCDATA)>

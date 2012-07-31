@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Bill (Company, Client, Info, Orders, PriceSummary, Paid)>
+<!ELEMENT Company (NIF, Address, Contact)>
+<!ATTLIST Company name (#PCDATA)>
+<!ELEMENT NIF (#PCDATA)>
+<!ELEMENT Contact (Phone, Fax, Email)>
+<!ELEMENT Phone (#PCDATA)>
+<!ELEMENT Fax (#PCDATA)>
+<!ELEMENT Email (#PCDATA)>
+<!ELEMENT Client (DNI, Name, Surname, Address)>
+<!ELEMENT DNI (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT Surname (#PCDATA)>
+<!ELEMENT Address (Street, Number, ZipCode, Town, State)>
+<!ELEMENT Street (#PCDATA)>
+<!ELEMENT ZipCode (#PCDATA)>
+<!ELEMENT Town (#PCDATA)>
+<!ELEMENT State (#PCDATA>
+<!ELEMENT Info (Number, Serial, Date, Table)>
+<!ELEMENT Number (#PCDATA)>
+<!ELEMENT Serial (#PCDATA)>
+<!ELEMENT Date (#PCDATA)>
+<!ELEMENT Table (#PCDATA)>
+<!ELEMENT Orders (Order)+>
+<!ELEMENT Order (Product, Amount, Price, Discount, Total)>
+<!ATTLIST Order id (#PCDATA)>
+<!ELEMENT Product (#PCDATA)>
+<!ELEMENT Amount (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>
+<!ELEMENT PriceSummary (Subtotal, Discount, TaxBase, IVA, Quote, Total)>
+<!ELEMENT Subtotal (#PCDATA)>
+<!ELEMENT Discount (#PCDATA)>
+<!ELEMENT TaxBase (#PCDATA)>
+<!ELEMENT IVA (#PCDATA)>
+<!ELEMENT Quote (#PCDATA)>
+<!ELEMENT Total (#PCDATA)>
+<!ELEMENT Paid (#PCDATA)>

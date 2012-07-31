@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Restaurant (Company, Address, Rate)>
+<!ELEMENT Company (NIF, Name, Phone, Fax, Email)>
+<!ELEMENT NIF (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT Phone (#PCDATA)>
+<!ELEMENT Fax (#PCDATA)>
+<!ELEMENT Email (#PCDATA)>
+<!ELEMENT Address (Street, Number, ZipCode, Town, State)>
+<!ELEMENT Street (#PCDATA)>
+<!ELEMENT Number (#PCDATA)>
+<!ELEMENT ZipCode (#PCDATA)>
+<!ELEMENT Town (#PCDATA)>
+<!ELEMENT State (#PCDATA)>
+<!ATTLIST Rate iva (#PCDATA)>
+<!ATTLIST Rate discount (#PCDATA)>
+<!ATTLIST Rate discountedVisit (#PCDATA)>

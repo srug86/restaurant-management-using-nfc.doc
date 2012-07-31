@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Profile (DNI, Name, Surname, Address)>
+<!ELEMENT DNI (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT Surname (#PCDATA)>
+<!ELEMENT Address (Street, Number, ZipCode, Town, State)>
+<!ELEMENT Street (#PCDATA)>
+<!ELEMENT Number (#PCDATA)>
+<!ELEMENT ZipCode (#PCDATA)>
+<!ELEMENT Town (#PCDATA)>
+<!ELEMENT State (#PCDATA)>

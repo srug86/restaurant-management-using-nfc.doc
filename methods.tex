@@ -17,8 +17,8 @@ Como todo el mundo sabe, un restaurante es un \emph{``establecimiento público
 donde se sirven comidas y bebidas, mediante precio, para ser consumidas en el
 mismo local''} \cite{bib:rae}.
 
-Hoy en día existe una gran variedad de modalidades de servicio y tipos de
-cocina.
+Hoy en día existe una gran variedad de tipos de restaurante y de modalidades
+de servicios.
 
     \subsubsection{Tipos de restaurantes}
   En cuanto a los tipos de establecimientos y fórmulas de restauranción, pueden
@@ -120,7 +120,7 @@ cocina.
   cocina, donde se preparan. Y, una vez cocinados, el \emph{maître} prepara las
   raciones frente a la mesa, a gusto de cada comensal y las va sirviendo 
   siempre por la izquierda. Este tipo de servicio requiere gran habilidad por 
-  parte del personal y por tanto resulta bastante caro. Es por ello que sólo 
+  parte del personal y por tanto resulta bastante caro. Es por ello que, sólo 
   suele emplearse en los restaurantes de más alto nivel.
 
   \begin{figure}[!h]
@@ -144,7 +144,7 @@ cocina.
   completamente preparados y presentados, por lo que no se requiere una 
   cualificación especial para los camareros. Esto ayuda a economizar y 
   dinamizar el servicio. En este caso, el \emph{maître} sólamente actúa como 
-  jefe de sala, no sirve platos. Es el tipo de servicio de restaurante más 
+  jefe de sala, no sirve platos. Es el tipo de servicio de restaurantes más 
   extendido.
 
   \begin{figure}[!h]
@@ -223,22 +223,22 @@ cocina.
   Por otro lado, el sistema está encaminado a que el cliente pueda 
   identificarse a través de su dispositivo móvil, para: realizar
   pedidos desde su mesa, recibir descuentos y recomendaciones según su
-  historial y poder realizar pagos mediante \acs{NFC}. Por lo que otro de los
+  historial y poder realizar pagos mediante \acs{NFC}. Por lo que, otro de los
   objetos a tener en cuenta \textbf{son los clientes} y el historial que dejan
   a través de sus pedidos y accesos al local.
 
     \subsubsection{Elección de tecnologías}
   El sistema estará formado por varias aplicaciones que se comunican entre sí.
   Para gestionar los datos con los que trabajan las aplicaciones del
-  restaurante, se contará con una \textbf{base de datos} distribuida, a la que
+  restaurante se contará con una \textbf{base de datos} distribuida, a la que
   se accederá a través de \textbf{servicios web}. Con esto se conseguirá la
-  sincronización y persistencia de los datos con los que se están trabajando
+  sincronización y la persistencia de los datos con los que se están trabajando
   en cada momento.
 
   El uso combinado de la \textbf{tecnología \acs{NFC}} con el de las
   \textbf{etiquetas \acs{RFID}}, permitirá al cliente interactuar con los
-  elementos del restaurantes con el simple hecho de acercar su dispositivo
-  móvil a unas u otras etiquetas.
+  elementos del restaurantes, con el simple hecho de acercar su dispositivo
+  móvil a unas o a otras etiquetas.
 
   La tecnología inalámbrica móvil que ofrece mayores posibilidades a la hora
   de comunicar el dispositivo móvil con los equipos fijos del restaurante es
@@ -260,13 +260,17 @@ cocina.
   los que operan. Para garantizar la sincronización y la integridad de los
   datos, se propone crear un servicio web, independiente a las demás
   aplicaciones, que se encargue de gestionar los accesos a la base de datos
-  que contiene, valga la redundancia, dichos datos.
+  que contiene dichos datos.
 
     \subsubsection{\emph{ASP .NET}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% No sé si obviar esta parte o decir por encima como se estructuran las clases
+% que definen servicios web en .NET
 
     \subsubsection{Base de datos \emph{MySQL}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ¿Explicar qué es SQL y qué es MySQL? y decir qué hay que hacer para acceder
+% una base de datos de este tipo.
 
   \subsection{Aplicación de la tecnología \acs{NFC}}
     \subsubsection{Introducción de la tecnología \acs{NFC} en el entorno}
@@ -284,21 +288,13 @@ cocina.
   restaurante.
   
     \subsubsection{Nokia 6131 \acs{NFC}}
+  % Apartado similar al de tu PFC, supongo
   Hoy en día el número de
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %http://www.nfcon.es/2012/03/23/lista-de-telefonos-moviles-smartphones-con-nfc/
 
-  % Móvil de MAmI
-  % Nokia 6131NFC
-  % Soporte Java
-  % JSR-257
-
   \subsection{Aplicación de la tecnología Bluetooth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Introducción de la tecnología \emph{Bluetooth} en el
-  entorno}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Comunicación en serie}
+  % Apartado parecido al de tu PFC, supongo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Metodología de trabajo}
@@ -317,9 +313,9 @@ implantación de este sistema bajo las condiciones de un entorno real.
 
 Pero, como su nombre indica, se pretende crear un sistema, es decir, un
 \emph{``conjunto de cosas que relacionadas entre sí ordenadamente contribuyen 
-a determinado objeto''}\cite{bib:rae}. Por lo que la creación de este prototipo
-deberá hacerse teniendo en cuenta que está formado por otros prototipos más 
-elementales que están relacionados entre sí.
+a determinado objeto''}\cite{bib:rae}. Por lo que, la creación de este 
+prototipo deberá hacerse teniendo en cuenta que está formado por otros 
+prototipos más elementales que están relacionados entre sí.
 
 Según \cite{bib:software_engineering}, el prototipado incremental \emph{``
 se basa en la generación de varios modelos parciales ejecutables del sistema 
@@ -346,50 +342,6 @@ en los que estén involucrados varios de estos prototipos y otros en los que
 sólo se implementen funcionalidades propias de uno de los prototipos del
 sistema.
 
-%.pdf "Prototipado incremental"
-
-%Para \cite{bib:incremental_prototyping}, las fases típicas del ciclo de vida
-%para el \emph{prototipado incremental} son las siguientes (figura
-%\ref{fig:incremental_prototyping}):
-%
-%\begin{figure}[!h]
-%  \begin{center}
-%    \includegraphics[width=0.8\textwidth]{incremental_prototyping.png}
-%    \caption{Ciclo de vida del prototipado incremental.}
-%    \label{fig:incremental_prototyping}
-%  \end{center}
-%\end{figure}
-%
-%\begin{enumerate}
-%\item \textbf{Requisitos del proyecto}. Esta fase afecta al proyecto en su
-%conjunto e incluye acciones como: el enunciado del problema que se
-%pretende resolver, diagramas de clases y diccionarios y modelos de datos.
-%\item \textbf{Requisitos del módulo}. Se definen los requisitos (software y
-%hardware) de uno de los módulos o subsistemas.
-%\item \textbf{Diseño del módulo}. Fase de diseño de la funcionalidad básica 
-%del módulo que se está resolviendo. Se identifican qué clases son propias de %%este módulo, cuáles son compartidas y cuáles de las de otros módulos nos
-%proporcionan datos e información.
-%\item \textbf{Codificación A}. Implementación básica correspondiente a las
-%funcionalidades definidas en \emph{diseño del módulo}.
-%\item \textbf{Validación}. Se pone a prueba el prototipo obtenido en la
-%\emph{codificación A} y se evalúan los resultados obtenidos durante la
-%ejecución.
-%\item \textbf{Diseño avanzado}. Se diseñan las funcionalidades complejas no
-%implementadas en \emph{Diseño del módulo}.
-%\item \textbf{codificación B}. Implementación de las funcionalidades
-%avanzadas diseñadas en \emph{diseño avanzado}.
-%\item \textbf{Validación}. Se pone a prueba el prototipo obtenido en la
-%\emph{codificación B}.
-%\end{enumerate}
-
-%Una vez completado este último paso, se entrega el módulo a producción y se
-%realiza una última revisión relacionada con garantizar (entre otras): la 
-%integración del módulo dentro del sistema, la modularidad o la usabilidad
-%del módulo implementado.
-%
-%Para el caso que nos ocupa, se tendrá un módulo por cada elemento que forme
-%el sistema.
-
   \subsection{Estructura general del sistema}
 Tras el estudio de campo realizado, las consideraciones del escenario y la
 descripción de las principales tecnologías que se van a emplear, se propone
@@ -408,28 +360,28 @@ tipo} sobre el cual implementar el sistema.
   El restaurante dispondrá de tres zonas claramente definidas:
   \begin{enumerate}
   \item El \textbf{recibidor}. Es la zona por la que se accede al salón del
-  restaurante. Estará regentada por un maître que, ayudado por un terminal,
-  registrará la entrada y salida de clientes y la asignación de mesas.
-  Además, el maître también se encargará de gestionar los cobros mediante
-  \acs{NFC}.
+  restaurante. Estará regentada por un \emph{maître} que, apoyado por un 
+  terminal, registrará la entrada y salida de clientes y la asignación de 
+  mesas. Además, el \emph{maître} también se encargará de gestionar los cobros 
+  mediante \acs{NFC}.
   \item Las \textbf{mesas}. Cada mesa tendrá un identificador único que la
   diferencie de las demás mesas. Este identificador servirá para poder
   asociar al cliente registrado con la mesa que está ocupando. Cada mesa
   contará con una carta de productos compuesta por varias etiquetas
   \acs{RFID}. Cada etiqueta contendrá la información de un producto. Esto 
   permitirá al cliente elaborar la lista de productos para un pedido
-  mediante su dispositivo móbil \acs{NFC}.
+  mediante su dispositivo móvil \acs{NFC}.
   \item La \textbf{barra}. Es la zona donde se reciben los pedidos. Algunos
   podrán ser atendidos sobre la marcha por los camareros y otros necesitarán
   ser elaborados antes por los cocineros. Todos los pedidos recibidos serán
   registrados en un terminal, de manera que se vaya generando una lista de
   pedidos por cada mesa. Esto ayudará a la gestión del estado de dichos 
-  pedidos y a facturación (en conjunto) de los mismos.
+  pedidos y a la facturación (en conjunto) de los mismos.
   \end{enumerate}
 
   Tanto el terminal del recibidor como el terminal de la barra dispondrán
   de un punto de conexión \emph{Bluetooth}, para posibilitar la comunicación
-  con los dispositivos móviles de los clientes.
+  con el dispositivo móvil de los clientes.
 
   Por otro lado, uno de los terminales citados u otro terminal distinto (que
   no tiene porqué estar en el mismo establecimiento) se encargará de hospedar
@@ -467,8 +419,8 @@ tipo} sobre el cual implementar el sistema.
   \item \emph{\textbf{Clientes normales}}. Los clientes que no disponen
   de un dispositivo móvil con las características de los \emph{clientes
   \acs{NFC}} o que simplemente no hacen uso de él. Su conducta para con
-  el restaurante será la misma que la que sigue comunmente en este tipo
-  de establecimientos: le solicita una mesa al maître, se sienta, le
+  el restaurante será la misma que la que se sigue comunmente en este tipo
+  de establecimientos: solicita una mesa al \emph{maître}, se sienta,
   pide al camarero lo que desea tomar, se lo sirven, lo consume, solicita
   la cuenta, paga y se va. Este tipo de clientes no podrá recibir
   recomendaciones y no disfrutará de los descuentos que sí se le aplican
@@ -482,78 +434,57 @@ nuevas funcionalidades al sistema elemental (de la primera iteración). Las
 iteraciones propuestas para el desarrollo del sistema son las siguientes:
 \begin{enumerate}
 \item Prototipo inicial de los servicios web y la base de datos.
-\item Prototipo inicial del recibidor y conexión con los servicios web.
-\item Prototipo inicial de la barra y conexión con los servicios web.
+\item Prototipo inicial de la aplicación del \emph{recibidor} y conexión con 
+los servicios web.
+\item Prototipo inicial de la aplicación de la \emph{barra} y conexión con los 
+servicios web.
 \item Prototipo inicial de la aplicación móvil.
 \item Conexiones \emph{Bluetooth} entre el prototipo del móvil y el del
 \emph{recibidor}.
 \item Conexiones \emph{Bluetooth} entre el prototipo del móvil y el de la
 \emph{barra}.
-\item Sistema recomendador en el servicio web. Esto afectará al prototipo del 
-recibidor y al prototipo de la aplicación móvil.
+\item Sistema recomendador.
 \end{enumerate}
-
-%Como se dijo anteriormente, el prototipo del sistema que se pretende
-%construir estará compuesto por los prototipos de los elementos que los forman.
-%Y estos prototipos van seguir las fases de los ``módulos'' del ciclo
-%de vida del \emph{prototipado incremental}. Por lo tanto, se va a contar con
-%tres módulos:
-%\begin{itemize}
-%  \item \textbf{Servicio web y base de datos}.
-%  \item \textbf{Aplicación del recibidor}.
-%  \item \textbf{Aplicación de la barra}.
-%\end{itemize}
-%Las fases de \emph{diseño del módulo}, \emph{codificación A} y
-%\emph{validación} van a coincidir con la definición, el desarrollo y las
-%pruebas realizadas para la funcionalidad básica de este módulo; es decir, la
-%funcionalidad común con los gestores típicos que hay en los restaurantes. Y 
-%las fases de \emph{diseño avanzado}, \emph{codificación B} y la última
-%\emph{validación}; van a coincidir con la definición, el desarrollo y las 
-%pruebas realizadas para la funcionalidad avanzada. Esto es, la funcionalidad
-%relativa a las operaciones relacionadas con el uso de la tecnología \acs{NFC} y
-%\emph{Bluetooth}.
-
-%Explicar donde queda la aplicación móvil y que entre la elaboración del
-%primer modelo (Codificación A) y el segundo (Codificación B) debe haberse
-%definido la aplicación del móvil (para todos los módulos).
 
 \section{Herramientas}
 En esta sección se citan las herramientas que han sido utilizadas para el 
 desarrollo de este \acs{PFC}.
 
   \subsection{Diagramas \acs{UML}}
-  Para cubrir la fase de análisis de requisitos y diseño de cada una de las
+  Para cubrir la fase de análisis de requisitos y el diseño de cada una de las
   iteraciones propuestas se ha echado mano del \emph{\textbf{Visual Paradigm
   for \acs{UML}}}, que es una herramienta \emph{case} de especificaciones
   \acs{UML}, desarrollado por la empresa \emph{Visual Paradigm International}.
 
+%%%%%%%%
+%%%%%%%% de momento sólo diagramas de casos de uso, de secuencia y de clases
   Con este programa se han realizado los diagramas de casos de uso, los de
   clases, los de despliegue, los de comunicación y los de secuencia. Es decir,
   todos los diagramas que definen la forma en la que está estructurado el
   sistema y la forma en que se comporta.
 
   La versión utilizada ha sido la \emph{8.3} de la \emph{Community Edition} y
-  ha sido necesario pedir una licencia para uso \emph{no comercial}.
+  ha sido necesario solicitar una licencia gratuita, para uso \emph{no 
+  comercial}.
 
   \subsection{Lenguajes de programación}
-  El código de los distintos elementos que forman el sistema ha sido
-  implementado utilizando tres lenguajes de programación:
+  El código de los distintos elementos que forman parte del sistema ha sido
+  implementado utilizando los siguientes lenguajes de programación:
 
   \begin{itemize} 
   \item \textbf{C\#}.
-  Es un lenguaje de programación orientada a objetos
-  \acs{OO} desarrollado y estandarizado por \emph{Microsoft} como parte de
-  su plataforma \emph{.NET}.
+  Es un lenguaje de programación \acs{OO} (Orientada a Objetos) desarrollado y
+  estandarizado por \emph{Microsoft} como parte de su plataforma \emph{.NET}.
 
   Con este lenguaje se ha desarrollado la aplicación del \emph{recibidor} y
   la aplicación de la \emph{barra}.
 
-  Además, se han utilizado la librería externa \emph{InTheHand.Net}, que
+  Además, se ha utilizado la librería externa \emph{InTheHand.Net}, que
   posibilita las conexiones \emph{Bluetooth} de las aplicaciones implementadas
   en \emph{C\#} con los dispositivos móviles.
 
   \item \textbf{ASP.NET}.
-  En realidad \emph{\acs{ASP}.NET} no puede 
+  En realidad \emph{ASP.NET} no puede 
   considerarse un lenguaje de programación, más bien es un \emph{framework} 
   que se utiliza para la construcción de sitios web dinámicos, aplicaciones 
   web o servicios web \acs{XML}. \emph{ASP.NET} está construido sobre el
@@ -586,7 +517,8 @@ desarrollo de este \acs{PFC}.
   \acs{JavaME} fue desarrollado mediante el Java Community Process bajo la 
   especificación \emph{JSR 68}. La evolución de la plataforma ha propiciado el 
   abandono de las Java Specification Request (peticiones de especificación 
-  para Java) en favor de JSRs separadas para las distintas versiones de JavaME.
+  para Java) en favor de \acs{JSR}s separadas para las distintas versiones de 
+  \acs{JavaME}.
 
   Por ejemplo, para el desarrollo de la aplicación móvil se han utilizado
   principalmente dos \acs{JSR}s:
@@ -598,20 +530,21 @@ desarrollo de este \acs{PFC}.
     \end{itemize}
 
   Además de estas, también se ha hecho uso de la librería
-  \emph{kxml2-min-2.3.0} que permite construir y parsear documentos o cadenas 
+  \emph{kxml2-min-2.3.0} que permite construir y recorrer documentos o cadenas 
   expresados en \acs{XML}.
 
   \item \textbf{XML}.
-  Es un lenguaje de marcar desarrollado por el
+  Es un lenguaje de marcas desarrollado por el
   World Wide Web Consortium (\acs{W3C}). Permite definir la gramática de
   lenguajes específicos para estructurar documentos grandes. A diferencia de
-  otros lenguajes, \emph{XML} da soporte a bases de datos, siendo útil cuando
+  otros lenguajes, \acs{XML} da soporte a bases de datos, siendo útil cuando
   varias aplicaciones se deben comunicar entre sí o integrar información.
 
   En este caso, se utiliza \acs{XML} para mandar información estructurada 
   entre las aplicaciones del restaurante y los servicios web (a través de la
   red) y entre los dispositivos móviles y las aplicaciones del restaurante 
-  (esta vez vía \emph{Bluetooth}).
+  (esta vez vía \emph{Bluetooth}). El anexo \ref{chap:xmls} muestra los 
+  distintos tipos de elementos que han sido definidos utilizando \acs{XML}.
   \end{itemize}
 
   \subsection{Aplicaciones de desarrollo}
@@ -627,7 +560,7 @@ desarrollo de este \acs{PFC}.
     se han desarrollado extensiones para muchos otros.
 
     Este \acs{IDE} se ha utilizado para desarrollar la aplicación del
-    recibidor, la aplicación de la barra y los servicios web.
+    \emph{recibidor}, la aplicación de la \emph{barra} y los servicios web.
     
     \item \textbf{Netbeans IDE 7.0.1}.
     Es un \acs{IDE} libre que no tiene restricciones de uso, concebido 
@@ -654,9 +587,14 @@ desarrollo de este \acs{PFC}.
     forman parte de la base de datos del sistema y, en general, la herramienta
     utilizada para administrar los contenidos de dichas tablas.
 
-    Tanto los servicios web como la base de datos implementada se encuentran 
-    en la dirección: \url{161.67.140.37:3500/ServicioMobiCarta/Services.asmx}
-    que pertenece a uno de los serviciores del grupo \acs{MAmI}. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    La base de datos utilizada para probar el sistema se encuentra en la
+    dirección: \url{161.67.140.37:3500/}.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%% ¿Poner también usuario y contraseña para acceder a las BBDD?
+    Los servicios web por su parte
+    pueden ser accedidos a través de la dirección:
+    \url{161.67.140.37:3500/ServicioMobiCarta/Services.asmx}. Ambas
+    direcciones pertenecen a uno de los serviciores del grupo \acs{MAmI}.
   \end{itemize}
 
   \subsection{Repositorio de datos}
@@ -762,10 +700,11 @@ desarrollo de este \acs{PFC}.
   \item \textbf{\emph{Etiquetas \acs{RFID}}}. Son de tipo \emph{Mifare} y
   tienen 1KB de capacidad. Almacenan la información de los productos de la 
   carta y de otras operaciones disponibles para el cliente.
-  \item \textbf{Monitor táctil}. La aplicación del recibidor y la aplicación
-  de la barra están enfocadas a la interacción táctil. Por ello es conveniente
-  realizar las pruebas sobre un dispositivo que aproveche esta característica.
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \item \textbf{Monitor táctil}. La aplicación del \emph{recibidor} y la 
+  aplicación de la \emph{barra} están enfocadas a la interacción táctil. Por 
+  ello es conveniente realizar las pruebas sobre un dispositivo que aproveche 
+  esta característica. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%% ¿Qué características tiene el monitor táctil? Modelo, dimensiones, etc.
   \end{itemize}
 
 % Local Variables:

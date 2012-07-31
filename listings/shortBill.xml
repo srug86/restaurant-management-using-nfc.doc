@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE shortBill SYSTEM "shortBill.dtd">
+<Bill>
+	<Company>MobiCarta</Company>
+	<Date>2012:04:04 22:18:55</Date>
+	<Table>2</Table>
+	<Orders>
+		<Order product="Coca Cola 200ml">
+			<Amount>2</Amount>
+			<Price>1.5</Price>
+			<PDiscount>0</PDiscount>
+			<PTotal>3</PTotal>
+		</Order>
+		<Order product="Solomillo a la pimienta">
+			<Amount>2</Amount>
+			<Price>5</Price>
+			<PDiscount>0</PDiscount>
+			<PTotal>10</PTotal>
+		</Order>
+	</Orders>
+	<PriceSummary>
+		<Subtotal>13</Subtotal>
+		<BDiscount>0</BDiscount>
+		<TaxBase>13</TaxBase>
+		<IVA>18</IVA>
+		<Quote>2.34</Quote>
+		<BTotal>15.34</BTotal>
+	</PriceSummary>
+</Bill>

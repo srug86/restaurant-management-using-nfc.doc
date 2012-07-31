@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Products (Product)+>
+<!ELEMENT Product (Category, Price, Description, Visible, Discount, DiscountedUnit)>
+<!ATTLIST Product name (#PCDATA)>
+<!ELEMENT Category (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>
+<!ELEMENT Description (#PCDATA)>
+<!ELEMENT Visible (#PCDATA)>
+<!ELEMENT Discount (#PCDATA)>
+<!ELEMENT DiscountedUnit (#PCDATA)>
