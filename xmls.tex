@@ -1,0 +1,299 @@
+\chapter{Definición de los elementos \acs{XML} utilizados}
+\label{chap:xmls}
+La comunicación entre los elementos del sistema es una parte fundamental del
+mismo. Como los elementos están implementados utilizando varios lenguajes y
+tecnologías, sólamente se permite la comunicación a través de datos primitivos
+(enteros, decimales, cadenas, etc.). Pero debido a la complejidad de los datos
+que se desean compartir, será necesario estructurarlos en formato \acs{XML}. 
+Esto permitirá los intercambios de cadenas que contengan información
+estructurada.
+
+A continuación, se citan todas las estructuras definidas para compartir
+información entre elementos del sistema.
+
+\section{Elementos generados por los \emph{servicios web}}
+Son los elementos definidos para realizar comunicaciones entre los
+\emph{servicios web} y las aplicaciones de escritorio del restaurante
+(\emph{recibidor} y \emph{barra}).
+% Elementos generados por los servicios web
+\subsection{\acs{XML} para listar los escenarios disponibles}
+El elemento \texttt{rooms} contiene un listado de todos los escenarios 
+definidos con anterioridad en el editor de la aplicación del \emph{recibidor}. 
+Los destinatarios de este tipo de elementos son las dos aplicaciones de 
+escritorio del restaurante (\emph{recibidor} y \emph{barra}). El listado
+\ref{code:DTDrooms} muestra el esquema seguido por los elementos de este tipo:
+% rooms.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{rooms.xml}.},
+label=code:DTDrooms]
+{listings/rooms.dtd}
+El listado \ref{code:XMLrooms} muestra un ejemplo de un elemento de tipo
+\texttt{rooms}. En este caso, la base de datos tiene almacenados dos
+escenarios distintos: \texttt{Room1} y \texttt{Room2}.
+% rooms.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe el resumen de dos habitaciones.},
+label=code:XMLrooms]
+{listings/rooms.xml}
+
+\subsection{\acs{XML} que describe el estado de las mesas del restaurante}
+El elemento \texttt{tables} contiene una lista actualizada del estado de las
+mesas del restaurante. Esta información es consumida por las aplicaciones
+de escritorio del restaurante (\emph{recibidor} y \emph{barra}). El listado
+\ref{code:DTDtables} muestra el esquema que siguen estos elementos:
+% tables.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{tables.xml}.},
+label=code:DTDtables]
+{listings/tables.dtd}
+El listado \ref{code:XMLtables} muestra un ejemplo de la situación de las
+mesas del restaurante en un momento determinado:
+% tables.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe el estado de las nueve mesas del
+  restaurante.},
+label=code:XMLtables]
+{listings/tables.xml}
+
+\subsection{\acs{XML} para listar los pedidos recibidos durante la jornada}
+El elemento \texttt{orders} describe una lista con los pedidos registrados
+por el sistema dentro de una misma jornada. La destinataria es la aplicación
+de la \emph{barra}, que es la que gestiona todos los pedidos. El listado
+\ref{code:DTDorders} muestra la definición \acs{DTD} para este tipo de
+elementos:
+% orders.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{orders.xml}.},
+label=code:DTDorders]
+{listings/orders.dtd}
+El listado \ref{code:XMLorders} muestra el \acs{XML} de un elemento de tipo
+\texttt{orders} en el que aparecen listados dos pedidos:
+% orders.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe los pedidos recibidos durante la
+  jornada.},
+label=code:XMLorders]
+{listings/orders.xml}
+
+\subsection{\acs{XML} que describe el estado de una mesa}
+% table.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{table.xml}.},
+label=code:DTDtable]
+{listings/table.dtd}
+% table.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe cuál es el estado de una mesa, quién 
+  la ocupa y qué pedidos tiene asociados.},
+label=code:XMLtable]
+{listings/table.xml}
+
+\subsection{\acs{XML} para listar el histórico de pedidos del restaurante}
+El elemento \texttt{historical} recoge un listado con el histórico de todos los 
+pedidos que han sido facturados por el sistema. Este histórico tiene como
+destinatario la aplicación de la \emph{barra}. El listado
+\ref{code:DTDhistorical} muestra la definición \acs{DTD} de este tipo de 
+elementos:
+% historical.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{historical.xml}.},
+label=code:DTDhistorical]
+{listings/historical.dtd}
+El listado \ref{code:XMLhistorical} muestra un ejemplo de un listado de tipo
+\texttt{historical}:
+% historical.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe el histórico de pedidos del 
+  restaurante.},
+label=code:XMLhistorical]
+{listings/historical.xml}
+
+\subsection{\acs{XML} que describe la factura de una mesa}
+El elemento de tipo \texttt{bill} describe los datos necesarios para
+facturar a un cliente. Para ello se recoge información de distintas tablas
+de la base de datos y se calculan los campos restantes. La aplicación de la
+\emph{barra} es la destinataria de este tipo de elementos. La figura 
+\ref{code:DTDbill} muestra la definición de este tipo de dato:
+% bill.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{bill.xml}.},
+label=code:DTDbill]
+{listings/bill.dtd}
+En el listado \ref{code:XMLbill} puede verse el ejemplo de un elemento de tipo
+\texttt{bill}. Este elemento contiene datos acerca del establecimiento, del
+cliente, de la propia factura, de los pedidos registrados y del importe a
+abonar:
+% bill.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe la factura detallada para la mesa 2.},
+label=code:XMLbill]
+{listings/bill.xml}
+
+\subsection{\acs{XML} que describe la factura reducida de una mesa}
+% shortBill.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{shortBill.xml}.},
+label=code:DTDshortBill]
+{listings/shortBill.dtd}
+% shortBill.dtd
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe la versión reducida de la factura para
+  la mesa 2.},
+label=code:XMLshortBill]
+{listings/shortBill.xml}
+
+\subsection{\acs{XML} que lista las recomendaciones para un cliente \acs{NFC}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% recommendation.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{recommendation.xml}.},
+label=code:DTDrecommendation]
+{listings/recommendation.dtd}
+% recommendation.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe las recomendaciones calculadas para
+  uno de los clientes \acs{NFC} del restaurante \emph{mobiCarta}.},
+label=code:XMLrecommendation]
+{listings/recommendation.xml}
+
+\section{Elementos generados por la \emph{aplicación móvil}}
+Son los elementos definidos para la comunicación entre la \emph{aplicación
+móvil} y las aplicaciones de escritorio del restaurante (\emph{recibidor} y
+\emph{barra}).
+% Elementos generados por la aplicación móvil
+\subsection{\acs{XML} que recoge los datos personales de un cliente \acs{NFC}}
+El elemento \texttt{profile} recoge los datos personales introducidos por el
+cliente a través de la aplicación móvil. Estos datos son guardados, en primer
+lugar, en el propio dispositivo móvil (como \texttt{profile.xml}), para que la
+aplicación móvil pueda disponer de ellos cuando lo necesite. Durante el
+proceso de registro en el restaurante, esta información viajará vía
+\emph{Bluetooth} a la aplicación del \emph{recibidor}. El listado
+\ref{code:DTDprofile} muestra la definición \acs{DTD} para este tipo de
+elementos:
+% profile.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{profile.xml}.},
+label=code:DTDprofile]
+{listings/profile.dtd}
+El listado \ref{code:XMLprofile} muestra un ejemplo de los datos almacenados
+por un elemento de tipo \texttt{profile}:
+% profile.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe los datos personales de un cliente
+  \acs{NFC}.},
+label=code:XMLprofile]
+{listings/profile.xml}
+
+\subsection{\acs{XML} que describe los elementos de un pedido \acs{NFC}}
+Un elemento de tipo \texttt{clientOrder} define la lista de productos de
+un pedido, elaborada por la aplicación móvil mediante la tecnología \acs{NFC}.
+Esta lista se transmite vía \emph{Bluetooth} a la aplicación de la
+\emph{barra}. El listado \ref{code:DTDclientOrder} describe la definición de
+los elementos de este tipo:
+% clientOrder.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{clientOrder.xml}.},
+label=code:DTDclientOrder]
+{listings/clientOrder.dtd}
+El listado \ref{code:XMLclientOrder} muestra un ejemplo en el que el cliente
+\texttt{05692939w} solicita dos unidades de dos productos distintos:
+% clientOrder.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe los pedidos realizados por un
+  cliente \acs{NFC}.},
+label=code:XMLclientOrder]
+{listings/clientOrder.xml}
+
+\section{Elementos generados por la \emph{aplicación del recibidor}}
+Son los elementos definidos para comunicar la aplicación del \emph{recibidor}
+con los \emph{servicios móviles}.
+% Elementos generados por la aplicación del recibidor
+\subsection{\acs{XML} que describe los datos del restaurante}
+% restaurant.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{restaurant.xml}.},
+label=code:DTDrestaurant]
+{listings/restaurant.dtd}
+% restaurant.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe los datos de interés del restaurante.},
+label=code:XMLrestaurant]
+{listings/restaurant.xml}
+
+\subsection{\acs{XML} que describe los elementos físicos de un escenario}
+% room.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{room.xml}.},
+label=code:DTDroom]
+{listings/room.dtd}
+% room.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe los elementos físicos que forman
+  parte del escenario de nombre \emph{Room1}.},
+label=code:XMLroom]
+{listings/room.xml}
+
+\section{Elementos generados por la \emph{aplicación de la barra}}
+La aplicación de la \emph{barra} sólamente genera un tipo de elemento
+\acs{XML} para transmitir información a los \emph{servicios web}:
+% Elementos generados por la aplicación de la barra
+\subsection{\acs{XML} que lista los productos del restaurante}
+Un elemento de tipo \texttt{products} recoge la lista completa de todos los
+productos que ofrece (o que ha ofrecido) el restaurante. Los elementos de
+esta lista están almacenados en una misma tabla de la base de datos y sólo
+puede ser modificada a través de la aplicación de la \emph{barra}. El
+listado \ref{code:DTDproducts} muestra la definición de este tipo de elementos:
+% products.dtd
+\lstinputlisting[
+language=XML,
+caption={\acs{DTD} que describe la estructura de los documentos
+  \emph{products.xml}.},
+label=code:DTDproducts]
+{listings/products.dtd}
+El listado \ref{code:XMLproducts} muestra un ejemplo del listado de productos
+de un restaurante:
+% products.xml
+\lstinputlisting[
+language=XML,
+caption={Ejemplo \acs{XML} que describe la carta de productos que maneja el
+  restaurante.},
+label=code:XMLproducts]
+{listings/products.xml}
+
