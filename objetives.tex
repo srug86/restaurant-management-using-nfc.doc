@@ -1,11 +1,97 @@
 % -*- coding: utf-8 -*-
 
 \chapter{Objetivos}
-% Se supone que este capítulo es casi calcado al que hice en el anteproyecto.
+Para delimitar el alcance del proyecto se han definido una serie de
+objetivos (generales y específicos) que se deben cumplir antes de dar
+por finalizado el \acs{PFC}.
+
 \section{Objetivo general}
+Este PFC tiene como objetivo diseñar e implementar el prototipo de un sistema
+que sea capaz de automatizar, complementar y enriquecer algunas de las tareas 
+que se llevan a cabo en un restaurante, con objeto de aumentar su
+productividad. Para conseguirlo, se hará uso del potencial que poseen los 
+dispositivos móviles gracias a tecnologías inalámbricas como \acs{NFC} o
+\emph{Bluetooth}. Esto permitirá obtener nuevas formas de interacción entre los 
+clientes y el restaurante, pero sin poner en riesgo para ello la sencillez o la 
+naturalidad del proceso.
+
+El sistema a desarrollar no busca sustituir a los sistemas existentes en la
+actualidad, sino que trata de complementarlos.
+
 \section{Objetivos específicos}
+Para la realización de este \acs{PFC} se han marcado los siguientes objetivos
+específicos:
+\subsubsection{Análisis}
+\begin{enumerate}
+\item Realizar un estudio de campo sobre el funcionamiento actual de los
+  restaurantes. Cómo se organizan, cómo operan y qué medios utilizan para la
+  realización de tareas.
+\item Realizar una revisión sistemática de las aplicaciones existentes en el
+  mercado que compartan las mismas premisas que nuestro sistema, para ver qué
+  ofrecen y para ver cuáles son las ventajas y desventajas que implica elegir
+  entre uno u otro sistema.
+\item Investigar los estudios realizados de la introducción de la tecnología
+  \acs{NFC} como modelo de negocio.
+\item Identificar los requisitos que deben cumplir cada uno de los elementos
+  que forman parte de nuestro sistema. Así como también los requisitos que
+  deben satisfacer todos ellos funcionando como un conjunto.
+\item Estudiar la forma de integrar este sistema con algún sistema que el
+  restaurante ya tuviese implantado.
+\item Estudiar la forma de introducir este sistema para clientes que no
+  dispongan de un dispositivo adecuado.
+\item Estudiar una forma de incentivar el uso del sistema de pago mediante
+  el dispositivo móvil (descuentos, programas de fidelización, etc.).
+\end{enumerate}
 
+\subsubsection{Adquisición de conocimientos}
+\begin{enumerate}
+\item Adquirir los conocimientos necesarios para implementar interfaces de
+  usuario utilizando la tecnología \acs{WPF} (\emph{Windows Presentation
+  Foundation}).
+\item Conocer las peculiaridades del lenguaje \acs{JavaME} (\emph{Java Micro
+  Edition}) para la implementación de \emph{MIDLets} para dispositivos móviles
+  con soporte \texttt{Java}.
+\item Conocer las principales clases y métodos que ofrece la librería
+  \emph{\acs{JSR}-257} para operar con etiquetas \acs{RFID} y dispositivos
+  \acs{NFC} del entorno.
+\item Conocer y usar las librerías implementadas como parte del estándar para
+  \acs{JavaME} que permiten las comunicaciones vía \emph{Bluetooth} entre 
+  dispositivos (\emph{\acs{JSR}-82}). Así como también, las librerías
+  disponibles para \texttt{C\#}, como \texttt{InTheHand}.
+\end{enumerate}
 
+\subsubsection{Diseño e Implementación}
+\begin{enumerate}
+\item Diseñar e implementar una aplicación de escritorio táctil que permita
+  configurar y actualizar el estado de las mesas del restaurante.
+\item Implementar la forma de realizar el pago mediante el dispositivo móvil,
+  utilizando para ello una interacción vía \emph{NFC}.
+\item Diseñar e implementar una aplicación de escritorio táctil que permita
+  registrar los pedidos de los clientes (de forma manual o automática - vía
+  \emph{Bluetooth}), actualizar el estado de las mesas (con la información de
+  los pedidos) y generar el importe total de cada cliente.
+\item Diseñar e implementar una suite de \emph{MIDLets} que genere una lista
+  de productos en el móvil a partir del contacto del dispositivo con las
+  etiquetas \emph{RFID} que forman parte del menú. La aplicación también
+  permitirá enviar al equipo de la barra el pedido vía \emph{Bluetooth}.
+\item Diseñar la estructura de datos necesaria para representar la
+  información de los platos del menú y de otras opciones (pedir la cuenta, 
+  mostrar recomendaciones, etc.) dentro de las etiquetas \emph{RFID}.
+\item Desarrollar un módulo en el propio sistema para la creación de
+  recomendaciones atendiendo a las preferencias del cliente y a visitas
+  anteriores al restaurante.
+\end{enumerate}
+
+\subsubsection{Pruebas}
+\begin{enumerate}
+\item Diseñar un plan de pruebas de campo, para comprobar la usabilidad y
+la aceptación del uso de la aplicación móvil entre los potenciales
+usuarios de un restaurante en el que está implantado el sistema
+\texttt{MobiCarta}.
+\item Diseñar un plan de pruebas de campo, para comprobar la usabilidad y
+la aceptación del uso de las distintas aplicaciones de escritorio del
+restaurante.
+\end{enumerate}
 
 
 
