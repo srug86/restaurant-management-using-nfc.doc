@@ -185,35 +185,596 @@ sistema \acs{RFID}.}
 %  \end{figure}
 
 % El chorizo de las siguientes partes lo meteré más adelante...
-  \subsection{La tecnología NFC}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Pondré más o menos que en el apartado del RFID
+  \subsection{La tecnología \acs{NFC}}
+\acs{NFC} son las siglas en inglés de \emph{Near Field Communication}
+(Comunicación de Campo Cercano). Se trata de una tecnología inalámbrica de
+corto alcance y alta frecuencia que permite el intercambio de información
+entre dos dispositivos próximos entre sí.
 
-  \subsection{La tecnología Bluetooth}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Pondré más o menos que en el apartado del RFID
+\acs{NFC} se basa en la tecnología \acs{RFID}, que opera a 13,56MHz y tiene
+una distancia de funcionamiento típica de 4 cm. Es compatible con tarjetas
+inteligentes sin contacto \emph{Mifare} y \emph{FeliCa} y tiene una tasa de
+intercambio de datos de hasta 424 Kb/s.
+
+Los estándares de \acs{NFC} están basados en la \acs{ISO} 14443 e incluyen
+la \acs{ISO}/\acs{IEC} 18092 y otros estándares definidos específicamente por
+el \emph{NFC Forum}\footnote{Organismo formado en 2004 por los creadores de
+\acs{NFC} (\emph{Nokia}, \emph{Philips} y \emph{Sony}) y que busca promover
+el uso de esta tecnología. Para ello, crea especificaciones de desarrollo,
+para asegurar la interoperabilidad entre dispositivos y servicios, y trata
+de educar al mercado acerca de la tecnología \acs{NFC}. Actualmente, el foro
+cuenta con más de 160 miembros, incluyendo fabricantes, desarrolladores de
+aplicaciones, instituciones de servicios financieros, etc.\cite{bib:nfcForum}}.
+
+Según el propio \emph{NFC Forum}\cite{bib:nfcForum}:
+
+\emph{``Una tecnología de conectividad basada en estándares como \acs{NFC},
+armoniza las diversas tecnologías actuales sin contacto, lo que permite
+generar soluciones actuales y futuras en áreas tales como:
+\begin{itemize}
+\item Control de acceso.
+\item Electrónica de consumo.
+\item Salud.
+\item Recogida e intercambio de información
+\item Sistemas de fidelización y cupones.
+\item Pagos.
+\item Transporte.
+\end{itemize}
+''}.
+
+%Una de las principales ventajas de la tecnología \acs{NFC} en los
+%dispositivos móviles es que pueden ser utilizados como un dispositivo de
+%almacenamiento de información, como una unidad de cómputo y como un lector
+%\acs{NFC}. Esto les permite, por ejemplo, leer los datos de una etiqueta para 
+%después utilizarlos como entrada en un proceso que trabaje con información 
+%previamente almacenada, como ocurre en los pagos mediante \acs{NFC}.
+
+%Otras ventajas importantes de \acs{NFC} son\cite{bib:currentBenefits}:
+%\begin{itemize}
+%\item La tecnología es compatible con las estructuras existentes de \acs{RFID}.
+%Es decir, etiquetas \acs{RFID} y tarjetas inteligentes sin contacto.
+%\item Es fácil de usar, ya que los usuarios no necesitan tener ningún
+%conocimiento sobre la tecnología. Todo lo que el usuario tiene que hacer es
+%iniciar la comunicación mediante la unión o contacto de dos dispositivos.
+%\item El alcance de transmisión es tan corto que, cuando el usuario separa los
+%dispositivos, la comunicación se corta. Esto hace que la seguridad sea
+%inherente. Si no hay ningún otro dispositivo cerca, no habrá más
+%comunicaciones.
+%\end{itemize}
+
+  \subsubsection{Funcionamiento}
+Como se comentó anteriormente, tecnología \acs{NFC} está basada en las
+tecnologías de tarjetas inteligentes sin contacto y en la tecnología
+\acs{RFID}. Por lo tanto, el esquema básico de funcionamiento está formado
+por un lector y por una etiqueta (figura \ref{fig:readerTag}). El lector puede 
+estar empotrado como parte de otro dispositivo como: un teléfono móvil, un PC, 
+un electrodoméstico, etc. o simplemente puede tratarse de un lector fijo (que 
+esté a su vez conectado, por ejemplo, a un PC).
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{readerTag.png}
+      \caption{Ejemplo de interacción móvil \acs{NFC} - etiqueta.}
+      \label{fig:readerTag}
+    \end{center}
+  \end{figure}
+
+La interacción comienza cuando el lector se aproxima a una etiqueta
+\acs{RFID}. Este emite una señal de corto alcance que es capaz de activar 
+el microchip de la etiqueta y de hacer que emita los datos que contiene. En 
+este caso el lector \acs{NFC} es siempre el que inicia la operación.
+
+Pero también se permiten las comunicaciones entre dos lectores (figura
+\ref{fig:mobileReader}). En este caso uno de los dos se encargará de iniciar y 
+gestionar la comunicación. Existen dos modos de funcionamiento para los
+dispositivos que cumplen el estándar \texttt{NFCIP-1}:
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{mobileReader.png}
+      \caption{Ejemplo de interacción móvil \acs{NFC} - lector \acs{NFC}.}
+      \label{fig:mobileReader}
+    \end{center}
+  \end{figure}
+
+\begin{itemize}
+\item \textbf{Modo activo}:
+En este modo, los dos dispositivos generan su propio campo magnético para
+poder transmitir los datos. Es el modo característico de las comunicaciones
+\acs{P2P} entre dispositivos (figura \ref{fig:activeMode}).
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{activeMode.png}
+      \caption{Esquema de funcionamiento del \emph{modo activo}.}
+      \label{fig:activeMode}
+    \end{center}
+  \end{figure}
+
+\item \textbf{Modo pasivo}:
+Este modo es similar al esquema lector-etiqueta. Uno de los dispositivos
+(el iniciador) genera el campo electromagnético necesario para activar al otro
+y permitir la lectura de sus datos (figura \ref{fig:passiveMode}).
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{passiveMode.png}
+      \caption{Esquema de funcionamiento del \emph{modo pasivo}.}
+      \label{fig:passiveMode}
+    \end{center}
+  \end{figure}
+\end{itemize}
+
+  \subsubsection{Características}
+
+La tabla \ref{tab:nfcComparison} muestra una comparación entre 
+las características de la tecnología \acs{NFC} y las características de 
+otras tecnologías inalámbricas:
+
+\begin{sidewaystable}[hp]
+  \centering
+  {\footnotesize
+  \input{tables/nfcComparison.tex}
+  }
+  \caption[Comparativa entre tecnologías inalámbricas]
+  {Comparativa entre tecnologías inalámbricas (\cite{bib:nfcComparison})}
+  \label{tab:nfcComparison}
+\end{sidewaystable}
+
+Como se ha comentado anteriormente, una de las principales características de 
+las conexiones \acs{NFC} es que su radio de acción es muy pequeño. Esto le
+permite tomar parte en operaciones que necesitan mantener seguridad en la
+privacidad de los datos, como por ejemplo, para el pago de servicios. El
+hecho de que el dispositivo tenga que aproximarse al terminal de pago, evita
+que pueda producirse de forma accidental, que entre en conflicto con otros
+terminales cercanos o que la información que se transfiere de un dispositivo
+a otro pueda ser observado por un tercero.
+
+Por otro lado, las interacciones con \acs{NFC} son rápidas e intuitivas, ya 
+que estas se producen  simplemente al aproximar el dispositivo a una etiqueta 
+\acs{RFID} o a otro dispositivo. Dependiendo del contenido de estos, las 
+interacciones generarán acciones más complejas automáticamente en el 
+dispositivo como: el inicio de una aplicación, la generación de un evento 
+dentro de la aplicación, el visionado del propio contenido, el envío de un 
+mensaje automático, la solicitud de un servicio a través de otro medio de 
+comunicación, etc.
+
+  \subsubsection{Aplicaciones}
+La creciente expansión de la tecnología \acs{NFC} ha provocado el desarrollo
+de múltiples aplicaciones, que buscan aprovechar las características que esta 
+tecnología les ofrece para solucionar o facilitar la realización de tareas 
+cotidianas.
+
+Existe un gran número de aplicaciones, pero todas ellas pueden agruparse en
+una de estas tres categorías \cite{bib:nfcComparison}:
+\begin{itemize}
+\item \textbf{Inicialización de servicios}: 
+En este tipo de aplicaciones, cuando un usuario toca con su dispositivo
+\acs{NFC} una etiqueta \acs{RFID}, el lector extrae una serie de datos
+(texto, \acs{URL}, número de teléfono, etc.) que le permiten realizar alguna
+acción. Ejemplos de este tipo de aplicaciones son:
+  \begin{itemize}
+  \item Carteles inteligentes que promocionan un producto, servicio o evento. 
+  En este caso las etiquetas proporcionan al usuario la \acs{URL} donde puede 
+  obtener más información acerca de esa promoción.
+  \item Etiquetas en los productos de un comercio que ofrecen más información
+  acerca de dicho producto.
+  \item Etiquetas ubicadas en los muebles de la casa para realizar acciones
+  como controlar la iluminación o la temperatura a través del dispositivo
+  móvil.
+  \item Etiquetas que registran el número de visitas efectuadas por el
+  personal de guardia a medida que hace el recorrido rutinario por las zonas
+  del lugar.
+  \item Etiquetas que facilitan operaciones simples a usuarios con alguna
+  discapacidad física o mental. Por ejemplo, se puede confeccionar una agenda
+  a partir de fotos de familiares a las que se adhiere una etiqueta con la
+  información del número de teléfono. De esta forma cuando el usuario quiere
+  llamar a alguno de sus familiares, sólo necesitará aproximar su dispositivo
+  a la foto del familiar con el que quiere hablar.
+  \end{itemize}
+\item \textbf{Peer-to-peer}:
+Este tipo de aplicaciones utilizan \acs{NFC} como mecanismo para establecer
+la comunicación entre dos dispositivos que pretenden intercambiar datos. El
+tráfico de dichos datos se podrá realizar mediante \acs{NFC} o mediante otra
+tecnología inalámbrica (dependiendo del volumen de datos a transmitir).
+Algunas de las aplicaciones que pertenecen a esta categoría son:
+  \begin{itemize}
+  \item Transmisión de fotos desde una cámara digital a una impresora. Cuando
+  la cámara de fotos se aproxima a la impresora, se establece una comunicación
+  \emph{Bluetooth} en la que el primer dispositivo le transmite las fotos al
+  segundo.
+  \item Intercambio de tarjetas personales electrónicas entre dos dispositivos
+  mediante la aproximación de ambos.
+  \item Configuración automática de una conexión \acs{WiFi} en un lugar
+  público. El usuario aproxima su dispositivo a una etiqueta que contiene la
+  configuración de red y utiliza estos parámetros para iniciar automáticamente
+  una conexión \acs{WiFi}.
+  \end{itemize}
+\item \textbf{Compras y pagos}:
+Este tipo de aplicaciones dio origen a los estándares \acs{NFC}. Como ya
+existían tarjetas inteligentes sin contacto para realizar pequeñas
+transacciones comerciales, la tecnología \acs{NFC} tuvo que ser definida
+teniendo en cuenta que fuera compatible con las aplicaciones ya existentes.
+Algunos ejemplos de estas aplicaciones son:
+  \begin{itemize}
+  \item Pagos en parquímetros y párkings.
+  \item Pago en máquinas expendedoras.
+  \item Consulta de saldo en tarjetas de transporte que utilizan \acs{NFC}.
+  \item \emph{Monedero electrónico}. El objetivo final es que esta tecnología
+  vaya sustituyendo a las tarjetas de plástico tradicionales. De esta forma
+  el usuario de un dispositivo móvil con \acs{NFC} no sólo puede utilizar su
+  dispositivo para pagar en un establecimiento, sino que también puede
+  mantener la información de algún sistema de fidelización o puntos de dicho
+  establecimiento, los datos de la tarjeta de la seguridad social, los datos
+  de los bonos del sistema de transportes de su ciudad, etc. y todo ello
+  accesible a través de la tecnología \acs{NFC}.
+  \end{itemize}
+\end{itemize}
+
+El número de aplicaciones sigue creciendo y cada día son más las ciudades
+que disponen de servicios accesibles a través de \acs{NFC}, sobretodo en
+sitios como Japón, Corea del Sur o Estados Unidos. Los fabricantes de
+dispositivos móviles han observado este hecho y año tras año han ido
+sacando al mercado nuevos dispositivos que incluyen esta tecnología.
+Como muestra la figura \ref{fig:nfcGraph} el porcentaje de los nuevos
+dispositivos que cuentan con esta tecnología se ha ido incrementando
+exponencialmente.
+
+  \begin{figure}[!h]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{nfcGraph.png}
+      \caption{Evolución del número de teléfonos móviles que
+      incorporan \acs{NFC}.}
+      \label{fig:nfcGraph}
+    \end{center}
+  \end{figure}
+
+El anexo \ref{chap:nfcMobiles} muestra una lista de los últimos dispositivos
+que incluyen la tecnología \acs{NFC} entre sus características.
+
+  \subsubsection{El formato \acs{NDEF}}
+\acs{NDEF} (\acs{NFC} Data Exchange Format) es un formato definido por el
+\emph{NFC Forum} y constituye el principal estándar para el intercambio y
+almacenamiento de información, pues es un formato soportado por cualquiera 
+dispositivo \acs{NFC}.
+
+La estructura seguida por \acs{NDEF} posee una cabecera de datos, a partir de
+la cual se encuentran los bloques de información. Cada bloque de información
+se agrupa en registros que contienen a su vez los datos agrupados en mensajes
+\acs{NDEF} y están caracterizados por un tipo \acs{MIME} definido. El
+anexo \ref{chap:ndef} muestra un ejemplo de organización \acs{NDEF}.
+
+Este formato tiene el inconveniente de que puede ser leido o modificado por
+cualquier dispositivo \acs{NFC}, puesto que la clave empleada para el acceso
+a los datos es la clave por defecto ($FF FF FF FF FF FF$, en hexadecimal).
+Para solventar este problema, el formato \acs{NDEF} puede ser combinado con
+el propuesto por \emph{MiFare}.
+
+  \subsection{La tecnología \emph{Bluetooth}}
+Bluetooth es el nombre común que se le da a la especificación industrial IEEE
+802.15.1, que define un estándar global de comunicación inalámbrica que 
+posibilita la transmisión de voz y datos entre diferentes dispositivos 
+mediante un enlace por radiofrecuencia segura.
+
+  \subsubsection{Historia}
+Su nombre procede del nombre del rey danés y noruego Harald Blatan;
+especialmente porque su traducción al inglés sería Harold Bluetooth, 
+conocido por buen comunicador y por unificar las tribus noruegas, suecas y 
+danesas.
+
+En 1994, la compañía Ericsson inició diversas investigaciones con el 
+objetivo de estudiar la viabilidad de la existencia de una nueva interfaz de 
+comunicación, de bajo consumo y coste, entre diversos dispositivos como 
+teléfonos móviles. Con todo ello, en el año 1999 se creó el SIG de Bluetooth 
+(Special Interest Group), que consistía en la unión de diversas empresas 
+(Ericsson, Intel, Nokia, Toshiba e IBM), e incorporándose a lo largo de
+los años otras tantas (Microsoft, 3Com, Motorola, Lucent,...).
+
+Se consiguió que los estudios iniciados avanzaran, y que los proyectos 
+fueran de por sí una verdadera y auténtica realidad, consiguiendo extender 
+el Bluetooth como un estándar para la interfaz aérea.
+
+Técnicamente, la especificación Bluetooth definiría un canal de comunicación 
+de máximo 720Kb/s con un alcance de 10m (llegando a los 100m con 
+repetidores). La frecuencia de tráfico con la que trabaja, se encuentra en 
+el rango de 2,4 a 2,48GHz con amplio espectro y saltos de frecuencia con 
+posibilidad de transmitir en Full-Duplex3 con un máximo de 1600 saltos/s, 
+los cuales se dan entre un total de 79 frecuencias con intervalos de 1Mhz.
+
+Por todo, la potencia de salida para transmitir a una distancia máxima de 
+10m es de 0dbm (1mW), mientras que la versión de largo alcance transmite 
+entre los 20 y 30 dbm (entre 100mW y 1W).
+
+Los principales objetivos que se pretenden alcanzar con esta norma son:
+\begin{itemize}
+\item Facilitar las comunicaciones entre dispositivos móviles y fijos.
+\item Eliminar cables y conectores entre estos.
+\item Ofrecer la posibilidad de crear pequeñas redes wireless y facilitar la
+sincronización de datos entre equipos.
+\end{itemize}
+
+Desde sus comienzos hasta nuestros días, han existido distintas versiones en 
+la tecnología Bluetooth a saber: v1.1, v1.2, v2.0 y la reciente v2.1 que 
+promete simplificación en la configuración, menor consumo e incluso la 
+combinación con otras tecnologías y protocolos como NFC.
+
+  \subsubsection{La interfaz \emph{Bluetooth}}
+Los productos Bluetooth de primera generación tenían como objetivo los 
+entornos de negocio concretamente destinados a gente de negocios que viaja 
+frecuentemente. Por lo que había que integrar el chip de radio Bluetooth en 
+dispositivos móviles como Notebooks, teléfonos móviles, PDAs, auriculares... 
+Esto originaba una serie de aspectos previos que deberían solucionarse:
+\begin{itemize}
+\item El sistema debería operar en todo el mundo.
+\item El emisor de radio deberá consumir poca energía, ya que debe 
+integrarse en equipos alimentados por baterías.
+\item La conexión deberá soportar voz y datos, y por tanto aplicaciones 
+multimedia.
+\end{itemize}
+
+\begin{description}
+\item[La banda de frecuencia libre].
+Para poder operar en todo el mundo es necesario disponer de una banda de
+frecuencia abierta a cualquier sistema de radio independientemente del lugar 
+del planeta donde nos encontremos. Hasta ahora, solo la banda ISM (médico-
+científica internacional) de 2,45 Ghz cumple con éste requisito, con rangos 
+que van de los 2.400 Mhz a los 2.500 Mhz, y solo con algunas restricciones 
+en países como Francia, España y Japón.
+\item[Salto de frecuencia].
+Debido a que la banda ISM es abierta, el sistema de radio Bluetooth deberá 
+estar preparado para evitar las múltiples interferencias que se pudieran 
+ocasionar. Éstas pueden ser evitadas utilizando un sistema que busque una 
+parte no utilizada del espectro o un sistema de salto de frecuencia. En los 
+sistemas de radio Bluetooth se suele utilizar el método de salto de 
+frecuencia debido a que ésta tecnología puede ser integrada en equipos
+de baja potencia y reducido coste. Éste sistema divide la banda de 
+frecuencia en varios canales de salto, donde, los transceptores, durante la 
+conexión van cambiando de uno a otro canal de salto de manera pseudo-
+aleatoria. Con esto se consigue que el ancho de banda instantáneo sea muy 
+pequeño y también una propagación efectiva sobre el total de ancho de banda. 
+En conclusión, con el sistema FH (Salto de frecuencia), se pueden conseguir 
+transceptores de banda estrecha con una gran inmunidad a las interferencias.
+\item[Definición de canal].
+Bluetooth utiliza un sistema FH/TDD (salto de frecuencia/división de tiempo
+duplex), en el que el canal queda dividido en intervalos de 625 $\mu$s, 
+llamados slots, donde cada salto de frecuencia es ocupado por un slot. Esto da 
+lugar a una frecuencia de salto de 1600 veces por segundo, en la que un 
+paquete de puede ocupar un slot para la emisión y otro para la recepción y que 
+pueden ser usados alternativamente, dando lugar a un esquema de tipo TDD.
+Dos o más unidades Bluetooth pueden compartir el mismo canal dentro de una
+piconet 4 , donde una unidad actúa como maestra, controlando el tráfico de 
+datos en la piconet que se genera entre las demás unidades, que actúan como 
+esclavas, enviando y recibiendo señales hacia la unidad maestra. El salto de 
+frecuencia del canal está determinado por la secuencia de la señal, es 
+decir, el orden en que llegan los saltos y por la fase de ésta secuencia. En 
+Bluetooth, la secuencia queda fijada por la identidad de la unidad maestra 
+de la piconet (un código único para cada dispositivo), y por su frecuencia 
+de reloj. Por lo que, para que una unidad esclava pueda sincronizarse con 
+una unidad maestra, ésta primera debe añadir un ajuste a su propio reloj 
+nativo y así poder compartir lamisma portadora de salto.
+\item[Definición de paquete].
+La información que se intercambia entre dos unidades Bluetooth se realiza
+mediante un conjunto de slots que forman un paquete de datos. Cada paquete 
+comienza con un código de acceso de 72 bits, que se deriva de la identidad 
+maestra, seguido de un paquete de datos de cabecera de 54 bits. Éste 
+contiene importante información de control, como tres bits de acceso de 
+dirección, tipo de paquete, bits de control de flujo, bits para la 
+retransmisión automática de la pregunta, y chequeo de errores de campos de 
+cabecera.
+Finalmente, el paquete que contiene la información, que puede seguir al de 
+cabecera, tiene una longitud de 0 a 2745 bits. En cualquier caso, cada 
+paquete que se intercambia en el canal está precedido por el código de 
+acceso. 
+\item[Interferencias y seguridad].
+Como ya se ha dicho, Bluetooth opera en una banda abierta y por lo tanto 
+sujeta a considerables interferencias. A lo largo de las versiones de 
+Bluetooth, el sistema ha sido optimizado para disminuir y evitar estas 
+interferencias. Mediante técnicas de salto de frecuencias y reducción de 
+ruido se ha conseguido disminuir considerablemente las interferencias 
+producidas.
+Por último, dado que los datos viajan de forma inalámbrica por el medio, en 
+este caso el aire, es importante asegurar la protección de dicha 
+información. Para ello queda definido un nivel básico de encriptación, que 
+se ha incluido en el diseño del chip de radio para proveer de seguridad en 
+equipos que carezcan de capacidad de procesamiento, donde las principales 
+medidas de seguridad son:
+\begin{itemize}
+\item Una rutina de pregunta-respuesta para autenticación.
+\item Una corriente cifrada de datos para encriptación.
+\item Generación de una clave de sesión (con posibilidad de ser cambiada 
+durante la conexión).
+\end{itemize}
+En los distintos algoritmos de seguridad del Bluetooth se usan tres objetos: 
+la dirección de la unidad Bluetooth, como entidad pública; una clave de 
+usuario privada, como entidad secreta; y un número aleatorio, que es 
+diferente en cada nueva transacción.
+Así, la dirección Bluetooth se obtiene a través de un proceso de consulta. 
+La clave privada se obtiene durante la inicialización. Por su parte, el 
+número aleatorio se genera en un proceso pseudo-aleatorio en cada unidad 
+Bluetooth.
+\item[Desventajas].
+Una vez visto como funciona y los objetivos que persigue la tecnología 
+Bluetooth (todos ellos tratados como ventajas de este tipo de conexión), y 
+aunque se han dejado intuir las distintas desventajas de este protocolo, es 
+en este punto donde se mencionarán de forma concisa dichas desventajas. 
+Estas son:
+\begin{itemize}
+\item Velocidad de transmisión lenta para la transferencia de archivos de 
+tamaño considerable (1MB/s). No obstante, las nuevas especificaciones tratan 
+de aumentar su velocidad a 100MB/s.
+\item Cuando es usado inadecuadamente el usuario del dispositivo puede ser
+víctima de ataques (bluejaking).
+\item Radio de alcance limitado entre los dispositivos. Más allá de dicho 
+alcance no se garantiza la adecuada transmisión de los datos.
+\item Limitación entre la cantidad de periféricos que podemos usar (p.e: los
+adaptadores Bluetooth solo permiten un máximo de 7 equipos “pareados”).
+\item Elevado consumo de la batería del dispositivo cuando el Bluetooth se
+encuentra activado y en modo visible.
+\end{itemize}
+% Conexión SPP con javax.bluetooth (permite InputStream y OutputStream)
+
+\end{description}
 
   \subsection{Los servicios web}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Ya veré que se me ocurre meter aquí, porque no hay mucho que explicar
+El World Wide Consortium lo define como “...un sistema software diseñado para
+soportar interacción interoperable máquina a máquina sobre una red”.
+Todo servicio web tiene una interfaz descrita en un formato procesable por una
+máquina (WSDL 6 ) y las solicitudes de llamamiento a los servicios web se 
+realizan utilizando mensajes SOAP 7 , típicamente enviados mediante HTTP. (W3C 
+Consortium, 2004)
+The Organization for the Advancement of Structured Information Standards y el
+W3C son los responsables de la estandarización y arquitectura de los servicios 
+web.
+Al conjunto de servicios y protocolos para el manejo e implementación de los
+servicios web se le conoce como “Web Services Protocol Stack” y básicamente son
+utilizados para definir, localizar, implementar y hacer que un servicio web 
+interactúe con otro. Este conjunto está conformado esencialmente de 4 
+subconjuntos (Van de Putte, 2004):
+\begin{itemize}
+\item \textbf{Servicio de transporte}. Encargado del transporte de los 
+mensajes entre aplicaciones sobre la red. Incluye varios protocolos del nivel 
+de aplicación, siendo HTTP el más usado. Otros son: FTP, SMTP, BEEP y JMS.
+\item \textbf{Mensajería XML}. Es el conjunto encargado de la codificación de 
+los mensajes en XML estándar, pudiendo ser así interpretado en cualquiera de
+los nodos de la red.
+\item \textbf{Descripción del servicio}. El servicio web debe contar con una 
+interfaz pública la cual es descrita en un formato denominado WSDL. WSDL es un
+tipo de documento XML que describe lo que hace un servicio web, dónde se
+encuentra y la forma de ser invocado. Este provee información muy
+importante para los desarrolladores, describiendo el formato de los mensajes
+que utiliza y a cuales puede responder.
+\item \textbf{Descubrimiento de servicios}. El UDDI8 es un marco independiente 
+de la plataforma para describir servicios, negocios e integrar servicios de
+negocios. La estructura de UDDI está basada sobre los servicios estándares
+de la web, lo que quiere decir que UDDI es accesible como otros servicios
+web.
+\end{itemize}
 
-  \subsection{El framework .NET}
+  \subsubsection{Arquitectura Orientada a Servicios (SOA)}
+Es la arquitectura de servicios web más difundida. SOA es un modelo
+arquitectónico de software creado y usado para diseñar modelos de negocio 
+empaquetados como servicios. Dar una solución SOA exige un diseño aplicando 
+los conceptos SOA, para lo cual es necesaria la utilización de un conjunto 
+de herramientas de software, tecnologías y plataformas específicas. (Anantha 
+Rangachar, 2006)
+El enfoque de esta arquitectura hace que todo modelo de los servicios web 
+gire en torno a los negocios. Siendo SOA uno de los logros de la ingeniería 
+del software actual.
+Muchos autores definen la arquitectura como “una unidad de código ejecutable 
+que provee un encapsulamiento de caja negra física de servicios 
+relacionados. Sus servicios pueden ser únicamente accedidos por una interfaz 
+pública consistente, que incluye una interacción estándar. Un componente 
+debe ser capaz de ser conectado con otros componentes para un largo grupo”. 
+(Allen, 1998) Una arquitectura orientada a servicios es descrita como un 
+conjunto de servicios que apuntan a los negocios, que son combinados para 
+cumplir con los objetivos del negocio. Las Tecnologías de la Información y 
+las Comunicaciones permiten, a través de sus herramientas, cumplir con 
+dichos objetivos.
+Por otra parte, una arquitectura orientada a servicios es una forma de 
+arquitectura de sistemas distribuidos caracterizada por las siguientes 
+propiedades: (W3C Consortium, 2004)
+\begin{itemize}
+\item \textbf{Vista lógica}. Proporciona una imagen de los componentes del 
+sistema tales como bases de datos, procesos, programas,... explicando qué 
+hace cada uno de ellos, normalmente llevándolos a la operación del nivel de 
+negocio.
+\item \textbf{Orientación al mensaje}. Se define el servicio en términos de 
+los mensajes intercambiados por el agente solicitante y el agente proveedor. 
+Se abstraen numerosos detalles. SOA solo se preocupa de los detalles 
+expuestos en la descripción del servicio.
+\item \textbf{Orientación a la descripción}. Un servicio web es descrito por 
+metadatos procesables por una máquina. La descripción debe soportar la 
+naturaleza pública de la SOA. La semántica del servicio debe quedar 
+completamente definida.
+\item \textbf{Granularidad}. Los servicios deben tender a realizar un 
+pequeño número de operaciones con una gran cantidad de mensajes.
+\item \textbf{Orientación a la red}. Los servicios web deben ser concebidos 
+para ser usados sobre una red, aunque no sea un requerimiento necesario.
+\item \textbf{Plataforma neutral}. Los mensajes deben ser creados para una 
+plataforma neutral, utilizando un lenguaje estándar (XML) a través de las 
+interfaces.
+\end{itemize}
+
+%  \subsection{El framework .NET}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % No sé si meterlo
 
-  \subsection{La tecnología Java}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Explicación muy general supongo
+  \subsection{La tecnología \texttt{Java}}
+La tecnología JAVA constituye una plataforma informática presentada por Sun
+Microsystems en 1995. Denominado originalmente como OAK, el lenguaje de
+programación en el que se fundamenta fue rebautizado como Java ese mismo año.
+Esta tecnología está compuesta por 2 partes:
+\begin{itemize}
+\item El lenguaje de programación Java.
+\item La plataforma Java.
+\end{itemize}
+Sin entrar en demasiados detalles sobre el lenguaje Java, sus principales
+características son:
+\begin{itemize}
+\item Lenguaje sencillo orientado a objetos.
+\item Independiente de la plataforma.
+\item Brinda un gran nivel de seguridad.
+\item Capacidad multi-hilo.
+\item Gran rendimiento.
+\item Creación de aplicaciones distribuidas.
+\item Robusto e ideal para internet.
+\item Gran extendido a nivel mundial.
+\end{itemize}
+
+\subsubsection{La plataforma \texttt{Java}}
+La plataforma Java constituye el ambiente hardware y software en el cual se
+ejecutan las aplicaciones. En casi todos los casos, las plataformas son 
+descritas como la combinación del sistema operativo y el hardware. La 
+plataforma Java se diferencia de estasplataformas, en que es una plataforma 
+sólo de software y se ejecuta sobre las otrasplataformas de hardware.
+La plataforma Java tiene dos componentes:
+\begin{itemize}
+\item La máquina virtual Java (JVM).
+\item El Java API (Application Programming Interface).
+\end{itemize}
+La JVM es la base de la plataforma Java y es necesario que el destino de 
+ejecución de las aplicaciones Java tenga implementado la JVM para que puedan 
+ser ejecutadas.
+El Java API, por su parte, es una gran colección de librerías y componentes
+software que proporcionan multitud de utilidades para el programador. Los APIs 
+de Java están agrupados en librerías, más conocidas como paquetes.
+Cuando un programa se ejecuta sobre la plataforma Java, tanto el Java API como 
+la JVM aíslan a este programa del hardware. (Ceballos, 2006)
+
+\subsubsection{JavaME}
+% JavaME
+
+\subsubsection{La máquina virtual \acs{KVM}}
+% La máquina virtual KVM
+
+\subsubsection{Configuraciones y perfiles}
+% Configuración y perfiles CDCL
+
+\subsubsection{Java Specification Request}
+\begin{description}
+\item[\acs{JSR}-82] %(Bluetooth API)
+\item[\acs{JSR}-257] %(Contactless Communications API)
+\end{description}
+
+\subsubsection{El \texttt{Push Registry}}
+% Push Registry
 
   \subsection{Los displays táctiles}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Explicación superficiar supongo, nada de cómo funcionan pero sí de donde
-% y porqué se usan
+%http://es.wikipedia.org/wiki/Pantalla_t%C3%A1ctil
+% Definición
+% Historia
+% Especificaciones HID (Human Interface Device)
+% Tipos
+% Utilización
 
   \subsection{La computación móvil}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Tema super-amplio, tendré que decir la evolución y para qué se usan 
-% últimamente
+%http://www.monografias.com/trabajos5/compumo/compumo.shtml (muy antiguo)
+% Definición
+% Aplicaciones
+% Tendencias
+% Hardware
+% Seguridad
+% Software
 
 \section{Trabajos relacionados}
   \subsection{Estudios relacionados}
