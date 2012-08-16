@@ -155,7 +155,7 @@ sistema \acs{RFID}.}
 %    \subsubsection{La tecnología \emph{MIFARE}}
 %  \emph{MIFARE} es el estándar de la industria para interfaces de
 %  tarjetas inteligentes sin contacto y lectores que operan a 13.56MHz.
-%  Funcionan de acuerdo con el estándar \acs{ISO} 14443\cite{bib:mifare}.
+%  Funcionan de acuerdo con el estándar \acs{ISO} 14443~\cite{bib:mifare}.
   
 %  El alcance típico de lectura/escritura de etiquetas \emph{MIFARE} sin
 %  contacto oscila entre los 2 y los 10 cm; y la capacidad más habitual está
@@ -173,7 +173,7 @@ sistema \acs{RFID}.}
 %  de proyectos importantes con tarjetas inteligentes sin contacto en todo el
 %  mundo y su cartera de productos incluye soluciones perfectas para la
 %  recaudación automática de tarifas, tarjetas de fidelización, cobro en 
-%  carreteras de peaje o gestión de acceso a edificios\cite{bib:urlMifare} 
+%  carreteras de peaje o gestión de acceso a edificios~\cite{bib:urlMifare} 
 %  (figura \ref{fig:mifareFamily}).
 
 %  \begin{figure}[!h]
@@ -204,9 +204,9 @@ el uso de esta tecnología. Para ello, crea especificaciones de desarrollo,
 para asegurar la interoperabilidad entre dispositivos y servicios, y trata
 de educar al mercado acerca de la tecnología \acs{NFC}. Actualmente, el foro
 cuenta con más de 160 miembros, incluyendo fabricantes, desarrolladores de
-aplicaciones, instituciones de servicios financieros, etc.\cite{bib:nfcForum}}.
+aplicaciones, instituciones de servicios financieros, etc.~\cite{bib:nfcForum}}.
 
-Según el propio \emph{NFC Forum}\cite{bib:nfcForum}:
+Según el propio \emph{NFC Forum}~\cite{bib:nfcForum}:
 
 \emph{``Una tecnología de conectividad basada en estándares como \acs{NFC},
 armoniza las diversas tecnologías actuales sin contacto, lo que permite
@@ -229,7 +229,7 @@ generar soluciones actuales y futuras en áreas tales como:
 %después utilizarlos como entrada en un proceso que trabaje con información 
 %previamente almacenada, como ocurre en los pagos mediante \acs{NFC}.
 
-%Otras ventajas importantes de \acs{NFC} son\cite{bib:currentBenefits}:
+%Otras ventajas importantes de \acs{NFC} son~\cite{bib:currentBenefits}:
 %\begin{itemize}
 %\item La tecnología es compatible con las estructuras existentes de \acs{RFID}.
 %Es decir, etiquetas \acs{RFID} y tarjetas inteligentes sin contacto.
@@ -317,7 +317,7 @@ otras tecnologías inalámbricas:
   \input{tables/nfcComparison.tex}
   }
   \caption[Comparativa entre tecnologías inalámbricas]
-  {Comparativa entre tecnologías inalámbricas (\cite{bib:nfcComparison})}
+  {Comparativa entre tecnologías inalámbricas (~\cite{bib:nfcComparison})}
   \label{tab:nfcComparison}
 \end{sidewaystable}
 
@@ -346,7 +346,7 @@ tecnología les ofrece para solucionar o facilitar la realización de tareas
 cotidianas.
 
 Existe un gran número de aplicaciones, pero todas ellas pueden agruparse en
-una de estas tres categorías \cite{bib:nfcComparison}:
+una de estas tres categorías~\cite{bib:nfcComparison}:
 \begin{itemize}
 \item \textbf{Inicialización de servicios}: 
 En este tipo de aplicaciones, cuando un usuario toca con su dispositivo
@@ -435,264 +435,507 @@ que incluyen la tecnología \acs{NFC} entre sus características.
   \subsubsection{El formato \acs{NDEF}}
 \acs{NDEF} (\acs{NFC} Data Exchange Format) es un formato definido por el
 \emph{NFC Forum} y constituye el principal estándar para el intercambio y
-almacenamiento de información, pues es un formato soportado por cualquiera 
+almacenamiento de información, pues es un formato soportado por cualquier 
 dispositivo \acs{NFC}.
 
 La estructura seguida por \acs{NDEF} posee una cabecera de datos, a partir de
 la cual se encuentran los bloques de información. Cada bloque de información
 se agrupa en registros que contienen a su vez los datos agrupados en mensajes
-\acs{NDEF} y están caracterizados por un tipo \acs{MIME} definido. El
+\acs{NDEF} y están caracterizados por un tipo \acs{MIME}\footnote{
+\emph{Multipurpose Internet Mail Extensions} (\acs{MIME}) son una serie
+de especificaciones dirigidas (en principio) al intercambio a través de
+internet de todo tipo de archivos (texto, audio, vídeo, etc.) de forma
+transparente para el usuario.} definido. El
 anexo \ref{chap:ndef} muestra un ejemplo de organización \acs{NDEF}.
 
 Este formato tiene el inconveniente de que puede ser leido o modificado por
 cualquier dispositivo \acs{NFC}, puesto que la clave empleada para el acceso
-a los datos es la clave por defecto ($FF FF FF FF FF FF$, en hexadecimal).
+a los datos es la clave por defecto ($FF\ FF\ FF\ FF\ FF\ FF$, en hexadecimal).
 Para solventar este problema, el formato \acs{NDEF} puede ser combinado con
 el propuesto por \emph{MiFare}.
 
   \subsection{La tecnología \emph{Bluetooth}}
-Bluetooth es el nombre común que se le da a la especificación industrial IEEE
-802.15.1, que define un estándar global de comunicación inalámbrica que 
-posibilita la transmisión de voz y datos entre diferentes dispositivos 
-mediante un enlace por radiofrecuencia segura.
+Es una especificación industrial (\acs{IEEE} 802.15.1) para redes inalámbricas
+de tipo \acs{PAN} (Personal Area Network) que define un estándar global que
+posibilita la transmisión de voz y datos entre diferentes dispositivos mediante
+un enlace por radiofrecuencia segura.
 
   \subsubsection{Historia}
-Su nombre procede del nombre del rey danés y noruego Harald Blatan;
-especialmente porque su traducción al inglés sería Harold Bluetooth, 
-conocido por buen comunicador y por unificar las tribus noruegas, suecas y 
+El nombre procede del rey danés y noruego del siglo X \emph{Harald Blatand},
+cuya traducción al inglés sería \emph{Harold Bluetooth}, que fue conocido
+por ser un buen comunicador y por unificar las tribus noruegas, suecas y
 danesas.
 
-En 1994, la compañía Ericsson inició diversas investigaciones con el 
-objetivo de estudiar la viabilidad de la existencia de una nueva interfaz de 
-comunicación, de bajo consumo y coste, entre diversos dispositivos como 
-teléfonos móviles. Con todo ello, en el año 1999 se creó el SIG de Bluetooth 
-(Special Interest Group), que consistía en la unión de diversas empresas 
-(Ericsson, Intel, Nokia, Toshiba e IBM), e incorporándose a lo largo de
-los años otras tantas (Microsoft, 3Com, Motorola, Lucent,...).
+En 1994, la empresa sueca \texttt{Ericsson} inició un estudio para investigar
+la viabilidad de una nueva interfaz inalámbrica de bajo costo y consumo, para
+la interconexión entre dispositivos móviles y otros objetos con el fin de
+eliminar las conexiones cableadas entre ambos. A principios
+de 1997, otras empresas se fijaron en los avances que \texttt{Ericsson} había
+alcanzado y, un año más tarde, crearon el grupo \acs{SIG} de \emph{Bluetooth}
+(Grupo de Interés Especial en Bluetooth), formado por cinco promotores:
+la propia \texttt{Ericsson}, \texttt{Nokia}, \texttt{IBM}, \texttt{Toshiba} e
+\texttt{Intel}. El objetivo era definir el marco de trabajo necesario para
+comenzar a comercializar dispositivos que incluyeran esta tecnología.
+En la actualidad la \acs{SIG} cuenta con otros miembros como:
+\texttt{Motorola}, \texttt{Lenovo} o \texttt{Microsoft}, el
+respaldo de 1900 empresas de tecnología y 2000 empleados de otras tantas
+empresas que investigan productos y servicios con aplicaciones
+\emph{Bluetooth}~\cite{bib:btDefinition}.
 
-Se consiguió que los estudios iniciados avanzaran, y que los proyectos 
-fueran de por sí una verdadera y auténtica realidad, consiguiendo extender 
-el Bluetooth como un estándar para la interfaz aérea.
+  \subsubsection{Características}
+Al tratarse de comunicaciones por radiofrecuencia, dos o más dispositivos
+pueden comunicarse vía \emph{Bluetooth} si se encuentran dentro de un radio de
+acción determinado. Este radio de acción viene determinado por la potencia de
+transmisión. Según la potencia de transmisión, los dispositivos pueden
+agruparse en tres clases distintas (tabla \ref{tab:btClasses}), siendo
+totalmente compatibles las comunicaciones entre dispositivos
+de clases distintas~\cite{bib:btDefinition}:
 
-Técnicamente, la especificación Bluetooth definiría un canal de comunicación 
-de máximo 720Kb/s con un alcance de 10m (llegando a los 100m con 
-repetidores). La frecuencia de tráfico con la que trabaja, se encuentra en 
-el rango de 2,4 a 2,48GHz con amplio espectro y saltos de frecuencia con 
-posibilidad de transmitir en Full-Duplex3 con un máximo de 1600 saltos/s, 
-los cuales se dan entre un total de 79 frecuencias con intervalos de 1Mhz.
+\begin{table}[H]
+  \centering
+  \caption[Clasificación de dispositivos \emph{Bluetooth} según su potencia.]
+  {Clasificación de dispositivos \emph{Bluetooth} según su potencia.}
+  \label{tab:btClasses}
+  {\normalsize
+  \input{tables/btClasses.tex}
+  }  
+\end{table}
 
-Por todo, la potencia de salida para transmitir a una distancia máxima de 
-10m es de 0dbm (1mW), mientras que la versión de largo alcance transmite 
-entre los 20 y 30 dbm (entre 100mW y 1W).
+Cuando se deseen conectar dos dispositivos de distintos tipos, por ejemplo,
+uno de clase 1 y uno de clase 2, deberán colocarse a una distancia que esté
+dentro del alcance del dispositivo de clase superior, osea dentro del
+rango del dispositivo de clase 2 (que tiene menor rango de actuación).
 
-Los principales objetivos que se pretenden alcanzar con esta norma son:
-\begin{itemize}
-\item Facilitar las comunicaciones entre dispositivos móviles y fijos.
-\item Eliminar cables y conectores entre estos.
-\item Ofrecer la posibilidad de crear pequeñas redes wireless y facilitar la
-sincronización de datos entre equipos.
-\end{itemize}
+Por otro lado, la especificación \emph{Bluetooth} ha ido evolucionando a lo
+largo de los años. Desde la aparición de la versión \texttt{v1.0} en 1998,
+el \acs{SIG} ha ido publicando nuevas versiones entre las que se encuentran:
+la \texttt{v1.2}, que incluye compatibilidad con \acs{USB} 1.1 e 
+interoperabilidad con \acs{WiFi}; la \texttt{v2.0+EDR} (2004), que mejora la 
+transferencia de datos; la \texttt{v2.1}, que simplifica los pasos para crear 
+conexiones entre dispositivos y permite la combinación con tecnologías como
+\acs{NFC}; la \texttt{v3.0+HS} (2009), que aumenta la velocidad de
+transferencia de datos; y la \texttt{v4.0} (2010), que incluye protocolos de
+bajo consumo.
 
-Desde sus comienzos hasta nuestros días, han existido distintas versiones en 
-la tecnología Bluetooth a saber: v1.1, v1.2, v2.0 y la reciente v2.1 que 
-promete simplificación en la configuración, menor consumo e incluso la 
-combinación con otras tecnologías y protocolos como NFC.
+Cada una de las versiones ha ido mejorando aspectos clave en las comunicaciones
+inalámbricas como: la posibilidad de interconectar dispositivos \emph{ad hoc},
+la seguridad integrada, el bajo consumo, la facilidad de uso, el mínimo coste
+y el aumento del ancho de banda (ver tabla \ref{tab:btSpeed}).
+
+\begin{table}[H]
+  \centering
+  \caption[Ancho de banda soportado por las distintas versiones
+  \emph{Bluetooth}.]
+  {Ancho de banda soportado por las distintas versiones \emph{Bluetooth}.}
+  \label{tab:btSpeed}
+  {\normalsize
+  \input{tables/btSpeed.tex}
+  }
+\end{table}
 
   \subsubsection{La interfaz \emph{Bluetooth}}
-Los productos Bluetooth de primera generación tenían como objetivo los 
-entornos de negocio concretamente destinados a gente de negocios que viaja 
-frecuentemente. Por lo que había que integrar el chip de radio Bluetooth en 
-dispositivos móviles como Notebooks, teléfonos móviles, PDAs, auriculares... 
-Esto originaba una serie de aspectos previos que deberían solucionarse:
+Los primeros productos \emph{Bluetooth} fueron concebidos para servir en
+entornos de trabajo destinados a la gente que viaja frecuentemente. Por lo
+que se empezó integrando chips de radio \emph{Bluetooth} en portátiles,
+\acs{PDA}s, móviles y auriculares. Esto originaba una serie de aspectos que
+debían solucionarse~\cite{bib:btInterface}:
 \begin{itemize}
-\item El sistema debería operar en todo el mundo.
-\item El emisor de radio deberá consumir poca energía, ya que debe 
-integrarse en equipos alimentados por baterías.
-\item La conexión deberá soportar voz y datos, y por tanto aplicaciones 
+\item El sistema debería poder operar en cualquier parte del mundo.
+\item Puesto que está destinado a dispositivos móviles (alimentados por
+baterías), el emisor de radio deberá consumir la menor energía posible.
+\item La conexión deberá soportar voz y datos, y por tanto aplicaciones
 multimedia.
 \end{itemize}
 
-\begin{description}
-\item[La banda de frecuencia libre].
-Para poder operar en todo el mundo es necesario disponer de una banda de
-frecuencia abierta a cualquier sistema de radio independientemente del lugar 
-del planeta donde nos encontremos. Hasta ahora, solo la banda ISM (médico-
-científica internacional) de 2,45 Ghz cumple con éste requisito, con rangos 
-que van de los 2.400 Mhz a los 2.500 Mhz, y solo con algunas restricciones 
-en países como Francia, España y Japón.
-\item[Salto de frecuencia].
-Debido a que la banda ISM es abierta, el sistema de radio Bluetooth deberá 
-estar preparado para evitar las múltiples interferencias que se pudieran 
-ocasionar. Éstas pueden ser evitadas utilizando un sistema que busque una 
-parte no utilizada del espectro o un sistema de salto de frecuencia. En los 
-sistemas de radio Bluetooth se suele utilizar el método de salto de 
-frecuencia debido a que ésta tecnología puede ser integrada en equipos
-de baja potencia y reducido coste. Éste sistema divide la banda de 
-frecuencia en varios canales de salto, donde, los transceptores, durante la 
-conexión van cambiando de uno a otro canal de salto de manera pseudo-
-aleatoria. Con esto se consigue que el ancho de banda instantáneo sea muy 
-pequeño y también una propagación efectiva sobre el total de ancho de banda. 
-En conclusión, con el sistema FH (Salto de frecuencia), se pueden conseguir 
-transceptores de banda estrecha con una gran inmunidad a las interferencias.
-\item[Definición de canal].
-Bluetooth utiliza un sistema FH/TDD (salto de frecuencia/división de tiempo
-duplex), en el que el canal queda dividido en intervalos de 625 $\mu$s, 
-llamados slots, donde cada salto de frecuencia es ocupado por un slot. Esto da 
-lugar a una frecuencia de salto de 1600 veces por segundo, en la que un 
-paquete de puede ocupar un slot para la emisión y otro para la recepción y que 
-pueden ser usados alternativamente, dando lugar a un esquema de tipo TDD.
-Dos o más unidades Bluetooth pueden compartir el mismo canal dentro de una
-piconet 4 , donde una unidad actúa como maestra, controlando el tráfico de 
-datos en la piconet que se genera entre las demás unidades, que actúan como 
-esclavas, enviando y recibiendo señales hacia la unidad maestra. El salto de 
-frecuencia del canal está determinado por la secuencia de la señal, es 
-decir, el orden en que llegan los saltos y por la fase de ésta secuencia. En 
-Bluetooth, la secuencia queda fijada por la identidad de la unidad maestra 
-de la piconet (un código único para cada dispositivo), y por su frecuencia 
-de reloj. Por lo que, para que una unidad esclava pueda sincronizarse con 
-una unidad maestra, ésta primera debe añadir un ajuste a su propio reloj 
-nativo y así poder compartir lamisma portadora de salto.
-\item[Definición de paquete].
-La información que se intercambia entre dos unidades Bluetooth se realiza
-mediante un conjunto de slots que forman un paquete de datos. Cada paquete 
-comienza con un código de acceso de 72 bits, que se deriva de la identidad 
-maestra, seguido de un paquete de datos de cabecera de 54 bits. Éste 
-contiene importante información de control, como tres bits de acceso de 
-dirección, tipo de paquete, bits de control de flujo, bits para la 
-retransmisión automática de la pregunta, y chequeo de errores de campos de 
-cabecera.
-Finalmente, el paquete que contiene la información, que puede seguir al de 
-cabecera, tiene una longitud de 0 a 2745 bits. En cualquier caso, cada 
-paquete que se intercambia en el canal está precedido por el código de 
-acceso. 
-\item[Interferencias y seguridad].
-Como ya se ha dicho, Bluetooth opera en una banda abierta y por lo tanto 
-sujeta a considerables interferencias. A lo largo de las versiones de 
-Bluetooth, el sistema ha sido optimizado para disminuir y evitar estas 
-interferencias. Mediante técnicas de salto de frecuencias y reducción de 
-ruido se ha conseguido disminuir considerablemente las interferencias 
-producidas.
-Por último, dado que los datos viajan de forma inalámbrica por el medio, en 
-este caso el aire, es importante asegurar la protección de dicha 
-información. Para ello queda definido un nivel básico de encriptación, que 
-se ha incluido en el diseño del chip de radio para proveer de seguridad en 
-equipos que carezcan de capacidad de procesamiento, donde las principales 
-medidas de seguridad son:
-\begin{itemize}
-\item Una rutina de pregunta-respuesta para autenticación.
-\item Una corriente cifrada de datos para encriptación.
-\item Generación de una clave de sesión (con posibilidad de ser cambiada 
-durante la conexión).
-\end{itemize}
-En los distintos algoritmos de seguridad del Bluetooth se usan tres objetos: 
-la dirección de la unidad Bluetooth, como entidad pública; una clave de 
-usuario privada, como entidad secreta; y un número aleatorio, que es 
-diferente en cada nueva transacción.
-Así, la dirección Bluetooth se obtiene a través de un proceso de consulta. 
-La clave privada se obtiene durante la inicialización. Por su parte, el 
-número aleatorio se genera en un proceso pseudo-aleatorio en cada unidad 
-Bluetooth.
-\item[Desventajas].
-Una vez visto como funciona y los objetivos que persigue la tecnología 
-Bluetooth (todos ellos tratados como ventajas de este tipo de conexión), y 
-aunque se han dejado intuir las distintas desventajas de este protocolo, es 
-en este punto donde se mencionarán de forma concisa dichas desventajas. 
-Estas son:
-\begin{itemize}
-\item Velocidad de transmisión lenta para la transferencia de archivos de 
-tamaño considerable (1MB/s). No obstante, las nuevas especificaciones tratan 
-de aumentar su velocidad a 100MB/s.
-\item Cuando es usado inadecuadamente el usuario del dispositivo puede ser
-víctima de ataques (bluejaking).
-\item Radio de alcance limitado entre los dispositivos. Más allá de dicho 
-alcance no se garantiza la adecuada transmisión de los datos.
-\item Limitación entre la cantidad de periféricos que podemos usar (p.e: los
-adaptadores Bluetooth solo permiten un máximo de 7 equipos “pareados”).
-\item Elevado consumo de la batería del dispositivo cuando el Bluetooth se
-encuentra activado y en modo visible.
-\end{itemize}
-% Conexión SPP con javax.bluetooth (permite InputStream y OutputStream)
+La solución de estas premisas viene determinada por la definición de los
+elementos que posibilitan las comunicaciones \emph{Bluetooth}:
 
-\end{description}
+\begin{itemize}
+\item \textbf{La banda de frecuencia libre} .-
+
+Para poder operar en cualquier parte del mundo es necesario disponer de una
+frecuencia de banda que esté abierta a cualquier sistema de radio,
+independientemente del lugar en el que nos encontremos. Actualmente, sólo la
+banda \acs{ISM} (industrial, científica y médica) de 2.45 Ghz cumple con
+este requisito; y por tanto es la frecuencia elegida.
+
+\item \textbf{Salto de frecuencia} .-
+
+Como la banda \acs{ISM} es abierta, el sistema de radio \emph{Bluetooth} debe
+estar preparado para evitar posibles interferencias con otros sistemas de
+radio. Esto lo consigue a través del método de \emph{salto de frecuencia}.
+Este sistema divide la banda en varios canales de salto, donde los
+transceptores\footnote{Dispositivo que realiza funciones tanto de trasmisión
+como de recepción, utilizando componentes de circuitos comunes a ambas
+funciones.}, durante la conexión, van cambiando de uno a otro canal de
+salto de manera pseudoaleatoria. Con esto se consigue que el ancho de banda
+instantáneo sea muy pequeño y tambien una propagación efectiva sobre el
+total del ancho de banda. Es decir, con el sistema \texttt{FH} (salto de
+frecuencia), se pueden conseguir transceptores de banda estrecha con una
+gran inmunidad a las interferencias.
+
+\item \textbf{Definición de canal} .-
+
+El sistema \emph{Bluetooth} utiliza un sistema \texttt{FH/TDD} (salto de
+frecuencia/división de tiempo dúplex), en el que el canal queda dividido en
+intervalos (llamados \emph{slots}) de 625 $\mu$s, donde cada salto de
+frecuencia es ocupado por un \emph{slot} (figura \ref{fig:btChannels}). Esto
+da lugar a una frecuencia de salto de 1600 veces por segundo, en el que un
+paquete puede ocupar un \emph{slot} para la emisión y otro para la recepción y
+que pueden ser utilizados alternativamente, dando lugar a un esquema de tipo
+\texttt{TDD}.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.6\textwidth]{btChannels.png}
+      \caption{Intervalos de un canal.}
+      \label{fig:btChannels}
+    \end{center}
+  \end{figure}
+
+Dos o más unidades \emph{Bluetooth} pueden compartir el mismo canal dentro
+de una \emph{piconet}\footnote{Red formada por dos o más unidades
+\emph{Bluetooth} que comparten un mismo canal.}, donde una actúa como
+\emph{maestra}, controlando el tráfico que se genera entre las demás unidades,
+que actúan como \emph{esclavas}, enviando y recibiendo señales hacia la
+unidad \emph{maestra}. El salto de frecuencia del canal está determinado por
+la secuencia de la señal, es decir, por el orden en que llegan los saltos y
+por la fase de esta secuencia. En \emph{Bluetooth}, la secuencia queda fijada
+por la identidad de la unidad maestra de la \emph{piconet} (un código único
+para cada equipo) y por su frecuencia de reloj. Por lo que, para que una unidad
+\emph{esclava} pueda sincronizarse con una unidad \emph{maestra}, debe añadir
+un ajuste a su propio reloj y así poder compartir la misma portadora de salto.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{btExample.png}
+      \caption{Red \emph{Bluetooth} formada por varios dispositivos. El
+      portátil ejerce de \emph{maestro}.}
+      \label{fig:btExample}
+    \end{center}
+  \end{figure}
+
+\item \textbf{Definición de paquete} .-
+
+La información intercambiada entre dos unidades \emph{Bluetooth} se realiza
+mediante un conjunto de \emph{slots} que forman un paquete de datos.
+Cada paquete comienza con un código de acceso de 72 bits, que
+determina la identidad del \emph{maestro}; seguido de la cabecera del
+paquete de 54 bits, que contiene información de control como: bits de
+acceso de dirección, tipo de paquete, bits de control de flujo, bits para la 
+retransmisión automática de la pregunta y \emph{checksum}; y por último, el
+\emph{payload} (o carga), que contiene la información y tiene una longitud de
+0 a 2745 bits (ver figura \ref{fig:btPacket}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{btPacket.png}
+      \caption{Estructura de un paquete \emph{Bluetooth}.}
+      \label{fig:btPacket}
+    \end{center}
+  \end{figure}
+
+\item \textbf{Definición de enlace físico} .-
+
+La especificación \emph{Bluetooth} define dos tipos de enlace, que permite
+soportar incluso aplicaciones multimedia:
+\begin{itemize}
+\item \textbf{Enlaces de sincronización de conexión orientada (SCO)}. Estos
+enlaces soportan conexiones asimétricas y punto a punto y son usados
+normalmente para conexiones de voz. La transmisión de voz se realiza sin
+ningún mecanismo de protección.
+\item \textbf{Enlaces asíncronos de baja conexión (ACL)}. Soportan
+conmutaciones punto a punto simétricas o asiméticas y son usadas típicamente
+para la transmisión de datos. Los datos pueden ser enviados protegidos o
+sin proteger.
+\end{itemize}
+\end{itemize}
+
+  \subsubsection{Seguridad}
+
+Dado que los datos viajan por el medio de forma inalámbrica, es importante
+asegurar la protección de esa información. Para ello se ha definido un nivel
+básico de encriptación, que se ha incluido en el diseño del chip de radio
+para proveer de seguridad en dispositivos que carezcan de capacidad de 
+procesamiento, donde las principales medidas de seguridad son:
+\begin{itemize}
+\item Una rutina \emph{pregunta-respuesta}, para la autentificación.
+\item Una corriente cifrada de datos, para la encriptación.
+\item Y la generación de una clave de sesión (que puede ser cambiada durante
+la conexión).
+\end{itemize}
+Los algoritmos de seguridad de \emph{Bluetooth} trabajan con tres entidades:
+la dirección de la unidad \emph{Bluetooth}, que es una entidad pública; una
+clave privada de usuario, que es una entidad secreta; y un número aleatorio,
+que es diferente para cada transacción.
+
+  \subsubsection{Desventajas}
+
+Aunque la \acs{SIG} sigue trabajando día a día para mejorar la tecnología
+\emph{Bluetooth}, todavía no se han terminado de solucionar algunas
+limitaciones:
+\begin{itemize}
+\item La velocidad de transmisión es lenta para archivos pesados. Sólo a
+partir de la versión (\texttt{v3.0+HS}) se han alcanzado los 24 Mbits/s.
+\item El alcance es bastante limitado. Sólo los dispositivos de la
+\emph{Clase 1} llega a distancias cercanas a los 100 metros.
+\item Existe una limitación en cuanto a la cantidad de dispositivos que pueden
+estar conectados en una misma red \emph{Bluetooth}. El máximo es de 8
+dispositivos simultáneos.
+\item Si bien \emph{Bluetooth} puede utilizarse para navegar por internet desde
+dispositivos móviles, lo cierto es que ofrece un rango de conexión muy lento,
+por lo que no se recomienda ser usado para dicho fin.
+\item El consumo de la batería del dispositivo aún es elevado cuando el
+\emph{Bluetooth} se encuentra activado y en \emph{modo visible}.
+\item El dispositivo puede ser víctima de prácticas maliciosas como el
+\emph{Bluejacking}. Esta técnica consiste en la emisión de mensajes, imágenes
+u otros archivos no solicitados entre dispositivos \emph{Bluetooth}. En
+principio es una técnica inofensiva, pero provocar que el rendimiento de los
+dispositivos implicados caiga.
+\end{itemize}
+
+%%%Qué es el perfil Bluetooth (donde está SPP que es lo que yo uso)?
+%%%OBEX?
 
   \subsection{Los servicios web}
-El World Wide Consortium lo define como “...un sistema software diseñado para
-soportar interacción interoperable máquina a máquina sobre una red”.
-Todo servicio web tiene una interfaz descrita en un formato procesable por una
-máquina (WSDL 6 ) y las solicitudes de llamamiento a los servicios web se 
-realizan utilizando mensajes SOAP 7 , típicamente enviados mediante HTTP. (W3C 
-Consortium, 2004)
-The Organization for the Advancement of Structured Information Standards y el
-W3C son los responsables de la estandarización y arquitectura de los servicios 
-web.
-Al conjunto de servicios y protocolos para el manejo e implementación de los
-servicios web se le conoce como “Web Services Protocol Stack” y básicamente son
-utilizados para definir, localizar, implementar y hacer que un servicio web 
-interactúe con otro. Este conjunto está conformado esencialmente de 4 
-subconjuntos (Van de Putte, 2004):
+
+Un \emph{servicio web} podría definirse como un conjunto de aplicaciones o de 
+tecnologías con capacidad para interoperar en la web. Estas aplicaciones o
+tecnologías intercambian datos entre sí con el objetivo de ofrecer unos
+servicios. Los proveedores ofrecen sus servicios como procedimientos remotos
+y los usuarios solicitan un servicio llamando a estos procedimientos a través
+de la web.
+
+La interoperabilidad se consigue gracias a la adopción de estándares abiertos.
+Organizaciones como \acs{OASIS}\footnote{\emph{Organization for the Advancement
+of Structured Information Standards} (\acs{OASIS}) es un consorcio
+internacional sin ánimo de lucro que orienta el desarrollo, la convergencia y
+la adopción de estándares en el ámbito del comercio electrónico y de los
+servicios web.} y \acs{W3C}\footnote{\emph{World Wide Web Consortium}
+(\acs{W3C}) es un consorcio internacional que produce recomendaciones para la
+\texttt{World Wide Web}.} se ocupan de definir la arquitectura y la
+reglamentación de los servicios web. Además, para mejorarla se ha creado el
+organismo \texttt{WS-I}, que se encarga de desarrollar perfiles para definir
+de manera más exhaustiva estos estándares.
+
+  \subsubsection{Estándares empleados}
+A la colección de protocolos y estándares para redes de computadores que son
+utilizados para definir, localizar, implementar y hacer que un servicio web
+interactúe con otro se le denomina \emph{Web Services Protocol Stack} (pila
+de protocolos para servicios web). Esta colección está dividida en cuatro
+áreas:
 \begin{itemize}
-\item \textbf{Servicio de transporte}. Encargado del transporte de los 
-mensajes entre aplicaciones sobre la red. Incluye varios protocolos del nivel 
-de aplicación, siendo HTTP el más usado. Otros son: FTP, SMTP, BEEP y JMS.
-\item \textbf{Mensajería XML}. Es el conjunto encargado de la codificación de 
-los mensajes en XML estándar, pudiendo ser así interpretado en cualquiera de
-los nodos de la red.
-\item \textbf{Descripción del servicio}. El servicio web debe contar con una 
-interfaz pública la cual es descrita en un formato denominado WSDL. WSDL es un
-tipo de documento XML que describe lo que hace un servicio web, dónde se
-encuentra y la forma de ser invocado. Este provee información muy
-importante para los desarrolladores, describiendo el formato de los mensajes
-que utiliza y a cuales puede responder.
-\item \textbf{Descubrimiento de servicios}. El UDDI8 es un marco independiente 
-de la plataforma para describir servicios, negocios e integrar servicios de
-negocios. La estructura de UDDI está basada sobre los servicios estándares
-de la web, lo que quiere decir que UDDI es accesible como otros servicios
-web.
+\item \textbf{Servicio de transporte}: en este área se encuentran protocolos
+como \acs{HTTP}, \acs{SMTP}, \acs{FTP} o el reciente \acs{BEEP}. Estos
+protocolos son los encargados del transporte de mensajes entre aplicaciones
+a través de la red.
+\item \textbf{Mensajería \acs{XML}}: es el área responsable de la codificación
+de mensajes en un formato común \acs{XML}, para que puedan ser entendidos
+en cualquier otro extremo de una conexión de red. Algunos de los protocolos
+de este área son: \texttt{XML-RPC}, \acs{SOAP} y \acs{REST}.
+\item \textbf{Descripción del servicio}: está compuesta por protocolos que
+describen la interfaz pública de los servicios web. El formato de interfaz
+\acs{WSDL} es el más utilizado para este propósito.
+\item \textbf{Descubrimiento de servicios}: se encarga de centralizar los
+servicios web en un registro común en el que se publican sus localizaciones
+y descripciones. Esto facilita el descubrimiento de los servicios disponibles
+en la red. \acs{UDDI} es la \acs{API} más común para el descubrimiento de 
+servicios.
 \end{itemize}
 
-  \subsubsection{Arquitectura Orientada a Servicios (SOA)}
-Es la arquitectura de servicios web más difundida. SOA es un modelo
-arquitectónico de software creado y usado para diseñar modelos de negocio 
-empaquetados como servicios. Dar una solución SOA exige un diseño aplicando 
-los conceptos SOA, para lo cual es necesaria la utilización de un conjunto 
-de herramientas de software, tecnologías y plataformas específicas. (Anantha 
-Rangachar, 2006)
-El enfoque de esta arquitectura hace que todo modelo de los servicios web 
-gire en torno a los negocios. Siendo SOA uno de los logros de la ingeniería 
-del software actual.
-Muchos autores definen la arquitectura como “una unidad de código ejecutable 
-que provee un encapsulamiento de caja negra física de servicios 
-relacionados. Sus servicios pueden ser únicamente accedidos por una interfaz 
-pública consistente, que incluye una interacción estándar. Un componente 
-debe ser capaz de ser conectado con otros componentes para un largo grupo”. 
-(Allen, 1998) Una arquitectura orientada a servicios es descrita como un 
-conjunto de servicios que apuntan a los negocios, que son combinados para 
-cumplir con los objetivos del negocio. Las Tecnologías de la Información y 
-las Comunicaciones permiten, a través de sus herramientas, cumplir con 
-dichos objetivos.
-Por otra parte, una arquitectura orientada a servicios es una forma de 
-arquitectura de sistemas distribuidos caracterizada por las siguientes 
-propiedades: (W3C Consortium, 2004)
+  \subsubsection{Ventajas}
+
+Una de las principales ventajas que ofrecen los servicios web es que 
+proporcionan mecanismos estandarizados de comunicación entre diferentes
+aplicaciones, que interactúan entre sí para presentar información dinámica al 
+usuario.
+
+Por otro lado los servicios web aportan independencia entre la 
+aplicación que hace uso del servicio web y el servicio web en sí. De esta 
+forma, las modificaciones realizadas en uno no deben afectar al otro.
+
+Además, los servicios se pueden utilizar con \acs{HTTP} sobre \acs{TCP} en el 
+puerto \texttt{80}. El puerto \texttt{80}, que es el utilizado por los 
+navegadores, es uno de los pocos puertos que suelen estar siempre abiertos y, 
+por tanto, el tráfico que discurra por ellos no va a ser bloqueado por ningún 
+\emph{firewall}.
+
+  \subsubsection{Funcionamiento}
+La figura \ref{fig:webServices} muestra un ejemplo de funcionamiento de los
+\emph{servicios web}~\cite{bib:webServices}:
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{webServices.png}
+      \caption{Funcionamiento de los \emph{servicios web}.}
+      \label{fig:webServices}
+    \end{center}
+  \end{figure}
+
+En el ejemplo se muestra la interacción de un \emph{usuario} (que juega el
+papel de cliente dentro de los servicios web) que, a través de una aplicación,
+solicita información acerca de un viaje, haciendo una petición a una agencia
+de viajes que ofrece sus servicios a través de Internet. Para proporcionar al
+cliente la información demandada, los servicios web de la agencia solicitan a
+su vez información a otros servicios web (del hotel y de la compañía aérea).
+Estos devuelven la información solicitada a los servicios de la agencia para
+que esta se la muestre al usuario. Por último, el usuario formaliza el pago del
+viaje a través de la agencia, que servirá de intermediario entre el propio
+usuario y el servicio web que gestiona el pago.
+
+En todo el proceso intervienen varias tecnologías que hacen posible la
+circulación de la información:
 \begin{itemize}
-\item \textbf{Vista lógica}. Proporciona una imagen de los componentes del 
-sistema tales como bases de datos, procesos, programas,... explicando qué 
-hace cada uno de ellos, normalmente llevándolos a la operación del nivel de 
-negocio.
-\item \textbf{Orientación al mensaje}. Se define el servicio en términos de 
-los mensajes intercambiados por el agente solicitante y el agente proveedor. 
-Se abstraen numerosos detalles. SOA solo se preocupa de los detalles 
-expuestos en la descripción del servicio.
-\item \textbf{Orientación a la descripción}. Un servicio web es descrito por 
-metadatos procesables por una máquina. La descripción debe soportar la 
-naturaleza pública de la SOA. La semántica del servicio debe quedar 
-completamente definida.
-\item \textbf{Granularidad}. Los servicios deben tender a realizar un 
-pequeño número de operaciones con una gran cantidad de mensajes.
-\item \textbf{Orientación a la red}. Los servicios web deben ser concebidos 
-para ser usados sobre una red, aunque no sea un requerimiento necesario.
-\item \textbf{Plataforma neutral}. Los mensajes deben ser creados para una 
-plataforma neutral, utilizando un lenguaje estándar (XML) a través de las 
-interfaces.
+\item \acs{SOAP}. Es un protocolo basado en \acs{XML}. Permite la
+interacción entre los dispositivos y tiene la capacidad de transmitir
+información compleja. Los datos pueden ser transmitidos a través de 
+\acs{HTTP}, \acs{SMTP}, etc.
+
+\acs{SOAP} especifica el formato de los mensajes. Un mensaje \acs{SOAP} está
+compuesto por una envoltura (\emph{envolve}), cuya estructura está formada
+por una cabecera (\emph{header}) y por un cuerpo (\emph{body})
+(ver figura \ref{fig:soap}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{soap.png}
+      \caption{Estructura de los mensajes.}
+      \label{fig:soap}
+    \end{center}
+  \end{figure}
+
+Para optimizar el rendimiento de las aplicaciones basadas en servicios web, se 
+han desarrollado tecnologías complementarias a \acs{SOAP}, que agilizan el 
+envío de los mensajes (\texttt{MTOM}) y los recursos que se transmiten en estos 
+(\texttt{SOAP-RRSHB}).
+
+\item \acs{WSDL}. Es un tipo de documento que define qué hace el servicio web,
+dónde se encuentra y cómo ha de ser invocado. El documento está escrito
+en \acs{XML}, es procesado por el cliente y por el servicio web y, de alguna
+manera, representa una especie de contrato entre el proveedor del servicio
+y el que lo solicita.
+\end{itemize}
+
+Aparte de estos, se han desarrollado otros mecanismos que permiten 
+enriquecer las descripciones de las operaciones que realizan los servicios 
+mediante anotaciones semánticas y con directivas que definen su comportamiento.
+Esto permite encontrar los servicios web que mejor se adapten a los objetivos 
+deseados.
+
+  \subsubsection{Arquitectura Orientada a Servicios (SOA)}
+\acs{SOA} (\emph{Service-Oriented Architecture}) es un modelo de arquitectura 
+que caracteriza el procedimiento para crear y usar los diversos procesos, 
+reunidos en forma de servicios, que configuran un determinado \emph{proceso de 
+negocio}\footnote{Conjunto estructurado de tareas, que contribuyen 
+colectivamente a lograr los objetivos de una organización.}.
+
+Esta arquitectura define y proporciona la infraestructura necesaria para que el 
+intercambio de información y la participación en los procesos de negocio se 
+lleven a cabo con total independencia de la plataforma sobre la que trabajan.
+
+En la arquitectura \acs{SOA} la funcionalidad deseada se descompone en unidades
+llamadas \emph{servicios}, que pueden ser distribuidos en diferentes nodos 
+conectados a través de una red y que, asimismo, son combinados entre sí para 
+alcanzar el resultado deseado. Estos servicios pueden proporcionar datos a 
+otros o llevar a cabo actividades de coordinación entre uno o varios servicios.
+
+La figura \ref{fig:soaElements} muestra el esquema de la arquitectura y los 
+elementos que la forman~\cite{bib:soa}:
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{soaElements.png}
+      \caption{Elementos de la arquitectura \acs{SOA}.}
+      \label{fig:soaElements}
+    \end{center}
+  \end{figure}
+
+\begin{itemize}
+\item \textbf{Funciones}:
+  \begin{itemize}
+  \item \textbf{Transporte}: mecanismo utilizado para llevar las peticiones
+de servicio desde el consumidor hasta el proveedor de servicios y las
+respuestas del proveedor hacia el consumidor.
+  \item \textbf{Protocolo de comunicación}: mecanismo que pone de acuerdo
+a proveedor y consumidor acerca de la naturaleza del servicio que uno solicita
+y que el otro devuelve.
+  \item \textbf{Descripción de servicio}: esquema que describe en qué
+consiste un servicio y cómo debe invocarse.
+  \item \textbf{Servicio}: describe un servicio actual que está disponible.
+  \item \textbf{Procesos de negocio}: colección de servicios, invocados 
+en una secuencia particular con un conjunto específico de reglas, que
+satisfacen un requisito de negocio.
+  \item \textbf{Registro de servicios}: repositorio de descripciones de 
+servicios y datos que pueden utilizar los proveedores, para publicar sus
+servicios; y los consumidores, para descubrir qué servicios están disponibles.
+  \end{itemize}
+\item \textbf{Calidad de Servicio}:
+  \begin{itemize}
+  \item \textbf{Política}: condiciones o reglas bajo las cuales un proveedor
+permite el acceso a un servicio por parte de los consumidores.
+  \item \textbf{Seguridad}: conjunto de reglas que pueden aplicarse para la
+identificación, autorización y control de acceso a consumidores de servicios.
+  \item \textbf{Transacciones}: conjunto de atributos que podrían 
+aplicarse a un grupo de servicios para entregar un resultado consistente.
+  \item \textbf{Administración}: conjunto de atributos que podrían 
+aplicarse para manejar los servicios proporcionados o consumidos.
+  \end{itemize}
+\end{itemize}
+
+Las colaboraciones en \acs{SOA} siguen el paradigma \emph{descubrir},
+\emph{ligar} e \emph{invocar}, donde un consumidor realiza la localización
+dinámica de un servicio consultando el \texttt{registro de servicios} para
+hallar uno que cumpla con un determinado criterio. Si lo encuentra, el
+registro proporciona al consumidor la interfaz de contrato y la dirección del
+servicio del proveedor. La figura \ref{fig:soaRelationships} muestra las
+entidades (roles, operaciones y artefactos) donde estas colaboran y sus
+relaciones~\cite{bib:soa}:
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{soaRelationships.png}
+      \caption{Relación entre las entidades en la arquitectura \acs{SOA}.}
+      \label{fig:soaRelationships}
+    \end{center}
+  \end{figure}
+
+Cada entidad puede desempeñar uno de estos \textbf{roles}:
+\begin{itemize}
+\item \textbf{Consumidor}. Es una aplicación, un módulo software u otro
+servicio que demanda la funcionalidad proporcionada por un servicio y la 
+ejecuta de acuerdo a un contrato de interfaz.
+\item \textbf{Proveedor}. Es una entidad accesible a través de la red que 
+acepta y ejecuta consultas de consumidores y publica sus servicios y su
+contrato de interfaces en el \texttt{registro de servicios} para que el 
+consumidor pueda descubrir y acceder a estos servicios.
+\item \textbf{Registro}. Es el encargado de hacer posible el descubrimiento 
+de servicios. Para ello cuenta con un repositorio de servicios disponibles que
+permite visualizar las interfaces de los proveedores de servicios.
+\end{itemize}
+
+Las \textbf{operaciones} que se pueden llevar a cabo son las siguientes:
+\begin{itemize}
+\item \textbf{Publicar}. Antes de poder acceder a un servicio, éste ha de
+publicar su descripción, para que los consumidores puedan descubrirlo e
+invocarlo.
+\item \textbf{Descubrir}. Un consumidor localiza un servicio que 
+cumpla con un cierto criterio consultando el \texttt{registro de servicios}.
+\item \textbf{Ligar e Invocar}. Una vez obtenida la descripción de un servicio 
+por parte de un consumidor, éste lo invoca haciendo uso de la información 
+presente en la descripción del servicio.
+\end{itemize}
+
+Y finalmente, los artefactos en \acs{SOA} son:
+\begin{itemize}
+\item \textbf{Servicio}. Hace referencia a cada uno de los servicios que están
+disponible para el uso a través de una interfaz publicada y que permiten ser
+invocados por algún consumidor.
+\item \textbf{Descripción de servicio}. Se trata de la descripción de ese
+servicio. La descripción especifica la forma en que el consumidor debe
+interactuar con el proveedor. Normalmente especifica el formato que siguen
+las consultas y las respuestas a estos, aunque también pueden especificar el
+conjunto de precondiciones, postcondiciones o los niveles de calidad del
+servicio (\acs{QoS}).
 \end{itemize}
 
 %  \subsection{El framework .NET}
@@ -700,81 +943,965 @@ interfaces.
 % No sé si meterlo
 
   \subsection{La tecnología \texttt{Java}}
-La tecnología JAVA constituye una plataforma informática presentada por Sun
-Microsystems en 1995. Denominado originalmente como OAK, el lenguaje de
-programación en el que se fundamenta fue rebautizado como Java ese mismo año.
-Esta tecnología está compuesta por 2 partes:
+La tecnología \texttt{Java} fue diseñado por James Gosling, de \texttt{Sun 
+Microsystems}, en 1990, como software para dispositivos electrónicos de
+consumo, como calculadoras y microondas. Inicialmente se llamó \texttt{Oak},
+aunque posteriomente tuvo que cambiar debido a que dicho nombre ya estaba
+registrado por otra empresa.
+
+La idea era crear un nuevo lenguaje lo más sencillo posible, con el objetivo
+de que se pudiese adaptar con facilidad a cualquier entorno de ejecución. Por
+ello, se recogieron las características esenciales que debía tener un lenguaje
+de programación moderno y potente y se eliminaron todas aquellas funciones
+prescindibles.
+
+El fracaso comercial de \texttt{FirstPerson}, filial de \texttt{Sun
+Microsystems} que se encargaba del desarrollo de \texttt{Oak}, llevó al
+lenguaje al olvido. Tuvo que ser Bill Joy, cofundador de \texttt{Sun}, quién
+le diera una segunda oportunidad al juzgar que este nuevo lenguaje podría
+llegar a ser el campo de juego adecuado para disputarle a \texttt{Microsoft}
+la primacía cada vez mayor en el terreno del software. Como consecuencia, se
+realizaron una serie de modificaciones de diseño para adaptar al lenguaje
+a su nuevo cometido y en 1995 fue presentado en sociedad como \texttt{Java}.
+
+La tecnología \texttt{Java} está compuesta esencialmente por dos
+partes~\cite{bib:java}:
 \begin{itemize}
-\item El lenguaje de programación Java.
-\item La plataforma Java.
-\end{itemize}
-Sin entrar en demasiados detalles sobre el lenguaje Java, sus principales
-características son:
-\begin{itemize}
-\item Lenguaje sencillo orientado a objetos.
-\item Independiente de la plataforma.
-\item Brinda un gran nivel de seguridad.
-\item Capacidad multi-hilo.
-\item Gran rendimiento.
-\item Creación de aplicaciones distribuidas.
-\item Robusto e ideal para internet.
-\item Gran extendido a nivel mundial.
+\item El lenguaje de programación \texttt{Java}.
+\item La plataforma \texttt{Java}.
 \end{itemize}
 
-\subsubsection{La plataforma \texttt{Java}}
-La plataforma Java constituye el ambiente hardware y software en el cual se
-ejecutan las aplicaciones. En casi todos los casos, las plataformas son 
-descritas como la combinación del sistema operativo y el hardware. La 
-plataforma Java se diferencia de estasplataformas, en que es una plataforma 
-sólo de software y se ejecuta sobre las otrasplataformas de hardware.
-La plataforma Java tiene dos componentes:
+  \subsubsection{El Lenguaje de programación \texttt{Java}}
+\texttt{Java} es un lenguaje de programación de alto nivel\footnote{Lenguaje
+de programación que se caracteriza por expresar los algoritmos de una manera
+más próxima a la capacidad cognitiva humana que a la capacidad ejecutora de
+las máquinas.} y sus principales características son:
+  \begin{itemize}
+  \item Lenguaje orientado a objetos (\acs{OO}).
+  \item Independiente de la plataforma.
+  \item Capacidad multihilo.
+  \item Buen rendimiento.
+  \item Gran nivel de seguridad.
+  \item Posee recolector de basura.
+  \item Robusto e ideal para internet.
+  \item Creación de aplicaciones distribuidas.
+  \item Extendido a nivel mundial e todos los ámbitos.
+  \end{itemize}
+
+Como se decía, Un programa escrito en \texttt{Java} puede ser ejecutado
+independientemente de la plataforma (hardware, software o sistema operativo)
+en la que se encuentre. Esto es así porque \texttt{Java} es un lenguaje en
+parte \emph{interpretado}\footnote{Lenguaje de programación que está diseñado
+para ser ejecutado por medio de un intérprete. Este interpreta línea
+a línea cada una de las instrucciones del código fuente hasta que llega al
+final o hasta que se produce un error.}, en parte \emph{compilado}
+\footnote{Lenguaje de programación cuyos códigos son traducidos por medio de un 
+compilador a un archivo que puede ser ejecutado en una determinada 
+plataforma.}. Esto se consigue, compilando el código fuente a un lenguaje 
+intermedio cercano al lenguaje máquina pero independiente al dispositivo y al 
+sistema operativo en que se ejecuta. Este lenguaje resultante es el
+\emph{Bytecode}(figura \ref{fig:javac}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{javac.png}
+      \caption{Compilación de código \texttt{Java} para obtener su 
+      \emph{Bytecode}.}
+      \label{fig:javac}
+    \end{center}
+  \end{figure}
+
+Y por último, se interpreta \emph{Bytecode} por medio de un programa
+denominado \emph{máquina virtual de \texttt{Java}} (\acs{JVM}) (figura
+\ref{fig:jvm}), que en este caso si depende de la plataforma.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{jvm.png}
+      \caption{Interpretación del código \emph{Bytecode}.}
+      \label{fig:jvm}
+    \end{center}
+  \end{figure}
+
+Esto permite que un mismo \emph{Bytecode} pueda ser ejecutado en la
+\acs{JVM} de cualquier dispositivo, el ya conocido \emph{``write once, run
+anywhere''}.
+
+\subsubsection{La Plataforma \texttt{Java}}
+La plataforma \texttt{Java} constituye el ambiente hardware y software donde
+se ejecutan las aplicaciones. En la mayoría de los casos las plataformas son
+descritas como la combinación de un sistema operativo y un hardware concreto.
+Sin embargo, la plataforma \texttt{Java} se diferencia de estas en que es una
+plataforma únicamente software y se ejecuta sobre las otras plataformas
+hardware.
+
+Así, la plataforma \texttt{Java} está compuesta por dos componentes:
 \begin{itemize}
-\item La máquina virtual Java (JVM).
-\item El Java API (Application Programming Interface).
+\item La máquina virtual de \texttt{Java} (\acs{JVM}). Es la base de la 
+plataforma \texttt{Java} y es llevada a las diferentes plataformas hardware
+para conseguir la ejecución de las aplicaciones.
+\item La \acs{API} de \texttt{Java}. Es una gran colección de componentes
+software y proporcionan multitud de utilidades al programador. Las \acs{API}s
+están agrupadas en librerías, más conocidas como \emph{paquetes}.
 \end{itemize}
-La JVM es la base de la plataforma Java y es necesario que el destino de 
-ejecución de las aplicaciones Java tenga implementado la JVM para que puedan 
-ser ejecutadas.
-El Java API, por su parte, es una gran colección de librerías y componentes
-software que proporcionan multitud de utilidades para el programador. Los APIs 
-de Java están agrupados en librerías, más conocidas como paquetes.
-Cuando un programa se ejecuta sobre la plataforma Java, tanto el Java API como 
-la JVM aíslan a este programa del hardware. (Ceballos, 2006)
+
+Cuando una aplicación es ejecutada sobre la plataforma \texttt{Java}, tanto la
+\acs{API} como la \acs{JVM} se encargan de aislar al programa de la parte
+hardware.
 
 \subsubsection{JavaME}
-% JavaME
+Desde su creación, la plataforma \texttt{Java} ha ido incorporando poco a poco
+nuevas soluciones y servicios para atender a las necesidades que los usuarios y 
+las empresas iban teniendo. Debido a la diferente naturaleza de las soluciones
+propuestas, \texttt{Sun Microsystems} definió tres ediciones distintas
+según el ámbito tecnológico al que estaban orientadas:
+
+\begin{itemize}
+\item \textbf{Java Standard Edition} (\acs{JavaSE}, anteriormente
+\texttt{J2SE}). Edición enfocada al desarrollo de aplicaciones independientes y
+\emph{applets}.
+\item \textbf{Java Enterprise Edition} (\acs{JavaEE}, anteriormente
+\texttt{J2EE}). Edición orientada al entorno empresarial.
+\item \textbf{Java Micro Edition} (\acs{JavaME}, anteriormente \texttt{J2ME}). 
+Edición adaptada al desarrollo de aplicaciones para dispositivos con recursos 
+limitados.
+\end{itemize}
+
+Por lo tanto, \acs{JavaME} es una colección de tecnologías y especificaciones
+que se pueden combinar para construir un completo entorno de ejecución
+\texttt{Java} que se ajuste a los requisitos de un dispositivo o sector del 
+mercado en particular.
+
+La tecnología \acs{JavaME} está basada en tres elementos:
+\begin{itemize}
+\item La \textbf{configuración}, que proporciona el conjunto más básico de
+bibliotecas y capacidades de la máquina virtual para una amplia gama de
+dispositivos.
+\item El \textbf{perfil}, que es un conjunto general de \acs{API}s orientadas a
+las características de un tipo de dispositivo determinado.
+\item Un \textbf{paquete opcional} con \acs{API}s específicas para tecnologías
+específicas.
+\end{itemize}
+
+La figura \ref{fig:javaEditions} representa una visión general de los
+componentes de la tecnología \acs{JavaME} y cómo se relaciona con las otras
+tecnologías \texttt{Java}~\cite{bib:jmeOracle}:
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{javaEditions.png}
+      \caption{La plataforma \acs{JavaME} dentro de la plataforma
+      \texttt{Java}.}
+      \label{fig:javaEditions}
+    \end{center}
+  \end{figure}
+
+\subsubsection{Configuración}
+En cuanto a la \textbf{configuración}, la plataforma \acs{JavaME} se ha
+dividido en dos configuraciones básicas:
+\begin{itemize}
+\item La \emph{\textbf{Connected Limited Device Configuration}} (\acs{CLDC}).
+
+Esta configuración se ha diseñado específicamente para satisfacer las
+necesidades de una plataforma \texttt{Java} que funciona sobre dispositivos
+con una memoria y una capacidad de procesamiento y gráfica, limitadas.
+Los dispositivos que soportan \acs{CLDC} deben cumplir los siguientes
+requisitos~\cite{bib:j2me}:
+\begin{itemize}
+  \item Disponer entre 160 KB y 512 KB de memoria total disponible. Como mínimo
+se debe disponer de 128 KB de memoria \acs{ROM} para la máquina virtual
+y las bibliotecas \acs{CLDC}, y 32 KB de memoria \acs{RAM} para la Máquina
+Virtual en tiempo de ejecución.
+  \item Procesador de 16 o 32 bits con al menos 25 MHz de velocidad.
+  \item Ofrecer bajo consumo, debido a que estos dispositivos trabajan con un
+suministro de energía limitado, normalmente baterías.
+  \item Tener conexión a algún tipo de red, normalmente sin cable, con conexión
+intermitente y ancho de banda limitado (unos 9600 bps).
+\end{itemize}
+
+Además, \acs{CLDC} aporta las siguientes funcionalidades a los dispositivos:
+\begin{itemize}
+  \item Un subconjunto del lenguaje \texttt{Java} y todas las restricciones
+de su máquina virtual (la \acs{KVM}, de la cual se hablará en apartados
+posteriores).
+  \item Un subconjunto de las bibliotecas del núcleo de \texttt{Java}.
+  \item Soporte para la E/S básica.
+  \item Soporte para el acceso a redes.
+  \item Mecanismos de seguridad.
+\end{itemize}
+
+\item La \emph{\textbf{Connected Device Configuration}} (\acs{CDC}).
+
+Esta configuración está orientada a dispositivos con cierta capacidad
+computacional y de memoria, como: decodificadores de \acs{TDT}, televisores con
+internet, algunos electrodomésticos y sistemas de navegación en automóviles.
+\acs{CDC} usa una máquina virtual similar a la que posee la edición
+\acs{JavaSE}, pero con limitaciones en el apartado gráfico y de memoria. Esta 
+máquina virtual es la \acs{CVM} (\emph{Compact Virtual Machine}).
+Los dispositivos que soportan una configuración \acs{CDC} cumplen los
+siguientes requisitos~\cite{bib:j2me}:
+\begin{itemize}
+  \item Procesador de 32 bits.
+  \item Al menos 2 MB de memoria total, incluyendo memoria \acs{ROM} y
+  memoria \acs{RAM}.
+  \item Poseer la funcionalidad completa de la \acs{JVM}.
+  \item Conectividad con algún tipo de red.
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Perfil}
+Mientras que una configuración establece las \acs{API}s que definen las 
+características de una familia de dispositivos, los \textbf{perfiles} hacen
+lo propio para un dispositivo concreto. Esto hace que a la hora de
+desarrollar una aplicación se cuente tanto con un conjunto de \acs{API}s 
+de perfil como con un conjunto de \acs{API}s de configuración.
+
+Un perfil se construye siempre sobre una configuración determinada. Por ese
+motivo, puede decirse que el perfil dota a una configuración de funcionalidad
+específica.
+
+En el apartado anterior se vio que para cada configuración se usaba una
+máquina virtual específica. Esto también ocurre para los perfiles. Existen
+unos perfiles que se construirán sobre la configuración \acs{CDC} y otros
+que lo harán sobre \acs{CLDC}~\cite{bib:j2me}(figura \ref{fig:jmeProfiles}):
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{jmeProfiles.png}
+      \caption{Arquitectura del entorno de ejecución de \acs{JavaME}.}
+      \label{fig:jmeProfiles}
+    \end{center}
+  \end{figure}
+
+Para la configuración \acs{CDC} existen los siguientes perfiles:
+\begin{itemize}
+\item \textbf{\emph{Foundation Profile}}. 
+
+Este perfil define una serie de \acs{API}s sobre la \acs{CDC} orientadas a
+dispositivos que carecen de interfaz gráfica como, por ejemplo, decodificadores 
+de \acs{TDT}.
+
+\item \textbf{\emph{Personal Profile}}.
+
+Es un subconjunto de la plataforma \acs{JavaSE} \texttt{v1.3}, y proporciona un 
+entorno con un completo soporte gráfico \acs{AWT}. Esto permite dotar a la
+configuración \acs{CDC} de una \acs{GUI} completa, con capacidades web y
+soporte de \emph{applets} \texttt{Java}. Este perfil se construye sobre
+la implementación del perfil \emph{Foundation Profile}.
+
+\item \textbf{\emph{RMI Profile}}.
+
+Soporta un subconjunto de las \acs{API}s \acs{JavaSE} \texttt{v1.3 RMI}.
+Aunque algunas características de estas \acs{API}s han sido deshabilitadas
+debido a las limitaciones de cómputo y memoria de los dispositivos. Este
+perfil también se construye sobre la implementación del \emph{Foundation 
+Profile}.
+
+\end{itemize}
+
+Para la configuración \acs{CLDC} por su parte, existen dos perfiles:
+\begin{itemize}
+\item \textbf{\emph{PDA Profile}}.
+
+Abarca \acs{PDA}s de gama baja, con una pantalla y algún tipo de puntero
+(ratón o lápiz) y una resolución de al menos 200x100 píxeles, con un factor
+de 2:1.
+
+\item \textbf{\emph{Mobile Information Device Profile} (\acs{MIDP})}.
+
+Este es el tipo de perfil que nos interesa, pues está orientado a dispositivos 
+que cuentan con las siguientes características:
+\begin{itemize}
+\item Reducida capacidad computacional y de memoria.
+\item Conectividad limitada (en torno a 9600 bps).
+\item Capacidad gráfica muy reducida (mínimo un \emph{display} de 96x54
+píxeles, monocromo).
+\item Entrada de datos alfanumérica reducida.
+\item 128 KB de memoria \acs{ROM} para componentes \acs{MIDP}, más otros
+8 KB para datos persistentes de aplicaciones.
+\item 32 KB de memoria \acs{RAM} para la pila de \texttt{Java}.
+\end{itemize}
+
+El perfil \acs{MIDP} establece las capacidades del dispositivo, por lo tanto,
+especifica \acs{API}s relacionadas con:
+\begin{itemize}
+\item Semántica y control de la aplicación \acs{MIDP}.
+\item \acs{GUI}.
+\item Almacenamiento persistente.
+\item Trabajo en red.
+\item Temporizadores.
+\end{itemize}
+
+Las aplicaciones realizadas utilizando este perfil reciben el nombre de
+\emph{MIDlets} (por la adaptación libre de la palabra \emph{APPlets}). Por
+lo tanto, un \emph{MIDlet} es una aplicación definida en \acs{JavaME},
+construida a partir de un perfil \acs{MIDP} sobre una configuración
+\acs{CLDC}.
+\end{itemize}
 
 \subsubsection{La máquina virtual \acs{KVM}}
-% La máquina virtual KVM
+Como se mencionó en apartados anteriores, cada configuración en \acs{JavaME}
+disponía de su propia versión de la máquina virtual de \texttt{Java}.
 
-\subsubsection{Configuraciones y perfiles}
-% Configuración y perfiles CDCL
+En este caso, como lo que interesa es la construcción de \emph{MIDlets}, es
+decir, aplicaciones con un perfil \acs{MIDP} sobre una configuración
+\acs{CLDC}, va a definirse en qué consiste la máquina virtual asociada a
+este tipo de aplicaciones, es decir, la máquina virtual \acs{KVM}.
+
+\acs{KVM} es la máquina virtual más pequeña desarrollada por \texttt{Sun
+MicroSystems} hasta la fecha. Su nombre proviene de \emph{Kilobyte} (por su 
+escaso peso, entre 40KB y 80KB) \emph{Virtual Machine}. Originalmente, estaba 
+escrita en \texttt{lenguaje C}, con aproximadamente 24000 líneas de código y 
+fue diseñada para ser~\cite{bib:j2me}:
+\begin{itemize}
+\item Pequeña, con una carga de memoria entre los 40 y los 80 KB.
+\item Altamente portable.
+\item Modularizable.
+\item Lo más completa y rápida posible, pero sin sacrificar las características
+anteriores.
+\end{itemize}
+
+Por ello, \acs{KVM} tiene algunas limitaciones con respecto a la clásica
+\acs{JVM}:
+\begin{itemize}
+\item No hay soporte para tipos en coma flotante.
+\item No existe soporte para \acs{JNI} (\emph{Java Native Interface}).
+\item No existen cargadores de clases (\emph{class loaders}) definidos por
+el usuario. Sólo existen los predefinidos.
+\item No se premiten los grupos de hilos. En su lugar se utilizan los
+objetos \emph{Collection} para almacenar cada hilo en el ámbito de la
+aplicación.
+\item No existe la finalización de instancias de clases.
+\item No hay referencias débiles\footnote{Un objeto que está siendo apuntado
+por una referencia débil es un candidato para el recolector de basura.}.
+\item Capacidad limitada en el manejo de excepciones.
+\item El verificador\footnote{Es el encargado de rechazar las clases no válidas 
+en tiempo de ejecución, verificando que el código no sobrepase los límites de 
+la pila de la máquina virtual, comprobando que no se utilizan variables locales 
+antes de ser iniciadas y comprobando que se respetan los campos, métodos y 
+modificadores de control de acceso a clases.} de clases estándar de
+\texttt{Java} es sustituido por un algoritmo de verificación en dos pasos 
+(figura \ref{fig:preverification}) un \emph{preverificador}, durante el proceso 
+de desarrollo; y un \emph{verificador} simplificado, este sí dentro de la
+\acs{KVM}.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{preverification.png}
+      \caption{Verificación de clases en \acs{CDLC}/\acs{KVM}.}
+      \label{fig:preverification}
+    \end{center}
+  \end{figure}
+
+\end{itemize}
 
 \subsubsection{Java Specification Request}
-\begin{description}
-\item[\acs{JSR}-82] %(Bluetooth API)
-\item[\acs{JSR}-257] %(Contactless Communications API)
-\end{description}
+El \emph{Java Community Process} (\acs{JCP}) es un proceso formalizado que
+permite la definición, por parte de las partes involucradas, de nuevas
+versiones y características de la plataforma \texttt{Java}. Este proceso
+conlleva el uso de las \emph{Java Specification Request} (\acs{JSR}), es decir,
+implica el uso de documentos formales que describen las especificaciones y
+tecnologías propuestas para que sean añadidas a la plataforma \texttt{Java}.
+Un \emph{\acs{JSR} final} (aprobado por el \emph{Comité Ejecutivo \acs{JCP}})
+suministra una implementación de referencia libre de la tecnología en 
+código fuente y un \emph{kit de compatibilidad tecnológica} para verificar
+la especificación de la \acs{API}.
 
-\subsubsection{El \texttt{Push Registry}}
-% Push Registry
+A continuación, se describen dos de las \acs{JSR}s más significativas
+en el presente \acs{PFC}:
 
-  \subsection{Los displays táctiles}
-%http://es.wikipedia.org/wiki/Pantalla_t%C3%A1ctil
-% Definición
-% Historia
-% Especificaciones HID (Human Interface Device)
-% Tipos
-% Utilización
+\begin{itemize}
+\item \textbf{\acs{JSR}-82} :- %(Bluetooth API)
 
-  \subsection{La computación móvil}
-%http://www.monografias.com/trabajos5/compumo/compumo.shtml (muy antiguo)
-% Definición
-% Aplicaciones
-% Tendencias
-% Hardware
-% Seguridad
-% Software
+Esta \acs{API} es conocida como \emph{Bluetooth \acs{API}} y está dividida en
+dos partes totalmente independientes: el paquete
+\emph{\textbf{javax.bluetooth}} y el paquete \emph{\textbf{javax.obex}}.
+
+La primera de ellas define clases e interfaces básicas para el descubrimiento
+de dispositivos y servicios, para la conexión y para las comunicaciones a bajo 
+nivel, es decir, mediante flujos de datos o mediante la transimisión de cadenas
+de \emph{bytes}.
+
+El paquete \emph{javax.obex} por su parte, permite manejar el protocolo de
+alto nivel \acs{OBEX} (\emph{OBject EXchange}). Este protocolo es similar
+al protocolo \acs{HTTP} y permite el intercambio de archivos entre
+dispositivos. En principio, \acs{OBEX} era un estándar desarrollado por
+\acs{IrDA}, aunque ahora también es utilizado por otras tecnologías
+inalámbricas como \emph{Bluetooth}.
+
+La especificación \acs{JSR}-82 está orientada principalmente al desarrollo
+de aplicaciones para la plataforma \acs{JavaME}, ya que la \acs{API} ha sido
+diseñada para depender de la configuración \acs{CLDC}. Sin embargo, existen
+también implementaciones para poder hacer uso de esta \acs{API} sobre la
+plataforma \acs{JavaSE}~\cite{bib:jsr82}.
+
+\item \textbf{\acs{JSR}-257} :- %(Contactless Communications API)
+
+Esta \acs{API} es conocida como \emph{Contactless Communication \acs{API}} y
+proporciona las librerías necesarias para implementar aplicaciones que
+hacen uso de las funciones \acs{NFC} de un dispositivo móvil mediante
+\acs{JavaME}.
+
+\acs{JSR}-257 es una \acs{API} estándar de \acs{JavaME}, sin embargo, no
+está incluida en el conjunto de librerías inicial del perfil \acs{MIDP}, ya
+que la funcionalidad \acs{NFC} no es una característica común entre los
+dispositivos móviles.
+
+Las clases e interfaces de esta especificación se dividen en cinco
+paquetes~\cite{bib:jsr257}:
+\begin{itemize}
+\item \emph{\textbf{javax.microedition.contactless}} :- Proporciona el 
+descubrimiento de objetivos y clases comunes a todos esos objetivos.
+\item \emph{\textbf{javax.microedition.contactless.ndef}} :- Contiene las 
+clases e interfaces necesarias para la comunicación con etiquetas cuyo formato 
+de datos es el \acs{NDEF}.
+\item \emph{\textbf{javax.microedition.contactless.rf}} :- Permite las 
+comunicaciones con etiquetas \acs{RFID} que no tienen un formato de datos
+\acs{NDEF}.
+\item \emph{\textbf{javax.microedition.contactless.sc}} :- Permite la 
+comunicación con tarjetas inteligentes externas.
+\item \emph{\textbf{javax.microedition.contactless.visual}} :- Permite la 
+lectura y la generación de etiquetas visuales.
+\end{itemize}
+
+Algunos de los conceptos básicos para el trabajo con etiquetas son los
+siguientes~\cite{bib:jfontecha}:
+\begin{itemize}
+\item \textbf{Implementación de interfaces}. Para poder hacer uso de las 
+funcionalidades \acs{NFC} por medio de \acs{JavaME}
+es necesario implementar al menos la interfaz \emph{TargetListener} en la
+clase principal de la aplicación. Esto permitirá la lectura y escritura de
+etiquetas una vez iniciada la aplicación.
+
+Si se desea que, ante el evento de contacto con una etiqueta, sea el propio
+móvil el que inicie la aplicación, se deberá implementar la interfaz
+\emph{NDEFRecordListener}, para provocar el ``autoarranque'' de la aplicación
+ante un tipo de etiqueta definido.
+
+\item \textbf{Descubrimiento de dispositivos y etiquetas}. Para poder leer y 
+escribir etiquetas \acs{RFID} con \acs{JavaME}, se necesita realizar un 
+descubrimiento previo y añadir el \emph{Listener} correspondiente. De esta 
+forma en el constructor del \emph{MIDlet} o nada más iniciar su ejecución 
+podrá realizarse su registro.
+
+Se debe registrar el tipo de etiqueta o registro dentro de la etiqueta que
+se pretende ``despertar'' al iniciar el contacto. El tipo de etiqueta puede
+definirse utilizando el formato \acs{MIME} (por ejemplo, \emph{app/mi\_tipo}).
+De esta forma, la aplicación estará preparada para leer y escribir etiquetas
+con este tipo.
+
+\item \textbf{Conexión y lectura/escritura de datos}. La  interfaz
+\emph{TargetListener} requiere la implementación del método
+\emph{targetDetected}, mediante el cual definir las acciones a realizar cuando 
+se establezca el contacto con una etiqueta \acs{RFID}.
+
+\item \textbf{Eliminación del \emph{Listener}}. Cuando ya no interese leer o 
+escribir etiquetas de un tipo determinado, se eliminará su registro 
+correspondiente. Con ello, la aplicación dejará de estar a la escucha de este 
+tipo de etiquetas, a menos que se vuelvan a registrar.
+
+\item \textbf{Lectura instantánea de información}. El registro del
+\emph{NDEFRecordListener} permitirá leer datos con el simple
+hecho de aproximar el dispositivo móvil a una etiqueta \acs{RFID}, sin 
+necesidad de que, la aplicación que hará uso de sus datos, esté en ejecución.
+Para ello, debe implementarse el método \emph{RecordDetected}.
+
+El método \emph{RecordDetected} obtiene directamente el objeto de tipo
+\emph{NDEFMessage} que contiene el mensaje de la etiqueta \acs{RFID}.
+
+Una vez extraída la información de la etiqueta, comenzará la ejecución normal
+de la aplicación, teniendo los datos de la etiqueta disponibles para su
+tratamiento desde el principio. Sin embargo, para provocar el ``auto-arranque''
+de la aplicación, es necesario dar de alta a la misma en el
+\emph{Push-Registry} \texttt{Java} del dispositivo móvil.
+
+\item \textbf{El \emph{Push-Registry}}. Es una clase interna \acs{JavaME} que 
+permite ejecutar aplicaciones en principio inactivas, ante la respuesta a un 
+evento, como puede ser el \emph{timer} de un reloj, la aproximación de una 
+etiqueta \acs{RFID} al dispositivo, etc.
+
+Cuando una aplicación define el \emph{Push-Registry} como respuesta a un
+evento, este hecho queda registrado en el archivo description de la
+aplicacion móvil (archivo con extensión \emph{.jad}).
+\end{itemize}
+\end{itemize}
+
+
+\subsection{Las pantallas táctiles}
+
+Una pantalla táctil es una pantalla que permite la entrada de datos y órdenes 
+al dispositivo mediante un toque directo sobre su superficie. Por otro lado, 
+también actúa como periférico de salida, mostrándo los resultados introducidos 
+previamente. El contacto puede realizarse a través del dedo (o dedos) del
+usuario o con un lápiz óptico u otra herramienta similar, dependiendo de la 
+tecnología empleada. Actualmente hay pantallas táctiles que pueden instalarse 
+sobre una pantalla normal.
+
+Las pantallas táctiles son populares en la industria pesada, en dispositivos
+móviles y en otras situaciones donde los teclados y los ratones no permiten una 
+interacción satisfactoria, intuitiva, rápida o exacta del usuario con el 
+contenido.
+
+  \subsubsection{Historia}
+La fabricación y el uso de pantallas tactiles se ha ido extendiendo desde la 
+invención de la interfaz electrónica táctil en 1971 por el Dr. Samuel C. Hurst. 
+Han llegado a ser comunes en \acs{TPV}s, en cajeros automáticos y en
+\acs{PDA}s, donde se suele emplear un estilete para manipular la interfaz 
+gráfica de usuario y para introducir datos. La popularidad de los teléfonos 
+inteligentes, las \acs{PDA}s, las \emph{tablets}, las vídeo consolas portátiles 
+o de los navegadores de automóviles está generando una gran demanda y 
+aceptación de las pantallas táctiles, que usan este sistema para interactuar
+con el dispositivo.
+
+En 1983, el \texttt{HP-150} fue uno de los primeros ordenadores comerciales del 
+mundo que disponía de pantalla táctil. En realidad no tenía una pantalla táctil 
+en el sentido propiamente dicho, sino que se trataba de una pantalla de tubo 
+\texttt{Sony} de 9 pulgadas rodeada de transmisores y receptores infrarrojos 
+que detectaban la posición de cualquier objeto no-transparente sobre la 
+pantalla.
+
+La mayor parte de las pantallas táctiles actuales consisten en un cristal 
+transparente donde se sitúa una lámina que permite al usuario interactuar 
+directamente sobre la superficie, utilizando un proyector para lanzar la 
+imagen sobre la pantalla de cristal.
+
+  \subsubsection{Tecnologías}
+
+Las pantallas táctiles se implementan utilizando alguna de estas
+tecnologías~\cite{bib:touchscreen}:
+
+\begin{itemize}
+\item \textbf{Resistivas}
+
+Una pantalla táctil resistiva está formada por varias capas. Las más 
+importantes son dos finas capas de material conductor entre las cuales hay una 
+pequeña separación. Cuando algún objeto toca la superficie de la capa exterior, 
+las dos capas conductoras entran en contacto en un punto concreto
+(figura \ref{fig:resistiveTouchscreen}). De esta forma se produce un cambio en 
+la corriente eléctrica que permite a un controlador calcular la posición del 
+punto en el que se ha tocado la pantalla midiendo la resistencia. Algunas 
+pantallas pueden medir, aparte de las coordenadas del contacto, la presión que 
+se ha ejercido sobre la misma.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.6\textwidth]{resistiveTouchscreen.png}
+      \caption{Pantalla táctil resistiva.}
+      \label{fig:resistiveTouchscreen}
+    \end{center}
+  \end{figure}
+
+Las pantallas táctiles resistivas son por norma general más accesibles pero 
+tienen una pérdida de aproximadamente el 25\% del brillo debido a las múltiples 
+capas necesarias. Otro inconveniente es que pueden ser dañadas por 
+objetos afilados. Por el contrario, no se ven afectadas por elementos externos 
+como polvo o agua, razón por la que son el tipo de pantallas táctiles más usado 
+en la actualidad.
+
+\item \textbf{Onda acústica superficial}
+
+La tecnología de onda acústica superficial (\acs{SAW}, por sus siglas en 
+inglés) utiliza ondas de ultrasonidos que se transmiten sobre la pantalla 
+táctil. Cuando la pantalla es tocada, una parte de la onda es absorbida. Este 
+cambio en las ondas de ultrasonidos permite registrar la posición en la que se 
+ha tocado la pantalla y enviarla al controlador para que pueda procesarla
+(figura \ref{fig:sawTouchscreen}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{sawTouchscreen.png}
+      \caption{Pantalla táctil con tecnología de onda acústica
+      superficial.}
+      \label{fig:sawTouchscreen}
+    \end{center}
+  \end{figure}
+
+\item \textbf{Capacitivas}
+Una pantalla táctil capacitiva se compone de un aislante, como el vidrio, 
+revestido por un conductor transparente como, óxido de indio y estaño (ITO).
+Por el conductor transparente circula una corriente eléctrica continua
+que es medida por un sensor. Este sensor es capaz de controlar el campo de
+electrones generado tanto en el eje vertical como en el horizontal, midiendo
+su capacitancia. Por otro lado, el cuerpo humano también se puede considerar un 
+dispositivo eléctrico en cuyo interior hay electrones, por lo que también 
+dispone de capacitancia. Cuando el campo de capacitancia normal del sensor (su 
+estado de referencia) es alterado por otro campo de capacitancia, como puede 
+ser el dedo de una persona, los circuitos electrónicos situados en cada esquina 
+de la pantalla miden la ``distorsión'' resultante en la onda senoidal 
+característica del campo de referencia y envía la información acerca de este 
+evento al controlador para su procesamiento matemático (figura
+\ref{fig:capacitativeTouchscreen}.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.6\textwidth]{capacitativeTouchscreen.png}
+      \caption{Pantalla táctil capacitiva.}
+      \label{fig:capacitativeTouchscreen}
+    \end{center}
+  \end{figure}
+
+Por lo tanto, las pantallas táctiles capacitivas deben ser tocadas con la
+mano o con los dedos, lo que evita que se vean afectadas por otros elementos
+externos. Además tienen mejor claridad, sensibilidad y calidad que las
+pantallas táctiles resistivas, aunque su complejo procesamiendo de la señal
+hace que su coste sea más elevado.
+
+\item \textbf{Infrarrojos}
+
+Las pantallas táctiles por infrarrojos consisten en una matriz de sensores
+(fotodetectores) y emisores infrarrojos horizontales y verticales. Los 
+receptores se sitúan en los bordes de la pantalla, en ambos ejes y enfrentados
+a los emisores, de tal forma que, cuando un objeto interrumpe un haz
+infrarrojo vertical y otro horizontal, quedan registradas las coordenadas
+donde el objeto ha hecho contacto (figura \ref{fig:irTouchscreen}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{irTouchscreen.png}
+      \caption{Pantalla táctil por infrarrojos.}
+      \label{fig:irTouchscreen}
+    \end{center}
+  \end{figure}
+
+Este tipo de pantallas son muy resistentes por lo que son utilizadas 
+en muchas de las aplicaciones militares que exigen una pantalla táctil.
+Por otro lado, tienen el inconveniente de que son sensibles a la 
+suciedad y el polvo; y pueden sufrir paralelaje\footnote{Cuando el marco
+(donde se sitúan los emisores y receptores) o la pantalla se desvían de su 
+posición original, por un golpe por ejemplo, el usuario notará que las 
+coordenadas que selecciona no corresponden con las coordenadas que quedan
+marcadas en la pantalla.}.
+
+\item \textbf{Imagen óptica}
+
+Es un desarrollo relativamente moderno, en el que dos o más cámaras son 
+situadas alrededor de la pantalla, habitualmente en las esquinas. Por otro 
+lado, varios emisores de infrarrojos son situados en el campo de visión de las
+cámaras, a lo largo de los lados no ocupados por las cámaras. Un toque en la 
+pantalla muestra una sombra de forma que cada par de cámaras puede 
+triangularizarla para localizar el punto exacto de contacto. Esta tecnología 
+está ganando popularidad debido a su escalabilidad, versatilidad y su precio, 
+especialmente para pantallas de gran tamaño (figura \ref{fig:oiTouchscreen}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.6\textwidth]{oiTouchscreen.png}
+      \caption{Pantalla táctil a través de imagen óptica.}
+      \label{fig:oiTouchscreen}
+    \end{center}
+  \end{figure}
+
+\item \textbf{Tecnología de señal dispersa}
+
+Este sistema utiliza sensores que detectan la energía mecánica que se produce
+en el cristal de la pantalla tras el contacto con algún objeto (figura
+\ref{fig:dispersiveTouchscreen}). Unos algoritmos complejos se encargan de 
+interpretar esta información para obtener el punto exacto del contacto.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{dispersiveTouchscreen.png}
+      \caption{Pantalla táctil con tecnología de señal dispersa.}
+      \label{fig:dispersiveTouchscreen}
+    \end{center}
+  \end{figure}
+
+Esta tecnología es resistente al polvo y otros elementos externos, incluidos 
+arañazos y proporciona unos excelentes niveles de claridad. Además, como 
+el contacto es detectado a través de vibraciones mecánicas, cualquier objeto 
+puede ser utilizado para producir estos eventos, incluyendo el dedo o la uña. 
+Un efecto lateral negativo de esta tecnología es que tras el contacto inicial 
+el sistema no es capaz de detectar un dedo u objeto que se encuentre parado 
+tocando la pantalla.
+
+\item \textbf{Reconocimiento de pulso acústico}
+
+Estos sistemas utilizan cuatro transductores piezoeléctricos, situados cada uno 
+en uno de los lados de la pantalla, para convertir la energía mecánica del 
+contacto en una señal electrónica (figura \ref{fig:acousticTouchscreen}). 
+Después, esta señal es convertida en una onda de sonido y es comparada con
+una lista de sonidos pregrabados con todas las posiciones del cristal.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{acousticTouchscreen.png}
+      \caption{Pantalla táctil por reconocimiento de pulso acústico.}
+      \label{fig:acousticTouchscreen}
+    \end{center}
+  \end{figure}
+
+En este sistema la pantalla táctil es completamente de cristal y no necesita 
+ningún otro objeto especial para su utilizacion, por lo que la buena óptica y 
+la durabilidad están garantizadas. Además, también tiene la ventaja de que
+puede funcionar con arañazos o polvo sobre la pantalla y tiene unos altos
+niveles de precisión.
+\end{itemize}
+
+  \subsubsection{Especificaciones \acs{HID}}
+
+Las pantallas táctiles se encuentran definidas dentro de la especificación de 
+dispositivos \acs{HID} (dispositivos de interfaz humana) como digitalizadores, 
+junto con dispositivos como los \emph{touchpads} y las tabletas digitalizadoras 
+entre otros.
+ 
+Esta especificación incluye los campos utilizados para el manejo de este tipo 
+de dispositivos. Algunos de los más interesantes son:
+\begin{itemize}
+\item \textbf{\emph{Tip Pressure}}: que representa la fuerza por un 
+transductor, habitualmente un estilete o también un dedo.
+\item \textbf{\emph{Barrel Pressure}}: fuerza que ejerce el usuario en el 
+sensor del transductor, como por ejemplo un botón sensible a la presión en el 
+puntero de manejo.
+\item \textbf{\emph{In Range}}: que indica que el transductor se encuentra en 
+el área donde la digitalización es posible.
+\item \textbf{\emph{Touch}}: indica si un dedo está tocando la pantalla. El 
+sistema suele interpretarlo como un \emph{clic} de botón primario.
+\item \textbf{\emph{Untouch}}: indica que el dedo ha perdido contacto con la 
+superficie de la pantalla. Se interpreta como la acción de soltar el botón 
+primario.
+\item \textbf{\emph{Tap}}: indica que se ha realizado un toque con el dedo en 
+la pantalla, levantándolo rápidamente sin prolongar el contacto. Se interpreta 
+como un evento provocado por un botón.
+\end{itemize}
+
+\subsection{La computación móvil}
+\emph{Computación móvil} es un término utilizado para designar a la interacción
+hombre-máquina a través de un dispositivo que debe ser transportado por el
+usuario durante su uso, normalmente por la naturaleza del trabajo que el hombre
+y la máquina desempeñan. La computación móvil trata de responder a los 
+problemas asociados con las comunicaciones, el hardware y el software que
+los dispositivos necesitan para llevar a cabo este tipo de computación.
+Uno de los aspectos más importantes es que los dispositivos deben facilitar el
+acceso a la información que el usuario pueda demandar, por lo que, el
+dispositivo debe estar dotado de alguna tecnología que lo conecte con el
+exterior.
+
+  \subsubsection{Evolución}
+En los años 60 y 70, no existía la computación personal y los grandes centros
+de cómputo eran los responsables del manejo de toda la información, desde
+el proceso de entrada de datos, hasta el procesado, la validación y la
+impresión de la información. Los usuarios directos de dicha información no
+tomaban parte en el proceso de captura ni en el de procesado, sólo tomaban
+parte de su utilización.
+
+En los 80 y 90, empezó a hacerse común la utilización de los ordenadores
+personales, los cuales facilitaban que el propio usuario fuera el responsable
+de la introducción de los datos de entrada, del procesado y de la utilización
+de la información generada. Pero había un problema, cuando la información no
+se generaba cerca del terminal que iba a procesar los datos se hacía necesaria
+una toma de datos ``manual'' y una posterior digitalización de dichos datos.
+Esto ralentizaba el proceso y aumentaba la probabilidad de errores en la
+transcripción~\cite{bib:micMobileComputing}.
+
+La computación móvil, nació con la vocación de acabar con este tipo de 
+problemas. Para ello, se establecieron los siguientes
+objetivos~\cite{bib:ticUTP}:
+\begin{enumerate}
+\item La primera fase consistía en hacer dispositivos lo suficientemente
+pequeños como para poder ser transportados fácilmente. Es decir, dispositivos
+móviles.
+\item La segunda fase trataba de reemplazar los cables de comunicación por
+medios inalámbricos.
+\item Y la tercera fase era una combinación de las dos primeras, es decir,
+consistía en potenciar la utilización de dispositivos móviles en un entorno
+inalámbrico. Esta combinación permite las conexiones en tiempo real entre
+dispositivos móviles y otros dispositivos de computación.
+\end{enumerate}
+
+  \subsubsection{Características}
+La computación móvil posee dos características principales~\cite{bib:ticUTP}:
+\begin{itemize}
+\item \textbf{Movilidad}. Implica la portabilidad basada en el hecho de que
+los usuarios llevan un dispositivo móvil a todas partes. Estos dispositivos
+deben permitir una comunicación en tiempo real con otros sistemas,
+independientemente del lugar en el que se encuentren.
+\item \textbf{Amplio alcance}. La computación móvil debe ser accesible a todas
+las personas, de tal forma que todos puedan beneficiarse de su uso.
+\end{itemize}
+
+Además, la computación móvil puede enriquecerse incorporando los siguientes
+atributos:
+\begin{itemize}
+\item \textbf{Ubicuidad}. Se refiere a la cualidad de estar disponible en
+cualquier momento y en cualquier lugar.
+\item \textbf{Comodidad}. Si los clientes son capaces de realizar una gran
+parte de sus gestiones a través de su dispositivo móvil y de una forma cómoda,
+repetirán este proceso de forma habitual.
+\item \textbf{Conectividad instantánea}. La conectividad instantánea a redes
+como internet proporciona a los usuarios el acceso a la información que les
+interesa independientemente de dónde se encuentren.
+\item \textbf{Personalización}. Se refiere a la cualidad de poder elegir
+la forma en la que los dispositivos presentan la información a los consumidores
+individuales.
+\item \textbf{Localización}. Conocer la ubicación física de los usuarios en
+cualquier momento es clave a la hora de ofrecerles productos y servicios.
+\end{itemize}
+
+  \subsubsection{Limitaciones}
+La naturaleza intrínseca de los dispositivos que posibilitan la computación 
+móvil está acompañada de una serie de limitaciones que, por fortuna, van
+atenuándose con el desarrollo de nuevas tecnologías y materiales. Estas
+limitaciones son~\cite{bib:wikiMobileComputing}:
+\begin{itemize}
+\item \textbf{Ancho de banda}: el acceso a internet a través de tecnologías
+inalámbricas como \acs{GPRS} o \acs{EDGE}, o más recientemente con redes
+\texttt{3G}\footnote{Es la abreviación de tercera generación de transmisión de 
+voz y datos a través de telefonía móvil mediante \texttt{UMTS} (\emph{Universal 
+Mobile Telecommunications System}). Proporcionan la posibilidad de transferir 
+tanto voz y datos (una llamada telefónica o una videollamada) como datos no-voz 
+(como la descarga de programas, intercambio de correos electrónicos, y 
+mensajería instantánea).}. Estas redes están disponibles generalmente dentro
+del alcance de las antenas comerciales de telefonía móvil.
+\item \textbf{Seguridad}: la conectividad de los dispositivos móviles está
+en ocasiones condicionada al uso de las redes públicas, por lo que se
+recomienda un uso cuidadoso de las redes \acs{VPN}\footnote{Tecnología de red
+que permite una extensión de la red local sobre una red pública o no
+controlada.}, ya que es fácil atacar redes \acs{VPN} a través del gran número
+de redes interconectadas que comparten un mismo medio.
+\item \textbf{Consumo de energía}: cuando no es posible conectar el dispositivo
+a una fuente de alimentación o a un generador portátil, la autonomía de dicho
+dispositivo depende exclusivamente de la duración de su batería. Por otro lado,
+la batería debe ser lo suficientemente pequeña como para que pueda ser
+compactada dentro del dispositivo y a la vez, lo suficientemente grande o
+eficiente como para que pueda satisfacer las necesidades del dispositivo
+durante un tiempo razonable, según el cometido de dicho dispositivo.
+\item \textbf{Interferencias}: el clima, el terreno o la lejanía del punto de
+emisión más cercano pueden afectar a la recepción de la señal del dispositivo.
+La recepción en túneles, algunos edificios y zonas rurales suele ser pobre.
+\item \textbf{Riesgos potenciales de salud}: en algunos países el uso de
+dispositivos móviles miestras se conduce un vehículo todavía no está
+penalizado. Este hecho aumenta la probabilidades de que el usuario se vea
+involucrado en un accidente de tráfico. Por otro lado, existen estudios que
+pretenden demostrar que las radiaciones que emiten los teléfonos móviles 
+pueden afectar a la salud de sus usuarios.
+\item \textbf{Interfaz del dispositivo}: las pantallas y teclados de los
+dispositivos suelen ser pequeños y esto puede desembocar en un problema de
+usabilidad, sobretodo para ciertos usuarios (como personas mayores).
+Para solucionar esto, se proponen métodos alternativos para la entrada de
+datos, como el reconocimiento de voz o el reconocimiento de escritura.
+\end{itemize}
+
+  \subsubsection{Dispositivos}
+Las principales categorías de dispositivos que pertenecen al mundo de la
+computación móvil son las siguientes~\cite{bib:wikiMobileComputing}:
+\begin{itemize}
+\item \textbf{Ordenador portátil}. Es un ordenador de propósito general
+que puede transportarse fácilmente de un lugar a otro, pero no puede utilizarse 
+mientras tanto pues, por su tamaño, necesita ser apoyado en alguna superficie 
+estable. Además, su batería no proporciona una autonomía de más de unas pocas
+horas.
+\item \textbf{\emph{Tablet PC} (tableta digital)}. Es un ordenador que carece 
+de teclado. En su lugar tiene una pantalla táctil con la que el usuario 
+interactúa. Puede realizar la mayor parte de las taréas de un ordenador 
+portátil común, pero no es muy adecuado para tareas que requieran un uso 
+intensivo del teclado, puesto que el teclado táctil disminuye notablemente el 
+espacio en pantalla de la aplicación activa.
+\item \textbf{\acs{PDA} (\emph{Personal Digital Assistant})}. Es un
+ordenador de tamaño de bolsillo, que tiene funcionalidades limitadas. Su
+objetivo es sincronizar su información con la de un ordenador de escritorio
+en tareas como: la administración de la agenda de contactos, la revisión de
+notas o la gestión del correo electrónico, entre otras.
+\item \textbf{\emph{Internet appliance} (Dispositivo para internet)}. Es un 
+dispositivo similar a una \acs{PDA}, pero con funcionalidad multimedia. No 
+tiene el poder de computación de un \emph{tablet PC} pero cuenta con 
+aplicaciones como: un reproductor de \texttt{MP3} y vídeo, un navegador web, 
+una aplicación de \emph{chat} o un visor de imágenes (figura
+\ref{fig:internetApp}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{internetApp.png}
+      \caption{El \texttt{Nokia 810} es un dispositivo de la clase
+      \emph{internet appliance}.}
+      \label{fig:internetApp}
+    \end{center}
+  \end{figure}
+
+\item \textbf{\acs{UMPC} (\emph{Ultra Mobile Personal Computer})}. Es una
+dispositivo del tamaño de una \acs{PDA}, que cuenta con una completa 
+\emph{suite} de aplicaciones que se ejecutan sobre un sistema operativo de 
+propósito general (figura \ref{fig:umpc}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{umpc.png}
+      \caption{El \texttt{Wibrain B1} es un dispositivo del tipo \acs{UMPC}.}
+      \label{fig:umpc}
+    \end{center}
+  \end{figure}
+
+\item \textbf{\emph{Smartphone} (teléfono inteligente)}. Es un teléfono móvil 
+construido sobre una plataforma informática móvil, con una mayor capacidad de 
+computación y conectividad que un teléfono móvil convencional.
+\item \textbf{\emph{Carputer}}. Es el término utilizado para describir una 
+categoría de computadora portátil utilizada o modificada específicamente para 
+ser instalada en automóviles. Controla funcionalidades como: el reproductor
+de música, el reproductor de DVDs, la conectividad \emph{Bluetooth} o
+el \acs{GPS} (figura \ref{fig:carputer}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{carputer.png}
+      \caption{\emph{Carputer} que permite varias funcionalidades multimedia.}
+      \label{fig:carputer}
+    \end{center}
+  \end{figure}
+
+\item \textbf{\emph{Pentop computer}}. Es un dispositivo de computación del
+tamaño y la forma de un bolígrafo, que funciona como un bolígrafo y además,
+como un reproductor de \acs{MP3}, un dispositivo de almacenamiento digital, un 
+traductor de idiomas o una calculadora (figura \ref{fig:pentop}).
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{pentop.png}
+      \caption{\texttt{Pentop FLY Fusion}. Permite, entre otras cosas, 
+      capturar y digitalizar lo que se está escribiendo para posteriormente
+      convertirlo en texto en el PC.}
+      \label{fig:pentop}
+    \end{center}
+  \end{figure}
+
+\end{itemize}
+Los límites que separan unas categorías de otras son borrosos y, a veces, un
+dispositivo puede pertenecer, por ejemplo, a una categoría según su tamaño o
+su hardware y a otra según su funcionalidad.
+
+  \subsubsection{Aplicaciones}
+Los dispositivos anteriormente mencionados dan soporte a una serie de
+aplicaciones que han aparecido gracias a evolución de estos.
+Algunas de las aplicaciones más importantes son~\cite{bib:micMobileComputing}:
+\begin{itemize}
+\item \textbf{Seguimiento de pacientes}: la computación móvil permite al
+médico mantener un contacto directo con su paciente. Y esto no se limita
+al envío o recepción de mensajes (hablados o escritos), sino que incluye
+también el monitoreo constante de los signos vitales que son objeto de dicho
+seguimiento.
+\item \textbf{Ventas directas}: gracias a la computación móvil es posible
+consultar inventarios y realizar pedidos de forma inmediata. Esto ha favorecido
+que muchas empresas hayan apostado por un modelo de negocio basado en la
+venta a través de internet.
+\item \textbf{Servio a clientes}: la asesoría de un servicio técnico es un
+área en donde la computación móvil es vital. La consulta a bases de datos
+inteligentes, el acopio de información actualizada y la consulta a
+especialistas, es sólo una pequeña muestra de todo lo que puede impactar
+esta tecnología.
+\item \textbf{Profesionales viajeros}: la computación móvil permite:
+tener localizados a los miembros de una plantilla, asignarles nuevas tareas,
+actualizar las tareas activas con sus aportaciones, etc. independientemente
+de que el/los miembro/s estén en su puesto de trabajo habitual o no.
+\item \textbf{Manejo de sucursales}: en un mundo en el que las empresas han
+dejado de tener una sola oficina para expandirse, las sucursales aparecen casi
+sin desearlo, con una gran cantidad de datos que cruzarse de forma rápida y
+segura.
+\item \textbf{Grupos de trabajo}: cada vez es más común afrontar proyectos
+con un personal muy especializado, el cual no siempre trabaja bajo un mismo
+techo y, en ocasiones, ni siquiera en la misma ciudad o país.
+\end{itemize}
+
+Algunas de estas categorías han evolucionado muy rápidamente, gracias a la
+competitividad existente entre las compañías que han apostado fuerte por el
+desarrollo de ese tipo servicios.
 
 \section{Trabajos relacionados}
   \subsection{Estudios relacionados}
@@ -792,7 +1919,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
   Con el fin de integrar todos estos servicios como un proceso común de
   comercio electrónico basado en NFC, se ha propuesto un modelo genérico
   para el comercio móvil basado en \acs{NFC} (o \acs{NMC}, por sus siglas
-  en inglés) \cite{bib:nfcCommerce}. Este modelo caracteriza los problemas y
+  en inglés)~\cite{bib:nfcCommerce}. Este modelo caracteriza los problemas y
   las tecnologías que intervienen en cada una de las siguientes fases
   (figura \ref{fig:nmcModel}):
 
@@ -1013,7 +2140,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
   ocurre, han aparecido nuevas formas de pago que aprovechan las 
   características de otras tecnologías con las que cuentan los móviles, como 
   la lectura de códigos \acs{QR}, el acelerómetro o mediante
-  \acs{SMS}\cite{bib:noWaiting}.
+  \acs{SMS}~\cite{bib:noWaiting}.
 
     \subsubsection{Métodos de fidelización de clientes}
   Uno de los atractivos que puede tener el uso de la tecnología móvil \acs{NFC}
@@ -1071,7 +2198,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
   Para las empresas asociadas, \emph{WingBonus} ofrece grandes ventajas: 
   reducción de costos, eliminación del papel, poder llegar a más clientes,
   eliminación de las falsificaciones, análisis de mercado, estudio de
-  tendencias, fidelización de clientes, etc.\cite{bib:wingBonus}.
+  tendencias, fidelización de clientes, etc.~\cite{bib:wingBonus}.
 
   \subsection{Aplicaciones comerciales}
   A continuación, se muestran varios ejemplos de cómo distintos programas
@@ -1097,8 +2224,8 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     \begin{figure}[!h]
       \begin{center}
         \includegraphics[width=0.8\textwidth]{productsPanel.png}
-        \caption{Panel de productos del programa \emph{FrontRest}
-        \cite{bib:frontRest}.}
+        \caption{Panel de productos del programa
+        \emph{FrontRest}~\cite{bib:frontRest}.}
         \label{fig:productsPanel}
       \end{center}
     \end{figure}
@@ -1106,8 +2233,8 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     \begin{figure}[!h]
       \begin{center}
         \includegraphics[width=0.8\textwidth]{productsPanel2.png}
-        \caption{Panel de selección de cantidad del programa \emph{FrontRest}
-        \cite{bib:frontRest}.}
+        \caption{Panel de selección de cantidad del programa
+        \emph{FrontRest}~\cite{bib:frontRest}.}
         \label{fig:productsPanel2}
       \end{center}
     \end{figure}
@@ -1118,8 +2245,8 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     \begin{figure}[!h]
       \begin{center}
         \includegraphics[width=0.5\textwidth]{productsList.png}
-        \caption{Lista de pedidos para la mesa 5. \emph{FrontRest}
-        \cite{bib:frontRest}.}
+        \caption{Lista de pedidos para la mesa 5.
+        \emph{FrontRest}~\cite{bib:frontRest}.}
         \label{fig:productsList}
       \end{center}
     \end{figure}
@@ -1134,7 +2261,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
       \begin{center}
         \includegraphics[width=1\textwidth]{bill.png}
         \caption{Resumen de facturación de una mesa en el programa
-        \emph{Soft Restaurant}\cite{bib:softRestaurant}.}
+        \emph{Soft Restaurant}~\cite{bib:softRestaurant}.}
         \label{fig:bill}
       \end{center}
     \end{figure}
@@ -1151,8 +2278,8 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     \begin{figure}[!h]
       \begin{center}
         \includegraphics[width=0.8\textwidth]{editProduct.png}
-        \caption{Editor de productos del programa \emph{SaleYa}
-        \cite{bib:saleYa}.}
+        \caption{Editor de productos del programa
+        \emph{SaleYa}~\cite{bib:saleYa}.}
         \label{fig:editProduct}
       \end{center}
     \end{figure}
@@ -1175,7 +2302,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
       \begin{center}
         \includegraphics[width=0.8\textwidth]{tables.png}
         \caption{Mapa de un restaurante de la aplicación
-        \emph{Soft Restaurant}\cite{bib:softRestaurant}.}
+        \emph{Soft Restaurant}~\cite{bib:softRestaurant}.}
         \label{fig:tables}
       \end{center}
     \end{figure}
@@ -1186,8 +2313,8 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     reales a los que representan y su color representa el estado en el que
     se encuentran.
 
-    \item Aplicaciones como \emph{Soft Restaurant}\cite{bib:softRestaurant} o 
-    \emph{SaleYa}\cite{bib:saleYa} tienen una funcionalidad que permite 
+    \item Aplicaciones como \emph{Soft Restaurant}~\cite{bib:softRestaurant} o 
+    \emph{SaleYa}~\cite{bib:saleYa} tienen una funcionalidad que permite 
     \textbf{describir las recetas} de los productos contemplados en la carta. 
     Es decir, permite listar los ingredientes (con sus cantidades) utilizados 
     en la elaboración de cada plato (figura \ref{fig:ingredients}). Esto 
@@ -1197,7 +2324,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
       \begin{center}
         \includegraphics[width=0.8\textwidth]{ingredients.png}
         \caption{Ingredientes para la elaboración de una \emph{pizza de 
-        mozzarella}. \emph{SaleYa}\cite{bib:saleYa}.}
+        mozzarella}. \emph{SaleYa}~\cite{bib:saleYa}.}
         \label{fig:ingredients}
       \end{center}
     \end{figure}
@@ -1216,8 +2343,8 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     \begin{figure}[!h]
       \begin{center}
         \includegraphics[width=0.8\textwidth]{kitchen.png}
-        \caption{Monitor de comandas de la aplicación \emph{RestBar}
-        \cite{bib:restBar}.}
+        \caption{Monitor de comandas de la aplicación
+        \emph{RestBar}~\cite{bib:restBar}.}
         \label{fig:kitchen}
       \end{center}
     \end{figure}
@@ -1235,8 +2362,8 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     \begin{figure}[!h]
       \begin{center}
         \includegraphics[width=0.8\textwidth]{deliveries.png}
-        \caption{Módulo que gestiona los repartos a domicilio. \emph{SaleYa}
-        \cite{bib:saleYa}.}
+        \caption{Módulo que gestiona los repartos a domicilio.
+        \emph{SaleYa}~\cite{bib:saleYa}.}
         \label{fig:deliveries}
       \end{center}
     \end{figure}
@@ -1307,7 +2434,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
 
     Por último, a parte de esta función de recogida de pedidos, \emph{vMenu} 
     dispone de todo un sistema integral que permite gestionar las operaciones
-    básicas de un restaurante\cite{bib:VMENU}.
+    básicas de un restaurante~\cite{bib:VMENU}.
 
     \item \textbf{Brand Table}. \emph{S-Digital}, una \emph{start-up} de la
     Universidad de Sidney, ofrece este prototipo conceptual de mesa de
@@ -1321,7 +2448,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
 
     \begin{figure}[!h]
       \begin{center}
-        \includegraphics[width=0.8\textwidth]{brandTable.png}
+        \includegraphics[width=0.6\textwidth]{brandTable.png}
         \caption{Prototipo conceptual de la mesa \emph{Brand Table}.}
         \label{fig:brandTable}
       \end{center}
@@ -1329,7 +2456,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
 
     \begin{figure}[!h]
       \begin{center}
-        \includegraphics[width=0.8\textwidth]{brandTableDemo.png}
+        \includegraphics[width=0.6\textwidth]{brandTableDemo.png}
         \caption{Selección de uno de los productos del restaurante
         \emph{Subway}.}
         \label{fig:brandTableDemo}
@@ -1339,7 +2466,7 @@ la JVM aíslan a este programa del hardware. (Ceballos, 2006)
     Cuando el pedido está preparado, el cliente se levanta y va a recogerlo.
     
     Este sistema está pensado para restaurantes de comida rápida y elimina
-    completamente la labor del camarero\cite{bib:brandTable}.
+    completamente la labor del camarero~\cite{bib:brandTable}.
     \end{itemize}
 
 
