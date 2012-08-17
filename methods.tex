@@ -255,22 +255,208 @@ de servicios.
 
   \subsection{Aplicación de los servicios web}
     \subsubsection{Gestión de los datos de un restaurante}
-  El sistema informático a desarrollar va a estar formado por varias
-  aplicaciones. Estas aplicaciones van a tener que compartir los datos con
-  los que operan. Para garantizar la sincronización y la integridad de los
-  datos, se propone crear un servicio web, independiente a las demás
-  aplicaciones, que se encargue de gestionar los accesos a la base de datos
-  que contiene dichos datos.
+  Como se comentó anteriormente, para garantizar la sincronización de los
+datos con los que trabajan las aplicaciones de escritorio del sistema, se va a
+definir una aplicación que ofrezca todos los \emph{servicios web} que dichas
+aplicaciones necesiten. Es decir, cuando una de estas aplicaciones genere o
+necesite algún dato, este será solicitado al \emph{servicio web}
+correspondiente.
 
-    \subsubsection{\emph{ASP .NET}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% No sé si obviar esta parte o decir por encima como se estructuran las clases
-% que definen servicios web en .NET
+  Los datos representan el activo más importante del sistema y por ello es
+necesario garantizar su integridad. Para conseguirlo, la aplicación que
+implementa los \emph{servicios web} será la única que tendrá acceso a una
+\emph{base de datos} distribuida donde almacenará y recuperará todos los datos
+del sistema.
+
+    \subsubsection{Servicios web en \texttt{.NET}}
+La aplicación que da cabida a los servicios web va a implementarse utilizando
+el \emph{framework} \texttt{.NET}, al igual que las dos aplicaciones de
+escritorio.
+
+Para el desarrollo de servicios web en \texttt{.NET} es conveniente hacer uso
+del \acs{IDE} estándar de dicho \emph{framework}, es decir, de \texttt{Visual
+Studio}:
+\begin{enumerate}
+\item En primer lugar, se creará un nuevo proyecto \texttt{C\#} del tipo
+``\texttt{ASP .NET Web Service}''.
+\item A continuación, se añadirá al proyecto un nuevo servicio web. Los
+servicios web aparecen en el proyecto como un archivo con extensión
+``\texttt{.asmx}''.
+\item En el código del fichero ``\texttt{.asmx}'' que se acaba de crear, se
+añadirá el atributo \texttt{WebService} para indicar el
+\emph{namespace}\footnote{Es una palabra clave de \texttt{.NET} que se utiliza
+para declarar un \emph{ámbito}. Este \emph{ámbito} permite organizar el código
+y proporciona una forma de crear tipos globalmente únicos. Un mismo
+\emph{namespace} puede dar cabida a varios proyectos.} al que pertenecerá el
+servicio y una description del mismo (listado \ref{code:webService}):
+
+\begin{lstlisting}[
+  language = C,
+  caption  = {Ejemplo de creación de un servicio web.},
+  label    = code:webService]
+  [WebService(
+    Namespace="http://www.miSitio.es/MiNamespace",
+    Description="Aqui va la descripcion de mi servicio web")]
+  public class MiServicioWeb : System.Web.Services.WebService {
+    ...
+  }
+\end{lstlisting}
+
+\item El siguiente paso será añadir la definición del servicio web. Por norma
+general, y para que el servicio sea interoperable al 100\%, es conveniente
+incluir una sóla operación por cada servicio web, sin embargo, \texttt{.NET}
+permite incluir todas las operaciones que se necesiten. Para ello, sólo es
+necesario aplicar el atributo \emph{WebMethod} al método que se quiera publicar
+(listado \ref{code:webMethod}). Si no se añade dicho atributo, el método no
+será visible desde el servicio web. Al igual que con el atributo
+\emph{WebService}, \emph{WebMethod} también admite una descripción de la
+operación.
+
+\begin{lstlisting}[
+  language = C,
+  caption  = {Ejemplo de creación de un método web.},
+  label    = code:webMethod]
+  [WebMethod(
+    Description="Aqui va la descripcion del metodo web HolaMundo.")]
+  public string HolaMundo() {
+    return "Hola mundo";
+  }
+\end{lstlisting}
+
+\item Por último, se compila el proyecto y se publica la aplicación. Se
+generará un archivo \acs{WSDL}, que contiene toda la documentación que se
+indicó en los atributos \emph{WebService} y \emph{WebMethod} y será el que se 
+proporcione las aplicaciones interesadas en consumir alguno de los servicios
+definidos, para que conozcan los parámetros a utilizar y los tipos de retorno.
+El contenido del archivo \acs{WSDL} puede consultarse a través de la dirección:
+\url{http://www.miSitioWeb.es/MiServicioWeb.asmx?wsdl}.
+\end{enumerate}
+
+El siguiente paso sería conectar las aplicaciones de escritorio con el
+servicio web creado:
+\begin{enumerate}
+\item Uno de los atributos del proyecto de la aplicación de escritorio
+(desarrollada en \texttt{Visual C\#}, con \emph{Visual Studio}) es
+\emph{References}. Este atributo permite asignar referencias a librerías
+externas almacenadas en disco o a servicios web. En este caso, se añadirá una
+nueva \emph{Web Reference}.
+\item A continuación, se ingresa la \acs{URL} donde se encuentra el \acs{WSDL}
+creado, es decir: \url{http://www.miSitioWeb.es/MiServicioWeb.asmx?wsdl} y se
+le proporciona un nombre a la referencia, por ejemplo \emph{MiReferencia}.
+\emph{Visual Studio} genera automáticamente los \emph{stubs}\footnote{Son los
+trozos de código que simulan el comportamiento de un código ya existente (pero
+en una máquina remota) o sustituyen temporalmente a un código que aún no ha
+sido implementado.} del cliente.
+\item Por último, para hacer uso del método web definido en el servicio
+web se añadirá un código similar al siguiente (listado
+\ref{code:miReferencia}):
+
+\begin{lstlisting}[
+  language = C,
+  caption  = {Ejemplo de invocación de un método web.},
+  label    = code:miReferencia]
+  //Primero se crea una instancia del servicio
+  MiReferencia.MiServicioWeb ws = new MiReferencia.MiServicioWeb();
+  //Ahora ya pueden utilizarse sus metodos
+  Console.WriteLine(ws.HolaMundo());
+\end{lstlisting}
+
+\end{enumerate}
 
     \subsubsection{Base de datos \emph{MySQL}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ¿Explicar qué es SQL y qué es MySQL? y decir qué hay que hacer para acceder
-% una base de datos de este tipo.
+La base de datos del sistema va a estar implementada utilizando el \acs{SGBD}
+relacional, multihilo y multiusuario \texttt{MySQL}. La base de datos
+estará formada por varias tablas que almacenarán todos los datos que se
+vayan generando en el sistema. Estos datos serán accedidos únicamente por
+los servicios web.
+
+Para acceder a la base de datos a través de los servicios web será necesario
+el uso de una interfaz de programación para el lenguaje \texttt{C\#}, que es
+el lenguaje en el que va a implementarse la aplicación que contiene a dichos
+servicios. Dicha interfaz está implementada en la biblioteca de enlace
+dinámico (\acs{DLL}) \emph{MySql.Data.dll}. Para hacer uso de esta biblioteca
+es necesario referenciarla dentro del proyecto de los servicios web.
+
+Para acceder a la base de datos a través de la aplicación de los servicios web
+será necesario seguir los siguientes pasos:
+\begin{enumerate}
+\item En primer lugar, hay que crear una nueva instancia de una conexión
+\emph{MySQL}. Para ello, se utiliza una sentencia similar a esta:
+
+\begin{lstlisting}[
+  language = C]
+  MySqlConnection conexion =
+    new MySqlConnection("server='svr';database='db';uid='user';pwd='pass'");
+\end{lstlisting}
+
+Donde \texttt{'svr'} es la dirección \acs{URL} del servidor que aloja a la base
+de datos, \texttt{'db'} es el nombre de la base de datos y \texttt{'user'} y
+\texttt{'pass'} es el nombre y la contraseña respectivamente del usuario
+con el que se va a acceder a dicha base de datos.
+
+\item Antes de realizar cualquier consulta, es necesario
+abrir una conexión activa con la base de datos. Para ello, se utiliza el
+método \texttt{Open()}, que forma parte de la clase \texttt{MySqlConection}:
+
+\begin{lstlisting}[
+  language = C]
+  connection.Open();
+\end{lstlisting}
+
+\item A continuación, se construye un comando de tipo \texttt{MySqlCommand}
+utilizando para ello una sentencia \acs{SQL} con la consulta que se desea
+realizar y la instancia del objeto \texttt{MySqlConection} previamente
+abierta:
+
+\begin{lstlisting}[
+  language = C]
+  MySqlCommand comando = new MySqlCommand(sentencia, conexion);
+\end{lstlisting}
+
+\item Para ejecutar el comando construido se utiliza uno de estos dos métodos
+de la clase \texttt{MySqlCommand}, Dependerá del tipo de consulta a realizar:
+\begin{itemize}
+\item Si la consulta va a devolver unos resultados, es decir, si la consulta
+es del tipo \texttt{SELECT}, se utilizará el método \texttt{ExecuteReader()}
+y los resultados serán almacenados en una variable de tipo
+\texttt{MySqlDataReader}:
+
+\begin{lstlisting}[
+  language = C]
+  MySqlDataReader resultado = comando.ExecuteReader();
+\end{lstlisting}
+
+\item Por otro lado, si la consulta no va a devolver ningún resultado, es
+decir, si la consulta es del tipo: \texttt{INSERT}, \texttt{UPDATE},
+\texttt{DELETE}, \texttt{TRUNCATE}, etc.; se utilizará el método
+\texttt{ExecuteNonQuery()}:
+
+\begin{lstlisting}[
+  language = C]
+  comando.ExecuteNonQuery();
+\end{lstlisting}
+
+La consulta tendrá efecto en la base de datos pero no devolverá ningún
+resultado.
+\end{itemize}
+
+\item Por último, después de realizar una consulta, es preciso cerrar la
+conexión abierta. Para ello se hace uso del método \texttt{Close()}, que forma
+parte (al igual que \texttt{Open()}) de la clase \texttt{MySqlConection}:
+
+\begin{lstlisting}[
+  language = C]
+  connection.Close();
+\end{lstlisting}
+\end{enumerate}
+
+El usuario con el que la aplicación de los servicios web accede a la base
+de datos, tendrá privilegios para realizar consultas \acs{SQL} que afecten
+a los datos (\texttt{SELECT}, \texttt{INSERT}, \texttt{UPDATE},
+\texttt{DELETE} o \texttt{TRUNCATE}), pero no tendrá acceso a operaciones
+que afecten a la estructura  (\texttt{CREATE}, \texttt{DROP}, \texttt{TRIGGER},
+etc.) o a la administración (\texttt{CREATE USER}, \texttt{SHUTDOWN},
+\texttt{RELOAD}, etc.)de la base de datos.
 
   \subsection{Aplicación de la tecnología \acs{NFC}}
     \subsubsection{Introducción de la tecnología \acs{NFC} en el entorno}
