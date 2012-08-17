@@ -196,7 +196,7 @@ de servicios.
   el nivel del establecimiento.
 
   \subsection{Consideraciones del escenario}
-    \subsubsection{Restaurante tipo para el \acs{PFC}}
+    \subsubsection{Restaurante tipo}
   El presente \acs{PFC} va - en principio - orientado a restaurantes de tipo
   \emph{gourmet} o \emph{temático}, que son restaurantes que cuentan con
   servicio de camareros y disponen de una carta de productos. Además, el
@@ -236,11 +236,11 @@ de servicios.
   en cada momento.
 
   El uso combinado de la \textbf{tecnología \acs{NFC}} con el de las
-  \textbf{etiquetas \acs{RFID}}, permitirá al cliente interactuar con los
+  \textbf{etiquetas \acs{RFID}}, permitirán al cliente interactuar con los
   elementos del restaurantes, con el simple hecho de acercar su dispositivo
-  móvil a unas o a otras etiquetas.
+  móvil a una o a otra etiqueta.
 
-  La tecnología inalámbrica móvil que ofrece mayores posibilidades a la hora
+  La tecnología móvil inalámbrica que ofrece mayores posibilidades a la hora
   de comunicar el dispositivo móvil con los equipos fijos del restaurante es
   la tecnología \acs{WiFi}. No obstante, el único dispositivo móvil con el que
   se cuenta (\emph{\textbf{Nokia 6131 \acs{NFC}}}, facilitado por el
@@ -265,8 +265,8 @@ correspondiente.
   Los datos representan el activo más importante del sistema y por ello es
 necesario garantizar su integridad. Para conseguirlo, la aplicación que
 implementa los \emph{servicios web} será la única que tendrá acceso a una
-\emph{base de datos} distribuida donde almacenará y recuperará todos los datos
-del sistema.
+\emph{base de datos} distribuida donde almacenarán y recuperarán todos los
+datos del sistema.
 
     \subsubsection{Servicios web en \texttt{.NET}}
 La aplicación que da cabida a los servicios web va a implementarse utilizando
@@ -288,7 +288,7 @@ añadirá el atributo \texttt{WebService} para indicar el
 para declarar un \emph{ámbito}. Este \emph{ámbito} permite organizar el código
 y proporciona una forma de crear tipos globalmente únicos. Un mismo
 \emph{namespace} puede dar cabida a varios proyectos.} al que pertenecerá el
-servicio y una description del mismo (listado \ref{code:webService}):
+servicio y una descripción del mismo (listado \ref{code:webService}):
 
 \begin{lstlisting}[
   language = C,
@@ -326,7 +326,7 @@ operación.
 \item Por último, se compila el proyecto y se publica la aplicación. Se
 generará un archivo \acs{WSDL}, que contiene toda la documentación que se
 indicó en los atributos \emph{WebService} y \emph{WebMethod} y será el que se 
-proporcione las aplicaciones interesadas en consumir alguno de los servicios
+proporcione a las aplicaciones interesadas en consumir alguno de los servicios
 definidos, para que conozcan los parámetros a utilizar y los tipos de retorno.
 El contenido del archivo \acs{WSDL} puede consultarse a través de la dirección:
 \url{http://www.miSitioWeb.es/MiServicioWeb.asmx?wsdl}.
@@ -348,7 +348,7 @@ trozos de código que simulan el comportamiento de un código ya existente (pero
 en una máquina remota) o sustituyen temporalmente a un código que aún no ha
 sido implementado.} del cliente.
 \item Por último, para hacer uso del método web definido en el servicio
-web se añadirá un código similar al siguiente (listado
+web, se añadirá un código similar al siguiente (listado
 \ref{code:miReferencia}):
 
 \begin{lstlisting}[
@@ -380,7 +380,7 @@ es necesario referenciarla dentro del proyecto de los servicios web.
 Para acceder a la base de datos a través de la aplicación de los servicios web
 será necesario seguir los siguientes pasos:
 \begin{enumerate}
-\item En primer lugar, hay que crear una nueva instancia de una conexión
+\item En primer lugar, se crea una nueva instancia de una conexión
 \emph{MySQL}. Para ello, se utiliza una sentencia similar a esta:
 
 \begin{lstlisting}[
@@ -391,8 +391,8 @@ será necesario seguir los siguientes pasos:
 
 Donde \texttt{'svr'} es la dirección \acs{URL} del servidor que aloja a la base
 de datos, \texttt{'db'} es el nombre de la base de datos y \texttt{'user'} y
-\texttt{'pass'} es el nombre y la contraseña respectivamente del usuario
-con el que se va a acceder a dicha base de datos.
+\texttt{'pass'} son el nombre y la contraseña respectivamente del usuario
+con el que se va a acceder.
 
 \item Antes de realizar cualquier consulta, es necesario
 abrir una conexión activa con la base de datos. Para ello, se utiliza el
@@ -400,11 +400,11 @@ método \texttt{Open()}, que forma parte de la clase \texttt{MySqlConection}:
 
 \begin{lstlisting}[
   language = C]
-  connection.Open();
+  conexion.Open();
 \end{lstlisting}
 
 \item A continuación, se construye un comando de tipo \texttt{MySqlCommand}
-utilizando para ello una sentencia \acs{SQL} con la consulta que se desea
+utilizando para ello una sentencia \acs{SQL}, con la consulta que se desea
 realizar y la instancia del objeto \texttt{MySqlConection} previamente
 abierta:
 
@@ -413,12 +413,12 @@ abierta:
   MySqlCommand comando = new MySqlCommand(sentencia, conexion);
 \end{lstlisting}
 
-\item Para ejecutar el comando construido se utiliza uno de estos dos métodos
-de la clase \texttt{MySqlCommand}, Dependerá del tipo de consulta a realizar:
+\item Para ejecutar el comando construido se utilizará uno de estos dos métodos
+de la clase \texttt{MySqlCommand}, dependiendo del tipo de consulta a realizar:
 \begin{itemize}
-\item Si la consulta va a devolver unos resultados, es decir, si la consulta
+\item Si la consulta va a devolver un resultado, es decir, si la consulta
 es del tipo \texttt{SELECT}, se utilizará el método \texttt{ExecuteReader()}
-y los resultados serán almacenados en una variable de tipo
+y el resultado será almacenado en una variable de tipo
 \texttt{MySqlDataReader}:
 
 \begin{lstlisting}[
@@ -446,7 +446,7 @@ parte (al igual que \texttt{Open()}) de la clase \texttt{MySqlConection}:
 
 \begin{lstlisting}[
   language = C]
-  connection.Close();
+  conexion.Close();
 \end{lstlisting}
 \end{enumerate}
 
@@ -456,32 +456,136 @@ a los datos (\texttt{SELECT}, \texttt{INSERT}, \texttt{UPDATE},
 \texttt{DELETE} o \texttt{TRUNCATE}), pero no tendrá acceso a operaciones
 que afecten a la estructura  (\texttt{CREATE}, \texttt{DROP}, \texttt{TRIGGER},
 etc.) o a la administración (\texttt{CREATE USER}, \texttt{SHUTDOWN},
-\texttt{RELOAD}, etc.)de la base de datos.
+\texttt{RELOAD}, etc.) de la base de datos.
 
   \subsection{Aplicación de la tecnología \acs{NFC}}
     \subsubsection{Introducción de la tecnología \acs{NFC} en el entorno}
-  La introducción de la tecnología \acs{NFC} en un restaurante tiene por
-  objetivo identificar automáticamente a los clientes a su entrada. A partir de
-  su identificación, el restaurante puede ofrecerles servicios como:
-  realización de pedidos mediante una carta de etiquetas \acs{RFID} (desde la
-  mesa y sin necesidad de llamar al camarero), recomendaciones a medida
-  (calculadas a partir del histórico de pedidos del cliente en el restaurante),
-  descuentos por fidelización (los clientes recibirán descuentos periódicos
-  después   de varias visitas) y pago a través del móvil. Todos estos servicios
-  son posibles gracias a la combinación de la tecnología \acs{NFC} con alguna
-  tecnología inalámbrica de mayor alcance (como \acs{WiFi} o \emph{Bluetooth})
-  puesto que el cliente debe comunicarse también con los ordenadores del
-  restaurante.
-  
+Como ya se ha comentado, uno de los pilares de este proyecto es la
+incorporación de la tecnología \acs{NFC} en el ámbito de la restauración.
+El objetivo es crear un ambiente inteligente, con el que el cliente puede 
+interactuar para obtener una serie de servicios. Para ello, se distribuirán 
+por el restaurante de forma estratégica un conjunto de etiquetas \acs{RFID} 
+con diferentes cometidos. Cada tipo de etiqueta \acs{RFID} desencadenará en el 
+dispositivo móvil una respuesta distinta: iniciará el proceso de registro del 
+cliente con el restaurante, añadirá un producto a la lista de productos del 
+pedido, enviará el pedido al gestor de pedidos del restaurante, solicitará la 
+cuenta o iniciará el proceso de pago mediante \acs{NFC}.
+
+Las características de la tecnología \acs{NFC} favorecerán que las 
+interacciones del cliente sean sumamente sencillas e intuitivas, ya que estas 
+se producirán automáticamente con simple acto de aproximar su dispositivo 
+móvil a una de las etiquetas \acs{RFID}. Es decir, el cliente podrá acceder
+a cada uno de los servicios que se le ofrecen ``tocando'' la etiqueta
+correspondiente.
+
+Además, la incorporación de esta tecnología no supondrá la eliminación del
+sistema original implantado en el restaurante. Los clientes que no tengan
+o que no quieran aprovechar sus dispositivos \acs{NFC}, podrán hacer uso de
+los servicios que ofrece el restaurante de la forma ``tradicional''.
+
+Como puede verse en la figura \ref{fig:nfcGraph} (página
+\pageref{fig:nfcGraph}) o en el anexo \ref{chap:nfcMobiles} (página
+\pageref{chap:nfcMobiles}), el número de dispositivos que tienen entre sus 
+características la tecnologías \acs{NFC} ha ido aumentando casi 
+exponencialmente durante estos últimos años. Desgraciadamente, en Europa
+en general y en España en particular, aún no se ha alcanzado el grado de
+madurez que la tecnología \acs{NFC} ya tiene por otros países como Japón,
+Corea del Sur, China o, a mayor distancia, Estados Unidos. Esto ha producido
+que muchos de los modelos que incorporan \asc{NFC} no se comercialicen
+todavía en nuestro país.
+
+
+
+
+
+
+
+La lectura, gracias a un teléfono móvil NFC, de las etiquetas RFID existentes 
+en el entorno desencadenará una serie de procesos en el dispositivo, que 
+culminarán con el hecho de ofrecer al usuario los servicios para los que fueron 
+programadas. La obtención de estos servicios solamente requiere que el usuario 
+aproxime su teléfono móvil NFC a la etiqueta RFID correspondiente. 
+
+Sobre el funcionamiento del sistema y la obtención de servicios se hablará en
+posteriores apartados.
+
     \subsubsection{Nokia 6131 \acs{NFC}}
   % Apartado similar al de tu PFC, supongo
-  Hoy en día el número de
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  %http://www.nfcon.es/2012/03/23/lista-de-telefonos-moviles-smartphones-con-nfc/
+Aunque existen numerosos dispositivos con NFC (no solamente teléfonos móviles),
+se centrará el estudio en el tipo de teléfono móvil NFC usado en el desarrollo 
+del proyecto.
+
+A priori, cabe destacar que cualquier teléfono móvil NFC con soporte JAVA y que
+implemente la JSR-257 API puede beneficiarse de los servicios presentados, ya 
+que en él se podrán instalar las aplicaciones desarrolladas.
+
+Las principales características de este teléfono móvil son:
+\begin{itemize}
+\item Tiene 104g de peso y unas dimensiones de 92x47x20 mm.
+\item Similar al teléfono móvil Nokia6131 convencional.
+\item Incorpora Bluetooth.
+\item Memoria del móvil ampliable gracias al uso de tarjetas SD externas.
+\item Tecnología NFC integrada.
+  \begin{itemize}
+  \item Soporta la JSR-257 API para las aplicaciones Java que utilicen 
+  funciones NFC.
+  \item Soporta lectura/escritura de los formatos más populares de etiquetas
+  RFID (MIFARE 1K, 4K y Ultralight; Topaz; Jewel y FELICA.
+  \item Soporta la comunicación P2P mediante NFC.
+  \item Contiene un chip interno de 4K que puede funcionar como una tarjeta 
+  MIFARE para el alojamiento de datos seguros.
+  \end{itemize}
+\end{itemize}
+
+El principal inconveniente de este y de los demás dispositivos NFC del mercado, 
+ya comentado en las limitaciones del proyecto, es la no existencia de un 
+teléfono móvil que aúne la tecnología Wi-Fi junto con NFC, lo que ampliaría 
+enormemente el abanico de posibilidades al respecto. Es por ello que las 
+comunicaciones se realizan utilizando la tecnología Bluetooth del teléfono 
+móvil. Se prevé que en un futuro si se disponga de dispositivos que reúnan 
+todas estas tecnologías de comunicación.
 
   \subsection{Aplicación de la tecnología Bluetooth}
   % Apartado parecido al de tu PFC, supongo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Introducción de la tecnología \emph{Bluetooth} en el
+    entorno}
+
+    \subsubsection{La comunicación serie virtual}
+La comunicación serie tradicional entre computadores se suele realizar mediante
+conexiones RS232 (estándar de comunicación serie), utilizando la interfaz serie 
+del PC.
+
+De manera formal, la comunicación serie (full-duplex) se define como:
+``Un tipo de comunicación bidireccional que permite a dos dispositivos recibir
+datos, previamente serializados, a la vez que transmitirlos por el puerto 
+serie''.
+
+Estos puertos serie también se denominan puertos COM. Los puertos COM1 y
+COM2 están reservados para la comunicación serie por cable, mientras que todos 
+los demás puertos COM, normalmente a partir del COM3 o desde donde acaba la 
+numeración de los puertos físicos, se utilizan para la comunicación serie 
+virtual.
+
+Estos puertos COM virtuales son utilizados por dispositivos Bluetooth para 
+emular las conexiones RS232 tradicionales. Así, la tecnología Bluetooth llega 
+a ser un ``sustituto del cable'', utilizando una capa de abstracción que 
+representa el puerto serie virtual.
+
+La comunicación serie virtual permitirá la comunicación teléfono móvil – PC de
+una manera sencilla para el intercambio de datos entre ambos. Por otra parte, 
+se debe mencionar que este tipo de comunicación es eficaz cuando la cantidad 
+de datos a transmitir por el canal virtual es pequeña, ya que las conexiones 
+serie son excesivamente lentas. Por ello se recomienda para la transmisión de 
+órdenes y respuestas sencillas. (Strangio, 2006)
+
+Por su parte, la configuración de los puertos COM virtuales para su uso desde 
+el PC es muy sencilla.
+
+Si se desea transmitir vía Bluetooth gran cantidad de información como pueden 
+ser ficheros binarios completos, es conveniente la utilización de otras 
+alternativas también soportadas mediante Bluetooth como son el uso de 
+protocolos OBEX para el intercambio de archivos.
 
 \section{Metodología de trabajo}
 \label{sec:workingMethodology}
