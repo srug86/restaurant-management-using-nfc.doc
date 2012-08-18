@@ -454,6 +454,7 @@ Para solventar este problema, el formato \acs{NDEF} puede ser combinado con
 el propuesto por \emph{MiFare}.
 
   \subsection{La tecnología \emph{Bluetooth}}
+  \label{subsec:bluetooth}
 Es una especificación industrial (\acs{IEEE} 802.15.1) para redes inalámbricas
 de tipo \acs{PAN} (Personal Area Network) que define un estándar global que
 posibilita la transmisión de voz y datos entre diferentes dispositivos mediante
@@ -946,6 +947,7 @@ servicio (\acs{QoS}).
 % No sé si meterlo
 
   \subsection{La tecnología \texttt{Java}}
+  \label{subsec:java}
 La tecnología \texttt{Java} fue diseñado por James Gosling, de \texttt{Sun 
 Microsystems}, en 1990, como software para dispositivos electrónicos de
 consumo, como calculadoras y microondas. Inicialmente se llamó \texttt{Oak},
@@ -1332,11 +1334,11 @@ dispositivos. En principio, \acs{OBEX} era un estándar desarrollado por
 \acs{IrDA}, aunque ahora también es utilizado por otras tecnologías
 inalámbricas como \emph{Bluetooth}.
 
-La especificación \acs{JSR}-82 está orientada principalmente al desarrollo
-de aplicaciones para la plataforma \acs{JavaME}, ya que la \acs{API} ha sido
-diseñada para depender de la configuración \acs{CLDC}. Sin embargo, existen
-también implementaciones para poder hacer uso de esta \acs{API} sobre la
-plataforma \acs{JavaSE}~\cite{bib:jsr82}.
+La especificación \texttt{acs{JSR}-82} está orientada principalmente al 
+desarrollo de aplicaciones para la plataforma \acs{JavaME}, ya que la \acs{API} 
+ha sido diseñada para depender de la configuración \acs{CLDC}. Sin embargo, 
+existen también implementaciones para poder hacer uso de esta \acs{API} sobre
+la plataforma \acs{JavaSE}~\cite{bib:jsr82}.
 
 \item \textbf{\acs{JSR}-257} :- %(Contactless Communications API)
 
@@ -1366,69 +1368,7 @@ comunicación con tarjetas inteligentes externas.
 \item \emph{\textbf{javax.microedition.contactless.visual}} :- Permite la 
 lectura y la generación de etiquetas visuales.
 \end{itemize}
-
-Algunos de los conceptos básicos para el trabajo con etiquetas son los
-siguientes~\cite{bib:jfontecha}:
-\begin{itemize}
-\item \textbf{Implementación de interfaces}. Para poder hacer uso de las 
-funcionalidades \acs{NFC} por medio de \acs{JavaME}
-es necesario implementar al menos la interfaz \emph{TargetListener} en la
-clase principal de la aplicación. Esto permitirá la lectura y escritura de
-etiquetas una vez iniciada la aplicación.
-
-Si se desea que, ante el evento de contacto con una etiqueta, sea el propio
-móvil el que inicie la aplicación, se deberá implementar la interfaz
-\emph{NDEFRecordListener}, para provocar el ``autoarranque'' de la aplicación
-ante un tipo de etiqueta definido.
-
-\item \textbf{Descubrimiento de dispositivos y etiquetas}. Para poder leer y 
-escribir etiquetas \acs{RFID} con \acs{JavaME}, se necesita realizar un 
-descubrimiento previo y añadir el \emph{Listener} correspondiente. De esta 
-forma en el constructor del \emph{MIDlet} o nada más iniciar su ejecución 
-podrá realizarse su registro.
-
-Se debe registrar el tipo de etiqueta o registro dentro de la etiqueta que
-se pretende ``despertar'' al iniciar el contacto. El tipo de etiqueta puede
-definirse utilizando el formato \acs{MIME} (por ejemplo, \emph{app/mi\_tipo}).
-De esta forma, la aplicación estará preparada para leer y escribir etiquetas
-con este tipo.
-
-\item \textbf{Conexión y lectura/escritura de datos}. La  interfaz
-\emph{TargetListener} requiere la implementación del método
-\emph{targetDetected}, mediante el cual definir las acciones a realizar cuando 
-se establezca el contacto con una etiqueta \acs{RFID}.
-
-\item \textbf{Eliminación del \emph{Listener}}. Cuando ya no interese leer o 
-escribir etiquetas de un tipo determinado, se eliminará su registro 
-correspondiente. Con ello, la aplicación dejará de estar a la escucha de este 
-tipo de etiquetas, a menos que se vuelvan a registrar.
-
-\item \textbf{Lectura instantánea de información}. El registro del
-\emph{NDEFRecordListener} permitirá leer datos con el simple
-hecho de aproximar el dispositivo móvil a una etiqueta \acs{RFID}, sin 
-necesidad de que, la aplicación que hará uso de sus datos, esté en ejecución.
-Para ello, debe implementarse el método \emph{RecordDetected}.
-
-El método \emph{RecordDetected} obtiene directamente el objeto de tipo
-\emph{NDEFMessage} que contiene el mensaje de la etiqueta \acs{RFID}.
-
-Una vez extraída la información de la etiqueta, comenzará la ejecución normal
-de la aplicación, teniendo los datos de la etiqueta disponibles para su
-tratamiento desde el principio. Sin embargo, para provocar el ``auto-arranque''
-de la aplicación, es necesario dar de alta a la misma en el
-\emph{Push-Registry} \texttt{Java} del dispositivo móvil.
-
-\item \textbf{El \emph{Push-Registry}}. Es una clase interna \acs{JavaME} que 
-permite ejecutar aplicaciones en principio inactivas, ante la respuesta a un 
-evento, como puede ser el \emph{timer} de un reloj, la aproximación de una 
-etiqueta \acs{RFID} al dispositivo, etc.
-
-Cuando una aplicación define el \emph{Push-Registry} como respuesta a un
-evento, este hecho queda registrado en el archivo description de la
-aplicacion móvil (archivo con extensión \emph{.jad}).
 \end{itemize}
-\end{itemize}
-
 
 \subsection{Las pantallas táctiles}
 

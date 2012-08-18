@@ -479,113 +479,367 @@ a cada uno de los servicios que se le ofrecen ``tocando'' la etiqueta
 correspondiente.
 
 Además, la incorporación de esta tecnología no supondrá la eliminación del
-sistema original implantado en el restaurante. Los clientes que no tengan
-o que no quieran aprovechar sus dispositivos \acs{NFC}, podrán hacer uso de
-los servicios que ofrece el restaurante de la forma ``tradicional''.
-
-Como puede verse en la figura \ref{fig:nfcGraph} (página
-\pageref{fig:nfcGraph}) o en el anexo \ref{chap:nfcMobiles} (página
-\pageref{chap:nfcMobiles}), el número de dispositivos que tienen entre sus 
-características la tecnologías \acs{NFC} ha ido aumentando casi 
-exponencialmente durante estos últimos años. Desgraciadamente, en Europa
-en general y en España en particular, aún no se ha alcanzado el grado de
-madurez que la tecnología \acs{NFC} ya tiene por otros países como Japón,
-Corea del Sur, China o, a mayor distancia, Estados Unidos. Esto ha producido
-que muchos de los modelos que incorporan \asc{NFC} no se comercialicen
-todavía en nuestro país.
-
-
-
-
-
-
-
-La lectura, gracias a un teléfono móvil NFC, de las etiquetas RFID existentes 
-en el entorno desencadenará una serie de procesos en el dispositivo, que 
-culminarán con el hecho de ofrecer al usuario los servicios para los que fueron 
-programadas. La obtención de estos servicios solamente requiere que el usuario 
-aproxime su teléfono móvil NFC a la etiqueta RFID correspondiente. 
-
-Sobre el funcionamiento del sistema y la obtención de servicios se hablará en
-posteriores apartados.
+sistema original implantado en el restaurante. Los clientes que no puedan
+o no quieran utilizar este sistema, podrán hacer uso de los servicios que 
+ofrece el restaurante de la forma ``tradicional''.
 
     \subsubsection{Nokia 6131 \acs{NFC}}
-  % Apartado similar al de tu PFC, supongo
-Aunque existen numerosos dispositivos con NFC (no solamente teléfonos móviles),
-se centrará el estudio en el tipo de teléfono móvil NFC usado en el desarrollo 
-del proyecto.
+Como se vió en la figura \ref{fig:nfcGraph} (página
+\pageref{fig:nfcGraph}) o puede verse en el anexo \ref{chap:nfcMobiles} (página
+\pageref{chap:nfcMobiles}), el número de dispositivos que tienen entre sus 
+características la tecnologías \acs{NFC} ha ido aumentando casi 
+exponencialmente durante los últimos años. Desgraciadamente, en Europa, aún 
+no se ha alcanzado el grado de madurez que la tecnología \acs{NFC} ya tiene 
+en países como Japón, Corea del Sur, China o, en menor medida, Estados 
+Unidos. Como consecuencia de esto, muchos de los modelos que incorporan
+\acs{NFC} no se comercialicen todavía en nuestro país.
 
-A priori, cabe destacar que cualquier teléfono móvil NFC con soporte JAVA y que
-implemente la JSR-257 API puede beneficiarse de los servicios presentados, ya 
-que en él se podrán instalar las aplicaciones desarrolladas.
+El dispositivo móvil que va a utilizarse para el desarrollo del presente
+\acs{PFC} es el \texttt{Nokia 6131 \acs{NFC}} (figura \ref{fig:nokia6131}). 
+Aunque a priori, cualquier dispositivo móvil \acs{NFC} que cuente con soporte 
+\texttt{Java}, que cuente con tecnología \emph{Bluetooth} y que implemente las 
+\acs{API}s \texttt{\acs{JSR}-257} y \texttt{\acs{JSR}-82} puede beneficiarse 
+de los servicios implementados.
 
-Las principales características de este teléfono móvil son:
+\begin{figure}[!h]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{nokia6131.png}
+    \caption{\texttt{Nokia 6131 \acs{NFC}}.}
+    \label{fig:nokia6131}
+  \end{center}
+\end{figure}
+
+Las principales características de este dispositivo móvil son:
 \begin{itemize}
-\item Tiene 104g de peso y unas dimensiones de 92x47x20 mm.
-\item Similar al teléfono móvil Nokia6131 convencional.
-\item Incorpora Bluetooth.
-\item Memoria del móvil ampliable gracias al uso de tarjetas SD externas.
-\item Tecnología NFC integrada.
+\item Similar a la versión \texttt{Nokia 6131} convencional.
+\item Peso: 112 gramos.
+\item Dimensiones: 92x48x20 mm.
+\item Pantalla a color \acs{TFT} de 2.2 pulgadas, con resolución de 240x320 
+píxeles.
+\item Memoria teléfono: 11 MB.
+\item Expansión memoria: microSD (hasta 2 GB).
+\item Sistema:
   \begin{itemize}
-  \item Soporta la JSR-257 API para las aplicaciones Java que utilicen 
-  funciones NFC.
-  \item Soporta lectura/escritura de los formatos más populares de etiquetas
-  RFID (MIFARE 1K, 4K y Ultralight; Topaz; Jewel y FELICA.
-  \item Soporta la comunicación P2P mediante NFC.
-  \item Contiene un chip interno de 4K que puede funcionar como una tarjeta 
-  MIFARE para el alojamiento de datos seguros.
+  \item Configuración \texttt{Java}: \texttt{CLDC 1.1}.
+  \item Perfil \texttt{Java}: \texttt{\acs{MIDP} 2.0}.
+  \item Versión del \acs{SO}: \texttt{S40}.
+  \end{itemize}
+\item Conectividad:
+  \begin{itemize}
+  \item \texttt{Bluetooth 2.0} y \texttt{Bluetooth 2.0 EDR}.
+  \item \acs{IrDA}.
+  \item \acs{NFC}.
+  \end{itemize}
+\item Y además:
+  \begin{itemize}
+  \item Soporta las \acs{API}s \texttt{\acs{JSR}-257} y \texttt{\acs{JSR}-82}.
+  \item Soporta la lectura y escritura de los principales formatos de
+  etiquetas \acs{RFID}: \texttt{Mifare} (1K, 4K y \emph{Ultralight}),
+  \texttt{Topaz}, \texttt{Jewel} y \texttt{Felica}.
+  \item Soporta comunicación inalámbrica \acs{P2P}.
+  \item Contiene un chip interno de 4K que puede funcionar como una tarjeta
+  inteligente \texttt{Mifare} para el alojamiento de datos seguros.
   \end{itemize}
 \end{itemize}
 
-El principal inconveniente de este y de los demás dispositivos NFC del mercado, 
-ya comentado en las limitaciones del proyecto, es la no existencia de un 
-teléfono móvil que aúne la tecnología Wi-Fi junto con NFC, lo que ampliaría 
-enormemente el abanico de posibilidades al respecto. Es por ello que las 
-comunicaciones se realizan utilizando la tecnología Bluetooth del teléfono 
-móvil. Se prevé que en un futuro si se disponga de dispositivos que reúnan 
-todas estas tecnologías de comunicación.
+El anexo \ref{chap:nokia} contiene las características detalladas de este
+dispositivo.
 
-  \subsection{Aplicación de la tecnología Bluetooth}
-  % Apartado parecido al de tu PFC, supongo
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Introducción de la tecnología \emph{Bluetooth} en el
-    entorno}
+  \subsubsection{Uso de la \acs{API} \texttt{\acs{JSR}-257}}
+En la sección \ref{subsec:java} (la tecnología \texttt{Java}) se comentó, que
+las \acs{JSR} son \acs{API}s que extienden la funcionalidad estándar de la 
+plataforma \texttt{Java}. En este caso, la \texttt{\acs{JSR}-257} va a
+proporcionar la funcionalidad necesaria para implementar aplicaciones que
+hagan uso de la tecnología \acs{NFC}, como es el caso de la aplicación móvil
+del cliente del sistema definido en el presente \acs{PFC}.
 
-    \subsubsection{La comunicación serie virtual}
-La comunicación serie tradicional entre computadores se suele realizar mediante
-conexiones RS232 (estándar de comunicación serie), utilizando la interfaz serie 
-del PC.
+A continuación, se va a hacer un repaso de los conceptos básicos que forman
+parte del trabajo con etiquetas inteligentes y su implementación a partir
+de la \acs{API} \texttt{\acs{JSR}-257}~\cite{bib:jfontecha}:
+\begin{itemize}
+\item \textbf{Implementación de interfaces}. Para poder hacer uso de las 
+funcionalidades \acs{NFC} por medio de \acs{JavaME}
+es necesario implementar al menos la interfaz \texttt{TargetListener} en la
+clase principal de la aplicación. Esto permitirá la lectura y escritura de
+etiquetas una vez iniciada la aplicación.
 
-De manera formal, la comunicación serie (full-duplex) se define como:
-``Un tipo de comunicación bidireccional que permite a dos dispositivos recibir
-datos, previamente serializados, a la vez que transmitirlos por el puerto 
-serie''.
+Si además se desea que, ante el evento de contacto con una etiqueta, sea el 
+propio móvil el que inicie la aplicación, se deberá implementar la interfaz
+\texttt{NDEFRecordListener}, para provocar el ``autoarranque'' de la aplicación
+ante un tipo de etiqueta definido.
 
-Estos puertos serie también se denominan puertos COM. Los puertos COM1 y
-COM2 están reservados para la comunicación serie por cable, mientras que todos 
-los demás puertos COM, normalmente a partir del COM3 o desde donde acaba la 
-numeración de los puertos físicos, se utilizan para la comunicación serie 
-virtual.
+Implementar tanto \texttt{TargetListener} como \texttt{NDEFRecordListener},
+implica sobreescribir los métodos de dichas interfaces,
+\texttt{recordDetected/1} y \texttt{targetDetected/1} respectivamente
+(figura \ref{code:extendsNFC}):
 
-Estos puertos COM virtuales son utilizados por dispositivos Bluetooth para 
-emular las conexiones RS232 tradicionales. Así, la tecnología Bluetooth llega 
-a ser un ``sustituto del cable'', utilizando una capa de abstracción que 
-representa el puerto serie virtual.
+\begin{lstlisting}[
+  language = Java,
+  caption = {Implementación de las interfaces \texttt{TargetListener} y
+  \texttt{NDEFRecordListener}.},
+  label = code:extednsNFC]
+  public class MiMIDLet extends MIDlet implements NDEFRecordListener, TargetListener {
+    @override
+    void recordDetected(NDEFMessage ndefMessage) { ... }
+    @override
+    void targetDetected(TargetProperties[] properties) { ... }
+  }
+\end{lstlisting}
 
-La comunicación serie virtual permitirá la comunicación teléfono móvil – PC de
-una manera sencilla para el intercambio de datos entre ambos. Por otra parte, 
-se debe mencionar que este tipo de comunicación es eficaz cuando la cantidad 
-de datos a transmitir por el canal virtual es pequeña, ya que las conexiones 
-serie son excesivamente lentas. Por ello se recomienda para la transmisión de 
-órdenes y respuestas sencillas. (Strangio, 2006)
+\item \textbf{Descubrimiento de dispositivos y etiquetas}. Para poder leer y 
+escribir etiquetas \acs{RFID} con \acs{JavaME}, se necesita realizar un 
+descubrimiento previo y añadir el \emph{Listener} correspondiente. De esta 
+forma en el constructor del \emph{MIDlet} o nada más iniciar su ejecución, 
+podrá realizarse su registro.
 
-Por su parte, la configuración de los puertos COM virtuales para su uso desde 
-el PC es muy sencilla.
+Al iniciar el contacto, se registrará el tipo de etiqueta o registro dentro de 
+etiqueta que se pretende ``despertar''. El tipo de etiqueta puede
+definirse utilizando el formato \acs{MIME} (por ejemplo, \emph{app/mi\_tipo}).
+De esta forma, la aplicación estará preparada para leer y escribir etiquetas
+con este tipo.
 
-Si se desea transmitir vía Bluetooth gran cantidad de información como pueden 
-ser ficheros binarios completos, es conveniente la utilización de otras 
-alternativas también soportadas mediante Bluetooth como son el uso de 
-protocolos OBEX para el intercambio de archivos.
+El listado \ref{code:addListener} muestra un ejemplo en el que se añaden
+dos \emph{Listener}s:
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {Se añade un \emph{Listener} para etiquetas \texttt{NDEF} y otro
+  para etiquetas \texttt{NDEF} del tipo ``app/mi\_tipo''.},
+  label = code:addListener]
+  try{
+    DiscoveryManager.getInstance().addTargetListener(this, TargetType.NDEF_TAG);
+    DiscoveryManager.getInstance().addNDEFRecordListener(this, new NDEFRecordType(NDEFRecordType.MIME, ``app/mi_tipo''));
+  } catch(ContactlessException e) { }
+\end{lstlisting}
+
+\item \textbf{Conexión y lectura/escritura de datos}. La  interfaz
+\texttt{TargetListener} requiere la implementación del método
+\texttt{targetDetected}, mediante el cual se definen las acciones a realizar 
+cuando se establezca el contacto con una etiqueta \acs{RFID}. El listado
+\ref{code:targetDetected} muestra un ejemplo de implementación:
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {Ejemplo de implementación del método \texttt{targetDetected} en
+  la que se realizan varias operaciones.},
+  label = code:targetDetected]
+  public void targetDetected(TargetProperties[] prop) {
+    NDEFTagConnection conn = null;
+    //Obtenemos las propiedades de la etiqueta
+    TargetProperties target = prop[0];
+    try {
+      // Obtenemos la url de la etiqueta para ``conectarnos'' con ella
+      String url = target.getUrl();
+      // Abrimos la conexion y la almacenamos en un objeto NDEFTagConnection
+      conn = (NDEFTagConnection)Connector.open(url);
+      // Leemos los datos de la etiqueta y los almacenamos en un objeto NDEFMessage
+      NDEFMessage message = conn.readNDEF();
+      // Obtenemos el numero de registros del mensaje
+      NDEFRecord[] records = message.getRecords();
+      // Operamos con esos registros y ejecutamos las acciones correspondientes
+      // Podemos crear y escribir un nuevo mensaje en la etiqueta de esta forma
+      conn.writeNDEF(message);
+      //Cerramos la conexion
+      conn.close();
+    } catch (...) { }
+  }
+\end{lstlisting}
+
+\item \textbf{Eliminación del \emph{Listener}}. Cuando ya no interese leer o 
+escribir etiquetas de un tipo determinado, se eliminará su registro 
+correspondiente. Con ello, la aplicación dejará de estar a la escucha de este 
+tipo de etiquetas, a menos que se vuelvan a registrar (listado
+\ref{code:removeListener}):
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {Se eliminan los \emph{Listener}s añadidos en el listado
+  \ref{code:addListener}.},
+  label = code:removeListener]
+  try {
+    DiscoveryManager.getInstance().removeNDEFRecordListener(this, new
+    NDEFRecordType(NDEFRecordType.MIME,``app/mi_tipo''));
+    DiscoveryManager.getInstance().removeTargetListener(this, TargetType.NDEF_TAG);
+  } catch (...) { }
+\end{lstlisting}
+
+\item \textbf{Lectura instantánea de información}. El registro del
+\texttt{NDEFRecordListener} permitirá leer datos con el simple
+hecho de aproximar el dispositivo móvil a una etiqueta \acs{RFID}, sin 
+necesidad de que, la aplicación que hará uso de sus datos, esté en ejecución.
+Para ello, debe implementarse el método \emph{RecordDetected}.
+
+El método \texttt{recordDetected} obtiene directamente el objeto de tipo
+\texttt{NDEFMessage} que contiene el mensaje de la etiqueta \acs{RFID}
+(figura \ref{code:recordDetected}).
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {El objeto \texttt{peli}, de tipo \texttt{Pelicula}, almacena
+  el contenido del registro 0 de la etiqueta, extraído por el lector
+  \acs{NFC}.},
+  label = code:recordDetected]
+  public void recordDetected(NDEFMessage nDEFMessage) {
+    // Nos aseguramos que el mensaje contenido en el registro 0 de la etiqueta es de tipo ``app/objeto''
+    if (nDEFMessage.getRecord(0).getRecordType().getName().equals(``app/pelicula'')){
+      //Obtengo la informacion contenida en ese mensaje y construyo con ella un objeto especifico de mi aplicacion.
+      peli = new Pelicula(nDEFMessage.getRecord(0).getPayload());
+    }
+  }
+\end{lstlisting}
+
+Una vez extraída la información de la etiqueta, comenzará la ejecución normal
+de la aplicación, teniendo los datos de la etiqueta disponibles para su
+tratamiento desde el principio. Sin embargo, para provocar el ``auto-arranque''
+de la aplicación, es necesario dar de alta a la misma en el
+\emph{Push-Registry} \texttt{Java} del dispositivo móvil.
+
+\item \textbf{El \emph{Push-Registry}}. Es una clase interna \acs{JavaME} que 
+permite ejecutar aplicaciones en principio inactivas, ante la respuesta a un 
+evento, como puede ser el \emph{timer} de un reloj, la aproximación de una 
+etiqueta \acs{RFID} al dispositivo, etc.
+
+Cuando una aplicación define el \emph{Push-Registry} como respuesta a un
+evento, este hecho queda registrado en el archivo description de la
+aplicacion móvil (archivo con extensión \emph{.jad}).
+\end{itemize}
+
+\subsection{Aplicación de la tecnología \texttt{Bluetooth}}
+La tecnología ideal para comunicar los dispositivos móviles de los clientes con
+los equipos del restaurante sería la tecnología \acs{WiFi}. Desafortunadamente,
+el \texttt{Nokia 6131 \acs{NFC}} no cuenta con esta tecnología. Por ello, para
+desempeñar tal cometido, se ha seleccionado otra de las tecnologías
+inalámbricas que dicho dispositivo si posee, en este caso la tecnología
+\emph{Bluetooth}.
+
+  \subsubsection{Introducción de la tecnología \emph{Bluetooth} en el entorno}
+La tecnología \emph{Bluetooth} va a facilitar las comunicaciones entre los
+dispositivos \acs{NFC} de los clientes y las aplicaciones que forman parte del 
+sistema del restaurante.
+
+Las comunicaciones \emph{Bluetooth} entre cliente y restaurante van a seguir 
+el esquema \emph{\textbf{cliente-servidor}}. Las aplicaciones del restaurante 
+ejecutarán un servidor \emph{Bluetooth} y mantendrán activo un
+\textbf{servicio} que será localizable a través de su identificador único, que 
+será conocido por el cliente.
+
+Por lo tanto, las conexiones serán iniciadas siempre por parte del cliente, 
+cuando alguna de las interacciones \acs{NFC} solicite un servicio del
+servidor \emph{Bluetooth} del restaurante. Dependiendo de la interacción, el 
+cliente enviará: la solicitud de un pedido, la solicitud de la cuenta o la 
+solicitud del ingreso, pago o abandono del local. Todos estos mensajes serán 
+enviados irán acompañados de los datos personales (completos o parciales) del 
+cliente.
+
+Las respuestas a estas solicitudes serán elaboradas por la correspondiente 
+aplicación del restaurante, teniendo en cuenta el estado actual del cliente; y 
+se emitirán dentro de la misma conexión. Una vez enviada la respuesta, se
+dará por finalizada la comunicación, cerrando la conexión.
+
+Por último, cabe reseñar que, el contar con la tecnología \emph{Bluetooth} va
+a ir acompañado de tener que lidiar con sus desventajas (que pudieron verse en 
+la sección \ref{subsec:bluetooth}, en el apartado de desventajas). Las que
+más pueden afectar a la implementación de la aplicación móvil son las 
+siguientes:
+\begin{itemize}
+\item La velocidad de transmisión es lenta para archivos pesados. En el
+caso del \texttt{Nokia 6131 \acs{NFC}}, la versión del \emph{Bluetooth} es
+la \texttt{2.0 EDR}, por lo que (según la tabla \ref{tab:btSpeed}, página
+\pageref{tab:Speed}), el ancho de banda es de 3 Mbit/s. Afortunadamente, las
+transacciones de datos no se antojan muy pesadas.
+\item El alcance es bastante limitado. El \emph{Bluetooth} del
+\texttt{Nokia 6131 \acs{NFC}} es de \emph{Clase 2}, por lo tanto, según
+la tabla \ref{tab:tbClasses} (página \pageref{tab:tbClasses}), el rango
+de alcance está en torno a los 25 metros. Dependiendo de la extensión del
+restaurante, esto puede suponer un problema.
+\item Además, existe una limitación en cuanto a la cantidad de dispositivos 
+que pueden estar conectados en una misma red \emph{Bluetooth}. El máximo es de 
+8 dispositivos simultáneos. Como se prevé que las comunicaciones van a ser
+más o menos rápido, será difícil que se produzcan más de 8 comunicaciones
+simultáneas, a no ser que el restaurante tenga un gran aforo y este esté cerca
+del completo.
+\end{itemize}
+
+  \subsubsection{La comunicación serie virtual}
+Como se ha comentado anteriormente, las comunicaciones inalámbricas que se 
+produzcan vía \emph{Bluetooth} van consistir en: la emisión de un mensaje de 
+solicitud por parte del cliente y la respuesta a este por parte del 
+restaurante. Los mensajes no van a tener una gran extensión y van a ser 
+enviados en forma de cadena de caracteres\footnote{Dependiendo de la 
+complejidad del mensaje, la cadena de caracteres irá o no codificada en 
+formato \acs{XML}.}. Por este motivo, una \emph{comunicación en serie virtual} 
+puede ser la forma más eficiente para llevar a cabo este
+procedimiento\footnote{Si se hubieran tenido que transmitir una gran cantidad
+de datos como pueden ser archivos binarios completos, hubiera sido más 
+conveniente utilizar otra alternativa, como el protocolo \acs{OBEX} para el 
+intercambio de archivos.}.
+
+La \emph{comunicación en serie virtual} funciona de forma similar a la
+comunicación en serie (\emph{full-duplex}) entre dos PCs conectados 
+mediante una interfaz \texttt{RS-232}. Es decir, también se trata de un
+tipo de comunicación bidireccional que permite a dos dispositivos
+recibir datos previamente serializados, a la vez que transmitirlos por el
+puerto serie.
+
+Los puertos reservados para la comunicación serie cableada son el \texttt{COM1}
+y el \texttt{COM2}, mientras que todos los demás \texttt{COMx} (o a partir de
+donde se acaban los puertos físicos), pueden ser utilizados para la 
+\emph{comunicación en serie virtual}.
+
+En este \acs{PFC}, los puertos virtuales van a ser utilizados por los
+dispositivos \emph{Bluetooth} para emular conexiones \texttt{RS-232}
+tradicionales.
+
+  \subsubsection{Uso de la \acs{API} \texttt{\acs{JSR}-82}}
+Al igual que ocurría con la \texttt{\acs{JSR}-257} para \acs{NFC}, la \acs{API}
+\texttt{\acs{JSR}-82} va a proporcionar las clases e interfaces necesarias para
+implementar la funcionalidad \emph{Bluetooth} de la aplicación móvil del
+cliente.
+
+A continuación, se va a hacer un repaso de las principales clases y métodos
+que forman parte del paquete \texttt{javax.bluetooth}, que está orientado a 
+las operaciones \emph{Bluetooth} que no utilizan el protocolo \acs{OBEX}.
+Como, en este caso, la aplicación del cliente siempre va a ejercer como 
+cliente, en el esquema \emph{cliente-servidor}, sólo van a exponerse las
+clases orientadas a las comunicaciones cliente \acs{SPP}\footnote{El
+\emph{Serial Port Profile} es un perfil \emph{Bluetooth} basado en la
+\texttt{\acs{ETSI} 07,10} y en el protocolo \acs{RFCOMM}, que emula
+un cable serial para proporcionar un sustituto similar a la interfaz
+\texttt{RS-232}, incluyendo sus principales señales de control.}:
+\begin{itemize}
+\item AAA
+\end{itemize}
+
+  \subsubsection{Uso de la biblioteca \texttt{32feet.NET}}
+Las aplicaciones del restaurante van a implementarse utilizando el lenguaje
+\texttt{Visual C\# .NET}. Por lo tanto, será necesario hacer uso de una 
+biblioteca que contenga una implementación en dicho lenguaje de las 
+operaciones típicas de un servidor \emph{Bluetooth}. Esta biblioteca es la
+\texttt{32feet.NET}
+
+\texttt{32feet.NET} es un proyecto de código fuente compartido que tiene
+como objetivo hacer que tecnologías \acs{PAN}, como \texttt{Bluetooth}, 
+\acs{IrDA}, etc., sean más fácilmente accesibles desde \texttt{.NET}. Es 
+compatible con sistemas de escritorio, móviles o incrustados.
+Actualmente, el proyecto se compone de las siguientes tecnologías:
+\begin{itemize}
+\item \texttt{Bluetooth}.
+\item \acs{IrDA}.
+\item \acs{OBEX}.
+\end{itemize}
+El soporte para \emph{Bluetooth} requiere un dispositivo con
+\texttt{Microsoft} o con una pila \texttt{Bluetooth Widcomm}. Otros requisitos 
+son: \texttt{.NET Compact Framework v2.0} o superior y \texttt{Windows CE .NET 
+4.2} o superior; o \texttt{.NET Framework v2.0} o superior para sistemas
+operativos \texttt{Windows XP},  \texttt{Windows Vista} o
+\texttt{Windows 7}~\cite{bib:32feet}.
+
+A continuación, se va a hacer un rápido repaso de los métodos y operaciones
+de la biblioteca \texttt{32feet.NET} que van a intervenir en la creación de un 
+servidor \emph{Bluetooth}:
+\begin{itemize}
+\item AAA
+\end{itemize}
 
 \section{Metodología de trabajo}
 \label{sec:workingMethodology}
@@ -805,27 +1059,27 @@ desarrollo de este \acs{PFC}.
   restringidos, como son los dispositivos móviles.
 
   \acs{JavaME} fue desarrollado mediante el Java Community Process bajo la 
-  especificación \emph{JSR 68}. La evolución de la plataforma ha propiciado el 
-  abandono de las Java Specification Request (peticiones de especificación 
-  para Java) en favor de \acs{JSR}s separadas para las distintas versiones de 
-  \acs{JavaME}.
+  especificación \texttt{\acs{JSR}-68}. La evolución de la plataforma ha 
+  propiciado el abandono de las \emph{Java Specification Request} (peticiones  
+  de especificación para \texttt{Java}) en favor de \acs{JSR}s separadas para  
+  las distintas versiones de \acs{JavaME}.
 
   Por ejemplo, para el desarrollo de la aplicación móvil se han utilizado
   principalmente dos \acs{JSR}s:
     \begin{itemize}
-    \item \textbf{JSR-82}. Que implementa las funcionalidades
+    \item \textbf{\acs{JSR}-82}. Que implementa las funcionalidades
     propias de las comunicaciones vía \emph{Bluetooth} entre dispositivos.
-    \item \textbf{JSR-257}. Que implementa las funcionalidades propias
+    \item \textbf{\acs{JSR}-257}. Que implementa las funcionalidades propias
     de las comunicaciones \acs{NFC}.
     \end{itemize}
 
   Además de estas, también se ha hecho uso de la librería
-  \emph{kxml2-min-2.3.0} que permite construir y recorrer documentos o cadenas 
-  expresados en \acs{XML}.
+  \texttt{kxml2-min-2.3.0} que permite construir y recorrer documentos o 
+  cadenas expresados en \acs{XML}.
 
   \item \textbf{XML}.
   Es un lenguaje de marcas desarrollado por el
-  World Wide Web Consortium (\acs{W3C}). Permite definir la gramática de
+  \emph{World Wide Web Consortium} (\acs{W3C}). Permite definir la gramática de
   lenguajes específicos para estructurar documentos grandes. A diferencia de
   otros lenguajes, \acs{XML} da soporte a bases de datos, siendo útil cuando
   varias aplicaciones se deben comunicar entre sí o integrar información.
