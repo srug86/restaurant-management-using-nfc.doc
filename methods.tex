@@ -717,11 +717,26 @@ La tecnología \emph{Bluetooth} va a facilitar las comunicaciones entre los
 dispositivos \acs{NFC} de los clientes y las aplicaciones que forman parte del 
 sistema del restaurante.
 
-Las comunicaciones \emph{Bluetooth} entre cliente y restaurante van a seguir 
-el esquema \emph{\textbf{cliente-servidor}}. Las aplicaciones del restaurante 
-ejecutarán un servidor \emph{Bluetooth} y mantendrán activo un
-\textbf{servicio} que será localizable a través de su identificador único, que 
-será conocido por el cliente.
+Estas comunicaciones van a seguir un esquema \emph{\textbf{cliente-servidor}}:
+\begin{itemize}
+\item El \texttt{cliente \texttt{Bluetooth}} se encargará de las siguientes 
+tareas:
+  \begin{itemize}
+  \item \textbf{Búsqueda los de dispositivos} \texttt{Bluetooth} que estén a su
+alcance en modo conectable.
+  \item \textbf{Búsqueda los de servicios} que ofrece cada dispositivo.
+  \item \textbf{Establecimiento de la conexión} con uno de estos servicios.
+  \item \textbf{Comunicación} en forma de lecturas y/o escrituras a través
+de una conexión establecida.
+  \end{itemize}
+\item Por otro lado, el \texttt{servidor \texttt{Bluetooth}} deberá realizar
+las siguientes operaciones:
+  \begin{itemize}
+  \item \textbf{Crear una conexión servidora.}
+  \item \textbf{Especificar los atributos de servicio.}
+  \item \textbf{Abrir las conexiones clientes.}
+  \end{itemize}
+\end{itemize}
 
 Por lo tanto, las conexiones serán iniciadas siempre por parte del cliente, 
 cuando alguna de las interacciones \acs{NFC} solicite un servicio del
@@ -745,11 +760,11 @@ siguientes:
 \item La velocidad de transmisión es lenta para archivos pesados. En el
 caso del \texttt{Nokia 6131 \acs{NFC}}, la versión del \emph{Bluetooth} es
 la \texttt{2.0 EDR}, por lo que (según la tabla \ref{tab:btSpeed}, página
-\pageref{tab:Speed}), el ancho de banda es de 3 Mbit/s. Afortunadamente, las
+\pageref{tab:btSpeed}), el ancho de banda es de 3 Mbit/s. Afortunadamente, las
 transacciones de datos no se antojan muy pesadas.
 \item El alcance es bastante limitado. El \emph{Bluetooth} del
 \texttt{Nokia 6131 \acs{NFC}} es de \emph{Clase 2}, por lo tanto, según
-la tabla \ref{tab:tbClasses} (página \pageref{tab:tbClasses}), el rango
+la tabla \ref{tab:btClasses} (página \pageref{tab:btClasses}), el rango
 de alcance está en torno a los 25 metros. Dependiendo de la extensión del
 restaurante, esto puede suponer un problema.
 \item Además, existe una limitación en cuanto a la cantidad de dispositivos 
@@ -799,15 +814,193 @@ cliente.
 A continuación, se va a hacer un repaso de las principales clases y métodos
 que forman parte del paquete \texttt{javax.bluetooth}, que está orientado a 
 las operaciones \emph{Bluetooth} que no utilizan el protocolo \acs{OBEX}.
-Como, en este caso, la aplicación del cliente siempre va a ejercer como 
+Como, en este caso, la aplicación móvil siempre va a ejercer como 
 cliente, en el esquema \emph{cliente-servidor}, sólo van a exponerse las
-clases orientadas a las comunicaciones cliente \acs{SPP}\footnote{El
-\emph{Serial Port Profile} es un perfil \emph{Bluetooth} basado en la
-\texttt{\acs{ETSI} 07,10} y en el protocolo \acs{RFCOMM}, que emula
-un cable serial para proporcionar un sustituto similar a la interfaz
+clases orientadas a las comunicaciones cliente, en este caso las de tipo
+\acs{SPP}\footnote{El \emph{Serial Port Profile} es un perfil \emph{Bluetooth} 
+basado en la \texttt{\acs{ETSI} 07,10} y en el protocolo \acs{RFCOMM}, que
+emula un cable serial para proporcionar un sustituto similar a la interfaz
 \texttt{RS-232}, incluyendo sus principales señales de control.}:
 \begin{itemize}
-\item AAA
+\item En primer lugar, antes de realizar cualquier otra operación, es necesario
+iniciar la interfaz \emph{Bluetooth} del dispositivo. Para ello:
+  \begin{itemize}
+  \item primero se crea una instancia de tipo \texttt{LocalDevice}, que va a 
+  hacer referencia al dispositivo local. La clase \texttt{LocalDevice} es un 
+  ``singleton'', así que para obtener su única instancia existente se llamará 
+  al método \texttt{getLocalDevice()}.
+
+  \begin{lstlisting}[
+    language = Java]
+    LocalDevice localDevice = null;
+    try {
+      localDevice = LocalDevice.getLocalDevice();
+    } catch (BluetoothStateException e) { }
+  \end{lstlisting}
+
+  Este objeto será el punto de partida de prácticamente cualquier operación
+  que se vaya a llevar a cabo con esta \acs{API}.
+
+  \item Y después, mediante el método \texttt{setDiscoverable/1}, se activa la 
+  conectividad del dispositivo. Los posibles valores que admite este método
+  están definidos en la clase \texttt{DiscoveryAgent} como campos estáticos y
+  son los siguientes:
+    \begin{itemize}
+    \item \texttt{DiscoveryAgent.GIAC} (\emph{General/Unlimited Inquiry Access
+    Code}): permite una conectividad ilimitada.
+    \item \texttt{DiscoveryAgent.LIAC} (\emph{Limited Dedicated Inquiry Access
+    Code}): permite una conectividad limitada.
+    \item \texttt{DiscoveryAgent.NOT\_DISCOVERABLE}: hace que el dispositivo
+    no sea visible para el resto de dispositivos.
+    \end{itemize}
+  Por ejemplo, para permitir una conectividad ilimitada:
+
+  \begin{lstlisting}[
+    language = Java]
+    localDevice.setDiscoverable(DiscoveryAgent.GIAC);
+  \end{lstlisting}
+  \end{itemize}
+
+\item El siguiente paso será la búsqueda de dispositivos y servicios. Las
+búsquedas se realizarán a través del objeto \texttt{DiscoveryAgent}. Este
+objeto es único y se obtendrá a través del método \texttt{getDiscoveryAgent()}
+del objeto \texttt{LocalDevice}:
+
+\begin{lstlisting}[
+  language = Java]
+  DiscoveryAgent discoveryAgent =
+    LocalDevice.getLocalDevice().getDiscoveryAgent();
+\end{lstlisting}
+  \begin{itemize}
+  \item Para comenzar una nueva \textbf{búsqueda de dispositivos}, se hará uso 
+  del método \texttt{startInquiry()}. Este método requiere dos argumentos. El 
+  primero especifica el modo de conectividad que deben tener los dispositivos a 
+  buscar (\texttt{DiscoveryAgent.GIAC} o \texttt{DiscoveryAgent.LIAC}).
+  El segundo es un objeto que implementa la interfaz
+  \texttt{DiscoveryListener}. A través de este último, serán notificados los 
+  dispositivos que se vayan descubriendo:
+
+  \begin{lstlisting}[
+    language = Java]
+    discoveryAgent.startInquiry(DiscoveryAgent.GIAC, this);
+  \end{lstlisting}
+
+  Para cancelar la búsqueda se hará uso del método \texttt{cancelInquiry()}.
+
+  \begin{lstlisting}[
+    language = Java]
+    discoveryAgent.cancelInquiry(this);
+  \end{lstlisting}
+
+  La interfaz \texttt{DiscoveryListener} contiene dos métodos para la 
+  búsqueda de dispositivos:
+    \begin{itemize}
+    \item \texttt{public void \textbf{deviceDiscovered}(RemoteDevice rd,
+      DeviceClass c)}
+
+    Cada vez que se descubre un dispositivo se llama a este método. El primer
+    argumento representa el dispositivo encontrado. El segundo permite 
+    determinar el tipo de dispositivo.
+
+    \item \texttt{public void \textbf{inquiryCompleted}(int c)}
+
+    Este método es llamado cuando la búsqueda de dispositivos ha finalizado. El
+    argumento entero indica el motivo de la finalización.
+    \end{itemize}
+
+  \item Para comenzar una \textbf{búsqueda de servicios}, se utilizará el
+  método \texttt{searchServices()}, de la clase \texttt{DiscoveryAgent}. Este
+  método tiene cuatro atributos:
+    \begin{itemize}
+    \item El primero especifica los atributos de servicio que van a ser objeto
+    de búsqueda\footnote{Los servicios son descritos a través de unos atributos 
+    que son identificados numéricamente. Los identificadores de estos atributos 
+    están contenidos por un \emph{array} de enteros.}.
+    \item El segundo es un \emph{array} de identificadores de servicio y
+    permiten especificar los servicios que van a ser objeto de la búsqueda.
+    \item El tercero representa al dispositivo sobre el que se va a realizar la
+    búsqueda.
+    \item Y el último es un objeto que implementa la interfaz
+    \texttt{DiscoveryListener} y será usado para notificar los eventos de 
+    búsqueda de servicio.
+    \end{itemize}
+  Además, devuelve un valor entero que identifica la búsqueda. Este valor
+  entero se utiliza para determinar a qué búsqueda pertenecen los eventos
+  \texttt{servicesDiscovered()} y \texttt{serviceSearchCompleted()}, que son
+  los otros dos métodos que define la interfaz \texttt{DiscoveryListener} (en
+  este caso para la búsqueda de servicios).
+    \begin{itemize}
+    \item \texttt{public void \textbf{servicesDiscovered}(int transID,
+      ServiceRecord[] sr)}
+
+    Cada vez que se descubre un servicio se llama a este método. El primer
+    argumento identifica el proceso de búsqueda. Es el mismo que devolvió
+    \texttt{searchDevices()} cuando se comenzó la búsqueda. El segundo, es un
+    \emph{array} de objetos \texttt{ServiceRecord}, que describe las
+    características del servicio \emph{Bluetooth}.
+
+    \item \texttt{public void \textbf{serviceSearchCompleted}(int transID, int 
+    respCode)}
+
+    Este método es llamado cuando la búsqueda de servicios ha finalizado. El
+    primer argumento identifica el proceso de búsqueda (valor devuelto por al
+    invocar el método \texttt{searchServices()}. El segundo argumento indica el
+    motivo de finalización de la búsqueda.
+    \end{itemize}
+
+  Para cancelar un proceso de búsqueda de servicios se hará uso del método
+  \texttt{cancelServiceSearch()}, pasándole como argumento el identificador
+  del proceso de búsqueda.
+  \end{itemize}
+
+\item Por último, para establecer una comunicación:
+  \begin{itemize}
+  \item en primer lugar, se obtendrá la \acs{URL} necesaria para establecer
+  la conexión a través del método \texttt{getConnectionURL()} de un objeto
+  \texttt{ServiceRecord} (obtenido previamente a través del método
+  \texttt{servicesDiscovered}). Este método requiere dos argumentos: el
+  primero, indica si se debe autentificar y/o cifrar la conexión; y el
+  segundo, especifica si el dispositivo ejercerá como maestro (\texttt{true})
+  o bien, no importa si es maestro o esclavo (\texttt{false}):
+
+  \begin{lstlisting}[
+    language = Java]
+    ServiceRecord sr = ...;
+    String url =
+      sr.getConnectionURL(ServiceRecord.NOAUTHENTICATE_NOENCRYPT, false);
+  \end{lstlisting}
+
+  \item Una vez obtenida la \acs{URL}, se usará el método
+  \texttt{Connector.open()} para realizar la conexión. Este método devolverá un 
+  objeto distinto según el tipo de protocolo usado. En este caso (cliente
+  \acs{SPP}), devolverá un \texttt{StreamConnection}. A partir del
+  \texttt{StreamConnection} podremos obtener los flujos de entrada y salida:
+
+  \begin{lstlisting}[
+    language = Java]
+    StreamConnection conn =
+      (StreamConnection) Connector.open(url);
+    OutputStream out = con.openOutputStream();
+    InputStream in = con.openInputStream();
+  \end{lstlisting}
+  \end{itemize}
+
+\item Para dar por concluida la comunicación, no conviene olvidar que hay que 
+cerrar los flujos de entrada y salida y la propia conexión:
+
+  \begin{lstlisting}[
+    language = Java]
+    finally {
+      try {
+        if (in != null)
+          in.close();
+        if (out != null)
+          out.close();
+        if (conn != null)
+          conn.close();
+      } catch (IOException e) { }
+    }
+  \end{lstlisting}
 \end{itemize}
 
   \subsubsection{Uso de la biblioteca \texttt{32feet.NET}}
@@ -817,22 +1010,12 @@ biblioteca que contenga una implementación en dicho lenguaje de las
 operaciones típicas de un servidor \emph{Bluetooth}. Esta biblioteca es la
 \texttt{32feet.NET}
 
-\texttt{32feet.NET} es un proyecto de código fuente compartido que tiene
-como objetivo hacer que tecnologías \acs{PAN}, como \texttt{Bluetooth}, 
-\acs{IrDA}, etc., sean más fácilmente accesibles desde \texttt{.NET}. Es 
-compatible con sistemas de escritorio, móviles o incrustados.
-Actualmente, el proyecto se compone de las siguientes tecnologías:
-\begin{itemize}
-\item \texttt{Bluetooth}.
-\item \acs{IrDA}.
-\item \acs{OBEX}.
-\end{itemize}
-El soporte para \emph{Bluetooth} requiere un dispositivo con
-\texttt{Microsoft} o con una pila \texttt{Bluetooth Widcomm}. Otros requisitos 
-son: \texttt{.NET Compact Framework v2.0} o superior y \texttt{Windows CE .NET 
-4.2} o superior; o \texttt{.NET Framework v2.0} o superior para sistemas
-operativos \texttt{Windows XP},  \texttt{Windows Vista} o
-\texttt{Windows 7}~\cite{bib:32feet}.
+Según~\cite{bib:32feet}, \texttt{32feet.NET}: \emph{``es un proyecto de código 
+fuente compartido que tiene como objetivo hacer que tecnologías \acs{PAN}, como 
+\texttt{Bluetooth}, \acs{IrDA}, etc., sean más fácilmente accesibles desde 
+\texttt{.NET}. Es compatible con sistemas de escritorio, móviles o incrustados.
+Actualmente, el proyecto se compone de las tecnologías: \texttt{Bluetooth},
+\acs{IrDA} y \acs{OBEX}.''}.
 
 A continuación, se va a hacer un rápido repaso de los métodos y operaciones
 de la biblioteca \texttt{32feet.NET} que van a intervenir en la creación de un 
