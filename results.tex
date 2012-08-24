@@ -35,10 +35,9 @@ de dispensar la información que los terminales (\emph{recibidor} y
 \emph{barra}) necesitan para trabajar.
 \item Los terminales (\emph{recibidor} y \emph{barra}) contarán con una 
 conexión directa (mediante \acs{LAN} o conexión directa a internet) con el
-servidor de servicios web.
-\item Los terminales (\emph{recibidor} y \emph{barra}) contarán con la
-tecnología \emph{Bluetooth} que posibilitará las comunicaciones con los
-dispositivos móviles.
+servidor de servicios web. Además, también dispondrán de la tecnología
+\emph{Bluetooth} para posibilitar las comunicaciones con los dispositivos 
+móviles.
 \item Las mesas del restaurante contarán con un identificador único que
 servirá para asociar los pedidos que realiza un cliente con los pedidos que
 deben servirse en una mesa.
@@ -85,13 +84,13 @@ los siguientes:
 aplicación de la \emph{barra}, los que sólo son accedidos por la aplicación
 del \emph{recibidor} y los servicios comunes a ambas.
 \item Cada servicio ofrecido estará implementado en un método. Los valores
-devueltos por el método sólo pueden ser primitivos (\emph{integer},
+devueltos por el método sólo pueden ser de tipos primitivos (\emph{integer},
 \emph{double}, \emph{string}, etc.) por lo que cuando sea necesario devolver
 información estructurada se hará uso de cadenas (\emph{string}s) codificadas
 en formato \acs{XML}.
 \item Entre los servicios que se deben ofrecer están los siguientes:
   \begin{itemize}
-  \item Mostrar los tipos de planta de restaurante disponibles.
+  \item Mostrar los tipos de plantilla de restaurante disponibles.
   \item Devolver la descripción de la planta del restaurante elegido.
   \item Añadir una nueva descripción para la planta del restaurante.
   \item Devolver el estado actual de las mesas.
@@ -104,14 +103,14 @@ en formato \acs{XML}.
   \item Devolver la lista de productos registrados.
   \item Modificar la lista de productos registrados.
   \end{itemize}
-\item El servidor de servicios web asegurará la persistencia de los datos con
+\item La aplicación web asegurará la persistencia de los datos con
 los que trabaja a través de una base de datos, que se encontrará en la misma
 o en distinta máquina que este.
 \item La aplicación de los servicios web será la única que pueda acceder a los
 datos de la base de datos.
-\item La base de datos almacenará tanto datos estáticos del restaurante (como
-nombre, dirección, NIF, teléfono, etc.), como datos dinámicos (estado de los 
-pedidos, estado de las mesas, etc.).
+\item La base de datos almacenará tanto los datos estáticos del restaurante 
+(como nombre, dirección, NIF, teléfono, etc.), como datos dinámicos (estado de 
+los pedidos, estado de las mesas, etc.).
 \item Los datos estáticos definirán la identidad del restaurante, de los
 clientes y de los productos que se ofertan.
 \item Los datos dinámicos permitirán llevar un seguimiento del estado actual
@@ -127,20 +126,62 @@ del restaurante.
   representado por una serie de objetos que habrán sido definidos por el
   responsable del salón.
   \item Estado de las mesas durante la sesión.
-  \item Historial de las facturas pagadas.
+  \item Historial de las facturas.
   \end{itemize}
 \end{enumerate}
 
 \subsubsection{Diseño e implementación}
-% Meter diagrama de casos de uso de los servicios web
+Teniendo en cuenta los requisitos definidos en el apartado anterior, se define
+el siguiente \textbf{diagrama de casos de uso} (figura \ref{fig:ucdW-phase0}):
 
-% Meter diagrama de clases de los servicios web
+%  \begin{figure}[H]
+%    \begin{center}
+%      \includegraphics[width=1\textwidth]{ucdW-phase0.png}
+%      \caption{Diagrama de casos de uso del primer prototipo de la aplicación
+%      de los servicios web.}
+%      \label{fig:ucdW-phase0}
+%    \end{center}
+%  \end{figure}
 
-% Hacer referencia al anexo de los XMLs diseñados para la comunicación con
-% las aplicaciones de escritorio.
+Los principales casos de uso definidos en el diagrama (figura
+\ref{fig:ucdW-phase0}) son los siguientes:
+\begin{itemize}
+\item aaaaa
+%%%%%%%%
+\end{itemize}
 
-% Meter diagrama de entidad-interrelación de la base de datos
-% Explicar el contenido de cada una de las tablas que forman parte de la BD.
+La forma en la que operan los servicios web es la siguiente:
+\begin{itemize}
+\item La aplicación se mantiene operativa en espera de peticiones de algún
+cliente.
+\item Cuando esta llega, recoge los valores de entrada (si los hubiese);
+\item los procesa, realizando en algunos casos accesos a alguna base de datos;
+\item y devuelve la respuesta obtenida.
+\end{itemize}
+
+En este caso, el procesado va a ser bastante simple. La mayor parte de las
+peticiones de los clientes van a consistir en una consulta directa a la base
+de datos (usando a los servicios web de intermediarios), sin ningún otro
+tipo de cálculo intermedio. Si la información obtenida de la base de datos 
+no puede ser devuelta a través de ningún tipo primitivo, será almacenada de 
+forma temporal en algún objeto, para posteriormente ser devuelta en forma de
+cadena (\emph{string}) codificada en \acs{XML}\footnote{El anexo
+\ref{chap:xmls} muesta los distintos tipos de objetos definidos en \acs{XML}.}.
+
+Esta forma de operar queda reflejada a través de la definición de estas cuatro 
+clases:
+\begin{itemize}
+%%%%%%%%%
+\item \texttt{Services}:
+\item \texttt{SQLProcessor}:
+\item \texttt{DBProxy}:
+\item \texttt{XmlProcessor}:
+\end{itemize}
+
+Para la implementación de los servicios web se siguen los procedimientos
+descritos en el apartado \emph{Servicios web en \texttt{.NET}} (en la sección
+\label{subsec:webServicesApp}), definiendo un método web (\texttt{WebMethod})
+por cada caso de uso.
 
 \subsection{\emph{Recibidor} y conexión con servicios web}
 La aplicación del \emph{recibidor} se encargará principalmente de registrar a
@@ -152,12 +193,11 @@ hacen uso de la tecnología \acs{NFC}.
 Los requisitos específicos de la aplicación del \emph{recibidor} son los
 siguientes:
 \begin{enumerate}
-\item El terminal del recibidor contará con un monitor táctil,
-por lo tanto, la aplicación debe estar diseñada teniendo en cuenta que no se
+\item El terminal del recibidor contará con un monitor táctil. Por lo tanto, la 
+interfaz de la aplicación debe estar diseñada teniendo en cuenta que no se
 dispone de teclado para la entrada de datos.
 \item La aplicación contará con un \emph{editor de escenarios} que permita
-definir la distribución de los objetos más característicos que forman
-parte del restaurante:
+definir la distribución de los objetos más característicos del restaurante:
   \begin{itemize}
   \item Se podrán definir las posiciones de cada mesa, del espacio ocupado por
   el recibidor y del espacio ocupado por la barra.
@@ -172,8 +212,8 @@ parte del restaurante:
 correspondientes al estado anterior del restaurante (pedidos pendientes y
 estado de las mesas); o \emph{iniciar una jornada existente}, que cargará
 estos datos.
-\item Al \emph{iniciar una nueva jornada}, el usuario elegirá qué planta del
-restaurante va a utilizar para representar la distribución actual de los
+\item Al \emph{iniciar una nueva jornada}, el usuario elegirá la plantilla de
+restaurante que va a utilizar para representar la distribución actual de los
 objetos que hay en él.
 \item El estado del restaurante se representará con un mapa similar al mostrado
 en el \emph{editor de escenarios}, con la salvedad de que las mesas aparecerán
@@ -191,9 +231,12 @@ de un color distinto según su estado.
 las mesas que este puede ocupar, teniendo en cuenta el número de comensales que
 son y la capacidad de las mesas.
 \item Para confirmar la salida de un cliente, la aplicación sólo dejará
-desocupar las mesas que hayan pagado sus pedidos.
-%%%%%%% Estadísticas?
-%%%%%%% Establece los datos del restaurante?
+desocupar las mesas que hayan pagado sus pedidos o las mesas cuyos clientes
+se vayan sin consumir nada.
+\item Se contará con un editor de parámetros del restaurante, que permitirá
+definir los datos de la empresa (nombre, dirección, etc.) o las condiciones
+por las cuales se aplican descuentos, entre otras; y con un visor de clientes,
+que muestre la información de los clientes almacenados por el sistema.
 \end{enumerate}
 
 \subsubsection{Diseño e implementación}
@@ -262,9 +305,6 @@ del caso de uso \emph{registrar salida de cliente}:
 
 \end{itemize}
 
-% Todos los diagramas de secuencia deben ir apaisados en páginas aparte.
-% Estoy buscando cómo poder hacerlo porque utilizando \begin{sidewaysfigure}
-
   \begin{sidewaysfigure}[h]
     \begin{center}
       \includegraphics[width=1\textwidth]{sdR1-phase1.png}
@@ -301,7 +341,25 @@ del caso de uso \emph{registrar salida de cliente}:
     \end{center}
   \end{sidewaysfigure}
 
-% Meter diagrama de clases del prototipo
+A partir de los diagramas de casos de uso y de los diagramas de secuencia se
+diseña el \textbf{diagrama de clases} del prototipo del recibidor (de esta
+fase) (figura \ref{fig:cdR-phase1}):
+
+%  \begin{sidewaysfigure}[h]
+%    \begin{center}
+%      \includegraphics[width=1\textwidth]{cdR1-phase1.png}
+%      \caption{Diagrama de clases del prototipo del recibidor (Fase 2).}
+%      \label{fig:cdR1-phase1}
+%    \end{center}
+%  \end{sidewaysfigure}
+
+Las principales clases de este prototipo son las siguientes:
+\begin{itemize}
+\item aaa
+%%%%%%%
+\end{itemize}
+Las clases: %%%%%%%%%%
+corresponden a definiciones de objetos.
 
 \subsection{\emph{Barra} y conexión con servicios web}
 La aplicación de la \emph{barra} se encargará principalmente de gestionar el
@@ -376,7 +434,8 @@ estado de dichos pedidos, etc.
 opción de \emph{facturar} la mesa. Los datos personales suministrados por el
 cliente y los datos fiscales de la empresa almacenados en la base de datos
 servirán para generar la factura.
-%%%%%%% Meter Estadísticas de uso, si da tiempo
+\item Se contará con un visor que muestre el historial de facturas cobradas y
+el de pedidos atendidos.
 \end{enumerate}
 
 \subsubsection{Diseño e implementación}
@@ -493,7 +552,52 @@ muestra el \textbf{diagrama de secuencia} de estos dos casos de uso:
   \end{sidewaysfigure}
 \end{itemize}
 
-% Meter diagrama de clases del prototipo
+Haciendo uso de los diagramas de casos de uso y de secuencia se
+diseña el diagrama de clases del prototipo de la aplicación de la barra
+(figura \ref{fig:cdB-phase2}):
+
+%  \begin{sidewaysfigure}[h]
+%    \begin{center}
+%      \includegraphics[width=1\textwidth]{cdB-phase2.png}
+%      \caption{Diagrama de clases del prototipo de la aplicación de la barra
+%      (Fase 3).}
+%      \label{fig:cdB-phase2}
+%    \end{center}
+%  \end{sidewaysfigure}
+
+Muchas de estas clases comparten nombre y función con sus homónimas del
+prototipo del recibidor. Las principales clases restantes son las siguientes:
+\begin{itemize}
+\item aaaaa
+%%%%%%%
+\end{itemize}
+Las clases: %%%%%%%%%%
+corresponden a definiciones de objetos.
+
+Una vez definidas las funcionalidades básicas (no \acs{NFC}) de las
+aplicaciones de escritorio (\emph{barra} y \emph{recibidor}) y de los servicios 
+web, así como también de los datos con los que trabajan; se ha definido la 
+\textbf{base de datos} del sistema. (figura :
+
+%  \begin{figure}[H]
+%    \begin{center}
+%      \includegraphics[width=1\textwidth]{erDB.png}
+%      \caption{Diagrama entidad-interrelación de la base de datos del sistema.}
+%      \label{fig:erDB}
+%    \end{center}
+%  \end{figure}
+
+La figura \ref{fig:erDB} muestra el \textbf{diagrama de entidad-interrelación} 
+de la base de datos. En ella pueden observarse las siguientes tablas:
+\begin{itemize}
+\item aaaa
+%%%%%%%%%
+\end{itemize}
+
+Para la implementación de los accesos de los servicios web a la base de datos 
+(\texttt{MySQL}) se han utilizado las clases y métodos definidos en la \acs{DLL}
+\emph{MySql.Data.dll}, siguiendo los pasos descritos en el apartado
+\emph{Bases de datos \texttt{MySql}} (sección \label{subsec:webServicesApp}).
 
 \subsection{Aplicación móvil}
 Esta es la aplicación destinada a los clientes y les servirá para interactuar
@@ -555,15 +659,25 @@ de la siguiente forma (figura \ref{fig:ucdM-phase3}):
     \end{center}
   \end{figure}
 
-Los principales casos de uso serán explicados en las secciones
-\ref{subsec:mobile-receiver} y \ref{subsec:mobile-bar} cuando se
-definan las comunicaciones \emph{Bluetooth} entre la aplicación móvil y
+Los principales casos de uso se explican en las secciones
+\ref{subsec:mobile-receiver} y \ref{subsec:mobile-bar} donde se encuentran
+definidas las comunicaciones \emph{Bluetooth} entre la aplicación móvil y
 la aplicación del recibidor y de la barra.
 
-El anexo \ref{chap:tags} muestra los distintos tipos de etiquetas definidos y
-su distribución dentro del restaurante.
+La funcionalidad de este prototipo se ha implementado a través de la
+definición de las siguientes clases:
+\begin{itemize}
+\item \texttt{MobiCarta}
+%%%%%
+\end{itemize}
 
-% Meter diagrama de clases del prototipo
+Para implementar la funcionalidad \acs{NFC} se ha hecho uso de la
+librería \texttt{\acs{JSR}-257} siguiendo los procedimientos descritos en el 
+apartado \emph{Uso de la \acs{API} \texttt{\acs{JSR}-257}} (en la sección
+\ref{subsec:nfcApp}).
+
+Los tipos de etiqueta reconocibles por la aplicación están definidos en el 
+anexo \ref{chap:tags}.
 
 \subsection{Comunicación \emph{Bluetooth} entre móvil y \emph{recibidor}}
 \label{subsec:mobile-receiver}
@@ -628,19 +742,21 @@ caso de uso \emph{registrar salida por \acs{NFC}}.
   \end{sidewaysfigure}
 
 Cuando el servidor \emph{Bluetooth} recibe los datos de un usuario (en formato
-\acs{XML}), los envía al \emph{servicio web}, para que este le informe del
-estado del cliente (\emph{cliente que llega}, \emph{cliente que paga} o
-\emph{cliente que se va}). En este caso el cliente se va, por lo tanto la
-aplicación del \emph{recibidor} muestra una mensaje emergente informando
-del cliente que se va. Por otro lado, el servidor \emph{Bluetooth} le manda
-al cliente la confirmación un mensaje tipo \emph{gracias por su visita}.
+\acs{XML}), los envía al \emph{servicio web} correspondiente, para que este le 
+informe del estado del cliente (\emph{cliente que llega}, \emph{cliente que 
+paga} o \emph{cliente que se va}). En este caso el cliente se va, por lo tanto 
+la aplicación del \emph{recibidor} muestra un mensaje emergente informando
+del cliente que se va. Por su parte, el servidor \emph{Bluetooth} manda
+al cliente un mensaje de confirmación, del tipo \emph{gracias por su visita}.
 El \emph{maître}, encargado de manejar la aplicación del \emph{recibidor},
 debe confirmar finalmente que el cliente se ha ido. Al hacerlo, informa
-al \emph{servicio web} que el cliente ha abandonado su mesa y este le
+a la aplicación web que el cliente ha abandonado su mesa y este le
 devuelve la nueva situación del restaurante.
 
-Por otro lado, al \textbf{diagrama de casos de uso} de la aplicación móvil
-hay que añadirle los siguientes casos de uso (figura \ref{fig:ucdM-phase4}):
+Por otro lado, al \textbf{diagrama de casos de uso} del primer prototipo
+de la aplicación móvil (figura \ref{fig:ucdM-phase3}, página
+\pageref{fig:ucdM-phase3}) se le añaden los siguientes caso de uso (figura
+\ref{fig:ucdM-phase4}):
 
   \begin{figure}[H]
     \begin{center}
@@ -685,8 +801,19 @@ del cliente. Finalmente, la aplicación del \emph{recibidor} confirmará que
 le ha llegado la información del cliente y que por tanto ha quedado
 registrada, en este caso, la entrada al restaurante.
 
-% Meter modificaciones del diagrama de clases del prototipo del recibidor
-% y del prototipo móvil.
+En cuanto al diseño de clases de los prototipos:
+\begin{itemize}
+\item El \textbf{prototipo del recibidor} añade las siguientes clases:
+  \begin{itemize}
+  \item \texttt{BluetoothServer}.
+  %%%% Uso de la DLL 32feet
+  \end{itemize}
+\item El \textbf{prototipo del móvil} por su parte, añade:
+  \begin{itemize}
+  \item \texttt{BluetoothClient}.
+  %%%% Uso de la librería JRS-82
+  \end{itemize}
+\end{itemize}
 
 \subsection{Comunicación \emph{Bluetooth} entre móvil y \emph{barra}}
 \label{subsec:mobile-bar}
@@ -812,30 +939,39 @@ mesa, número de factura, pedidos realizados, subtotal, descuentos, IVA e
 importe total.
 \end{itemize}
 
-% Meter modificaciones del diagrama de clases del prototipo de la barra
-% y del prototipo móvil.
+En cuanto al diseño de clases de los prototipos:
+\begin{itemize}
+\item El \textbf{prototipo de la barra} añade las siguientes clases:
+  \begin{itemize}
+  \item \texttt{BluetoothServer}. %%% Clase similar a la del recibidor
+  \end{itemize}
+\item El \textbf{prototipo del móvil} por su parte, añade:
+  \begin{itemize}
+  \item \texttt{BluetoothClient}. %%% Adapta esta clase para enviar pedidos
+  % y recibir facturas
+  \end{itemize}
+\end{itemize}
 
-\subsection{Sistema recomendador}
-El objetivo del sistema recomendador es ofrecer al cliente una serie de
+\subsection{Módulo recomendador}
+El objetivo del módulo recomendador es ofrecer al cliente una serie de
 servicios extra que le incentiven a seguir utilizando la tecnología \acs{NFC}
-dentro de dicho establecimiento. Implementar el sistema recomendador implicará
+dentro de dicho establecimiento. Implementar el módulo recomendador implicará
 realizar cambios en el prototipo de los servicios web y la base de datos, en
 el prototipo del \emph{recibidor} y en el prototipo de la aplicación móvil.
 Al término de esta iteración se habrá obtenido la primera versión del prototipo
 final del sistema.
 
 \subsubsection{Análisis de requisitos}
-Los requisitos que debe satisfacer el sistema recomendador son los siguientes:
+Los requisitos que debe satisfacer el módulo recomendador son los siguientes:
 \begin{enumerate}
-\item El sistema recomendador debe ofrecer la siguiente información al cliente:
+\item Debe ofrecer la siguiente información al cliente:
   \begin{itemize}
   \item Cuáles son los platos que más ha consumido.
   \item Qué productos de la carta tienen algún descuento.
   \item Teniendo en cuenta los productos favoritos del cliente, qué productos
   similares a estos pueden gustarle.
   \end{itemize}
-\item El sistema recomendador será ejecutado por la aplicación de los
-servicios web.
+\item Será ejecutado por la aplicación de los servicios web.
 \item La base de datos contará con una nueva tabla (\emph{historial}) con el
 histórico de pedidos que ha realizado el cliente a lo largo de sus visitas
 al restaurante. Esta tabla se utilizará para calcular las recomendaciones para
@@ -846,9 +982,27 @@ está elaborando una lista para un pedido.
 \end{enumerate}
 
 \subsubsection{Diseño e implementación}
-El diseño del sistema recomendador va a afectar a los servicios web y su
+El diseño del módulo recomendador va a afectar a los servicios web y su
 base de datos, a la aplicación del \emph{recibidor} y a la aplicación
 móvil.
+
+La aplicación de los servicios web van a añadir un nuevo caso de uso (figura
+\ref{figucdW-phase6}):
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{ucdR-phase6.png}
+      \caption{Casos de uso \emph{enviar recomendación} añadido a la aplicación 
+      del \emph{recibidor}.}
+      \label{fig:ucdR-phase6}
+    \end{center}
+  \end{figure}
+
+% Descripción del caso de uso...
+
+% Insertar esquema de cómo se calculan las recomendaciones.
+
+% Ejemplo de entradas y salidas obtenidas con el recomendador.
 
 La aplicación del \emph{recibidor} añade un único caso de uso (figura
 \ref{fig:ucdR-phase6}):
@@ -862,6 +1016,10 @@ La aplicación del \emph{recibidor} añade un único caso de uso (figura
     \end{center}
   \end{figure}
 
+%% Descripción de este caso de uso...
+
+% Diagrama de secuencia
+
 La aplicación móvil añade dos casos de uso (figura \ref{fig:ucdM-phase6}):
 
   \begin{figure}[H]
@@ -873,18 +1031,15 @@ La aplicación móvil añade dos casos de uso (figura \ref{fig:ucdM-phase6}):
     \end{center}
   \end{figure}
 
-% Añadir diagrama de secuencia del recomendador en el servicio web, el la
-% aplicación de la barra y el la aplicación móvil.
-
-% Insertar esquema de cómo se calculan las recomendaciones.
+\begin{itemize}
+\item \textbf{Recibir recomendación}. %%%
+\item \textbf{Consultar recomendación}. %%%
+\end{itemize}
 
 % Hacer referencia de que en los anexos están los diagramas de clases completos
 % de todas las aplicaciones que forman parte del sistema.
 
-\section{Pruebas}
-  \subsection{Pruebas unitarias}
-% Ya veremos si me da tiempo
-  \subsection{Pruebas de campo}
+\section{Pruebas de campo}
 % Decir cómo las he hecho y las conclusiones obtenidas.
 % Hacer referencia de que en los anexos están los formularios utilizados para
 % tomar nota de lo que piensan los usuarios de las aplicaciones.

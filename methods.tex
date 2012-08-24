@@ -4,7 +4,7 @@
 \label{chap:methods}
 \drop{E}{l} siguiente capítulo expone la metodología de trabajo escogida para
 llevar a cabo el desarrollo del proyecto y describe las principales 
-herramientas utilizadas para llevarlo a cabo.
+herramientas utilizadas para su realización.
 
 \section{Pasos previos}
 Antes de elegir una metodología concreta, conviene realizar un estudio rápido
@@ -13,12 +13,13 @@ definir \emph{a grosso modo} cuáles son las necesidades de información.
 
   \subsection{Estudio de campo}
   \label{sec:fieldStudy}
-Como todo el mundo sabe, un restaurante es un \emph{``establecimiento público 
+La ~\cite{bib:rae} define restaurante como: \emph{``establecimiento público 
 donde se sirven comidas y bebidas, mediante precio, para ser consumidas en el
 mismo local''}~\cite{bib:rae}.
 
-Hoy en día existe una gran variedad de tipos de restaurante y de modalidades
-de servicios.
+Esta definición deja bastante claro cuál es la mecánica básica que siguen 
+estos establecimientos, pero no conviene olvidar que existe una gran
+gran variedad de tipos de restaurantes y de modalidades de servicios:
 
     \subsubsection{Tipos de restaurantes}
   En cuanto a los tipos de establecimientos y fórmulas de restauranción, pueden
@@ -254,6 +255,7 @@ de servicios.
   \textbf{tecnología \emph{Bluetooth}}.
 
   \subsection{Aplicación de los servicios web}
+  \label{subsec:webServicesApp}
     \subsubsection{Gestión de los datos de un restaurante}
   Como se comentó anteriormente, para garantizar la sincronización de los
 datos con los que trabajan las aplicaciones de escritorio del sistema, se va a
@@ -459,6 +461,7 @@ etc.) o a la administración (\texttt{CREATE USER}, \texttt{SHUTDOWN},
 \texttt{RELOAD}, etc.) de la base de datos.
 
   \subsection{Aplicación de la tecnología \acs{NFC}}
+  \label{subsec:nfcApp}
     \subsubsection{Introducción de la tecnología \acs{NFC} en el entorno}
 Como ya se ha comentado, uno de los pilares de este proyecto es la
 incorporación de la tecnología \acs{NFC} en el ámbito de la restauración.
@@ -1284,7 +1287,7 @@ servicios web.
 \emph{recibidor}.
 \item Conexiones \emph{Bluetooth} entre el prototipo del móvil y el de la
 \emph{barra}.
-\item Sistema recomendador.
+\item Módulo recomendador.
 \end{enumerate}
 
 \section{Herramientas}
@@ -1293,7 +1296,7 @@ desarrollo de este \acs{PFC}.
 
   \subsection{Diagramas \acs{UML}}
   Para cubrir la fase de análisis de requisitos y el diseño de cada una de las
-  iteraciones propuestas se ha echado mano del \emph{\textbf{Visual Paradigm
+  iteraciones propuestas se ha utilizado el \emph{\textbf{Visual Paradigm
   for \acs{UML}}}, que es una herramienta \emph{case} de especificaciones
   \acs{UML}, desarrollado por la empresa \emph{Visual Paradigm International}.
 
@@ -1428,14 +1431,14 @@ desarrollo de este \acs{PFC}.
     forman parte de la base de datos del sistema y, en general, la herramienta
     utilizada para administrar los contenidos de dichas tablas.
 
-    La base de datos utilizada para probar el sistema se encuentra en la
-    dirección: \url{161.67.140.37:3500/}.
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%% ¿Poner también usuario y contraseña para acceder a las BBDD?
-    Los servicios web por su parte
-    pueden ser accedidos a través de la dirección:
-    \url{161.67.140.37:3500/ServicioMobiCarta/Services.asmx}. Ambas
-    direcciones pertenecen a uno de los serviciores del grupo \acs{MAmI}.
+%    La base de datos utilizada para probar el sistema se encuentra en la
+%    dirección: \url{161.67.140.37:3500/}.
+%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    %%%%%% ¿Poner también usuario y contraseña para acceder a las BBDD?
+%    Los servicios web por su parte
+%    pueden ser accedidos a través de la dirección:
+%    \url{161.67.140.37:3500/ServicioMobiCarta/Services.asmx}. Ambas
+%    direcciones pertenecen a uno de los serviciores del grupo \acs{MAmI}.
   \end{itemize}
 
   \subsection{Repositorio de datos}
@@ -1510,10 +1513,10 @@ desarrollo de este \acs{PFC}.
 
   \subsection{Documentación}
   Para la composición de este documento se ha utilizado el sistema de
-  composición de textos \LaTeX. \LaTeX es un sistema de composición muy
+  composición de textos \LaTeX. \LaTeX~ es un sistema de composición muy
   adecuado para realizar artículos académicos, tesis y libros técnicos, dado
   que la calidad tipográfica de los documentos realizados es comparable a la
-  de una editorial científica de primera línea\cite{bib:LaTeX}. \LaTeX es
+  de una editorial científica de primera línea\cite{bib:LaTeX}. \LaTeX~ es
   software libre bajo licencia \acs{LPPL}.
 
   Además, se ha utilizado como tipo de documento la clase \emph{arco-pfc}, que
