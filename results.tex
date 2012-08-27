@@ -10,6 +10,7 @@ programadas. Después, se analizarán las pruebas de campo realizadas sobre
 el prototipo final construido. Y por último, se presentará el manual de usuario
 de la aplicación, el \emph{diagrama de Gantt} con el seguimiento del proyecto
 y la estimación de costes para implantar este sistema en un restaurante real.
+%%%%%%%%%%%% Si da tiempo a todo...
 
 \section{Requisitos generales del sistema}
 A continuación se listan los requisitos generales que debe satisfacer el
@@ -61,6 +62,18 @@ adecuada.
 el establecimiento, se iniciará el procedimiento de pago mediante \acs{NFC}.
 \end{enumerate}
 
+A partir de estos requisitos iniciales, se diseña el \textbf{diagrama de
+despliegue} del sistema. La figura \ref{fig:deployDiagram} (página
+\pageref{fig:deployDiagram}) muestra este diagrama.
+
+  \begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{deployDiagram.png}
+      \caption{Diagrama de despliegue del sistema.}
+      \label{fig:deployDiagram}
+    \end{center}
+  \end{figure}
+
 \section{Iteraciones}
 Como ya se explicó en la sección \ref{sec:workingMethodology} (página
 \pageref{sec:workingMethodology}) el proyecto sigue un desarrollo de
@@ -73,7 +86,7 @@ A continuación, se profundiza en el contenido de cada una de estas fases:
 \subsection{Servicios web y base de datos}
 Los servicios web se encargarán de atender las solicitudes de información que
 demande la \emph{aplicación de la barra} y la \emph{aplicación del recibidor}.
-Para asegurar la persistencia de los datos con los que trabaja el restaurante
+Para asegurar la persistencia de los datos con los que trabaja el restaurante,
 se hará uso de una base de datos.
 
 \subsubsection{Análisis de requisitos}
@@ -134,20 +147,55 @@ del restaurante.
 Teniendo en cuenta los requisitos definidos en el apartado anterior, se define
 el siguiente \textbf{diagrama de casos de uso} (figura \ref{fig:ucdW-phase0}):
 
-%  \begin{figure}[H]
-%    \begin{center}
-%      \includegraphics[width=1\textwidth]{ucdW-phase0.png}
-%      \caption{Diagrama de casos de uso del primer prototipo de la aplicación
-%      de los servicios web.}
-%      \label{fig:ucdW-phase0}
-%    \end{center}
-%  \end{figure}
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{ucdW-phase0.png}
+      \caption{Diagrama de casos de uso del primer prototipo de la aplicación
+      de los servicios web.}
+      \label{fig:ucdW-phase0}
+    \end{center}
+  \end{figure}
 
 Los principales casos de uso definidos en el diagrama (figura
 \ref{fig:ucdW-phase0}) son los siguientes:
 \begin{itemize}
-\item aaaaa
-%%%%%%%%
+\item Casos de uso de la \emph{aplicación del recibidor}:
+  \begin{itemize}
+  \item \textbf{Añadir y editar plantilla de restaurante}. El recibidor
+  mandará una petición con la descripción de una nueva plantilla para el 
+  restaurante o la modificación de una plantilla existente. El servicio web se 
+  encargará de almacenar dicha plantilla en la base de datos.
+  \item \textbf{Ubicar cliente en mesa}. Esta petición se producirá cuando
+  el recibidor quiera asignar una mesa al cliente que acaba de llegar al
+  restaurante. El servicio web actualizará el estado del cliente y de la
+  mesa en la base de datos.
+  \item \textbf{Desubicar cliente de mesa}. Similar al anterior, en este caso
+  cuando el recibidor notifica la marcha de un cliente de su mesa y, por
+  consiguiente, del restaurante.
+  \end{itemize}
+\item Casos de uso de la \emph{aplicación de la barra}:
+  \begin{itemize}
+  \item \textbf{Añadir o editar pedido}. La aplicación de la barra mandará
+  esta petición para que el servicio web actualice la lista de pedidos
+  de la base de datos.
+  \item \textbf{Cargar estado de una mesa}. Esta petición devolverá los datos
+  de la mesa, del cliente que la ocupa y de los pedidos que ha solicitado.
+  \item \textbf{Facturar mesa}. En un principio, la aplicación de la barra
+  va a ser la única que realice la petición de \emph{facturar mesa}. El
+  servicio web cargará: los datos del restaurante (nombre, dirección, IVA, 
+  etc.), los de la mesa, los del cliente (nombre, dirección, apariciones, 
+  etc.) y los de los pedidos realizados; y generará una factura para dicha
+  mesa. La factura generada será almacenada en la base de datos.
+  \end{itemize}
+\item Casos de uso conjuntos:
+  \begin{itemize}
+  \item \textbf{Cargar lista de plantillas}. Las aplicaciones de escritorio
+  realizarán esta petición para conocer los tipos de plantillas disponibles 
+  para dicho restaurante.
+  \item \textbf{Cargar estado actual del restaurante}. Al iniciar una jornada
+  las aplicaciones de escritorio realizan esta petición para conocer y
+  representar el estado actual del restaurante.
+  \end{itemize}
 \end{itemize}
 
 La forma en la que operan los servicios web es la siguiente:
@@ -171,13 +219,20 @@ cadena (\emph{string}) codificada en \acs{XML}\footnote{El anexo
 Esta forma de operar queda reflejada a través de la definición de estas cuatro 
 clases:
 \begin{itemize}
-%%%%%%%%%
-\item \texttt{Services}:
-\item \texttt{SQLProcessor}:
-\item \texttt{DBProxy}:
-\item \texttt{XmlProcessor}:
+\item \textbf{\texttt{Services}}: implementa los servicios web accesibles por 
+las aplicaciones del recibidor y de la barra.
+\item \textbf{\texttt{DBProxy}}: implementa los métodos que acceden a la base 
+de datos. Entre ellos, se encuentra el método \texttt{connect} (para abrir una 
+nueva conexión), \texttt{disconnect} (para cerrarla), \texttt{getData} (para 
+realizar consultas que devuelven datos) y \texttt{setData} (para realizar
+consultas que modifican la base de datos).
+\item \textbf{\texttt{SqlProcessor}}: se encarga de construir y ejecutar 
+sentencias \acs{SQL} a través de los métodos de \texttt{DBProxy}.
+\item \textbf{\texttt{XmlProcessor}}: se encarga de codificar y decodificar las 
+cadenas codificadas en \acs{XML}, que envían y reciben los métodos web.
 \end{itemize}
 
+%%%% Hay que quitarlo
 Para la implementación de los servicios web se siguen los procedimientos
 descritos en el apartado \emph{Servicios web en \texttt{.NET}} (en la sección
 \label{subsec:webServicesApp}), definiendo un método web (\texttt{WebMethod})
@@ -265,14 +320,14 @@ salón elegido para cargarlo en pantalla. Una vez cargado, el \emph{recibidor}
 vuelve a comunicarse con el \emph{servicio web} para decirle que \emph{resetee}
 los valores almacenados de la jornada anterior. La figura \ref{fig:sdR1-phase1}
 (página \pageref{fig:sdR1-phase1}) muestra el \textbf{diagrama de secuencia} 
-de este caso de uso:
+de este caso de uso.
 
 \item \textbf{Abrir jornada existente}. Este caso de uso es similar al
 anterior, con la salvedad de que, aquí no se elige el salón a
 utilizar (se coge el salón de la jornada anterior). Además, tampoco se
 \emph{resetean} los valores almacenados durante dicha jornada. La figura
 \ref{fig:sdR2-phase1} (página \pageref{fig:sdR2-phase1}) muestra el
-\textbf{diagrama de secuencia} de este caso de uso:
+\textbf{diagrama de secuencia} de este caso de uso.
 
 \item \textbf{Registrar llegada de cliente}. Este caso de uso hace referencia
 a la acción de registrar un nuevo cliente de forma manual
@@ -289,7 +344,7 @@ mesas candidatas y se formalizará con ello el ingreso. Nuevamente el
 \emph{servicio web} actualizará el estado de las mesas teniendo en cuenta el
 nuevo ingreso. La figura \ref{fig:sdR3-phase1} (página
 \pageref{fig:sdR3-phase1}) muestra el \textbf{diagrama de secuencia} de este
-caso de uso:
+caso de uso.
 
 \item \textbf{Registrar salida de cliente}. Para registrar la salida de un
 cliente (\emph{normal} o \emph{\acs{NFC}}), simplemente se selecciona la
@@ -301,8 +356,7 @@ cuál es la mesa que va a ser abandonada y se pulsa \emph{Aceptar}. Finalmente,
 la aplicación avisa al \emph{servicio web} acerca de la mesa que ha quedado
 libre y este actualiza el estado del salón. La figura \ref{fig:sdR4-phase1}
 (página \pageref{fig:sdR4-phase1}) representa el \textbf{diagrama de secuencia}
-del caso de uso \emph{registrar salida de cliente}:
-
+del caso de uso \emph{registrar salida de cliente}.
 \end{itemize}
 
   \begin{sidewaysfigure}[h]
@@ -343,23 +397,73 @@ del caso de uso \emph{registrar salida de cliente}:
 
 A partir de los diagramas de casos de uso y de los diagramas de secuencia se
 diseña el \textbf{diagrama de clases} del prototipo del recibidor (de esta
-fase) (figura \ref{fig:cdR-phase1}):
+fase) (figura \ref{fig:cdR-phase1}, página \pageref{fig:cdR-phase1}):
 
-%  \begin{sidewaysfigure}[h]
-%    \begin{center}
-%      \includegraphics[width=1\textwidth]{cdR1-phase1.png}
-%      \caption{Diagrama de clases del prototipo del recibidor (Fase 2).}
-%      \label{fig:cdR1-phase1}
-%    \end{center}
-%  \end{sidewaysfigure}
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{cdR-phase1.png}
+      \caption{Diagrama de clases del prototipo del recibidor (Fase 2).}
+      \label{fig:cdR-phase1}
+    \end{center}
+  \end{sidewaysfigure}
 
-Las principales clases de este prototipo son las siguientes:
+Las clases de este prototipo son las siguientes:
 \begin{itemize}
-\item aaa
-%%%%%%%
+\item El paquete \texttt{presentation} contiene las clases que implementan
+la \acs{GUI} de la aplicación:
+  \begin{itemize}
+  \item \textbf{\texttt{InitWin}}: implementa la ventana inicial, a través de 
+  la cual se accede a las demás opciones de la aplicación.
+  \item \textbf{\texttt{JouneyManagerWin}}: describe la ventana principal de la
+  aplicación, desde la cual se gestiona el trascurso de una jornada de trabajo.
+  Permite registrar la entrada y salida de clientes; y mantiene una vista
+  actualizada del estado del restaurante.
+  \item \textbf{\texttt{RoomEditorWin}}: permite crear, editar y guardar las
+  plantillas del restaurante. Cada plantilla describe visualmente una posible
+  distribución de objetos: mesas, recibidor y barra, dentro del restaurante.
+  \item \textbf{\texttt{StatisticsWin}}: permite consultar el estado 
+  actualizado de los clientes del restaurante. Además, también permite editar   
+  la información referida al restaurante: nombre, dirección, contacto, IVA,
+  etc.
+  \item \textbf{\texttt{ClientDialog}}, \textbf{\texttt{NewRoomDialog}} y
+  \textbf{\texttt{LoadRoomDialog}} implementan ventanas emergentes auxiliares a 
+  las clases de las que dependen.
+  \end{itemize}
+\item El paquete \texttt{domain} contiene las clases que gestionan la 
+información que entra y sale de la aplicación:
+  \begin{itemize}
+  \item \textbf{\texttt{JourneyManager}}: gestiona todas las operaciones 
+  implicadas en el desarrollo de una jornada de trabajo en el restaurante.
+  \item \textbf{\texttt{RoomManager}}: implementa las operaciones relacionadas 
+  con la actualización del estado de la plantilla del restaurante y, por
+  extensión de sus mesas.
+  \item \textbf{\texttt{ClientManager}}: gestiona los datos de los clientes 
+  implicados en una interacción (cliente llega, cliente se va, etc.).
+  \item \textbf{\texttt{RoomEditor}}: implementa la lógica del editor de 
+  plantillas (\texttt{RoomEditorWin}).
+  \item \textbf{\texttt{RestaurantManager}}: gestiona los datos mostrados por
+  \texttt{StatisticsWin}.
+  \end{itemize}
+Las demás clases definen tipos de objetos:
+  \begin{itemize}
+  \item \textbf{\texttt{Client}}: DNI, nombre, apellidos y dirección de un 
+  cliente del restaurante.
+  \item \textbf{\texttt{RoomInf}}: resume las características de una plantilla 
+  de restaurante (nombre, altura, anchura, número de mesas y capacidad).
+  \item \textbf{\texttt{TableInf}}: almacena la información detallada de una 
+  mesa (identificador, capacidad y ubicación) y su estado (cliente que la ocupa 
+  y número de comensales).
+  \item \textbf{\texttt{RoomDef}}: define las características detalladas de una
+  plantilla de restaurante (nombre, altura, anchura y ubicación de cada uno
+  de los objetos).
+  \item \textbf{\texttt{TableDef}}: define las características de cada una de 
+  las mesas almacenadas por un objeto \texttt{RoomDef} (identificador, capacidad
+  y ubicación).
+  \end{itemize} 
+\item El paquete \texttt{communication} contiene un sólo método,
+\textbf{\texttt{AdapterWebServices}}. Este método se encarga de realizar las 
+peticiones a los servicios web y de recoger sus posibles respuestas.
 \end{itemize}
-Las clases: %%%%%%%%%%
-corresponden a definiciones de objetos.
 
 \subsection{\emph{Barra} y conexión con servicios web}
 La aplicación de la \emph{barra} se encargará principalmente de gestionar el
@@ -443,7 +547,7 @@ Teniendo en cuenta el análisis de requisitos realizado anteriormente, el
 \textbf{diagrama de casos de uso} del prototipo de la aplicación de la
 \emph{barra} queda de la siguiente forma (figura \ref{fig:ucdB-phase2}):
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=1.1\textwidth]{ucdB-phase2.png}
       \caption{Diagrama de casos de uso del primer prototipo de la aplicación
@@ -471,16 +575,7 @@ ocurre con el estado del salón, la aplicación recurre nuevamente al
 Esta información incluye: estado de la mesa, cliente que la ocupa, número
 de comensales y los pedidos (y su estado) que ha realizado. La figura
 \ref{fig:sdB1-phase2} (página \pageref{fig:sdB1-phase2}), muestra el
-\textbf{diagrama de secuencia} de este caso de uso:
-
-  \begin{sidewaysfigure}[h]
-    \begin{center}
-      \includegraphics[width=1\textwidth]{sdB1-phase2.png}
-      \caption{Diagrama de secuencia del caso de uso \emph{Ver estado de
-      una mesa}.}
-      \label{fig:sdB1-phase2}
-    \end{center}
-  \end{sidewaysfigure}
+\textbf{diagrama de secuencia} de este caso de uso.
 
 \item \textbf{Nuevo pedido}. Al seleccionar el botón de \emph{añadir pedido}
 la aplicación carga una lista con las mesas activas y otra lista con los
@@ -492,16 +587,7 @@ pulsa \emph{añadir}. La lista de productos generada se le asignará a la mesa
 al pulsar \emph{Aceptar}. Este nuevo pedido se envía (en formato \acs{XML})
 al \emph{servicio web}. La figura \ref{fig:sdB2-phase2} (página
 \pageref{fig:sdB2-phase2}) muestra el \textbf{diagrama de secuencia} de dicho
-caso de uso:
-
-  \begin{sidewaysfigure}[h]
-    \begin{center}
-      \includegraphics[width=1\textwidth]{sdB2-phase2.png}
-      \caption{Diagrama de secuencia del caso de uso \emph{añadir un nuevo
-      pedido (manual)}.}
-      \label{fig:sdB2-phase2}
-    \end{center}
-  \end{sidewaysfigure}
+caso de uso.
 
 \item \textbf{Actualizar el estado de un pedido}. Para cambiar el estado de
 un pedido, hay que seleccionarlo en la lista de pedidos y pulsar después uno
@@ -513,15 +599,6 @@ un \textbf{diagrama de secuencia} en el que, primero, se cambia el estado de
 un producto de \emph{No atendido} a \emph{Atendido}, para informar de que
 el pedido está siendo elaborado; y posteriormente se cambia de \emph{Atendido}
 a \emph{Servido}, para indicar que el pedido ha sido entregado a la mesa.
-
-  \begin{sidewaysfigure}[h]
-    \begin{center}
-      \includegraphics[width=1\textwidth]{sdB3-phase2.png}
-      \caption{Diagrama de secuencia del caso de uso \emph{actualizar
-      estado de un pedido} de \emph{No atendido} a \emph{Servido}.}
-      \label{fig:sdB3-phase2}
-    \end{center}
-  \end{sidewaysfigure}
 
 \item \textbf{Generar factura} y  \textbf{Cobrar importe total}. Para
 facturar una mesa, primero hay que asegurarse de que todos sus pedidos han
@@ -540,7 +617,35 @@ web} de esta operación. El \emph{servicio web} marcará también esos pedidos
 como \emph{Pagado}s, los sacará de la tabla \emph{Orders} y los meterá en
 \emph{Historical} y devolverá un \acs{XML} con el nuevo estado del
 restaurante. La figura \ref{fig:sdB4-phase2} (página \pageref{fig:sdB4-phase2})
-muestra el \textbf{diagrama de secuencia} de estos dos casos de uso:
+muestra el \textbf{diagrama de secuencia} de estos dos casos de uso.
+\end{itemize}
+
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{sdB1-phase2.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{Ver estado de
+      una mesa}.}
+      \label{fig:sdB1-phase2}
+    \end{center}
+  \end{sidewaysfigure}
+
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{sdB2-phase2.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{añadir un nuevo
+      pedido (manual)}.}
+      \label{fig:sdB2-phase2}
+    \end{center}
+  \end{sidewaysfigure}
+
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{sdB3-phase2.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{actualizar
+      estado de un pedido} de \emph{No atendido} a \emph{Servido}.}
+      \label{fig:sdB3-phase2}
+    \end{center}
+  \end{sidewaysfigure}
 
   \begin{sidewaysfigure}[h]
     \begin{center}
@@ -550,50 +655,125 @@ muestra el \textbf{diagrama de secuencia} de estos dos casos de uso:
       \label{fig:sdB4-phase2}
     \end{center}
   \end{sidewaysfigure}
-\end{itemize}
 
 Haciendo uso de los diagramas de casos de uso y de secuencia se
 diseña el diagrama de clases del prototipo de la aplicación de la barra
-(figura \ref{fig:cdB-phase2}):
+(figura \ref{fig:cdB-phase2}, página \pageref{fig:cdB-phase2}):
 
-%  \begin{sidewaysfigure}[h]
-%    \begin{center}
-%      \includegraphics[width=1\textwidth]{cdB-phase2.png}
-%      \caption{Diagrama de clases del prototipo de la aplicación de la barra
-%      (Fase 3).}
-%      \label{fig:cdB-phase2}
-%    \end{center}
-%  \end{sidewaysfigure}
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{cdB-phase2.png}
+      \caption{Diagrama de clases del prototipo de la aplicación de la barra
+      (Fase 3).}
+      \label{fig:cdB-phase2}
+    \end{center}
+  \end{sidewaysfigure}
 
-Muchas de estas clases comparten nombre y función con sus homónimas del
-prototipo del recibidor. Las principales clases restantes son las siguientes:
+Las clases de este prototipo son las siguientes:
 \begin{itemize}
-\item aaaaa
-%%%%%%%
+\item El paquete \texttt{presentation} contiene las clases que implementan
+la \acs{GUI} del prototipo:
+  \begin{itemize}
+  \item \textbf{\texttt{JourneyManagerWin}}: cumple el mismo cometido que la 
+  clase homónima del prototipo del recibidor salvo que, en este caso, se encarga
+  de gestionar los pedidos de los clientes y su facturación.
+  \item \textbf{\texttt{EditProductsWin}}: implementa un editor que permite 
+  añadir, editar o borrar productos de la lista de productos del restaurante.
+  \item \textbf{\texttt{StatisticsWin}}: permite consultar el histórico de 
+  facturas emitidas y el histórico de pedidos cobrados.
+  \item \texttt{\textbf{EditCategoryDialog}} y
+  \textbf{\texttt{EditProductDialog}}: forman
+  parte del editor de productos (\texttt{EditProductsWin}) y permiten editar
+  o crear nuevas categorías y editar o crear nuevos productos, respectivamente.
+  \item \textbf{\texttt{ConsultDialog}}: implementa una ventana emergente 
+  dependiente de \texttt{StatisticsWin}, a través de la cual se elige el tamaño 
+  (número de elementos) y el orden (ascendente o descendente) de la búsqueda de 
+  facturas o de la búsqueda de pedidos ya cobrados.
+  \item \textbf{\texttt{BillDialog}}: ventana emergente que muestra los 
+  elementos habituales de una factura: datos de la empresa, datos del cliente, 
+  pedidos realizados, \% de descuentos, \% de IVA e importe total, entre otros.
+  \item \textbf{\texttt{NewOrderWin}} y \textbf{\texttt{EditOrderDialog}}: 
+  ventanas emergentes que permiten añadir y editar pedidos, respectivamente.
+  \end{itemize}
+\item El paquete \texttt{domain} contiene las clases que implementan la lógica
+del prototipo:
+  \begin{itemize}
+  \item \textbf{\texttt{ProductsManager}}: se encarga de gestionar las 
+  operaciones relacionadas con la carga y modificación de la lista de productos 
+  del restaurante.
+  \item \textbf{\texttt{OrdersManager}}: implementa la lógica que permite la 
+  gestión de los pedidos realizados durante una jornada de trabajo.
+  \item \textbf{\texttt{BillManager}}: permite decodificar las facturas creadas 
+  por los servicios web para, posteriormente, representarlas en una ventana de 
+  tipo \texttt{BillDialog}.
+  \item \textbf{\texttt{Product}}: almacena la información de un producto 
+  (nombre, categoría, precio, descripción y descuentos).
+  \item \textbf{\texttt{Category}}: define una categoría de productos. Está 
+  compuesta por un nombre y la lista de objetos de tipo \texttt{Product} de esa
+  categoría.
+  \item \textbf{\texttt{Order}}: almacena la información referida a un pedido:
+  identificador, producto, cantidad, fecha, mesa de destino y estado del
+  pedido en ese momento (\emph{no atendido}, \emph{atendido}, \emph{servido}
+  o \emph{detenido}).
+  \item \textbf{\texttt{HOrder}}: representa la información de un pedido que 
+  forma parte del historial de pedidos del restaurante. Es decir, un pedido que 
+  ya ha sido cobrado (fecha, producto, cantidad y cliente que lo consumió).
+  \item \textbf{\texttt{Bill}}: almacena la información referida a una factura:
+  número de factura, datos del cliente, datos de la empresa, pedidos, importe
+  total, etc.
+  \end{itemize}
+\item Las clases \textbf{\texttt{InitWin}}, \textbf{\texttt{JourneyManager}},
+\textbf{\texttt{RoomManager}}, \textbf{\texttt{RoomDef}},
+\textbf{\texttt{RoomInf}}, \textbf{\texttt{TableInf}},
+\textbf{\texttt{LoadRoomDialog}} y \textbf{\texttt{AdapterWebServices}} 
+implementan una funcionalidad similar a las clases homónimas del prototipo del 
+recibidor.
 \end{itemize}
-Las clases: %%%%%%%%%%
-corresponden a definiciones de objetos.
 
 Una vez definidas las funcionalidades básicas (no \acs{NFC}) de las
 aplicaciones de escritorio (\emph{barra} y \emph{recibidor}) y de los servicios 
 web, así como también de los datos con los que trabajan; se ha definido la 
-\textbf{base de datos} del sistema. (figura :
+\textbf{base de datos} del sistema.
 
-%  \begin{figure}[H]
-%    \begin{center}
-%      \includegraphics[width=1\textwidth]{erDB.png}
-%      \caption{Diagrama entidad-interrelación de la base de datos del sistema.}
-%      \label{fig:erDB}
-%    \end{center}
-%  \end{figure}
+  \begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{erdDB.png}
+      \caption{Diagrama entidad-relación de la base de datos del sistema.}
+      \label{fig:erdDB}
+    \end{center}
+  \end{figure}
 
-La figura \ref{fig:erDB} muestra el \textbf{diagrama de entidad-interrelación} 
-de la base de datos. En ella pueden observarse las siguientes tablas:
+La figura \ref{fig:erdDB} (página \pageref{fig:erdDB}) muestra el
+\textbf{diagrama de entidad-interrelación} de la base de datos. En ella pueden 
+observarse los siguientes elementos:
 \begin{itemize}
-\item aaaa
-%%%%%%%%%
+\item \textbf{\texttt{Restaurant}}: almacena la información que define al 
+restaurante (NIF, nombre, información de contacto, IVA aplicado, descuentos por 
+fidelidad, número de la última factura emitida y plantilla de la jornada 
+actual).
+\item \textbf{\texttt{Rooms}}: contiene la información de cada una de las 
+plantillas definidas a través del editor de plantillas del restaurante.
+\item \textbf{\texttt{Tables}}: define el estado de cada una de las mesas de la
+plantilla de la jornada actual. Esta información se resetéa con el inicio
+de una nueva jornada.
+\item \textbf{\texttt{Clients}}: almacena la información de los clientes del
+restaurante. La información de los clientes \acs{NFC}, no se borrará con el
+inicio de una nueva jornada.
+\item \textbf{\texttt{Address}}: contiene la dirección de los clientes
+\acs{NFC} y la dirección del restaurante.
+\item \textbf{\texttt{Products}}: almacena la lista de productos del 
+restaurante.
+\item \textbf{\texttt{Orders}}: mantiene una lista con los pedidos realizados 
+durante una jornada de trabajo. Esta lista se reinicia con el inicio de una 
+nueva jornada.
+\item \textbf{\texttt{Bills}}: almacena una lista con las facturas generadas 
+por los servicios web.
+\item \textbf{\texttt{Historical}}: almacena un histórico de pedidos cobrados. 
+Este histórico se utilizará para calcular las recomendaciones para los clientes
+\acs{NFC}.
 \end{itemize}
 
+%%%%% hay que quitarlo...
 Para la implementación de los accesos de los servicios web a la base de datos 
 (\texttt{MySQL}) se han utilizado las clases y métodos definidos en la \acs{DLL}
 \emph{MySql.Data.dll}, siguiendo los pasos descritos en el apartado
@@ -650,7 +830,7 @@ Teniendo en cuenta el análisis de requisitos realizado anteriormente, el
 \textbf{diagrama de casos de uso} del prototipo de la aplicación móvil queda
 de la siguiente forma (figura \ref{fig:ucdM-phase3}):
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=1\textwidth]{ucdM-phase3.png}
       \caption{Diagrama de casos de uso del primer prototipo de la aplicación
@@ -667,9 +847,38 @@ la aplicación del recibidor y de la barra.
 La funcionalidad de este prototipo se ha implementado a través de la
 definición de las siguientes clases:
 \begin{itemize}
-\item \texttt{MobiCarta}
-%%%%%
+\item \textbf{\texttt{MobiCarta}}. Es la clase principal del \texttt{MIDlet}. 
+Implementa la \acs{GUI} y las funciones que permiten la captura de los eventos 
+\acs{NFC}.
+\item \textbf{\texttt{ProfileManager}}. Se encarga de generar un perfil de 
+cliente con los datos que el usuario ha introducido (a través de un 
+formulario); y lo recupera cuando alguna operación lo necesita.
+\item \textbf{\texttt{FileIO}}. Implementa la lógica que permite realizar 
+lecturas y escrituras en archivos. En este caso, se utiliza para guardar y 
+recuperar el perfil de cliente que \texttt{ProfileManager} ha 
+generado.
+\item \textbf{\texttt{ProductsListManager}}. Mantiene la lista de productos
+de un pedido. Esta lista se elabora a partir de las interacciones del
+dispositivo móvil con las etiquetas \acs{RFID} de una carta de productos.
+\item \textbf{\texttt{Client}}. Almacena los datos personales de un cliente
+(DNI, nombre, appellidos y dirección).
+\item \textbf{\texttt{Address}}. Define la dirección del domicilio del cliente
+(calle, número, código postal, localidad y provincia).
+\item \textbf{\texttt{Order}}. Contiene la información de un pedido. Esto
+es, el nombre y la cantidad de un tipo determinado de producto.
 \end{itemize}
+
+La figura \ref{fig:cdM-phase3} (página \pageref{fig:cdM-phase3}) muestra el 
+\textbf{diagrama de clases} del prototipo de la aplicación móvil en esta fase.
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.9\textwidth]{cdM-phase3.png}
+      \caption{Diagrama de clases del prototipo de la aplicación móvil
+      (Fase 4).}
+      \label{fig:cdM-phase3}
+    \end{center}
+  \end{figure}
 
 Para implementar la funcionalidad \acs{NFC} se ha hecho uso de la
 librería \texttt{\acs{JSR}-257} siguiendo los procedimientos descritos en el 
@@ -728,9 +937,37 @@ Cuando se lleva a cabo \emph{iniciar jornada}, la aplicación inicia un
 \emph{clientes \acs{NFC}}. Este servicio está preparado para recibir
 los datos personales de los \emph{clientes \acs{NFC}} que pasan por la
 zona del \emph{recibidor}, ya sea para registrar su entrada, su intención de
-pagar vía \acs{NFC} o su salida. La figura \ref{fig:sdR-phase4} (página
-\pageref{fig:sdR-phase4}) muestra el \textbf{diagrama de secuencia} del
-caso de uso \emph{registrar salida por \acs{NFC}}.
+pagar vía \acs{NFC} o su salida:
+\begin{itemize}
+\item En el caso uso \emph{registrar salida por \acs{NFC}}, cuando el 
+servidor \emph{Bluetooth} recibe los datos de un usuario (en formato
+\acs{XML}), los envía al \emph{servicio web} correspondiente, para que este le 
+informe del estado del cliente (\emph{cliente que llega}, \emph{cliente que 
+paga} o \emph{cliente que se va}). En este caso como es \emph{cliente que se 
+va}, la aplicación del \emph{recibidor} muestra un mensaje emergente informando 
+del cliente que se va. Por su parte, el servidor \emph{Bluetooth} manda al 
+cliente un mensaje de confirmación, del tipo \emph{gracias por su visita}. El 
+\emph{maître}, encargado de manejar la aplicación del \emph{recibidor}, debe 
+confirmar finalmente que el cliente se ha ido. Al hacerlo, informa a la 
+aplicación web que el cliente ha abandonado su mesa y este le devuelve la nueva 
+situación del restaurante. La figura \ref{fig:sdR-phase4} (página
+\pageref{fig:sdR-phase4}) muestra el \textbf{diagrama de secuencia} del caso de 
+uso \emph{registrar salida por \acs{NFC}}.
+
+\item El caso de \textbf{registrar llegada por \acs{NFC}}, es muy parecido al
+anterior, salvo que el mensaje enviado al cliente es de bienvenida.
+\item Por su parte, el caso de uso \textbf{cobrar cliente por \acs{NFC}} tiene
+la peculiaridad de que ocurre cuando un cliente \acs{NFC} va a registrar su
+salida, pero aún no ha pagado su cuenta. Al recibir los datos del cliente y
+consultar con el servicio web que su estado es el descrito anteriormente, el
+\emph{recibidor} vuelve a mandar otra petición a la aplicación de los servicios
+web, esta vez de facturación. Con los datos del cliente y los datos de la
+factura se realiza el cargo del importe, se le envía al cliente el resumen de
+la operación y, de paso, se desocupa su mesa, para que este no tenga que
+realizar la interacción de \emph{registrar salida por \acs{NFC}}. La figura
+\ref{fig:sdR2-phase4} (página \pageref{sdR2-phase4}) muestra el
+\textbf{diagrama de secuencia} de este caso de uso.
+\end{itemize}
 
   \begin{sidewaysfigure}[h]
     \begin{center}
@@ -741,17 +978,14 @@ caso de uso \emph{registrar salida por \acs{NFC}}.
     \end{center}
   \end{sidewaysfigure}
 
-Cuando el servidor \emph{Bluetooth} recibe los datos de un usuario (en formato
-\acs{XML}), los envía al \emph{servicio web} correspondiente, para que este le 
-informe del estado del cliente (\emph{cliente que llega}, \emph{cliente que 
-paga} o \emph{cliente que se va}). En este caso el cliente se va, por lo tanto 
-la aplicación del \emph{recibidor} muestra un mensaje emergente informando
-del cliente que se va. Por su parte, el servidor \emph{Bluetooth} manda
-al cliente un mensaje de confirmación, del tipo \emph{gracias por su visita}.
-El \emph{maître}, encargado de manejar la aplicación del \emph{recibidor},
-debe confirmar finalmente que el cliente se ha ido. Al hacerlo, informa
-a la aplicación web que el cliente ha abandonado su mesa y este le
-devuelve la nueva situación del restaurante.
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{sdR2-phase4.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{cobrar cliente
+      por \acs{NFC}}.}
+      \label{fig:sdR2-phase4}
+    \end{center}
+  \end{sidewaysfigure}
 
 Por otro lado, al \textbf{diagrama de casos de uso} del primer prototipo
 de la aplicación móvil (figura \ref{fig:ucdM-phase3}, página
@@ -773,7 +1007,7 @@ de \textbf{Registrarse por \acs{NFC}}, son llevados a cabo por parte del
 cliente de forma casi idéntica, ya que el que determina el caso de uso que
 se está realizando es la aplicación del \emph{recibidor}. La figura
 \ref{fig:sdM-phase4} (página \pageref{fig:sdM-phase4}) muestra el
-\textbf{diagrama de secuencia} del caso de uso \emph{registrar entrada}:
+\textbf{diagrama de secuencia} del caso de uso \emph{registrar entrada}.
 
   \begin{sidewaysfigure}[h]
     \begin{center}
@@ -803,16 +1037,19 @@ registrada, en este caso, la entrada al restaurante.
 
 En cuanto al diseño de clases de los prototipos:
 \begin{itemize}
-\item El \textbf{prototipo del recibidor} añade las siguientes clases:
-  \begin{itemize}
-  \item \texttt{BluetoothServer}.
-  %%%% Uso de la DLL 32feet
-  \end{itemize}
-\item El \textbf{prototipo del móvil} por su parte, añade:
-  \begin{itemize}
-  \item \texttt{BluetoothClient}.
-  %%%% Uso de la librería JRS-82
-  \end{itemize}
+\item El \textbf{prototipo del recibidor} añade la clase
+\textbf{\texttt{BluetoothServer}}. Esta clase implementa un servidor
+\emph{Bluetooth} que publica un servicio de registro de clientes. Este
+servidor ha sido implementado utilizando la biblioteca \acs{DLL}
+\texttt{32feet}.
+\item El \textbf{prototipo del móvil} por su parte, añade la clase
+\textbf{\texttt{BluetoothClient}}. Esta clase implementa un cliente
+\emph{Bluetooth} que se encarga de buscar el servicio \emph{Bluetooth}
+publicado por el \emph{recibidor} y de enviarle el perfil de cliente del
+usuario. Dependiendo del estado en el que se encuentre el cliente, recibirá
+una respuesta distinta por parte del \emph{recibidor}. El cliente
+\emph{Bluetooth} ha sido implementado haciendo uso de la librería
+\texttt{\acs{JRS}-82}.
 \end{itemize}
 
 \subsection{Comunicación \emph{Bluetooth} entre móvil y \emph{barra}}
@@ -887,15 +1124,6 @@ pero no permitía enviarla. La figura \ref{fig:sdM1-phase5} (página
 \pageref{fig:sdM1-phase5}) muestra el \textbf{diagrama de secuencia} de este
 caso de uso.
 
-  \begin{sidewaysfigure}[h]
-    \begin{center}
-      \includegraphics[width=1\textwidth]{sdM1-phase5.png}
-      \caption{Diagrama de secuencia del caso de uso \emph{mandar lista
-      de pedidos}. En este caso el cliente solicita dos productos.}
-      \label{fig:sdM1-phase5}
-    \end{center}
-  \end{sidewaysfigure}
-
 Cuando el dispositivo móvil contacta con una etiqueta de tipo \emph{product},
 la aplicación móvil arranca automáticamente en \emph{modo pedido}. Todas las
 etiquetas de tipo \emph{product} contienen el nombre del producto al que
@@ -919,14 +1147,6 @@ pedidos realizados. La figura \ref{fig:sdM2-phase5} (página
 \pageref{fig:sdM2-phase5}) muestra el \textbf{diagrama de secuencia} de los
 pasos que debe seguir.
 
-  \begin{sidewaysfigure}[h]
-    \begin{center}
-      \includegraphics[width=1\textwidth]{sdM2-phase5.png}
-      \caption{Diagrama de secuencia del caso de uso \emph{solicitar factura}.}
-      \label{fig:sdM2-phase5}
-    \end{center}
-  \end{sidewaysfigure}
-
 Cuando el dispositivo móvil detecta la presencia de una etiqueta de tipo
 \emph{bill-request}, arranca automáticamente la aplicación en \emph{modo
 solicitar facturación}. A continuación, la aplicación busca el archivo
@@ -939,16 +1159,50 @@ mesa, número de factura, pedidos realizados, subtotal, descuentos, IVA e
 importe total.
 \end{itemize}
 
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{sdM1-phase5.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{mandar lista
+      de pedidos}. En este caso el cliente solicita dos productos.}
+      \label{fig:sdM1-phase5}
+    \end{center}
+  \end{sidewaysfigure}
+
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{sdM2-phase5.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{solicitar factura}.}
+      \label{fig:sdM2-phase5}
+    \end{center}
+  \end{sidewaysfigure}
+
 En cuanto al diseño de clases de los prototipos:
 \begin{itemize}
 \item El \textbf{prototipo de la barra} añade las siguientes clases:
   \begin{itemize}
-  \item \texttt{BluetoothServer}. %%% Clase similar a la del recibidor
+  \item \textbf{\texttt{BluetoothServer}}. Esta clase es similar a su homónima 
+  en el prototipo del recibidor. Sin embargo, en este caso, publica un servicio 
+  que recoge los pedidos de los clientes \acs{NFC} y las solicitudes de
+  facturación.
+  \item \textbf{\texttt{ShortBill}}. Almacena la información resumida de una 
+  factura. Cuando un cliente \acs{NFC} solicita una factura a través de una 
+  petición por \emph{Bluetooth}, la \emph{aplicación de la barra} no le manda 
+  una factura detallada (tipo \texttt{Bill}), sino que le envía una factura más
+  simplificada con: el nombre de restaurante, la fecha, los pedidos realizados
+  y el importe total.
   \end{itemize}
-\item El \textbf{prototipo del móvil} por su parte, añade:
+\item El \textbf{prototipo del móvil} por su parte, añade las siguientes
+clases:
   \begin{itemize}
-  \item \texttt{BluetoothClient}. %%% Adapta esta clase para enviar pedidos
-  % y recibir facturas
+  \item La clase \textbf{\texttt{BluetoothClient}} adapta su funcionalidad para 
+  poder comunicarse con el servicio publicado por la \emph{aplicación de la 
+  barra}.
+  \item \textbf{\texttt{BillManager}}. Se encarga de decodificar la información 
+  de recibida tras una solicitud de facturación. Con esta información crea un
+  objeto de tipo \textbf{\texttt{Bill}}. La información de cada uno de los
+  productos que aparecen en la factura está contenida en un objeto de tipo
+  \textbf{\texttt{BillItem}} (producto, cantidad, precio por unidad, descuentos
+  y precio total).
   \end{itemize}
 \end{itemize}
 
@@ -982,12 +1236,160 @@ está elaborando una lista para un pedido.
 \end{enumerate}
 
 \subsubsection{Diseño e implementación}
-El diseño del módulo recomendador va a afectar a los servicios web y su
-base de datos, a la aplicación del \emph{recibidor} y a la aplicación
-móvil.
+El diseño del módulo recomendador va a afectar a los servicios web, al 
+prototipo del \emph{recibidor} y al prototipo de la aplicación móvil.
 
-La aplicación de los servicios web van a añadir un nuevo caso de uso (figura
-\ref{figucdW-phase6}):
+La aplicación de los servicios web va a añadir el caso de uso \emph{calcular 
+recomendaciones} (figura \ref{fig:ucdW-phase6}):
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{ucdW-phase6.png}
+      \caption{Caso de uso \emph{calcular recomendaciones} añadido al prototipo
+      final de los servicios web.}
+      \label{fig:ucdW-phase6}
+    \end{center}
+  \end{figure}
+
+Cuando el servicio web recibe una petición de \emph{calcular recomendaciones} 
+para un cliente, en primer lugar, accede a la base de datos en busca de la
+información de dicho cliente. Esta información la va a utilizar para conocer
+si dispone o no de algún descuento por número de visitas realizadas. En
+segundo lugar, se accede de nuevo a la base de datos en busca del historial
+de pedidos del cliente y de la lista de productos visibles (es decir, los están
+a la venta). Estos dos parámetros van a servir para calcular hasta tres tipos
+distintos de recomendaciones:
+\begin{enumerate}
+\item Una lista de los productos que el cliente ha consumido más habitualmente. 
+Ya que es muy probable que los vuelva a consumir.
+\item Una lista con los productos que están en promoción. Esto es, productos 
+cuya segunda, tercera, \dots unidad tiene un descuento de un tanto por ciento.
+\item Y una lista de los productos similares a los más habitualmente 
+consumidos. Es muy probable que si a un cliente le gusta un tipo de plato, le 
+gusten también platos similares a este.
+\end{enumerate}
+Por último, se codifican en \acs{XML} los resultados obtenidos y se le
+devuelven al cliente del servicio web. La figura \ref{fig:ucdW-phase6}
+(página \pageref{fig:ucdW-phase6}) muestra el \textbf{diagrama de secuencia}
+de este caso de uso.
+
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{sdW-phase6.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{calcular 
+      recomendaciones}.}
+      \label{fig:sdW-phase6}
+    \end{center}
+  \end{sidewaysfigure}
+
+A continuación, se va a profundizar en cómo se realiza el proceso de cálculo
+de recomendaciones (ver figura \ref{fig:recommender}):
+
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=1\textwidth]{recommender.png}
+      \caption{Cálculo de las recomendaciones para el cliente
+      ``\emph{client}''.}
+      \label{fig:recommender}
+    \end{center}
+  \end{figure}
+
+El recomendador hace uso de cinco algoritmos:
+\begin{itemize}
+\item \textbf{\emph{Algoritmo 1}}.
+  \begin{itemize}
+  \item \emph{Entradas:}
+    \begin{itemize}
+    \item De la tabla \texttt{Clients}, se selecciona el número de apariciones 
+    del cliente cuyo DNI corresponde con el del cliente destinatario de la
+    recomendación.
+    \item De la tabla \texttt{Restaurant}, se selecciona el nombre, el
+    porcentaje de descuento y el número de visitas a realizar para aplicar un
+    descuento.
+    \end{itemize}
+  \item \emph{Procedimiento:} si el porcentaje de descuentos es distinto de 0,
+  se comprueba si el número de visitas realizadas por el cliente es múltiplo 
+  del número de visitas a realizar para recibir un descuento. Si es así,
+  se crea un mensaje que lo indique. En caso contrario, se generará un
+  mensaje informando del número de visitas que el cliente ha de realizar para 
+  recibir el próximo descuento.
+  \item \emph{Salida:} se genera un mensaje de bienvenida del restaurante
+  ``\emph{tal}'' y se informa de los descuentos calculados por el algoritmo.
+  \end{itemize}
+\item \textbf{\emph{Algoritmo 2}}.
+  \begin{itemize}
+  \item \emph{Entradas:}
+    \begin{itemize}
+    \item De la tabla \texttt{Historical}, se extrae el historial de pedidos
+    del cliente.
+    \item De la tabla \texttt{Products}, se seleccionan todos los productos
+    que están a la venta durante la jornada actual.
+    \end{itemize}
+  \item \emph{Procedimiento:} del historial de pedidos, se eliminan aquellos
+  cuyos productos que no estén a la venta. Con los restantes, se calcula en
+  número de veces que se ha consumido cada tipo de producto.
+  \item \emph{Salida:} al final se obtiene una lista con los productos
+  consumidos (y a la venta) que ha consumido el cliente y con el número de
+  veces que ha consumido cada uno de esos productos.
+  \end{itemize}
+\item \textbf{\emph{Algoritmo 3}}.
+  \begin{itemize}
+  \item \emph{Entrada:} la salida del \emph{Algoritmo 3}.
+  \item \emph{Procedimiento:} se clasifican productos obtenidos por
+  el \emph{Algoritmo 3} por categorías de productos y se cogen los productos
+  más consumidos de cada categoría.
+  \item \emph{Salida:} se obtiene una lista con el producto más consumido de
+  cada categoría.
+  \end{itemize}
+\item \textbf{\emph{Algoritmo 4}}.
+  \begin{itemize}
+  \item \emph{Entradas:}
+    \begin{itemize}
+    \item Se coge el resultado obtenido por el \emph{Algoritmo 3}.
+    \item Y de la tabla \texttt{Products}, se seleccionan los productos que 
+    están a la venta.
+    \end{itemize}
+  \item \emph{Procedimiento:} se coge cada uno de los productos de la lista
+  generada por el \emph{Algoritmo 3} y se calcula su similitud con cada uno
+  de los productos de su misma categoría. La similitud entre dos productos se 
+  obtiene calculando el número de palabras clave que tienen en común. Estas 
+  palabras clave están contenidas en la descripción de cada producto. El 
+  producto con más palabras en común con el producto de referencia, formará 
+  parte de la lista de productos recomendados.
+  \item \emph{Salida:} se obtiene una lista con el producto más similar al
+  obtenido por el \emph{Algoritmo 3}, de cada categoría de productos.
+  \end{itemize}
+\item \textbf{\emph{Algoritmo 5}}.
+  \begin{itemize}
+  \item \emph{Entradas:} de la tabla \texttt{Products} se seleccionan los
+  productos que tienen descuento.
+  \item \emph{Procedimiento:} de todos los productos, se eligen aquellos cuyo
+  descuento sea mayor que 0\% y cuyo número de productos a consumir para el
+  descuento sea también mayor de 0 unidades.
+  \item \emph{Salida:} se obtiene una lista con los productos a la venta que
+  tienen algún tipo de descuento.
+  \end{itemize}
+\end{itemize}
+
+Finalmente, tras el uso de estos cinco algoritmo, el recomendador devuelve 
+cuatro resultados:
+\begin{enumerate}
+\item Una cadena con \textbf{información de bienvenida} personalizada para
+el cliente. Esta información será del tipo: ``\emph{Bienvenido al restaurante
+\texttt{nombre\_del\_restaurante}. Es su visita número \texttt{numero\_de
+\_visita}. La factura de la visita \texttt{visita\_con\_descuento} dispondrá 
+de un descuento del \texttt{descuento\_factura} \%}''.
+\item Una lista de los \textbf{productos con descuento}.
+\item Una lista con los \textbf{productos consumidos más habitualmente}.
+\item Una lista de los \textbf{productos recomendados} por su similitud con
+los productos más consumidos.
+\end{enumerate}
+
+El Anexo \ref{chap:recommender} muestra un ejemplo de cómo funciona el
+módulo recomendador.
+
+Por otra parte, al prototipo de la aplicación del \emph{recibidor} añade un 
+único caso de uso (figura \ref{fig:ucdR-phase6}):
 
   \begin{figure}[H]
     \begin{center}
@@ -998,29 +1400,13 @@ La aplicación de los servicios web van a añadir un nuevo caso de uso (figura
     \end{center}
   \end{figure}
 
-% Descripción del caso de uso...
+Para implementar la funcionalidad de este caso de uso simplemente, al gestor de 
+clientes \texttt{ClientManager}, se le añade una llamada (a través de
+\texttt{AdapterWebServices}) que devuelva la recomendación para el cliente
+que está solicitando su registro para entrar al restaurante.
 
-% Insertar esquema de cómo se calculan las recomendaciones.
-
-% Ejemplo de entradas y salidas obtenidas con el recomendador.
-
-La aplicación del \emph{recibidor} añade un único caso de uso (figura
-\ref{fig:ucdR-phase6}):
-
-  \begin{figure}[H]
-    \begin{center}
-      \includegraphics[width=0.8\textwidth]{ucdR-phase6.png}
-      \caption{Casos de uso \emph{enviar recomendación} añadido a la aplicación 
-      del \emph{recibidor}.}
-      \label{fig:ucdR-phase6}
-    \end{center}
-  \end{figure}
-
-%% Descripción de este caso de uso...
-
-% Diagrama de secuencia
-
-La aplicación móvil añade dos casos de uso (figura \ref{fig:ucdM-phase6}):
+Finalmente, al prototipo de la aplicación móvil, se añaden dos nuevos casos de 
+uso (figura \ref{fig:ucdM-phase6}):
 
   \begin{figure}[H]
     \begin{center}
@@ -1032,14 +1418,43 @@ La aplicación móvil añade dos casos de uso (figura \ref{fig:ucdM-phase6}):
   \end{figure}
 
 \begin{itemize}
-\item \textbf{Recibir recomendación}. %%%
-\item \textbf{Consultar recomendación}. %%%
+
+\item \textbf{Recibir recomendación}. Cuando un cliente \acs{NFC} envía los
+datos para registrar su entrada en el restaurante, ya no recibe simplemente
+un mensaje de bienvenida (como ocurría en el diagrama de secuencia de la
+figura \ref{fig:sdM-phase4}, página \pageref{fig:sdM-phase4}), sino que
+recibe una cadena estructurada en \acs{XML} con las recomendaciones calculadas
+para dicho cliente. Dicha cadena está formada por un saludo personalizado
+de bienvenida, que se mostrará en ese momento en pantalla; y por una lista
+de productos recomendados, que se mostrarán cuando se esté elaborando la lista 
+de productos para un pedido. El \acs{XML} será almacenado como un archivo en la 
+memoria del dispositivo móvil para ser recuperado cuando haga falta.
+La figura \ref{fig:sdM-phase6} (página \pageref{fig:sdM-phase6}) muestra el 
+\textbf{diagrama de secuencia} de este caso de uso.
+
+\item \textbf{Consultar recomendación}. Cuando un cliente \acs{NFC} está
+elaborando la lista de productos de un pedido, tiene la opción de consultar
+las recomendaciones que la \emph{aplicación del recibidor} le envió cuando
+llegó al restaurante. Estas recomendaciones son cargadas del archivo que se
+creó en el caso de uso anterior y están divididas en tres categorías:
+\emph{productos más consumidos}, \emph{productos con descuento} y
+\emph{productos recomendados}.
 \end{itemize}
 
-% Hacer referencia de que en los anexos están los diagramas de clases completos
-% de todas las aplicaciones que forman parte del sistema.
+  \begin{sidewaysfigure}[h]
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{sdM-phase6.png}
+      \caption{Diagrama de secuencia del caso de uso \emph{recibir 
+      recomendación}.}
+      \label{fig:sdM-phase6}
+    \end{center}
+  \end{sidewaysfigure}
 
-\section{Pruebas de campo}
+Terminado el módulo recomendador, se da por finalizado el prototipo completo
+del sistema. Los diagramas de clases de los prototipos finales pueden
+consultarse en el Anexo \ref{chap:classDiagrams}.
+
+\section{Pruebas}
 % Decir cómo las he hecho y las conclusiones obtenidas.
 % Hacer referencia de que en los anexos están los formularios utilizados para
 % tomar nota de lo que piensan los usuarios de las aplicaciones.
