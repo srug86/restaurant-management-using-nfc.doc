@@ -1,0 +1,154 @@
+\chapter{La \acs{API} \texttt{\acs{JSR}-257} (\emph{Contactless Communication})}
+\label{chap:jsr257}
+
+En el presente anexo, se hace un repaso de los conceptos básicos que
+forman parte del trabajo con etiquetas inteligentes y su implementación a
+partir de la \acs{API} \texttt{\acs{JSR}-257}~\cite{bib:jfontecha}:
+\begin{itemize}
+\item \textbf{Implementación de interfaces}. Para poder hacer uso de las 
+funcionalidades \acs{NFC} por medio de \acs{JavaME}
+es necesario implementar al menos la interfaz \texttt{TargetListener} en la
+clase principal de la aplicación. Esto permitirá la lectura y escritura de
+etiquetas una vez iniciada la aplicación.
+
+Si además se desea que, ante el evento de contacto con una etiqueta, sea el 
+propio móvil el que inicie la aplicación, se deberá implementar la interfaz
+\texttt{NDEFRecordListener}, para provocar el ``autoarranque'' de la aplicación
+ante un tipo de etiqueta definido.
+
+Implementar tanto \texttt{TargetListener} como \texttt{NDEFRecordListener},
+implica sobreescribir los métodos de dichas interfaces,
+\texttt{recordDetected/1} y \texttt{targetDetected/1} respectivamente
+(listado \ref{code:extendsNFC}):
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {Implementación de las interfaces \texttt{TargetListener} y
+  \texttt{NDEFRecordListener}.},
+  label = code:extendsNFC]
+  public class MiMIDLet extends MIDlet implements NDEFRecordListener, TargetListener {
+    @override
+    void recordDetected(NDEFMessage ndefMessage) { ... }
+    @override
+    void targetDetected(TargetProperties[] properties) { ... }
+  }
+\end{lstlisting}
+
+\item \textbf{Descubrimiento de dispositivos y etiquetas}. Para poder leer y 
+escribir etiquetas \acs{RFID} con \acs{JavaME}, se necesita realizar un 
+descubrimiento previo y añadir el \emph{Listener} correspondiente. De esta 
+forma en el constructor del \emph{MIDlet} o nada más iniciar su ejecución, 
+podrá realizarse su registro.
+
+Al iniciar el contacto, se registrará el tipo de etiqueta o registro dentro de 
+etiqueta que se pretende ``despertar''. El tipo de etiqueta puede
+definirse utilizando el formato \acs{MIME} (por ejemplo, \emph{app/mi\_tipo}).
+De esta forma, la aplicación estará preparada para leer y escribir etiquetas
+con este tipo.
+
+El listado \ref{code:addListener} muestra un ejemplo en el que se añaden
+dos \emph{Listener}s:
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {Se añade un \emph{Listener} para etiquetas \texttt{NDEF} y otro
+  para etiquetas \texttt{NDEF} del tipo ``app/mi\_tipo''.},
+  label = code:addListener]
+  try{
+    DiscoveryManager.getInstance().addTargetListener(this, TargetType.NDEF_TAG);
+    DiscoveryManager.getInstance().addNDEFRecordListener(this, new NDEFRecordType(NDEFRecordType.MIME, ``app/mi_tipo''));
+  } catch(ContactlessException e) { }
+\end{lstlisting}
+
+\item \textbf{Conexión y lectura/escritura de datos}. La  interfaz
+\texttt{TargetListener} requiere la implementación del método
+\texttt{targetDetected}, mediante el cual se definen las acciones a realizar 
+cuando se establezca el contacto con una etiqueta \acs{RFID}. El listado
+\ref{code:targetDetected} muestra un ejemplo de implementación:
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {Ejemplo de implementación del método \texttt{targetDetected} en
+  la que se realizan varias operaciones.},
+  label = code:targetDetected]
+  public void targetDetected(TargetProperties[] prop) {
+    NDEFTagConnection conn = null;
+    //Obtenemos las propiedades de la etiqueta
+    TargetProperties target = prop[0];
+    try {
+      // Obtenemos la url de la etiqueta para ``conectarnos'' con ella
+      String url = target.getUrl();
+      // Abrimos la conexion y la almacenamos en un objeto NDEFTagConnection
+      conn = (NDEFTagConnection)Connector.open(url);
+      // Leemos los datos de la etiqueta y los almacenamos en un objeto NDEFMessage
+      NDEFMessage message = conn.readNDEF();
+      // Obtenemos el numero de registros del mensaje
+      NDEFRecord[] records = message.getRecords();
+      // Operamos con esos registros y ejecutamos las acciones correspondientes
+      // Podemos crear y escribir un nuevo mensaje en la etiqueta de esta forma
+      conn.writeNDEF(message);
+      //Cerramos la conexion
+      conn.close();
+    } catch (...) { }
+  }
+\end{lstlisting}
+
+\item \textbf{Eliminación del \emph{Listener}}. Cuando ya no interese leer o 
+escribir etiquetas de un tipo determinado, se eliminará su registro 
+correspondiente. Con ello, la aplicación dejará de estar a la escucha de este 
+tipo de etiquetas, a menos que se vuelvan a registrar (listado
+\ref{code:removeListener}):
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {Se eliminan los \emph{Listener}s añadidos en el listado
+  \ref{code:addListener}.},
+  label = code:removeListener]
+  try {
+    DiscoveryManager.getInstance().removeNDEFRecordListener(this, new
+    NDEFRecordType(NDEFRecordType.MIME,``app/mi_tipo''));
+    DiscoveryManager.getInstance().removeTargetListener(this, TargetType.NDEF_TAG);
+  } catch (...) { }
+\end{lstlisting}
+
+\item \textbf{Lectura instantánea de información}. El registro del
+\texttt{NDEFRecordListener} permitirá leer datos con el simple
+hecho de aproximar el dispositivo móvil a una etiqueta \acs{RFID}, sin 
+necesidad de que, la aplicación que hará uso de sus datos, esté en ejecución.
+Para ello, debe implementarse el método \emph{RecordDetected}.
+
+El método \texttt{recordDetected} obtiene directamente el objeto de tipo
+\texttt{NDEFMessage} que contiene el mensaje de la etiqueta \acs{RFID}
+(figura \ref{code:recordDetected}).
+
+\begin{lstlisting}[
+  language = Java,
+  caption = {El objeto \texttt{peli}, de tipo \texttt{Pelicula}, almacena
+  el contenido del registro 0 de la etiqueta, extraído por el lector
+  \acs{NFC}.},
+  label = code:recordDetected]
+  public void recordDetected(NDEFMessage nDEFMessage) {
+    // Nos aseguramos que el mensaje contenido en el registro 0 de la etiqueta es de tipo ``app/objeto''
+    if (nDEFMessage.getRecord(0).getRecordType().getName().equals(``app/pelicula'')){
+      //Obtengo la informacion contenida en ese mensaje y construyo con ella un objeto especifico de mi aplicacion.
+      peli = new Pelicula(nDEFMessage.getRecord(0).getPayload());
+    }
+  }
+\end{lstlisting}
+
+Una vez extraída la información de la etiqueta, comenzará la ejecución normal
+de la aplicación, teniendo los datos de la etiqueta disponibles para su
+tratamiento desde el principio. Sin embargo, para provocar el ``auto-arranque''
+de la aplicación, es necesario dar de alta a la misma en el
+\emph{Push-Registry} \texttt{Java} del dispositivo móvil.
+
+\item \textbf{El \emph{Push-Registry}}. Es una clase interna \acs{JavaME} que 
+permite ejecutar aplicaciones en principio inactivas, ante la respuesta a un 
+evento, como puede ser el \emph{timer} de un reloj, la aproximación de una 
+etiqueta \acs{RFID} al dispositivo, etc.
+
+Cuando una aplicación define el \emph{Push-Registry} como respuesta a un
+evento, este hecho queda registrado en el archivo description de la
+aplicacion móvil (archivo con extensión \emph{.jad}).
+\end{itemize}
+

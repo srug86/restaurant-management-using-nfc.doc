@@ -1,0 +1,197 @@
+\chapter{La \acs{API} \texttt{\acs{JSR}-82} (\texttt{Bluetooth})}
+\label{chap:jsr82}
+
+A continuación, se va a hacer un repaso de las principales clases y métodos
+que forman parte del paquete \texttt{javax.bluetooth}, que está orientado a 
+las operaciones \texttt{Bluetooth} que no utilizan el protocolo \acs{OBEX}.
+Como, en este caso, la aplicación móvil siempre va a ejercer como 
+cliente, en el esquema \emph{cliente-servidor}, sólo van a exponerse las
+clases orientadas a las comunicaciones cliente, en este caso las de tipo
+\acs{SPP}\footnote{El \emph{Serial Port Profile} es un perfil \texttt{Bluetooth} 
+basado en la \texttt{\acs{ETSI} 07,10} y en el protocolo \acs{RFCOMM}, que
+emula un cable serial para proporcionar un sustituto similar a la interfaz
+\texttt{RS-232}, incluyendo sus principales señales de
+control.}~\cite{bib:jsr82}:
+\begin{itemize}
+\item En primer lugar, antes de realizar cualquier otra operación, es necesario
+iniciar la interfaz \texttt{Bluetooth} del dispositivo. Para ello:
+  \begin{itemize}
+  \item primero se crea una instancia de tipo \texttt{LocalDevice}, que va a 
+  hacer referencia al dispositivo local. La clase \texttt{LocalDevice} es un 
+  ``singleton'', así que para obtener su única instancia existente se llamará 
+  al método \texttt{getLocalDevice()}.
+
+  \begin{lstlisting}[
+    language = Java]
+    LocalDevice localDevice = null;
+    try {
+      localDevice = LocalDevice.getLocalDevice();
+    } catch (BluetoothStateException e) { }
+  \end{lstlisting}
+
+  Este objeto será el punto de partida de prácticamente cualquier operación
+  que se vaya a llevar a cabo con esta \acs{API}.
+
+  \item Y después, mediante el método \texttt{setDiscoverable/1}, se activa la 
+  conectividad del dispositivo. Los posibles valores que admite este método
+  están definidos en la clase \texttt{DiscoveryAgent} como campos estáticos y
+  son los siguientes:
+    \begin{itemize}
+    \item \texttt{DiscoveryAgent.GIAC} (\emph{General/Unlimited Inquiry Access
+    Code}): permite una conectividad ilimitada.
+    \item \texttt{DiscoveryAgent.LIAC} (\emph{Limited Dedicated Inquiry Access
+    Code}): permite una conectividad limitada.
+    \item \texttt{DiscoveryAgent.NOT\_DISCOVERABLE}: hace que el dispositivo
+    no sea visible para el resto de dispositivos.
+    \end{itemize}
+  Por ejemplo, para permitir una conectividad ilimitada:
+
+  \begin{lstlisting}[
+    language = Java]
+    localDevice.setDiscoverable(DiscoveryAgent.GIAC);
+  \end{lstlisting}
+  \end{itemize}
+
+\item El siguiente paso será la búsqueda de dispositivos y servicios. Las
+búsquedas se realizarán a través del objeto \texttt{DiscoveryAgent}. Este
+objeto es único y se obtendrá a través del método \texttt{getDiscoveryAgent()}
+del objeto \texttt{LocalDevice}:
+
+\begin{lstlisting}[
+  language = Java]
+  DiscoveryAgent discoveryAgent =
+    LocalDevice.getLocalDevice().getDiscoveryAgent();
+\end{lstlisting}
+  \begin{itemize}
+  \item Para comenzar una nueva \textbf{búsqueda de dispositivos}, se hará uso 
+  del método \texttt{startInquiry()}. Este método requiere dos argumentos. El 
+  primero especifica el modo de conectividad que deben tener los dispositivos a 
+  buscar (\texttt{DiscoveryAgent.GIAC} o \texttt{DiscoveryAgent.LIAC}).
+  El segundo es un objeto que implementa la interfaz
+  \texttt{DiscoveryListener}. A través de este último, serán notificados los 
+  dispositivos que se vayan descubriendo:
+
+  \begin{lstlisting}[
+    language = Java]
+    discoveryAgent.startInquiry(DiscoveryAgent.GIAC, this);
+  \end{lstlisting}
+
+  Para cancelar la búsqueda se hará uso del método \texttt{cancelInquiry()}.
+
+  \begin{lstlisting}[
+    language = Java]
+    discoveryAgent.cancelInquiry(this);
+  \end{lstlisting}
+
+  La interfaz \texttt{DiscoveryListener} contiene dos métodos para la 
+  búsqueda de dispositivos:
+    \begin{itemize}
+    \item \texttt{public void \textbf{deviceDiscovered}(RemoteDevice rd,
+      DeviceClass c)}
+
+    Cada vez que se descubre un dispositivo se llama a este método. El primer
+    argumento representa el dispositivo encontrado. El segundo permite 
+    determinar el tipo de dispositivo.
+
+    \item \texttt{public void \textbf{inquiryCompleted}(int c)}
+
+    Este método es llamado cuando la búsqueda de dispositivos ha finalizado. El
+    argumento entero indica el motivo de la finalización.
+    \end{itemize}
+
+  \item Para comenzar una \textbf{búsqueda de servicios}, se utilizará el
+  método \texttt{searchServices()}, de la clase \texttt{DiscoveryAgent}. Este
+  método tiene cuatro atributos:
+    \begin{itemize}
+    \item El primero especifica los atributos de servicio que van a ser objeto
+    de búsqueda\footnote{Los servicios son descritos a través de unos atributos 
+    que son identificados numéricamente. Los identificadores de estos atributos 
+    están contenidos por un \emph{array} de enteros.}.
+    \item El segundo es un \emph{array} de identificadores de servicio y
+    permiten especificar los servicios que van a ser objeto de la búsqueda.
+    \item El tercero representa al dispositivo sobre el que se va a realizar la
+    búsqueda.
+    \item Y el último es un objeto que implementa la interfaz
+    \texttt{DiscoveryListener} y será usado para notificar los eventos de 
+    búsqueda de servicio.
+    \end{itemize}
+  Además, devuelve un valor entero que identifica la búsqueda. Este valor
+  entero se utiliza para determinar a qué búsqueda pertenecen los eventos
+  \texttt{servicesDiscovered()} y \texttt{serviceSearchCompleted()}, que son
+  los otros dos métodos que define la interfaz \texttt{DiscoveryListener} (en
+  este caso para la búsqueda de servicios).
+    \begin{itemize}
+    \item \texttt{public void \textbf{servicesDiscovered}(int transID,
+      ServiceRecord[] sr)}
+
+    Cada vez que se descubre un servicio se llama a este método. El primer
+    argumento identifica el proceso de búsqueda. Es el mismo que devolvió
+    \texttt{searchDevices()} cuando se comenzó la búsqueda. El segundo, es un
+    \emph{array} de objetos \texttt{ServiceRecord}, que describe las
+    características del servicio \texttt{Bluetooth}.
+
+    \item \texttt{public void \textbf{serviceSearchCompleted}(int transID, int 
+    respCode)}
+
+    Este método es llamado cuando la búsqueda de servicios ha finalizado. El
+    primer argumento identifica el proceso de búsqueda (valor devuelto por al
+    invocar el método \texttt{searchServices()}. El segundo argumento indica el
+    motivo de finalización de la búsqueda.
+    \end{itemize}
+
+  Para cancelar un proceso de búsqueda de servicios se hará uso del método
+  \texttt{cancelServiceSearch()}, pasándole como argumento el identificador
+  del proceso de búsqueda.
+  \end{itemize}
+
+\item Por último, para establecer una comunicación:
+  \begin{itemize}
+  \item en primer lugar, se obtendrá la \acs{URL} necesaria para establecer
+  la conexión a través del método \texttt{getConnectionURL()} de un objeto
+  \texttt{ServiceRecord} (obtenido previamente a través del método
+  \texttt{servicesDiscovered}). Este método requiere dos argumentos: el
+  primero, indica si se debe autentificar y/o cifrar la conexión; y el
+  segundo, especifica si el dispositivo ejercerá como maestro (\texttt{true})
+  o bien, no importa si es maestro o esclavo (\texttt{false}):
+
+  \begin{lstlisting}[
+    language = Java]
+    ServiceRecord sr = ...;
+    String url =
+      sr.getConnectionURL(ServiceRecord.NOAUTHENTICATE_NOENCRYPT, false);
+  \end{lstlisting}
+
+  \item Una vez obtenida la \acs{URL}, se usará el método
+  \texttt{Connector.open()} para realizar la conexión. Este método devolverá un 
+  objeto distinto según el tipo de protocolo usado. En este caso (cliente
+  \acs{SPP}), devolverá un \texttt{StreamConnection}. A partir del
+  \texttt{StreamConnection} podremos obtener los flujos de entrada y salida:
+
+  \begin{lstlisting}[
+    language = Java]
+    StreamConnection conn =
+      (StreamConnection) Connector.open(url);
+    OutputStream out = con.openOutputStream();
+    InputStream in = con.openInputStream();
+  \end{lstlisting}
+  \end{itemize}
+
+\item Para dar por concluida la comunicación, no conviene olvidar que hay que 
+cerrar los flujos de entrada y salida y la propia conexión:
+
+  \begin{lstlisting}[
+    language = Java]
+    finally {
+      try {
+        if (in != null)
+          in.close();
+        if (out != null)
+          out.close();
+        if (conn != null)
+          conn.close();
+      } catch (IOException e) { }
+    }
+  \end{lstlisting}
+\end{itemize}
+
+

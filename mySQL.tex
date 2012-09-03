@@ -1,0 +1,87 @@
+\chapter{Acceso a bases de datos \texttt{MySQL} desde \texttt{.NET}}
+\label{chap:mySQL}
+
+El presente anexo explica los pasos a seguir para realizar conexiones a una
+base de datos \texttt{MySQL}, a través de una aplicación implementada en
+\texttt{.NET}, utilizando la biblioteca de enlace dinámico
+\emph{MySql.Data.dll}:
+
+\begin{enumerate}
+\item En primer lugar, se crea una nueva instancia de una conexión
+\emph{MySQL}. Para ello, se utiliza una sentencia similar a esta:
+
+\begin{lstlisting}[
+  language = C]
+  MySqlConnection conexion =
+    new MySqlConnection("server='svr';database='db';uid='user';pwd='pass'");
+\end{lstlisting}
+
+Donde \texttt{'svr'} es la dirección \acs{URL} del servidor que aloja a la base
+de datos, \texttt{'db'} es el nombre de la base de datos y \texttt{'user'} y
+\texttt{'pass'} son el nombre y la contraseña respectivamente del usuario
+con el que se va a acceder.
+
+\item Antes de realizar cualquier consulta, es necesario
+abrir una conexión activa con la base de datos. Para ello, se utiliza el
+método \texttt{Open()}, que forma parte de la clase \texttt{MySqlConection}:
+
+\begin{lstlisting}[
+  language = C]
+  conexion.Open();
+\end{lstlisting}
+
+\item A continuación, se construye un comando de tipo \texttt{MySqlCommand}
+utilizando para ello una sentencia \acs{SQL}, con la consulta que se desea
+realizar y la instancia del objeto \texttt{MySqlConection} previamente
+abierta:
+
+\begin{lstlisting}[
+  language = C]
+  MySqlCommand comando = new MySqlCommand(sentencia, conexion);
+\end{lstlisting}
+
+\item Para ejecutar el comando construido se utilizará uno de estos dos métodos
+de la clase \texttt{MySqlCommand}, dependiendo del tipo de consulta a realizar:
+\begin{itemize}
+\item Si la consulta va a devolver un resultado, es decir, si la consulta
+es del tipo \texttt{SELECT}, se utilizará el método \texttt{ExecuteReader()}
+y el resultado será almacenado en una variable de tipo
+\texttt{MySqlDataReader}:
+
+\begin{lstlisting}[
+  language = C]
+  MySqlDataReader resultado = comando.ExecuteReader();
+\end{lstlisting}
+
+\item Por otro lado, si la consulta no va a devolver ningún resultado, es
+decir, si la consulta es del tipo: \texttt{INSERT}, \texttt{UPDATE},
+\texttt{DELETE}, \texttt{TRUNCATE}, etc.; se utilizará el método
+\texttt{ExecuteNonQuery()}:
+
+\begin{lstlisting}[
+  language = C]
+  comando.ExecuteNonQuery();
+\end{lstlisting}
+
+La consulta tendrá efecto en la base de datos pero no devolverá ningún
+resultado.
+\end{itemize}
+
+\item Por último, después de realizar una consulta, es preciso cerrar la
+conexión abierta. Para ello se hace uso del método \texttt{Close()}, que forma
+parte (al igual que \texttt{Open()}) de la clase \texttt{MySqlConection}:
+
+\begin{lstlisting}[
+  language = C]
+  conexion.Close();
+\end{lstlisting}
+\end{enumerate}
+
+El usuario con el que la aplicación de los servicios web accede a la base
+de datos, tendrá privilegios para realizar consultas \acs{SQL} que afecten
+a los datos (\texttt{SELECT}, \texttt{INSERT}, \texttt{UPDATE},
+\texttt{DELETE} o \texttt{TRUNCATE}), pero no tendrá acceso a operaciones
+que afecten a la estructura  (\texttt{CREATE}, \texttt{DROP}, \texttt{TRIGGER},
+etc.) o a la administración (\texttt{CREATE USER}, \texttt{SHUTDOWN},
+\texttt{RELOAD}, etc.) de la base de datos.
+

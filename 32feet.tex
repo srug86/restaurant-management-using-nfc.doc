@@ -1,0 +1,130 @@
+\chapter{Creación de un servidor \texttt{Bluetooth} con \texttt{32feet.NET}}
+\label{chap:32feet}
+
+Según~\cite{bib:32feet}, \texttt{32feet.NET}: \emph{``es un proyecto de código 
+fuente compartido que tiene como objetivo hacer que tecnologías \acs{PAN}, como 
+\texttt{Bluetooth}, \acs{IrDA}, etc., sean más fácilmente accesibles desde 
+\texttt{.NET}. Es compatible con sistemas de escritorio, móviles o incrustados.
+Actualmente, el proyecto se compone de las tecnologías: \texttt{Bluetooth},
+\acs{IrDA} y \acs{OBEX}.''}.
+
+La implementación de un servidor \texttt{Bluetooth} que publica un servicio,
+utilizando la biblioteca \texttt{32feet.NET}, es muy sencilla:
+\begin{itemize}
+\item Antes de iniciar el servidor, es necesario activar el \texttt{Bluetooth}.
+Para ello, se crea una instancia de la clase \texttt{BluetoothRadio} con
+el valor \texttt{PrimaryRadio}, que es la \emph{BluetoothRadio} estándar de
+esta biblioteca. Y después, se establece el modo de dicha instancia como
+\texttt{Discoverable}, para que los clientes puedan detectarla.
+
+  \begin{lstlisting}[
+    language = C]
+    BluetoothRadio br = BluetoothRadio.PrimaryRadio;
+    br.Mode = RadioMode.Discoverable;
+  \end{lstlisting}
+
+\item A continuación, se crea una instancia del objeto
+\texttt{BluetoothListener}, que se encargará de escuchar las conexiones de los
+clientes. El método constructor de este tipo de objetos requiere un atributo
+de tipo \texttt{Guid}\footnote{Representa un identificador exclusivo global y 
+consiste en un entero de 128 bits (16 bytes) que se puede utilizar en todos los 
+equipos y redes siempre que se requiera un identificador único. Es muy 
+improbable que este identificador se duplique.}. Este atributo representa al 
+identificador del servicio que el servidor \texttt{Bluetooth} va a publicar.
+
+  \begin{lstlisting}[
+    language = C]
+    Guid servicio = 
+      new Guid("{01234567-89AB-CDEF-0123-456789ABCDEF}");
+    BluetoothListener btListener = new BluetoothListener(servicio);
+  \end{lstlisting}
+
+Los clientes que quieran utilizar este servicio, tendrán que conocer cuál
+es el valor de este identificador.
+
+\item Para arrancar el servidor \emph{Bluetooh} con el servicio especificado
+se ejecuta el método \texttt{Start()}:
+
+  \begin{lstlisting}[
+    language = C]
+    btListener.Start();
+  \end{lstlisting}
+
+En este momento, el servicio del servidor será visible a los clientes.
+
+\item Para atender las peticiones de los clientes se cuenta con el método
+\texttt{AcceptBluetoothClient()}. Este método va a permitir crear objetos
+de tipo \texttt{BluetoothClient} con los que gestionar las comunicaciones
+de entrada y salida con el cliente. El listado \ref{code:btListener}
+muestra un método que implementa un servicio de recepción de archivos de
+los clientes:
+
+\begin{lstlisting}[
+  language = C,
+  caption = {Método que implementa un servicio de recepción de archivos de
+  los clientes.},
+  label = code:btListener]
+  public void servicio()
+  {
+    string fichero, buffer;
+    int count;
+    do
+    {
+      try
+      {
+        //esperamos a un nuevo cliente Bluetooth
+        BluetoothClient cliente = btListener.AcceptBluetoothClient();
+        //obtenemos un stream del cliente para poder leer los datos que nos envie
+        StreamReader streamR =
+          new StreamReader(cliente.GetStream(), Encoding.UTF8);
+        //leemos el nombre del fichero
+        fichero = streamR.ReadLine();
+        if (fichero != "")
+        {
+          //creamos un nuevo fichero con ese nombre
+          FileStream streamW = new FileStream(fichero,
+          FileMode.OpenOrCreate, FileAccess.Write);
+          BinaryWriter bw = new BinaryWriter(streamW);
+          do
+          {
+            //leemos una linea enviada por el cliente
+            buffer = streamR.ReadLine();
+            //la procesamos
+            byte[] data = Convert.FromBase64String(buffer);
+            count = data.Length;
+            //la escribimos en el fichero
+            if (count > 0)
+              bw.Write(data, 0, count);
+            //hasta que detecte el final del fichero
+          } while (!streamR.EndOfStream);
+          MessageBox.Show("Fichero recibido: " + fichero);
+          //cerramos el fichero
+          bw.Flush();
+          bw.Close();
+        }
+        //cerramos todas la conexion con el cliente
+        streamR.Close();
+        cliente.Close();
+      }
+      catch (Exception ex)
+      {
+        if (!salir)
+          MessageBox.Show("Error: " + ex.Message);
+      }
+    } while (!salir);
+  }
+\end{lstlisting}
+
+El método \texttt{Close()}, de la clase \texttt{BluetoothClient}, finaliza
+la conexión con el cliente.
+
+\item Por último, para cerrar el servidor \emph{Bluetooh} activo
+se hará uso del método \texttt{Stop()}:
+
+  \begin{lstlisting}[
+    language = C]
+    btListener.Stop();
+  \end{lstlisting}
+
+\end{itemize}
+
