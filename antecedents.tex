@@ -1,17 +1,17 @@
 % -*- coding: utf-8 -*-
 
-\chapter{Estado del arte y trabajos relacionados}
+\chapter{Estado del arte}
 \label{chap:antecedents}
-\drop{E}{n} el siguiente capítulo se realiza una presentación de los conceptos y
-tecnologías que han sido utilizadas para la elaboración del proyecto y se hace
-un repaso de algunos de los trabajos y aplicaciones reales que han servido de
-inspiración para el diseño final del sistema.
+\drop{E}{n} el siguiente capítulo se realiza una presentación de los conceptos
+y tecnologías que han sido utilizadas para la elaboración del proyecto y se
+hace un repaso de algunos de los trabajos y aplicaciones reales que han servido 
+de inspiración para el diseño final del sistema.
 
-\section{Estado del arte}
-A continuación, se citan los principales elementos que constituyen la base
-teórica sobre la que se sustenta el resto del escrito.
+%\section{Estado del arte}
+%A continuación, se citan los principales elementos que constituyen la base
+%teórica sobre la que se sustenta el resto del escrito.
 
-  \subsection{La tecnología \acs{RFID}}
+  \section{La tecnología \acs{RFID}}
 \acs{RFID} son las siglas de \emph{Radio Frequency IDentification} (en
 castellano, \emph{\textbf{identificación por radiofrecuencia}}). Se trata de un
 sistema de almacenamiento y recuperación de datos remoto que utiliza las ondas
@@ -32,7 +32,7 @@ por una aplicación específica que utilice \acs{RFID} (figura
   \end{center}
 \end{figure}
 
-    \subsubsection{Historia}
+    \subsection{Historia}
   El origen del \acs{RFID} está relacionado con la II Guerra Mundial. Los
   radares de la época eran capaces de detectar y medir la presencia de objetos
   dentro de un rango de actuación, pero no eran capaces de identificar qué
@@ -63,7 +63,7 @@ por una aplicación específica que utilice \acs{RFID} (figura
   Es por ello que organismos internacionales empezaran a poner sus esfuerzos en
   desarrollar estándares en el uso de este tipo de etiquetas.
 
-    \subsubsection{Etiquetas \acs{RFID}. Arquitectura y funcionamiento}
+    \subsection{Etiquetas \acs{RFID}. Arquitectura y funcionamiento}
   Las etiquetas \acs{RFID} son dispositivos pequeños, similares a una pegatina,
   que pueden incorporarse a un objeto, un animal o una persona. 
   
@@ -113,7 +113,7 @@ por una aplicación específica que utilice \acs{RFID} (figura
   rápida.
   \end{itemize}
 
-    \subsubsection{Lectores RFID. Funcionamiento}
+    \subsection{Lectores RFID. Funcionamiento}
   Los lectores \acs{RFID} son los encargados de leer o re-escribir la
   información almacenada en las etiquetas.
   El funcionamiento es sencillo. La antena del lector crea un campo magnético
@@ -152,7 +152,7 @@ sistema \acs{RFID}.}
   personas y animales.
   \end{itemize}
 
-%    \subsubsection{La tecnología \emph{MIFARE}}
+%    \subsection{La tecnología \emph{MIFARE}}
 %  \emph{MIFARE} es el estándar de la industria para interfaces de
 %  tarjetas inteligentes sin contacto y lectores que operan a 13.56MHz.
 %  Funcionan de acuerdo con el estándar \acs{ISO} 14443~\cite{bib:mifare}.
@@ -184,7 +184,7 @@ sistema \acs{RFID}.}
 %    \end{center}
 %  \end{figure}
 
-  \subsection{La tecnología \acs{NFC}}
+  \section{La tecnología \acs{NFC}}
 \acs{NFC} son las siglas en inglés de \emph{Near Field Communication}
 (Comunicación de Campo Cercano). Se trata de una tecnología inalámbrica de
 corto alcance y alta frecuencia que permite el intercambio de información
@@ -241,7 +241,7 @@ generar soluciones actuales y futuras en áreas tales como:
 %comunicaciones.
 %\end{itemize}
 
-  \subsubsection{Funcionamiento}
+  \subsection{Funcionamiento}
 Como se comentó anteriormente, tecnología \acs{NFC} está basada en las
 tecnologías de tarjetas inteligentes sin contacto y en la tecnología
 \acs{RFID}. Por lo tanto, el esquema básico de funcionamiento está formado
@@ -304,7 +304,7 @@ y permitir la lectura de sus datos (figura \ref{fig:passiveMode}).
   \end{figure}
 \end{itemize}
 
-  \subsubsection{Características}
+  \subsection{Características}
 
 La tabla \ref{tab:nfcComparison} muestra una comparación entre 
 las características de la tecnología \acs{NFC} y las características de 
@@ -338,7 +338,7 @@ dentro de la aplicación, el visionado del propio contenido, el envío de un
 mensaje automático, la solicitud de un servicio a través de otro medio de 
 comunicación, etc.
 
-  \subsubsection{Aplicaciones}
+  \subsection{Aplicaciones}
 La creciente expansión de la tecnología \acs{NFC} ha provocado el desarrollo
 de múltiples aplicaciones, que buscan aprovechar las características que esta 
 tecnología les ofrece para solucionar o facilitar la realización de tareas 
@@ -380,7 +380,7 @@ Algunas de las aplicaciones que pertenecen a esta categoría son:
   \begin{itemize}
   \item Transmisión de fotos desde una cámara digital a una impresora. Cuando
   la cámara de fotos se aproxima a la impresora, se establece una comunicación
-  \emph{Bluetooth} en la que el primer dispositivo le transmite las fotos al
+  \texttt{Bluetooth} en la que el primer dispositivo le transmite las fotos al
   segundo.
   \item Intercambio de tarjetas personales electrónicas entre dos dispositivos
   mediante la aproximación de ambos.
@@ -428,10 +428,7 @@ exponencialmente.
     \end{center}
   \end{figure}
 
-El anexo \ref{chap:nfcMobiles} muestra una lista de los últimos dispositivos
-que incluyen la tecnología \acs{NFC} entre sus características.
-
-  \subsubsection{El formato \acs{NDEF}}
+  \subsection{El formato \acs{NDEF}}
 \acs{NDEF} (\acs{NFC} Data Exchange Format) es un formato definido por el
 \emph{NFC Forum} y constituye el principal estándar para el intercambio y
 almacenamiento de información, pues es un formato soportado por cualquier 
@@ -444,8 +441,7 @@ se agrupa en registros que contienen a su vez los datos agrupados en mensajes
 \emph{Multipurpose Internet Mail Extensions} (\acs{MIME}) son una serie
 de especificaciones dirigidas (en principio) al intercambio a través de
 Internet de todo tipo de archivos (texto, audio, vídeo, etc.) de forma
-transparente para el usuario.} definido. El
-anexo \ref{chap:ndef} muestra un ejemplo de organización \acs{NDEF}.
+transparente para el usuario.} definido.
 
 Este formato tiene el inconveniente de que puede ser leido o modificado por
 cualquier dispositivo \acs{NFC}, puesto que la clave empleada para el acceso
@@ -453,14 +449,14 @@ a los datos es la clave por defecto ($FF\ FF\ FF\ FF\ FF\ FF$, en hexadecimal).
 Para solventar este problema, el formato \acs{NDEF} puede ser combinado con
 el propuesto por \emph{MiFare}.
 
-  \subsection{La tecnología \emph{Bluetooth}}
+  \section{La tecnología \texttt{Bluetooth}}
   \label{subsec:bluetooth}
 Es una especificación industrial (\acs{IEEE} 802.15.1) para redes inalámbricas
 de tipo \acs{PAN} (Personal Area Network) que define un estándar global que
 posibilita la transmisión de voz y datos entre diferentes dispositivos mediante
 un enlace por radiofrecuencia segura.
 
-  \subsubsection{Historia}
+  \subsection{Historia}
 El nombre procede del rey danés y noruego del siglo X \emph{Harald Blatand},
 cuya traducción al inglés sería \emph{Harold Bluetooth}, que fue conocido
 por ser un buen comunicador y por unificar las tribus noruegas, suecas y
@@ -471,7 +467,7 @@ la viabilidad de una nueva interfaz inalámbrica de bajo costo y consumo, para
 la interconexión entre dispositivos móviles y otros objetos con el fin de
 eliminar las conexiones cableadas entre ambos. A principios
 de 1997, otras empresas se fijaron en los avances que \texttt{Ericsson} había
-alcanzado y, un año más tarde, crearon el grupo \acs{SIG} de \emph{Bluetooth}
+alcanzado y, un año más tarde, crearon el grupo \acs{SIG} de \texttt{Bluetooth}
 (Grupo de Interés Especial en Bluetooth), formado por cinco promotores:
 la propia \texttt{Ericsson}, \texttt{Nokia}, \texttt{IBM}, \texttt{Toshiba} e
 \texttt{Intel}. El objetivo era definir el marco de trabajo necesario para
@@ -480,11 +476,11 @@ En la actualidad la \acs{SIG} cuenta con otros miembros como:
 \texttt{Motorola}, \texttt{Lenovo} o \texttt{Microsoft}, el
 respaldo de 1900 empresas de tecnología y 2000 empleados de otras tantas
 empresas que investigan productos y servicios con aplicaciones
-\emph{Bluetooth}~\cite{bib:btDefinition}.
+\texttt{Bluetooth}~\cite{bib:btDefinition}.
 
-  \subsubsection{Características}
+  \subsection{Características}
 Al tratarse de comunicaciones por radiofrecuencia, dos o más dispositivos
-pueden comunicarse vía \emph{Bluetooth} si se encuentran dentro de un radio de
+pueden comunicarse vía \texttt{Bluetooth} si se encuentran dentro de un radio de
 acción determinado. Este radio de acción viene determinado por la potencia de
 transmisión. Según la potencia de transmisión, los dispositivos pueden
 agruparse en tres clases distintas (tabla \ref{tab:btClasses}), siendo
@@ -493,8 +489,8 @@ de clases distintas~\cite{bib:btDefinition}:
 
 \begin{table}[H]
   \centering
-  \caption[Clasificación de dispositivos \emph{Bluetooth} según su potencia.]
-  {Clasificación de dispositivos \emph{Bluetooth} según su potencia.}
+  \caption[Clasificación de dispositivos \texttt{Bluetooth} según su potencia.]
+  {Clasificación de dispositivos \texttt{Bluetooth} según su potencia.}
   \label{tab:btClasses}
   {\normalsize
   \input{tables/btClasses.tex}
@@ -506,7 +502,7 @@ uno de clase 1 y uno de clase 2, deberán colocarse a una distancia que esté
 dentro del alcance del dispositivo de clase superior, osea dentro del
 rango del dispositivo de clase 2 (que tiene menor rango de actuación).
 
-Por otro lado, la especificación \emph{Bluetooth} ha ido evolucionando a lo
+Por otro lado, la especificación \texttt{Bluetooth} ha ido evolucionando a lo
 largo de los años. Desde la aparición de la versión \texttt{v1.0} en 1998,
 el \acs{SIG} ha ido publicando nuevas versiones entre las que se encuentran:
 la \texttt{v1.2}, que incluye compatibilidad con \acs{USB} 1.1 e 
@@ -524,23 +520,23 @@ y el aumento del ancho de banda (ver tabla \ref{tab:btSpeed}).
 
 \begin{table}[H]
   \centering
-  \caption[Ancho de banda soportado por las distintas versiones
-  \emph{Bluetooth}.]
-  {Ancho de banda soportado por las distintas versiones \emph{Bluetooth}.}
   \label{tab:btSpeed}
   {\normalsize
   \input{tables/btSpeed.tex}
   }
+  \caption[Ancho de banda soportado por las distintas versiones
+  \texttt{Bluetooth}.]
+  {Ancho de banda soportado por las distintas versiones \texttt{Bluetooth}.}
 \end{table}
 
 La tabla \ref{tab:nfcComparison} (página \pageref{tab:nfcComparison}) muestra
-más características de la tecnología \emph{Bluetooth} y de otras tecnologías
+más características de la tecnología \texttt{Bluetooth} y de otras tecnologías
 inalámbricas.
 
-  \subsubsection{La interfaz \emph{Bluetooth}}
-Los primeros productos \emph{Bluetooth} fueron concebidos para servir en
+  \subsection{La interfaz \texttt{Bluetooth}}
+Los primeros productos \texttt{Bluetooth} fueron concebidos para servir en
 entornos de trabajo destinados a la gente que viaja frecuentemente. Por lo
-que se empezó integrando chips de radio \emph{Bluetooth} en portátiles,
+que se empezó integrando chips de radio \texttt{Bluetooth} en portátiles,
 \acs{PDA}s, móviles y auriculares. Esto originaba una serie de aspectos que
 debían solucionarse~\cite{bib:btInterface}:
 \begin{itemize}
@@ -552,7 +548,7 @@ multimedia.
 \end{itemize}
 
 La solución de estas premisas viene determinada por la definición de los
-elementos que posibilitan las comunicaciones \emph{Bluetooth}:
+elementos que posibilitan las comunicaciones \texttt{Bluetooth}:
 
 \begin{itemize}
 \item \textbf{La banda de frecuencia libre} .-
@@ -565,7 +561,7 @@ este requisito; y por tanto es la frecuencia elegida.
 
 \item \textbf{Salto de frecuencia} .-
 
-Como la banda \acs{ISM} es abierta, el sistema de radio \emph{Bluetooth} debe
+Como la banda \acs{ISM} es abierta, el sistema de radio \texttt{Bluetooth} debe
 estar preparado para evitar posibles interferencias con otros sistemas de
 radio. Esto lo consigue a través del método de \emph{salto de frecuencia}.
 Este sistema divide la banda en varios canales de salto, donde los
@@ -580,7 +576,7 @@ gran inmunidad a las interferencias.
 
 \item \textbf{Definición de canal} .-
 
-El sistema \emph{Bluetooth} utiliza un sistema \texttt{FH/TDD} (salto de
+El sistema \texttt{Bluetooth} utiliza un sistema \texttt{FH/TDD} (salto de
 frecuencia/división de tiempo dúplex), en el que el canal queda dividido en
 intervalos (llamados \emph{slots}) de 625 $\mu$s, donde cada salto de
 frecuencia es ocupado por un \emph{slot} (figura \ref{fig:btChannels}). Esto
@@ -597,14 +593,14 @@ que pueden ser utilizados alternativamente, dando lugar a un esquema de tipo
     \end{center}
   \end{figure}
 
-Dos o más unidades \emph{Bluetooth} pueden compartir el mismo canal dentro
+Dos o más unidades \texttt{Bluetooth} pueden compartir el mismo canal dentro
 de una \emph{piconet}\footnote{Red formada por dos o más unidades
-\emph{Bluetooth} que comparten un mismo canal.}, donde una actúa como
+\texttt{Bluetooth} que comparten un mismo canal.}, donde una actúa como
 \emph{maestra}, controlando el tráfico que se genera entre las demás unidades,
 que actúan como \emph{esclavas}, enviando y recibiendo señales hacia la
 unidad \emph{maestra}. El salto de frecuencia del canal está determinado por
 la secuencia de la señal, es decir, por el orden en que llegan los saltos y
-por la fase de esta secuencia. En \emph{Bluetooth}, la secuencia queda fijada
+por la fase de esta secuencia. En \texttt{Bluetooth}, la secuencia queda fijada
 por la identidad de la unidad maestra de la \emph{piconet} (un código único
 para cada equipo) y por su frecuencia de reloj. Por lo que, para que una unidad
 \emph{esclava} pueda sincronizarse con una unidad \emph{maestra}, debe añadir
@@ -613,7 +609,7 @@ un ajuste a su propio reloj y así poder compartir la misma portadora de salto.
   \begin{figure}[H]
     \begin{center}
       \includegraphics[width=0.7\textwidth]{btExample.png}
-      \caption{Red \emph{Bluetooth} formada por varios dispositivos. El
+      \caption{Red \texttt{Bluetooth} formada por varios dispositivos. El
       portátil ejerce de \emph{maestro}.}
       \label{fig:btExample}
     \end{center}
@@ -621,7 +617,7 @@ un ajuste a su propio reloj y así poder compartir la misma portadora de salto.
 
 \item \textbf{Definición de paquete} .-
 
-La información intercambiada entre dos unidades \emph{Bluetooth} se realiza
+La información intercambiada entre dos unidades \texttt{Bluetooth} se realiza
 mediante un conjunto de \emph{slots} que forman un paquete de datos.
 Cada paquete comienza con un código de acceso de 72 bits, que
 determina la identidad del \emph{maestro}; seguido de la cabecera del
@@ -634,14 +630,14 @@ retransmisión automática de la pregunta y \emph{checksum}; y por último, el
   \begin{figure}[H]
     \begin{center}
       \includegraphics[width=0.5\textwidth]{btPacket.png}
-      \caption{Estructura de un paquete \emph{Bluetooth}.}
+      \caption{Estructura de un paquete \texttt{Bluetooth}.}
       \label{fig:btPacket}
     \end{center}
   \end{figure}
 
 \item \textbf{Definición de enlace físico} .-
 
-La especificación \emph{Bluetooth} define dos tipos de enlace, que permite
+La especificación \texttt{Bluetooth} define dos tipos de enlace, que permite
 soportar incluso aplicaciones multimedia:
 \begin{itemize}
 \item \textbf{Enlaces de sincronización de conexión orientada (SCO)}. Estos
@@ -655,7 +651,7 @@ sin proteger.
 \end{itemize}
 \end{itemize}
 
-  \subsubsection{Seguridad}
+  \subsection{Seguridad}
 
 Dado que los datos viajan por el medio de forma inalámbrica, es importante
 asegurar la protección de esa información. Para ello se ha definido un nivel
@@ -668,15 +664,16 @@ procesamiento, donde las principales medidas de seguridad son:
 \item Y la generación de una clave de sesión (que puede ser cambiada durante
 la conexión).
 \end{itemize}
-Los algoritmos de seguridad de \emph{Bluetooth} trabajan con tres entidades:
-la dirección de la unidad \emph{Bluetooth}, que es una entidad pública; una
+Los algoritmos de seguridad de \texttt{Bluetooth} trabajan con tres entidades:
+la dirección de la unidad \texttt{Bluetooth}, que es una entidad pública; una
 clave privada de usuario, que es una entidad secreta; y un número aleatorio,
 que es diferente para cada transacción.
 
-  \subsubsection{Desventajas}
+  \subsection{Desventajas}
+  \label{subsec:disadvantages}
 
 Aunque la \acs{SIG} sigue trabajando día a día para mejorar la tecnología
-\emph{Bluetooth}, todavía no se han terminado de solucionar algunas
+\texttt{Bluetooth}, todavía no se han terminado de solucionar algunas
 limitaciones:
 \begin{itemize}
 \item La velocidad de transmisión es lenta para archivos pesados. Sólo a
@@ -684,16 +681,16 @@ partir de la versión (\texttt{v3.0+HS}) se han alcanzado los 24 Mbits/s.
 \item El alcance es bastante limitado. Sólo los dispositivos de la
 \emph{Clase 1} llega a distancias cercanas a los 100 metros.
 \item Existe una limitación en cuanto a la cantidad de dispositivos que pueden
-estar conectados en una misma red \emph{Bluetooth}. El máximo es de 8
+estar conectados en una misma red \texttt{Bluetooth}. El máximo es de 8
 dispositivos simultáneos.
-\item Si bien \emph{Bluetooth} puede utilizarse para navegar por Internet desde
+\item Si bien \texttt{Bluetooth} puede utilizarse para navegar por Internet desde
 dispositivos móviles, lo cierto es que ofrece un rango de conexión muy lento,
 por lo que no se recomienda ser usado para dicho fin.
 \item El consumo de la batería del dispositivo aún es elevado cuando el
-\emph{Bluetooth} se encuentra activado y en \emph{modo visible}.
+\texttt{Bluetooth} se encuentra activado y en \emph{modo visible}.
 \item El dispositivo puede ser víctima de prácticas maliciosas como el
 \emph{Bluejacking}. Esta técnica consiste en la emisión de mensajes, imágenes
-u otros archivos no solicitados entre dispositivos \emph{Bluetooth}. En
+u otros archivos no solicitados entre dispositivos \texttt{Bluetooth}. En
 principio es una técnica inofensiva, pero provocar que el rendimiento de los
 dispositivos implicados caiga.
 \end{itemize}
@@ -701,7 +698,7 @@ dispositivos implicados caiga.
 %%%Qué es el perfil Bluetooth (donde está SPP que es lo que yo uso)?
 %%%OBEX?
 
-  \subsection{Los servicios web}
+  \section{Los servicios web}
 
 Un \emph{servicio web} podría definirse como un conjunto de aplicaciones o de 
 tecnologías con capacidad para interoperar en la web. Estas aplicaciones o
@@ -722,7 +719,7 @@ reglamentación de los servicios web. Además, para mejorarla, se ha creado el
 organismo \texttt{WS-I}, que se encarga de desarrollar perfiles para definir
 de manera más exhaustiva estos estándares.
 
-  \subsubsection{Estándares empleados}
+  \subsection{Estándares empleados}
 A la colección de protocolos y estándares para redes de computadores que son
 utilizados para definir, localizar, implementar y hacer que un servicio web
 interactúe con otro se le denomina \emph{Web Services Protocol Stack} (pila
@@ -747,7 +744,7 @@ en la red. \acs{UDDI} es la \acs{API} más común para el descubrimiento de
 servicios.
 \end{itemize}
 
-  \subsubsection{Ventajas}
+  \subsection{Ventajas}
 
 Una de las principales ventajas que ofrecen los servicios web es que 
 proporcionan mecanismos estandarizados de comunicación entre diferentes
@@ -764,11 +761,11 @@ navegadores, es uno de los pocos puertos que suelen estar siempre abiertos y,
 por tanto, el tráfico que discurra por ellos no va a ser bloqueado por ningún 
 \emph{firewall}.
 
-  \subsubsection{Funcionamiento}
+  \subsection{Funcionamiento}
 La figura \ref{fig:webServices} muestra un ejemplo de funcionamiento de los
 \emph{servicios web}~\cite{bib:webServices}:
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=1\textwidth]{webServices.png}
       \caption{Funcionamiento de los \emph{servicios web}.}
@@ -826,7 +823,7 @@ mediante anotaciones semánticas y con directivas que definen su comportamiento.
 Esto permite encontrar los servicios web que mejor se adapten a los objetivos 
 deseados.
 
-  \subsubsection{Arquitectura Orientada a Servicios (SOA)}
+  \subsection{Arquitectura Orientada a Servicios (SOA)}
 \acs{SOA} (\emph{Service-Oriented Architecture}) es un modelo de arquitectura 
 que caracteriza el procedimiento para crear y usar los diversos procesos, 
 reunidos en forma de servicios, que configuran un determinado \emph{proceso de 
@@ -942,11 +939,7 @@ conjunto de precondiciones, postcondiciones o los niveles de calidad del
 servicio (\acs{QoS}).
 \end{itemize}
 
-%  \subsection{El framework .NET}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% No sé si meterlo
-
-  \subsection{La tecnología \texttt{Java}}
+  \section{La tecnología \texttt{Java}}
   \label{subsec:java}
 La tecnología \texttt{Java} fue diseñado por James Gosling, de \texttt{Sun 
 Microsystems}, en 1990, como software para dispositivos electrónicos de
@@ -976,7 +969,7 @@ partes~\cite{bib:java}:
 \item La plataforma \texttt{Java}.
 \end{itemize}
 
-  \subsubsection{El Lenguaje de programación \texttt{Java}}
+  \subsection{El Lenguaje de programación \texttt{Java}}
 \texttt{Java} es un lenguaje de programación de alto nivel\footnote{Lenguaje
 de programación que se caracteriza por expresar los algoritmos de una manera
 más próxima a la capacidad cognitiva humana que a la capacidad ejecutora de
@@ -1032,7 +1025,7 @@ Esto permite que un mismo \emph{Bytecode} pueda ser ejecutado en la
 \acs{JVM} de cualquier dispositivo, el ya conocido \emph{``write once, run
 anywhere''}.
 
-\subsubsection{La Plataforma \texttt{Java}}
+\subsection{La Plataforma \texttt{Java}}
 La plataforma \texttt{Java} constituye el ambiente hardware y software donde
 se ejecutan las aplicaciones. En la mayoría de los casos las plataformas son
 descritas como la combinación de un sistema operativo y un hardware concreto.
@@ -1054,7 +1047,7 @@ Cuando una aplicación es ejecutada sobre la plataforma \texttt{Java}, tanto la
 \acs{API} como la \acs{JVM} se encargan de aislar al programa de la parte
 hardware.
 
-\subsubsection{JavaME}
+\subsection{JavaME}
 Desde su creación, la plataforma \texttt{Java} ha ido incorporando poco a poco
 nuevas soluciones y servicios para atender a las necesidades que los usuarios y 
 las empresas iban teniendo. Debido a la diferente naturaleza de las soluciones
@@ -1101,7 +1094,7 @@ tecnologías \texttt{Java}~\cite{bib:jmeOracle}:
     \end{center}
   \end{figure}
 
-\subsubsection{Configuración}
+\subsection{Configuración}
 En cuanto a la \textbf{configuración}, la plataforma \acs{JavaME} se ha
 dividido en dos configuraciones básicas:
 \begin{itemize}
@@ -1154,7 +1147,7 @@ siguientes requisitos~\cite{bib:j2me}:
 \end{itemize}
 \end{itemize}
 
-\subsubsection{Perfil}
+\subsection{Perfil}
 Mientras que una configuración establece las \acs{API}s que definen las 
 características de una familia de dispositivos, los \textbf{perfiles} hacen
 lo propio para un dispositivo concreto. Esto hace que a la hora de
@@ -1244,7 +1237,7 @@ construida a partir de un perfil \acs{MIDP} sobre una configuración
 \acs{CLDC}.
 \end{itemize}
 
-\subsubsection{La máquina virtual \acs{KVM}}
+\subsection{La máquina virtual \acs{KVM}}
 Como se mencionó en apartados anteriores, cada configuración en \acs{JavaME}
 disponía de su propia versión de la máquina virtual de \texttt{Java}.
 
@@ -1293,14 +1286,14 @@ de desarrollo; y un \emph{verificador} simplificado, este sí dentro de la
   \begin{figure}[H]
     \begin{center}
       \includegraphics[width=0.8\textwidth]{preverification.png}
-      \caption{Verificación de clases en \acs{CDLC}/\acs{KVM}.}
+      \caption{Verificación de clases en \acs{CLDC}/\acs{KVM}.}
       \label{fig:preverification}
     \end{center}
   \end{figure}
 
 \end{itemize}
 
-\subsubsection{Java Specification Request}
+\subsection{Java Specification Request}
 El \emph{Java Community Process} (\acs{JCP}) es un proceso formalizado que
 permite la definición, por parte de las partes involucradas, de nuevas
 versiones y características de la plataforma \texttt{Java}. Este proceso
@@ -1332,7 +1325,7 @@ alto nivel \acs{OBEX} (\emph{OBject EXchange}). Este protocolo es similar
 al protocolo \acs{HTTP} y permite el intercambio de archivos entre
 dispositivos. En principio, \acs{OBEX} era un estándar desarrollado por
 \acs{IrDA}, aunque ahora también es utilizado por otras tecnologías
-inalámbricas como \emph{Bluetooth}.
+inalámbricas como \texttt{Bluetooth}.
 
 La especificación \texttt{acs{JSR}-82} está orientada principalmente al 
 desarrollo de aplicaciones para la plataforma \acs{JavaME}, ya que la \acs{API} 
@@ -1370,7 +1363,7 @@ lectura y la generación de etiquetas visuales.
 \end{itemize}
 \end{itemize}
 
-\subsection{Las pantallas táctiles}
+\section{Las pantallas táctiles}
 
 Una pantalla táctil es una pantalla que permite la entrada de datos y órdenes 
 al dispositivo mediante un toque directo sobre su superficie. Por otro lado, 
@@ -1385,7 +1378,7 @@ móviles y en otras situaciones donde los teclados y los ratones no permiten una
 interacción satisfactoria, intuitiva, rápida o exacta del usuario con el 
 contenido.
 
-  \subsubsection{Historia}
+  \subsection{Historia}
 La fabricación y el uso de pantallas tactiles se ha ido extendiendo desde la 
 invención de la interfaz electrónica táctil en 1971 por el Dr. Samuel C. Hurst. 
 Han llegado a ser comunes en \acs{TPV}s, en cajeros automáticos y en
@@ -1408,7 +1401,7 @@ transparente donde se sitúa una lámina que permite al usuario interactuar
 directamente sobre la superficie, utilizando un proyector para lanzar la 
 imagen sobre la pantalla de cristal.
 
-  \subsubsection{Tecnologías}
+  \subsection{Tecnologías}
 
 Las pantallas táctiles se implementan utilizando alguna de estas
 tecnologías~\cite{bib:touchscreen}:
@@ -1426,7 +1419,7 @@ punto en el que se ha tocado la pantalla midiendo la resistencia. Algunas
 pantallas pueden medir, aparte de las coordenadas del contacto, la presión que 
 se ha ejercido sobre la misma.
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.6\textwidth]{resistiveTouchscreen.png}
       \caption{Pantalla táctil resistiva.}
@@ -1450,7 +1443,7 @@ cambio en las ondas de ultrasonidos permite registrar la posición en la que se
 ha tocado la pantalla y enviarla al controlador para que pueda procesarla
 (figura \ref{fig:sawTouchscreen}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.8\textwidth]{sawTouchscreen.png}
       \caption{Pantalla táctil con tecnología de onda acústica
@@ -1473,9 +1466,9 @@ ser el dedo de una persona, los circuitos electrónicos situados en cada esquina
 de la pantalla miden la ``distorsión'' resultante en la onda senoidal 
 característica del campo de referencia y envía la información acerca de este 
 evento al controlador para su procesamiento matemático (figura
-\ref{fig:capacitativeTouchscreen}.
+\ref{fig:capacitativeTouchscreen}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.6\textwidth]{capacitativeTouchscreen.png}
       \caption{Pantalla táctil capacitiva.}
@@ -1498,7 +1491,7 @@ a los emisores, de tal forma que, cuando un objeto interrumpe un haz
 infrarrojo vertical y otro horizontal, quedan registradas las coordenadas
 donde el objeto ha hecho contacto (figura \ref{fig:irTouchscreen}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.8\textwidth]{irTouchscreen.png}
       \caption{Pantalla táctil por infrarrojos.}
@@ -1526,7 +1519,7 @@ triangularizarla para localizar el punto exacto de contacto. Esta tecnología
 está ganando popularidad debido a su escalabilidad, versatilidad y su precio, 
 especialmente para pantallas de gran tamaño (figura \ref{fig:oiTouchscreen}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.6\textwidth]{oiTouchscreen.png}
       \caption{Pantalla táctil a través de imagen óptica.}
@@ -1541,7 +1534,7 @@ en el cristal de la pantalla tras el contacto con algún objeto (figura
 \ref{fig:dispersiveTouchscreen}). Unos algoritmos complejos se encargan de 
 interpretar esta información para obtener el punto exacto del contacto.
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.8\textwidth]{dispersiveTouchscreen.png}
       \caption{Pantalla táctil con tecnología de señal dispersa.}
@@ -1565,7 +1558,7 @@ contacto en una señal electrónica (figura \ref{fig:acousticTouchscreen}).
 Después, esta señal es convertida en una onda de sonido y es comparada con
 una lista de sonidos pregrabados con todas las posiciones del cristal.
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.8\textwidth]{acousticTouchscreen.png}
       \caption{Pantalla táctil por reconocimiento de pulso acústico.}
@@ -1580,7 +1573,7 @@ puede funcionar con arañazos o polvo sobre la pantalla y tiene unos altos
 niveles de precisión.
 \end{itemize}
 
-  \subsubsection{Especificaciones \acs{HID}}
+  \subsection{Especificaciones \acs{HID}}
 
 Las pantallas táctiles se encuentran definidas dentro de la especificación de 
 dispositivos \acs{HID} (dispositivos de interfaz humana) como digitalizadores, 
@@ -1607,7 +1600,7 @@ la pantalla, levantándolo rápidamente sin prolongar el contacto. Se interpreta
 como un evento provocado por un botón.
 \end{itemize}
 
-\subsection{La computación móvil}
+\section{La computación móvil}
 \emph{Computación móvil} es un término utilizado para designar a la interacción
 hombre-máquina a través de un dispositivo que debe ser transportado por el
 usuario durante su uso, normalmente por la naturaleza del trabajo que el hombre
@@ -1619,7 +1612,7 @@ acceso a la información que el usuario pueda demandar, por lo que, el
 dispositivo debe estar dotado de alguna tecnología que lo conecte con el
 exterior.
 
-  \subsubsection{Evolución}
+  \subsection{Evolución}
 En los años 60 y 70, no existía la computación personal y los grandes centros
 de cómputo eran los responsables del manejo de toda la información, desde
 el proceso de entrada de datos, hasta el procesado, la validación y la
@@ -1651,7 +1644,7 @@ inalámbrico. Esta combinación permite las conexiones en tiempo real entre
 dispositivos móviles y otros dispositivos de computación.
 \end{enumerate}
 
-  \subsubsection{Características}
+  \subsection{Características}
 La computación móvil posee dos características principales~\cite{bib:ticUTP}:
 \begin{itemize}
 \item \textbf{Movilidad}. Implica la portabilidad basada en el hecho de que
@@ -1680,7 +1673,7 @@ individuales.
 cualquier momento es clave a la hora de ofrecerles productos y servicios.
 \end{itemize}
 
-  \subsubsection{Limitaciones}
+  \subsection{Limitaciones}
 La naturaleza intrínseca de los dispositivos que posibilitan la computación 
 móvil está acompañada de una serie de limitaciones que, por fortuna, van
 atenuándose con el desarrollo de nuevas tecnologías y materiales. Estas
@@ -1724,7 +1717,7 @@ Para solucionar esto, se proponen métodos alternativos para la entrada de
 datos, como el reconocimiento de voz o el reconocimiento de escritura.
 \end{itemize}
 
-  \subsubsection{Dispositivos}
+  \subsection{Dispositivos}
 Las principales categorías de dispositivos que pertenecen al mundo de la
 computación móvil son las siguientes~\cite{bib:wikiMobileComputing}:
 \begin{itemize}
@@ -1751,7 +1744,7 @@ aplicaciones como: un reproductor de \texttt{MP3} y vídeo, un navegador web,
 una aplicación de \emph{chat} o un visor de imágenes (figura
 \ref{fig:internetApp}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.4\textwidth]{internetApp.png}
       \caption{El \texttt{Nokia 810} es un dispositivo de la clase
@@ -1765,7 +1758,7 @@ dispositivo del tamaño de una \acs{PDA}, que cuenta con una completa
 \emph{suite} de aplicaciones que se ejecutan sobre un sistema operativo de 
 propósito general (figura \ref{fig:umpc}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.5\textwidth]{umpc.png}
       \caption{El \texttt{Wibrain B1} es un dispositivo del tipo \acs{UMPC}.}
@@ -1779,10 +1772,10 @@ computación y conectividad que un teléfono móvil convencional.
 \item \textbf{\emph{Carputer}}. Es el término utilizado para describir una 
 categoría de computadora portátil utilizada o modificada específicamente para 
 ser instalada en automóviles. Controla funcionalidades como: el reproductor
-de música, el reproductor de DVDs, la conectividad \emph{Bluetooth} o
+de música, el reproductor de DVDs, la conectividad \texttt{Bluetooth} o
 el \acs{GPS} (figura \ref{fig:carputer}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.5\textwidth]{carputer.png}
       \caption{\emph{Carputer} que permite varias funcionalidades multimedia.}
@@ -1792,10 +1785,10 @@ el \acs{GPS} (figura \ref{fig:carputer}).
 
 \item \textbf{\emph{Pentop computer}}. Es un dispositivo de computación del
 tamaño y la forma de un bolígrafo, que funciona como un bolígrafo y además,
-como un reproductor de \acs{MP3}, un dispositivo de almacenamiento digital, un 
-traductor de idiomas o una calculadora (figura \ref{fig:pentop}).
+como un reproductor de \texttt{MP3}, un dispositivo de almacenamiento digital,
+un traductor de idiomas o una calculadora (figura \ref{fig:pentop}).
 
-  \begin{figure}[H]
+  \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.8\textwidth]{pentop.png}
       \caption{\texttt{Pentop FLY Fusion}. Permite, entre otras cosas, 
@@ -1810,7 +1803,7 @@ Los límites que separan unas categorías de otras son borrosos y, a veces, un
 dispositivo puede pertenecer, por ejemplo, a una categoría según su tamaño o
 su hardware y a otra según su funcionalidad.
 
-  \subsubsection{Aplicaciones}
+  \subsection{Aplicaciones}
 Los dispositivos anteriormente mencionados dan soporte a una serie de
 aplicaciones que han aparecido gracias a evolución de estos.
 Algunas de las aplicaciones más importantes son~\cite{bib:micMobileComputing}:
@@ -1835,8 +1828,8 @@ actualizar las tareas activas con sus aportaciones, etc. independientemente
 de que el/los miembro/s estén en su puesto de trabajo habitual o no.
 \item \textbf{Manejo de sucursales}: en un mundo en el que las empresas han
 dejado de tener una sola oficina para expandirse, las sucursales aparecen casi
-sin desearlo, con una gran cantidad de datos que cruzarse de forma rápida y
-segura.
+sin desearlo, con una gran cantidad de datos que deben cruzarse de forma rápida 
+y segura.
 \item \textbf{Grupos de trabajo}: cada vez es más común afrontar proyectos
 con un personal muy especializado, el cual no siempre trabaja bajo un mismo
 techo y, en ocasiones, ni siquiera en la misma ciudad o país.
@@ -1846,15 +1839,13 @@ Algunas de estas categorías han evolucionado muy rápidamente, gracias a la
 competitividad existente entre las compañías que han apostado fuerte por el
 desarrollo de ese tipo servicios.
 
-\section{Trabajos relacionados}
-  En la siguiente sección se hará un repaso de algunos de los trabajos de
-investigación más relevantes en el campo de los modelos de negocio orientados
-al uso de la tecnología \acs{RFID} y \acs{NFC} y se citarán las aplicaciones
-reales que han inspirado el diseño final del sistema.
-
-  \subsection{Estudios relacionados}
+  \section{Estudios relacionados}
   \label{subsec:related}
-    \subsubsection{Modelos de comercio utilizando NFC}
+En la siguiente sección se hará un repaso de algunos de los trabajos de
+investigación más relevantes en el campo de los modelos de negocio orientados
+al uso de la tecnología \acs{RFID} y \acs{NFC}.
+
+    \subsection{Modelos de comercio utilizando NFC}
   Los servicios que ofrece \acs{NFC} están muy diversificados y extendidos
   por todo el mundo. Algunos de los servicios están orientados a utilizar
   las tarjetas inteligentes como un monedero electrónico sustitutivo del
@@ -1989,7 +1980,7 @@ reales que han inspirado el diseño final del sistema.
   cualquier clase de servicios móviles; entre ellos por supuesto, un sistema
   de gestión de restaurantes basado en \acs{NFC}.
 
-    \subsubsection{Métodos de pago móvil a distancia}
+    \subsection{Métodos de pago móvil a distancia}
   Hoy en día se pueden distinguir dos tipos de pagos a distancia: los que se
   producen de forma remota, como cuando se realizan compras por Internet;
   y los que se realizan dentro del mismo sitio donde se está
@@ -2055,7 +2046,7 @@ reales que han inspirado el diseño final del sistema.
   \acs{RFID}. Para un sistema de pago, cuanto más corta sea esta distancia
   más segura será la transacción. El programa \emph{RF-SIM} trabaja a 2.4GHz,
   lo que implica que la distancia de reacción sea demasiado larga como para ser
-  segura. Los sistemas inalámbricos \emph{Bluetooth}, \emph{Zigbee}
+  segura. Los sistemas inalámbricos \texttt{Bluetooth}, \emph{Zigbee}
   \footnote{Especificación de un conjunto de protocolos de alto nivel de 
   comunicación inalámbrica para su utilización con radiodifusión digital de 
   bajo consumo, basada en el estándar IEEE 802.15.4 de redes inalámbricas de 
@@ -2090,7 +2081,7 @@ reales que han inspirado el diseño final del sistema.
   la lectura de códigos \acs{QR}, el acelerómetro o mediante
   \acs{SMS}~\cite{bib:noWaiting}.
 
-    \subsubsection{Métodos de fidelización de clientes}
+    \subsection{Métodos de fidelización de clientes}
   Uno de los atractivos que puede tener el uso de la tecnología móvil \acs{NFC}
   es el de poder fidelizar a los clientes en el uso de un servicio. Para ello,
   dependiendo de las operaciones realizadas en el
@@ -2148,14 +2139,14 @@ reales que han inspirado el diseño final del sistema.
   eliminación de las falsificaciones, análisis de mercado, estudio de
   tendencias, fidelización de clientes, etc.~\cite{bib:wingBonus}.
 
-  \subsection{Aplicaciones comerciales}
+  \section{Aplicaciones comerciales}
   A continuación, se muestran varios ejemplos de cómo distintos programas
   comerciales implementan las funcionalidades típicas de los gestores de
   restaurantes. Después, se expondrán algunas aplicaciones que permiten
   realizar pedidos desde el sitio sin necesidad de tener que avisar al
   camarero.
 
-    \subsubsection{Gestión de operaciones típicas de un restaurante}
+    \subsection{Gestión de operaciones típicas de un restaurante}
     En la actualidad existe una innumerable oferta de aplicaciones que ayudan
     a gestionar las labores típicas de un restaurante, como pueden ser:
     gestionar pedidos, generar facturas o realizar la función de caja 
@@ -2326,7 +2317,7 @@ reales que han inspirado el diseño final del sistema.
     ninguna funcionalidad y que no se tengan funcionalidades incompatibles
     con el modelo de negocio que se posee.
 
-    \subsubsection{Gestión de pedidos a través de dispositivos móviles}
+    \subsection{Gestión de pedidos a través de dispositivos móviles}
     Las soluciones vistas en el apartado anterior van encaminadas a
     facilitar las tareas propias de los camareros y cocineros del restaurante,
     pero en ninguna de ellas se tiene en cuenta al cliente. Si el cliente es
@@ -2382,7 +2373,7 @@ reales que han inspirado el diseño final del sistema.
 
     Por último, a parte de esta función de recogida de pedidos, \emph{vMenu} 
     dispone de todo un sistema integral que permite gestionar las operaciones
-    básicas de un restaurante~\cite{bib:VMENU}.
+    básicas de un restaurante~\cite{bib:vMenu}.
 
     \item \textbf{Brand Table}. \emph{S-Digital}, una \emph{start-up} de la
     Universidad de Sidney, ofrece este prototipo conceptual de mesa de

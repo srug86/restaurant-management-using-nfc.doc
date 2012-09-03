@@ -7,9 +7,9 @@ llevar a cabo el desarrollo del proyecto y describe las principales
 herramientas utilizadas para su realización.
 
 \section{Pasos previos}
-Antes de elegir una metodología concreta, conviene realizar un estudio rápido
-de campo, para identificar cuáles son las partes que componen el sistema y para
-definir \emph{a grosso modo} cuáles son las necesidades de información.
+Antes de elegir una metodología concreta, se realiza un estudio de campo, para 
+identificar cuáles son las partes que componen el sistema y para definir
+cuáles son las necesidades de información.
 
   \subsection{Estudio de campo}
   \label{sec:fieldStudy}
@@ -19,7 +19,7 @@ mismo local''}~\cite{bib:rae}.
 
 Esta definición deja bastante claro cuál es la mecánica básica que siguen 
 estos establecimientos, pero no conviene olvidar que existe una gran
-gran variedad de tipos de restaurantes y de modalidades de servicios:
+variedad de tipos de restaurantes y de modalidades de servicios:
 
     \subsubsection{Tipos de restaurantes}
   En cuanto a los tipos de establecimientos y fórmulas de restauranción, pueden
@@ -59,7 +59,7 @@ gran variedad de tipos de restaurantes y de modalidades de servicios:
   que se ofrece (figura \ref{fig:gourmet}). Los pedidos son ``a la carta'' o
   escogidos de un ``menú'', por lo que los alimentos son cocinados al momento.
   Las mesas son atendidas por una serie de camareros dirigidos por un
-  \emph{Maître}. El costo va en relación al servicio recibido y a la calidad de
+  \emph{maître}. El costo va en relación al servicio recibido y a la calidad de
   los platos consumidos.
 
   \begin{figure}[!h]
@@ -197,18 +197,14 @@ gran variedad de tipos de restaurantes y de modalidades de servicios:
   el nivel del establecimiento.
 
   \subsection{Consideraciones del escenario}
+  \label{subsec:scenario}
     \subsubsection{Restaurante tipo}
-  El presente \acs{PFC} va - en principio - orientado a restaurantes de tipo
+  El presente \acs{PFC} va orientado a restaurantes de tipo
   \emph{gourmet} o \emph{temático}, que son restaurantes que cuentan con
   servicio de camareros y disponen de una carta de productos. Además, el
   restaurante debe contar con un punto de  control de entrada o
   \textbf{recibidor}, que debe estar custodiado por un \emph{maître}. Este se
   encargará de atender a los clientes que entran y les procurará asiento.
-
-  Un trabajo futuro podría consistir en adaptar el sistema para restaurantes 
-  de tipo \emph{fast food} o \emph{take away} (que no tienen control de 
-  entrada). Para restaurantes tipo \emph{buffet}, en cambio, no tendría
-  sentido automatizar los pedidos, puesto que no existen.
 
   Por otro lado, el tipo de servicio ofrecido no va a afectar al funcionamiento
   del sistema a desarrollar.
@@ -252,7 +248,7 @@ gran variedad de tipos de restaurantes y de modalidades de servicios:
   rodea.}}} y que incluye la tecnología \acs{NFC}) no
   dispone esa tecnología. Por ello, se opta por echar mano de otra de las
   tecnologías inalámbricas más extendidas entre los dispositivos móviles, la
-  \textbf{tecnología \emph{Bluetooth}}.
+  \textbf{tecnología \texttt{Bluetooth}}.
 
   \subsection{Aplicación de los servicios web}
   \label{subsec:webServicesApp}
@@ -267,7 +263,7 @@ correspondiente.
   Los datos representan el activo más importante del sistema y por ello es
 necesario garantizar su integridad. Para conseguirlo, la aplicación que
 implementa los \emph{servicios web} será la única que tendrá acceso a una
-\emph{base de datos} distribuida donde almacenarán y recuperarán todos los
+\emph{base de datos} distribuida donde almacenará y recuperará todos los
 datos del sistema.
 
     \subsubsection{Servicios web en \texttt{.NET}}
@@ -277,93 +273,10 @@ escritorio.
 
 Para el desarrollo de servicios web en \texttt{.NET} es conveniente hacer uso
 del \acs{IDE} estándar de dicho \emph{framework}, es decir, de \texttt{Visual
-Studio}:
-\begin{enumerate}
-\item En primer lugar, se creará un nuevo proyecto \texttt{C\#} del tipo
-``\texttt{ASP .NET Web Service}''.
-\item A continuación, se añadirá al proyecto un nuevo servicio web. Los
-servicios web aparecen en el proyecto como un archivo con extensión
-``\texttt{.asmx}''.
-\item En el código del fichero ``\texttt{.asmx}'' que se acaba de crear, se
-añadirá el atributo \texttt{WebService} para indicar el
-\emph{namespace}\footnote{Es una palabra clave de \texttt{.NET} que se utiliza
-para declarar un \emph{ámbito}. Este \emph{ámbito} permite organizar el código
-y proporciona una forma de crear tipos globalmente únicos. Un mismo
-\emph{namespace} puede dar cabida a varios proyectos.} al que pertenecerá el
-servicio y una descripción del mismo (listado \ref{code:webService}):
+Studio}.
 
-\begin{lstlisting}[
-  language = C,
-  caption  = {Ejemplo de creación de un servicio web.},
-  label    = code:webService]
-  [WebService(
-    Namespace="http://www.miSitio.es/MiNamespace",
-    Description="Aqui va la descripcion de mi servicio web")]
-  public class MiServicioWeb : System.Web.Services.WebService {
-    ...
-  }
-\end{lstlisting}
-
-\item El siguiente paso será añadir la definición del servicio web. Por norma
-general, y para que el servicio sea interoperable al 100\%, es conveniente
-incluir una sóla operación por cada servicio web, sin embargo, \texttt{.NET}
-permite incluir todas las operaciones que se necesiten. Para ello, sólo es
-necesario aplicar el atributo \emph{WebMethod} al método que se quiera publicar
-(listado \ref{code:webMethod}). Si no se añade dicho atributo, el método no
-será visible desde el servicio web. Al igual que con el atributo
-\emph{WebService}, \emph{WebMethod} también admite una descripción de la
-operación.
-
-\begin{lstlisting}[
-  language = C,
-  caption  = {Ejemplo de creación de un método web.},
-  label    = code:webMethod]
-  [WebMethod(
-    Description="Aqui va la descripcion del metodo web HolaMundo.")]
-  public string HolaMundo() {
-    return "Hola mundo";
-  }
-\end{lstlisting}
-
-\item Por último, se compila el proyecto y se publica la aplicación. Se
-generará un archivo \acs{WSDL}, que contiene toda la documentación que se
-indicó en los atributos \emph{WebService} y \emph{WebMethod} y será el que se 
-proporcione a las aplicaciones interesadas en consumir alguno de los servicios
-definidos, para que conozcan los parámetros a utilizar y los tipos de retorno.
-El contenido del archivo \acs{WSDL} puede consultarse a través de la dirección:
-\url{http://www.miSitioWeb.es/MiServicioWeb.asmx?wsdl}.
-\end{enumerate}
-
-El siguiente paso sería conectar las aplicaciones de escritorio con el
-servicio web creado:
-\begin{enumerate}
-\item Uno de los atributos del proyecto de la aplicación de escritorio
-(desarrollada en \texttt{Visual C\#}, con \emph{Visual Studio}) es
-\emph{References}. Este atributo permite asignar referencias a librerías
-externas almacenadas en disco o a servicios web. En este caso, se añadirá una
-nueva \emph{Web Reference}.
-\item A continuación, se ingresa la \acs{URL} donde se encuentra el \acs{WSDL}
-creado, es decir: \url{http://www.miSitioWeb.es/MiServicioWeb.asmx?wsdl} y se
-le proporciona un nombre a la referencia, por ejemplo \emph{MiReferencia}.
-\emph{Visual Studio} genera automáticamente los \emph{stubs}\footnote{Son los
-trozos de código que simulan el comportamiento de un código ya existente (pero
-en una máquina remota) o sustituyen temporalmente a un código que aún no ha
-sido implementado.} del cliente.
-\item Por último, para hacer uso del método web definido en el servicio
-web, se añadirá un código similar al siguiente (listado
-\ref{code:miReferencia}):
-
-\begin{lstlisting}[
-  language = C,
-  caption  = {Ejemplo de invocación de un método web.},
-  label    = code:miReferencia]
-  //Primero se crea una instancia del servicio
-  MiReferencia.MiServicioWeb ws = new MiReferencia.MiServicioWeb();
-  //Ahora ya pueden utilizarse sus metodos
-  Console.WriteLine(ws.HolaMundo());
-\end{lstlisting}
-
-\end{enumerate}
+El Anexo \ref{chap:webServices} contiene un pequeño tutorial de cómo
+crear \emph{servicios web} en \texttt{.NET}.
 
     \subsubsection{Base de datos \emph{MySQL}}
 La base de datos del sistema va a estar implementada utilizando el \acs{SGBD}
@@ -374,91 +287,13 @@ los servicios web.
 
 Para acceder a la base de datos a través de los servicios web será necesario
 el uso de una interfaz de programación para el lenguaje \texttt{C\#}, que es
-el lenguaje en el que va a implementarse la aplicación que contiene a dichos
-servicios. Dicha interfaz está implementada en la biblioteca de enlace
-dinámico (\acs{DLL}) \emph{MySql.Data.dll}. Para hacer uso de esta biblioteca
-es necesario referenciarla dentro del proyecto de los servicios web.
+el lenguaje en el que va a implementarse la aplicación que los contiene. Esta
+interfaz está implementada en la biblioteca de enlace dinámico (\acs{DLL})
+\emph{MySql.Data.dll}.
 
-Para acceder a la base de datos a través de la aplicación de los servicios web
-será necesario seguir los siguientes pasos:
-\begin{enumerate}
-\item En primer lugar, se crea una nueva instancia de una conexión
-\emph{MySQL}. Para ello, se utiliza una sentencia similar a esta:
-
-\begin{lstlisting}[
-  language = C]
-  MySqlConnection conexion =
-    new MySqlConnection("server='svr';database='db';uid='user';pwd='pass'");
-\end{lstlisting}
-
-Donde \texttt{'svr'} es la dirección \acs{URL} del servidor que aloja a la base
-de datos, \texttt{'db'} es el nombre de la base de datos y \texttt{'user'} y
-\texttt{'pass'} son el nombre y la contraseña respectivamente del usuario
-con el que se va a acceder.
-
-\item Antes de realizar cualquier consulta, es necesario
-abrir una conexión activa con la base de datos. Para ello, se utiliza el
-método \texttt{Open()}, que forma parte de la clase \texttt{MySqlConection}:
-
-\begin{lstlisting}[
-  language = C]
-  conexion.Open();
-\end{lstlisting}
-
-\item A continuación, se construye un comando de tipo \texttt{MySqlCommand}
-utilizando para ello una sentencia \acs{SQL}, con la consulta que se desea
-realizar y la instancia del objeto \texttt{MySqlConection} previamente
-abierta:
-
-\begin{lstlisting}[
-  language = C]
-  MySqlCommand comando = new MySqlCommand(sentencia, conexion);
-\end{lstlisting}
-
-\item Para ejecutar el comando construido se utilizará uno de estos dos métodos
-de la clase \texttt{MySqlCommand}, dependiendo del tipo de consulta a realizar:
-\begin{itemize}
-\item Si la consulta va a devolver un resultado, es decir, si la consulta
-es del tipo \texttt{SELECT}, se utilizará el método \texttt{ExecuteReader()}
-y el resultado será almacenado en una variable de tipo
-\texttt{MySqlDataReader}:
-
-\begin{lstlisting}[
-  language = C]
-  MySqlDataReader resultado = comando.ExecuteReader();
-\end{lstlisting}
-
-\item Por otro lado, si la consulta no va a devolver ningún resultado, es
-decir, si la consulta es del tipo: \texttt{INSERT}, \texttt{UPDATE},
-\texttt{DELETE}, \texttt{TRUNCATE}, etc.; se utilizará el método
-\texttt{ExecuteNonQuery()}:
-
-\begin{lstlisting}[
-  language = C]
-  comando.ExecuteNonQuery();
-\end{lstlisting}
-
-La consulta tendrá efecto en la base de datos pero no devolverá ningún
-resultado.
-\end{itemize}
-
-\item Por último, después de realizar una consulta, es preciso cerrar la
-conexión abierta. Para ello se hace uso del método \texttt{Close()}, que forma
-parte (al igual que \texttt{Open()}) de la clase \texttt{MySqlConection}:
-
-\begin{lstlisting}[
-  language = C]
-  conexion.Close();
-\end{lstlisting}
-\end{enumerate}
-
-El usuario con el que la aplicación de los servicios web accede a la base
-de datos, tendrá privilegios para realizar consultas \acs{SQL} que afecten
-a los datos (\texttt{SELECT}, \texttt{INSERT}, \texttt{UPDATE},
-\texttt{DELETE} o \texttt{TRUNCATE}), pero no tendrá acceso a operaciones
-que afecten a la estructura  (\texttt{CREATE}, \texttt{DROP}, \texttt{TRIGGER},
-etc.) o a la administración (\texttt{CREATE USER}, \texttt{SHUTDOWN},
-\texttt{RELOAD}, etc.) de la base de datos.
+En el Anexo \ref{chap:mySQL} se explican detalladamente qué clases y métodos
+van a ser utilizados para realizar los accesos a la base de datos desde la
+aplicación de los servicios web.
 
   \subsection{Aplicación de la tecnología \acs{NFC}}
   \label{subsec:nfcApp}
@@ -476,7 +311,7 @@ cuenta o iniciará el proceso de pago mediante \acs{NFC}.
 
 Las características de la tecnología \acs{NFC} favorecerán que las 
 interacciones del cliente sean sumamente sencillas e intuitivas, ya que estas 
-se producirán automáticamente con simple acto de aproximar su dispositivo 
+se producirán automáticamente con el simple acto de aproximar su dispositivo 
 móvil a una de las etiquetas \acs{RFID}. Es decir, el cliente podrá acceder
 a cada uno de los servicios que se le ofrecen ``tocando'' la etiqueta
 correspondiente.
@@ -488,19 +323,18 @@ ofrece el restaurante de la forma ``tradicional''.
 
     \subsubsection{Nokia 6131 \acs{NFC}}
 Como se vió en la figura \ref{fig:nfcGraph} (página
-\pageref{fig:nfcGraph}) o puede verse en el anexo \ref{chap:nfcMobiles} (página
-\pageref{chap:nfcMobiles}), el número de dispositivos que tienen entre sus 
+\pageref{fig:nfcGraph}), el número de dispositivos que tienen entre sus 
 características la tecnologías \acs{NFC} ha ido aumentando casi 
 exponencialmente durante los últimos años. Desgraciadamente, en Europa, aún 
 no se ha alcanzado el grado de madurez que la tecnología \acs{NFC} ya tiene 
 en países como Japón, Corea del Sur, China o, en menor medida, Estados 
 Unidos. Como consecuencia de esto, muchos de los modelos que incorporan
-\acs{NFC} no se comercialicen todavía en nuestro país.
+\acs{NFC} no se comercializan todavía en nuestro país.
 
-El dispositivo móvil que va a utilizarse para el desarrollo del presente
+El dispositivo móvil que va a utilizarse para el desarrollo de este
 \acs{PFC} es el \texttt{Nokia 6131 \acs{NFC}} (figura \ref{fig:nokia6131}). 
 Aunque a priori, cualquier dispositivo móvil \acs{NFC} que cuente con soporte 
-\texttt{Java}, que cuente con tecnología \emph{Bluetooth} y que implemente las 
+\texttt{Java}, que cuente con tecnología \texttt{Bluetooth} y que implemente las 
 \acs{API}s \texttt{\acs{JSR}-257} y \texttt{\acs{JSR}-82} puede beneficiarse 
 de los servicios implementados.
 
@@ -545,8 +379,8 @@ píxeles.
   \end{itemize}
 \end{itemize}
 
-El anexo \ref{chap:nokia} contiene las características detalladas de este
-dispositivo.
+%El anexo \ref{chap:nokia} contiene las características detalladas de este
+%dispositivo.
 
   \subsubsection{Uso de la \acs{API} \texttt{\acs{JSR}-257}}
 En la sección \ref{subsec:java} (la tecnología \texttt{Java}) se comentó, que
@@ -556,156 +390,9 @@ proporcionar la funcionalidad necesaria para implementar aplicaciones que
 hagan uso de la tecnología \acs{NFC}, como es el caso de la aplicación móvil
 del cliente del sistema definido en el presente \acs{PFC}.
 
-A continuación, se va a hacer un repaso de los conceptos básicos que forman
-parte del trabajo con etiquetas inteligentes y su implementación a partir
-de la \acs{API} \texttt{\acs{JSR}-257}~\cite{bib:jfontecha}:
-\begin{itemize}
-\item \textbf{Implementación de interfaces}. Para poder hacer uso de las 
-funcionalidades \acs{NFC} por medio de \acs{JavaME}
-es necesario implementar al menos la interfaz \texttt{TargetListener} en la
-clase principal de la aplicación. Esto permitirá la lectura y escritura de
-etiquetas una vez iniciada la aplicación.
-
-Si además se desea que, ante el evento de contacto con una etiqueta, sea el 
-propio móvil el que inicie la aplicación, se deberá implementar la interfaz
-\texttt{NDEFRecordListener}, para provocar el ``autoarranque'' de la aplicación
-ante un tipo de etiqueta definido.
-
-Implementar tanto \texttt{TargetListener} como \texttt{NDEFRecordListener},
-implica sobreescribir los métodos de dichas interfaces,
-\texttt{recordDetected/1} y \texttt{targetDetected/1} respectivamente
-(figura \ref{code:extendsNFC}):
-
-\begin{lstlisting}[
-  language = Java,
-  caption = {Implementación de las interfaces \texttt{TargetListener} y
-  \texttt{NDEFRecordListener}.},
-  label = code:extednsNFC]
-  public class MiMIDLet extends MIDlet implements NDEFRecordListener, TargetListener {
-    @override
-    void recordDetected(NDEFMessage ndefMessage) { ... }
-    @override
-    void targetDetected(TargetProperties[] properties) { ... }
-  }
-\end{lstlisting}
-
-\item \textbf{Descubrimiento de dispositivos y etiquetas}. Para poder leer y 
-escribir etiquetas \acs{RFID} con \acs{JavaME}, se necesita realizar un 
-descubrimiento previo y añadir el \emph{Listener} correspondiente. De esta 
-forma en el constructor del \emph{MIDlet} o nada más iniciar su ejecución, 
-podrá realizarse su registro.
-
-Al iniciar el contacto, se registrará el tipo de etiqueta o registro dentro de 
-etiqueta que se pretende ``despertar''. El tipo de etiqueta puede
-definirse utilizando el formato \acs{MIME} (por ejemplo, \emph{app/mi\_tipo}).
-De esta forma, la aplicación estará preparada para leer y escribir etiquetas
-con este tipo.
-
-El listado \ref{code:addListener} muestra un ejemplo en el que se añaden
-dos \emph{Listener}s:
-
-\begin{lstlisting}[
-  language = Java,
-  caption = {Se añade un \emph{Listener} para etiquetas \texttt{NDEF} y otro
-  para etiquetas \texttt{NDEF} del tipo ``app/mi\_tipo''.},
-  label = code:addListener]
-  try{
-    DiscoveryManager.getInstance().addTargetListener(this, TargetType.NDEF_TAG);
-    DiscoveryManager.getInstance().addNDEFRecordListener(this, new NDEFRecordType(NDEFRecordType.MIME, ``app/mi_tipo''));
-  } catch(ContactlessException e) { }
-\end{lstlisting}
-
-\item \textbf{Conexión y lectura/escritura de datos}. La  interfaz
-\texttt{TargetListener} requiere la implementación del método
-\texttt{targetDetected}, mediante el cual se definen las acciones a realizar 
-cuando se establezca el contacto con una etiqueta \acs{RFID}. El listado
-\ref{code:targetDetected} muestra un ejemplo de implementación:
-
-\begin{lstlisting}[
-  language = Java,
-  caption = {Ejemplo de implementación del método \texttt{targetDetected} en
-  la que se realizan varias operaciones.},
-  label = code:targetDetected]
-  public void targetDetected(TargetProperties[] prop) {
-    NDEFTagConnection conn = null;
-    //Obtenemos las propiedades de la etiqueta
-    TargetProperties target = prop[0];
-    try {
-      // Obtenemos la url de la etiqueta para ``conectarnos'' con ella
-      String url = target.getUrl();
-      // Abrimos la conexion y la almacenamos en un objeto NDEFTagConnection
-      conn = (NDEFTagConnection)Connector.open(url);
-      // Leemos los datos de la etiqueta y los almacenamos en un objeto NDEFMessage
-      NDEFMessage message = conn.readNDEF();
-      // Obtenemos el numero de registros del mensaje
-      NDEFRecord[] records = message.getRecords();
-      // Operamos con esos registros y ejecutamos las acciones correspondientes
-      // Podemos crear y escribir un nuevo mensaje en la etiqueta de esta forma
-      conn.writeNDEF(message);
-      //Cerramos la conexion
-      conn.close();
-    } catch (...) { }
-  }
-\end{lstlisting}
-
-\item \textbf{Eliminación del \emph{Listener}}. Cuando ya no interese leer o 
-escribir etiquetas de un tipo determinado, se eliminará su registro 
-correspondiente. Con ello, la aplicación dejará de estar a la escucha de este 
-tipo de etiquetas, a menos que se vuelvan a registrar (listado
-\ref{code:removeListener}):
-
-\begin{lstlisting}[
-  language = Java,
-  caption = {Se eliminan los \emph{Listener}s añadidos en el listado
-  \ref{code:addListener}.},
-  label = code:removeListener]
-  try {
-    DiscoveryManager.getInstance().removeNDEFRecordListener(this, new
-    NDEFRecordType(NDEFRecordType.MIME,``app/mi_tipo''));
-    DiscoveryManager.getInstance().removeTargetListener(this, TargetType.NDEF_TAG);
-  } catch (...) { }
-\end{lstlisting}
-
-\item \textbf{Lectura instantánea de información}. El registro del
-\texttt{NDEFRecordListener} permitirá leer datos con el simple
-hecho de aproximar el dispositivo móvil a una etiqueta \acs{RFID}, sin 
-necesidad de que, la aplicación que hará uso de sus datos, esté en ejecución.
-Para ello, debe implementarse el método \emph{RecordDetected}.
-
-El método \texttt{recordDetected} obtiene directamente el objeto de tipo
-\texttt{NDEFMessage} que contiene el mensaje de la etiqueta \acs{RFID}
-(figura \ref{code:recordDetected}).
-
-\begin{lstlisting}[
-  language = Java,
-  caption = {El objeto \texttt{peli}, de tipo \texttt{Pelicula}, almacena
-  el contenido del registro 0 de la etiqueta, extraído por el lector
-  \acs{NFC}.},
-  label = code:recordDetected]
-  public void recordDetected(NDEFMessage nDEFMessage) {
-    // Nos aseguramos que el mensaje contenido en el registro 0 de la etiqueta es de tipo ``app/objeto''
-    if (nDEFMessage.getRecord(0).getRecordType().getName().equals(``app/pelicula'')){
-      //Obtengo la informacion contenida en ese mensaje y construyo con ella un objeto especifico de mi aplicacion.
-      peli = new Pelicula(nDEFMessage.getRecord(0).getPayload());
-    }
-  }
-\end{lstlisting}
-
-Una vez extraída la información de la etiqueta, comenzará la ejecución normal
-de la aplicación, teniendo los datos de la etiqueta disponibles para su
-tratamiento desde el principio. Sin embargo, para provocar el ``auto-arranque''
-de la aplicación, es necesario dar de alta a la misma en el
-\emph{Push-Registry} \texttt{Java} del dispositivo móvil.
-
-\item \textbf{El \emph{Push-Registry}}. Es una clase interna \acs{JavaME} que 
-permite ejecutar aplicaciones en principio inactivas, ante la respuesta a un 
-evento, como puede ser el \emph{timer} de un reloj, la aproximación de una 
-etiqueta \acs{RFID} al dispositivo, etc.
-
-Cuando una aplicación define el \emph{Push-Registry} como respuesta a un
-evento, este hecho queda registrado en el archivo description de la
-aplicacion móvil (archivo con extensión \emph{.jad}).
-\end{itemize}
+El Anexo \ref{chap:jsr257} contiene un pequeño manual que explica los conceptos
+básicos del trabajo con etiquetas inteligentes a través de la \acs{API}
+\texttt{\acs{JSR}-257}.
 
 \subsection{Aplicación de la tecnología \texttt{Bluetooth}}
 La tecnología ideal para comunicar los dispositivos móviles de los clientes con
@@ -713,10 +400,10 @@ los equipos del restaurante sería la tecnología \acs{WiFi}. Desafortunadamente
 el \texttt{Nokia 6131 \acs{NFC}} no cuenta con esta tecnología. Por ello, para
 desempeñar tal cometido, se ha seleccionado otra de las tecnologías
 inalámbricas que dicho dispositivo si posee, en este caso la tecnología
-\emph{Bluetooth}.
+\texttt{Bluetooth}.
 
-  \subsubsection{Introducción de la tecnología \emph{Bluetooth} en el entorno}
-La tecnología \emph{Bluetooth} va a facilitar las comunicaciones entre los
+  \subsubsection{Introducción de la tecnología \texttt{Bluetooth} en el entorno}
+La tecnología \texttt{Bluetooth} va a facilitar las comunicaciones entre los
 dispositivos \acs{NFC} de los clientes y las aplicaciones que forman parte del 
 sistema del restaurante.
 
@@ -743,7 +430,7 @@ las siguientes operaciones:
 
 Por lo tanto, las conexiones serán iniciadas siempre por parte del cliente, 
 cuando alguna de las interacciones \acs{NFC} solicite un servicio del
-servidor \emph{Bluetooth} del restaurante. Dependiendo de la interacción, el 
+servidor \texttt{Bluetooth} del restaurante. Dependiendo de la interacción, el 
 cliente enviará: la solicitud de un pedido, la solicitud de la cuenta o la 
 solicitud del ingreso, pago o abandono del local. Todos estos mensajes serán 
 enviados irán acompañados de los datos personales (completos o parciales) del 
@@ -754,24 +441,23 @@ aplicación del restaurante, teniendo en cuenta el estado actual del cliente; y
 se emitirán dentro de la misma conexión. Una vez enviada la respuesta, se
 dará por finalizada la comunicación, cerrando la conexión.
 
-Por último, cabe reseñar que, el contar con la tecnología \emph{Bluetooth} va
-a ir acompañado de tener que lidiar con sus desventajas (que pudieron verse en 
-la sección \ref{subsec:bluetooth}, en el apartado de desventajas). Las que
-más pueden afectar a la implementación de la aplicación móvil son las 
-siguientes:
+Por último, cabe reseñar que, el contar con la tecnología \texttt{Bluetooth} va
+a ir acompañado de tener que asumir sus desventajas (que pudieron verse en 
+la sección \ref{subsec:disadvantages}). Las que más pueden afectar a la
+implementación de la aplicación móvil son las siguientes:
 \begin{itemize}
 \item La velocidad de transmisión es lenta para archivos pesados. En el
-caso del \texttt{Nokia 6131 \acs{NFC}}, la versión del \emph{Bluetooth} es
+caso del \texttt{Nokia 6131 \acs{NFC}}, la versión del \texttt{Bluetooth} es
 la \texttt{2.0 EDR}, por lo que (según la tabla \ref{tab:btSpeed}, página
 \pageref{tab:btSpeed}), el ancho de banda es de 3 Mbit/s. Afortunadamente, las
 transacciones de datos no se antojan muy pesadas.
-\item El alcance es bastante limitado. El \emph{Bluetooth} del
+\item El alcance es bastante limitado. El \texttt{Bluetooth} del
 \texttt{Nokia 6131 \acs{NFC}} es de \emph{Clase 2}, por lo tanto, según
 la tabla \ref{tab:btClasses} (página \pageref{tab:btClasses}), el rango
 de alcance está en torno a los 25 metros. Dependiendo de la extensión del
 restaurante, esto puede suponer un problema.
 \item Además, existe una limitación en cuanto a la cantidad de dispositivos 
-que pueden estar conectados en una misma red \emph{Bluetooth}. El máximo es de 
+que pueden estar conectados en una misma red \texttt{Bluetooth}. El máximo es de 
 8 dispositivos simultáneos. Como se prevé que las comunicaciones van a ser
 más o menos rápido, será difícil que se produzcan más de 8 comunicaciones
 simultáneas, a no ser que el restaurante tenga un gran aforo y este esté cerca
@@ -780,7 +466,7 @@ del completo.
 
   \subsubsection{La comunicación serie virtual}
 Como se ha comentado anteriormente, las comunicaciones inalámbricas que se 
-produzcan vía \emph{Bluetooth} van consistir en: la emisión de un mensaje de 
+produzcan vía \texttt{Bluetooth} van consistir en: la emisión de un mensaje de 
 solicitud por parte del cliente y la respuesta a este por parte del 
 restaurante. Los mensajes no van a tener una gran extensión y van a ser 
 enviados en forma de cadena de caracteres\footnote{Dependiendo de la 
@@ -805,341 +491,27 @@ donde se acaban los puertos físicos), pueden ser utilizados para la
 \emph{comunicación en serie virtual}.
 
 En este \acs{PFC}, los puertos virtuales van a ser utilizados por los
-dispositivos \emph{Bluetooth} para emular conexiones \texttt{RS-232}
+dispositivos \texttt{Bluetooth} para emular conexiones \texttt{RS-232}
 tradicionales.
 
   \subsubsection{Uso de la \acs{API} \texttt{\acs{JSR}-82}}
 Al igual que ocurría con la \texttt{\acs{JSR}-257} para \acs{NFC}, la \acs{API}
 \texttt{\acs{JSR}-82} va a proporcionar las clases e interfaces necesarias para
-implementar la funcionalidad \emph{Bluetooth} de la aplicación móvil del
+implementar la funcionalidad \texttt{Bluetooth} de la aplicación móvil del
 cliente.
 
-A continuación, se va a hacer un repaso de las principales clases y métodos
-que forman parte del paquete \texttt{javax.bluetooth}, que está orientado a 
-las operaciones \emph{Bluetooth} que no utilizan el protocolo \acs{OBEX}.
-Como, en este caso, la aplicación móvil siempre va a ejercer como 
-cliente, en el esquema \emph{cliente-servidor}, sólo van a exponerse las
-clases orientadas a las comunicaciones cliente, en este caso las de tipo
-\acs{SPP}\footnote{El \emph{Serial Port Profile} es un perfil \emph{Bluetooth} 
-basado en la \texttt{\acs{ETSI} 07,10} y en el protocolo \acs{RFCOMM}, que
-emula un cable serial para proporcionar un sustituto similar a la interfaz
-\texttt{RS-232}, incluyendo sus principales señales de
-control.}~\cite{bib:jsr82}:
-\begin{itemize}
-\item En primer lugar, antes de realizar cualquier otra operación, es necesario
-iniciar la interfaz \emph{Bluetooth} del dispositivo. Para ello:
-  \begin{itemize}
-  \item primero se crea una instancia de tipo \texttt{LocalDevice}, que va a 
-  hacer referencia al dispositivo local. La clase \texttt{LocalDevice} es un 
-  ``singleton'', así que para obtener su única instancia existente se llamará 
-  al método \texttt{getLocalDevice()}.
-
-  \begin{lstlisting}[
-    language = Java]
-    LocalDevice localDevice = null;
-    try {
-      localDevice = LocalDevice.getLocalDevice();
-    } catch (BluetoothStateException e) { }
-  \end{lstlisting}
-
-  Este objeto será el punto de partida de prácticamente cualquier operación
-  que se vaya a llevar a cabo con esta \acs{API}.
-
-  \item Y después, mediante el método \texttt{setDiscoverable/1}, se activa la 
-  conectividad del dispositivo. Los posibles valores que admite este método
-  están definidos en la clase \texttt{DiscoveryAgent} como campos estáticos y
-  son los siguientes:
-    \begin{itemize}
-    \item \texttt{DiscoveryAgent.GIAC} (\emph{General/Unlimited Inquiry Access
-    Code}): permite una conectividad ilimitada.
-    \item \texttt{DiscoveryAgent.LIAC} (\emph{Limited Dedicated Inquiry Access
-    Code}): permite una conectividad limitada.
-    \item \texttt{DiscoveryAgent.NOT\_DISCOVERABLE}: hace que el dispositivo
-    no sea visible para el resto de dispositivos.
-    \end{itemize}
-  Por ejemplo, para permitir una conectividad ilimitada:
-
-  \begin{lstlisting}[
-    language = Java]
-    localDevice.setDiscoverable(DiscoveryAgent.GIAC);
-  \end{lstlisting}
-  \end{itemize}
-
-\item El siguiente paso será la búsqueda de dispositivos y servicios. Las
-búsquedas se realizarán a través del objeto \texttt{DiscoveryAgent}. Este
-objeto es único y se obtendrá a través del método \texttt{getDiscoveryAgent()}
-del objeto \texttt{LocalDevice}:
-
-\begin{lstlisting}[
-  language = Java]
-  DiscoveryAgent discoveryAgent =
-    LocalDevice.getLocalDevice().getDiscoveryAgent();
-\end{lstlisting}
-  \begin{itemize}
-  \item Para comenzar una nueva \textbf{búsqueda de dispositivos}, se hará uso 
-  del método \texttt{startInquiry()}. Este método requiere dos argumentos. El 
-  primero especifica el modo de conectividad que deben tener los dispositivos a 
-  buscar (\texttt{DiscoveryAgent.GIAC} o \texttt{DiscoveryAgent.LIAC}).
-  El segundo es un objeto que implementa la interfaz
-  \texttt{DiscoveryListener}. A través de este último, serán notificados los 
-  dispositivos que se vayan descubriendo:
-
-  \begin{lstlisting}[
-    language = Java]
-    discoveryAgent.startInquiry(DiscoveryAgent.GIAC, this);
-  \end{lstlisting}
-
-  Para cancelar la búsqueda se hará uso del método \texttt{cancelInquiry()}.
-
-  \begin{lstlisting}[
-    language = Java]
-    discoveryAgent.cancelInquiry(this);
-  \end{lstlisting}
-
-  La interfaz \texttt{DiscoveryListener} contiene dos métodos para la 
-  búsqueda de dispositivos:
-    \begin{itemize}
-    \item \texttt{public void \textbf{deviceDiscovered}(RemoteDevice rd,
-      DeviceClass c)}
-
-    Cada vez que se descubre un dispositivo se llama a este método. El primer
-    argumento representa el dispositivo encontrado. El segundo permite 
-    determinar el tipo de dispositivo.
-
-    \item \texttt{public void \textbf{inquiryCompleted}(int c)}
-
-    Este método es llamado cuando la búsqueda de dispositivos ha finalizado. El
-    argumento entero indica el motivo de la finalización.
-    \end{itemize}
-
-  \item Para comenzar una \textbf{búsqueda de servicios}, se utilizará el
-  método \texttt{searchServices()}, de la clase \texttt{DiscoveryAgent}. Este
-  método tiene cuatro atributos:
-    \begin{itemize}
-    \item El primero especifica los atributos de servicio que van a ser objeto
-    de búsqueda\footnote{Los servicios son descritos a través de unos atributos 
-    que son identificados numéricamente. Los identificadores de estos atributos 
-    están contenidos por un \emph{array} de enteros.}.
-    \item El segundo es un \emph{array} de identificadores de servicio y
-    permiten especificar los servicios que van a ser objeto de la búsqueda.
-    \item El tercero representa al dispositivo sobre el que se va a realizar la
-    búsqueda.
-    \item Y el último es un objeto que implementa la interfaz
-    \texttt{DiscoveryListener} y será usado para notificar los eventos de 
-    búsqueda de servicio.
-    \end{itemize}
-  Además, devuelve un valor entero que identifica la búsqueda. Este valor
-  entero se utiliza para determinar a qué búsqueda pertenecen los eventos
-  \texttt{servicesDiscovered()} y \texttt{serviceSearchCompleted()}, que son
-  los otros dos métodos que define la interfaz \texttt{DiscoveryListener} (en
-  este caso para la búsqueda de servicios).
-    \begin{itemize}
-    \item \texttt{public void \textbf{servicesDiscovered}(int transID,
-      ServiceRecord[] sr)}
-
-    Cada vez que se descubre un servicio se llama a este método. El primer
-    argumento identifica el proceso de búsqueda. Es el mismo que devolvió
-    \texttt{searchDevices()} cuando se comenzó la búsqueda. El segundo, es un
-    \emph{array} de objetos \texttt{ServiceRecord}, que describe las
-    características del servicio \emph{Bluetooth}.
-
-    \item \texttt{public void \textbf{serviceSearchCompleted}(int transID, int 
-    respCode)}
-
-    Este método es llamado cuando la búsqueda de servicios ha finalizado. El
-    primer argumento identifica el proceso de búsqueda (valor devuelto por al
-    invocar el método \texttt{searchServices()}. El segundo argumento indica el
-    motivo de finalización de la búsqueda.
-    \end{itemize}
-
-  Para cancelar un proceso de búsqueda de servicios se hará uso del método
-  \texttt{cancelServiceSearch()}, pasándole como argumento el identificador
-  del proceso de búsqueda.
-  \end{itemize}
-
-\item Por último, para establecer una comunicación:
-  \begin{itemize}
-  \item en primer lugar, se obtendrá la \acs{URL} necesaria para establecer
-  la conexión a través del método \texttt{getConnectionURL()} de un objeto
-  \texttt{ServiceRecord} (obtenido previamente a través del método
-  \texttt{servicesDiscovered}). Este método requiere dos argumentos: el
-  primero, indica si se debe autentificar y/o cifrar la conexión; y el
-  segundo, especifica si el dispositivo ejercerá como maestro (\texttt{true})
-  o bien, no importa si es maestro o esclavo (\texttt{false}):
-
-  \begin{lstlisting}[
-    language = Java]
-    ServiceRecord sr = ...;
-    String url =
-      sr.getConnectionURL(ServiceRecord.NOAUTHENTICATE_NOENCRYPT, false);
-  \end{lstlisting}
-
-  \item Una vez obtenida la \acs{URL}, se usará el método
-  \texttt{Connector.open()} para realizar la conexión. Este método devolverá un 
-  objeto distinto según el tipo de protocolo usado. En este caso (cliente
-  \acs{SPP}), devolverá un \texttt{StreamConnection}. A partir del
-  \texttt{StreamConnection} podremos obtener los flujos de entrada y salida:
-
-  \begin{lstlisting}[
-    language = Java]
-    StreamConnection conn =
-      (StreamConnection) Connector.open(url);
-    OutputStream out = con.openOutputStream();
-    InputStream in = con.openInputStream();
-  \end{lstlisting}
-  \end{itemize}
-
-\item Para dar por concluida la comunicación, no conviene olvidar que hay que 
-cerrar los flujos de entrada y salida y la propia conexión:
-
-  \begin{lstlisting}[
-    language = Java]
-    finally {
-      try {
-        if (in != null)
-          in.close();
-        if (out != null)
-          out.close();
-        if (conn != null)
-          conn.close();
-      } catch (IOException e) { }
-    }
-  \end{lstlisting}
-\end{itemize}
+El Anexo \ref{chap:jsr82} contiene más información acerca de esta \acs{API}.
 
   \subsubsection{Uso de la biblioteca \texttt{32feet.NET}}
 Las aplicaciones del restaurante van a implementarse utilizando el lenguaje
 \texttt{Visual C\# .NET}. Por lo tanto, será necesario hacer uso de una 
 biblioteca que contenga una implementación en dicho lenguaje de las 
-operaciones típicas de un servidor \emph{Bluetooth}. Esta biblioteca es la
-\texttt{32feet.NET}
+operaciones típicas de un servidor \texttt{Bluetooth}. Esta biblioteca es la
+\texttt{32feet.NET}.
 
-Según~\cite{bib:32feet}, \texttt{32feet.NET}: \emph{``es un proyecto de código 
-fuente compartido que tiene como objetivo hacer que tecnologías \acs{PAN}, como 
-\texttt{Bluetooth}, \acs{IrDA}, etc., sean más fácilmente accesibles desde 
-\texttt{.NET}. Es compatible con sistemas de escritorio, móviles o incrustados.
-Actualmente, el proyecto se compone de las tecnologías: \texttt{Bluetooth},
-\acs{IrDA} y \acs{OBEX}.''}.
-
-La implementación de un servidor \emph{Bluetooth} que publica un servicio,
-utilizando la biblioteca \texttt{32feet.NET}, es muy sencilla:
-\begin{itemize}
-\item Antes de iniciar el servidor, es necesario activar el \emph{Bluetooth}.
-Para ello, se crea una instancia de la clase \texttt{BluetoothRadio} con
-el valor \texttt{PrimaryRadio}, que es la \emph{BluetoothRadio} estándar de
-esta biblioteca. Y después, se establece el modo de dicha instancia como
-\texttt{Discoverable}, para que los clientes puedan detectarla.
-
-  \begin{lstlisting}[
-    language = C]
-    BluetoothRadio br = BluetoothRadio.PrimaryRadio;
-    br.Mode = RadioMode.Discoverable;
-  \end{lstlisting}
-
-\item A continuación, se crea una instancia del objeto
-\texttt{BluetoothListener}, que se encargará de escuchar las conexiones de los
-clientes. El método constructor de este tipo de objetos requiere un atributo
-de tipo \texttt{Guid}\footnote{Representa un identificador exclusivo global y 
-consiste en un entero de 128 bits (16 bytes) que se puede utilizar en todos los 
-equipos y redes siempre que se requiera un identificador único. Es muy 
-improbable que este identificador se duplique.}. Este atributo representa al 
-identificador del servicio que el servidor \emph{Bluetooth} va a publicar.
-
-  \begin{lstlisting}[
-    language = C]
-    Guid servicio = 
-      new Guid("{01234567-89AB-CDEF-0123-456789ABCDEF}");
-    BluetoothListener btListener = new BluetoothListener(servicio);
-  \end{lstlisting}
-
-Los clientes que quieran utilizar este servicio, tendrán que conocer cuál
-es el valor de este identificador.
-
-\item Para arrancar el servidor \emph{Bluetooh} con el servicio especificado
-se ejecuta el método \texttt{Start()}:
-
-  \begin{lstlisting}[
-    language = C]
-    btListener.Start();
-  \end{lstlisting}
-
-En este momento, el servicio del servidor será visible a los clientes.
-
-\item Para atender las peticiones de los clientes se cuenta con el método
-\texttt{AcceptBluetoothClient()}. Este método va a permitir crear objetos
-de tipo \texttt{BluetoothClient} con los que gestionar las comunicaciones
-de entrada y salida con el cliente. El listado \ref{code:btListener}
-muestra un método que implementa un servicio de recepción de archivos de
-los clientes:
-
-\begin{lstlisting}[
-  language = C,
-  caption = {Método que implementa un servicio de recepción de archivos de
-  los clientes.},
-  label = code:btListener]
-  public void servicio()
-  {
-    string fichero, buffer;
-    int count;
-    do
-    {
-      try
-      {
-        //esperamos a un nuevo cliente Bluetooth
-        BluetoothClient cliente = btListener.AcceptBluetoothClient();
-        //obtenemos un stream del cliente para poder leer los datos que nos envie
-        StreamReader streamR =
-          new StreamReader(cliente.GetStream(), Encoding.UTF8);
-        //leemos el nombre del fichero
-        fichero = streamR.ReadLine();
-        if (fichero != "")
-        {
-          //creamos un nuevo fichero con ese nombre
-          FileStream streamW = new FileStream(fichero,
-          FileMode.OpenOrCreate, FileAccess.Write);
-          BinaryWriter bw = new BinaryWriter(streamW);
-          do
-          {
-            //leemos una linea enviada por el cliente
-            buffer = streamR.ReadLine();
-            //la procesamos
-            byte[] data = Convert.FromBase64String(buffer);
-            count = data.Length;
-            //la escribimos en el fichero
-            if (count > 0)
-              bw.Write(data, 0, count);
-            //hasta que detecte el final del fichero
-          } while (!streamR.EndOfStream);
-          MessageBox.Show("Fichero recibido: " + fichero);
-          //cerramos el fichero
-          bw.Flush();
-          bw.Close();
-        }
-        //cerramos todas la conexion con el cliente
-        streamR.Close();
-        cliente.Close();
-      }
-      catch (Exception ex)
-      {
-        if (!salir)
-          MessageBox.Show("Error: " + ex.Message);
-      }
-    } while (!salir);
-  }
-\end{lstlisting}
-
-El método \texttt{Close()}, de la clase \texttt{BluetoothClient}, finaliza
-la conexión con el cliente.
-
-\item Por último, para cerrar el servidor \emph{Bluetooh} activo
-se hará uso del método \texttt{Stop()}:
-
-  \begin{lstlisting}[
-    language = C]
-    btListener.Stop();
-  \end{lstlisting}
-
-\end{itemize}
+En el Anexo \ref{chap:32feet} se explica qué es \texttt{32feet.NET} y cómo se
+implementa un servidor \texttt{Bluetooth} a través de las funciones que
+ofrece esta biblioteca.
 
 \section{Metodología de trabajo}
 \label{sec:workingMethodology}
@@ -1150,7 +522,7 @@ desarrollo del proyecto, optar por una adaptación de la metodología de
   \subsection{Prototipado incremental}
 El objetivo de este \acs{PFC} es la creación del prototipo de un sistema.
 Según ~\cite{bib:software_engineering}, \emph{``un prototipo puede definirse
-como  un modelo parcial ejecutable de un sistema de software''.} Por lo tanto, 
+como un modelo parcial ejecutable de un sistema de software''.} Por lo tanto, 
 no se pretende crear un producto final comercializable, sino más bien, un
 modelo parcial de un sistema que ayude a comprender cómo funcionaría la
 implantación de este sistema bajo las condiciones de un entorno real.
@@ -1224,7 +596,7 @@ tipo} sobre el cual implementar el sistema.
   \end{enumerate}
 
   Tanto el terminal del recibidor como el terminal de la barra dispondrán
-  de un punto de conexión \emph{Bluetooth}, para posibilitar la comunicación
+  de un punto de conexión \texttt{Bluetooth}, para posibilitar la comunicación
   con el dispositivo móvil de los clientes.
 
   Por otro lado, uno de los terminales citados u otro terminal distinto (que
@@ -1243,10 +615,10 @@ tipo} sobre el cual implementar el sistema.
   \begin{enumerate}
   \item \emph{\textbf{Clientes \acs{NFC}}}. Son potenciales \emph{clientes
   \acs{NFC}} los clientes que tienen un móvil con la tecnología \acs{NFC} y
-  \emph{Bluetooth}. La tecnología \acs{NFC} les permitirá realizar acciones
+  \texttt{Bluetooth}. La tecnología \acs{NFC} les permitirá realizar acciones
   como: comunicar su llegada o su salida, pagar o elaborar una lista de
   productos para un pedido; con el simple gesto de tocar unas u otras
-  etiquetas \acs{RFID}. El \emph{Bluetooth} por su parte, permitirá la
+  etiquetas \acs{RFID}. El \texttt{Bluetooth} por su parte, permitirá la
   comunicación entre el dispositivo del cliente y los terminales del
   restaurante para, por ejemplo: mandar sus datos personales, recibir
   recomendaciones, enviar pedidos o recibir el resumen de su factura.
@@ -1273,25 +645,22 @@ los servicios web.
 \item Prototipo inicial de la aplicación de la \emph{barra} y conexión con los 
 servicios web.
 \item Prototipo inicial de la aplicación móvil.
-\item Conexiones \emph{Bluetooth} entre el prototipo del móvil y el del
+\item Conexiones \texttt{Bluetooth} entre el prototipo del móvil y el del
 \emph{recibidor}.
-\item Conexiones \emph{Bluetooth} entre el prototipo del móvil y el de la
+\item Conexiones \texttt{Bluetooth} entre el prototipo del móvil y el de la
 \emph{barra}.
 \item Módulo recomendador.
 \end{enumerate}
 
 \section{Herramientas}
-En esta sección se citan las herramientas que han sido utilizadas para el 
-desarrollo de este \acs{PFC}.
+En esta sección se hace un repaso de las herramientas que han sido utilizadas
+para el desarrollo de este \acs{PFC}.
 
   \subsection{Diagramas \acs{UML}}
   Para cubrir la fase de análisis de requisitos y el diseño de cada una de las
   iteraciones propuestas se ha utilizado el \emph{\textbf{Visual Paradigm
   for \acs{UML}}}, que es una herramienta \emph{case} de especificaciones
   \acs{UML}, desarrollado por la empresa \emph{Visual Paradigm International}.
-
-%%%%%%%%
-%%%%%%%% de momento sólo diagramas de casos de uso, de secuencia y de clases
   Con este programa se han realizado los diagramas de casos de uso, los de
   clases, los de secuencia y el de despliegue. Es decir,
   todos los diagramas que definen la forma en la que está estructurado el
@@ -1313,8 +682,8 @@ desarrollo de este \acs{PFC}.
   Con este lenguaje se ha desarrollado la aplicación del \emph{recibidor} y
   la aplicación de la \emph{barra}.
 
-  Además, se ha utilizado la librería externa \emph{InTheHand.Net}, que
-  posibilita las conexiones \emph{Bluetooth} de las aplicaciones implementadas
+  Además, se ha utilizado la biblioteca externa \emph{32feet.NET}, que
+  posibilita las conexiones \texttt{Bluetooth} de las aplicaciones implementadas
   en \emph{C\#} con los dispositivos móviles.
 
   \item \textbf{ASP.NET}.
@@ -1329,7 +698,7 @@ desarrollo de este \acs{PFC}.
   Los servicios web han sido implementados utilizando el \emph{framework}
   \emph{ASP.NET}.
 
-  Además, para poder acceder a la base de datos, se ha utilizado una librería
+  Además, para poder acceder a la base de datos, se ha utilizado una biblioteca
   externa a \emph{C\#} llamada \emph{MySql.Data}.
 
   \item \textbf{SQL}.
@@ -1358,7 +727,7 @@ desarrollo de este \acs{PFC}.
   principalmente dos \acs{JSR}s:
     \begin{itemize}
     \item \textbf{\acs{JSR}-82}. Que implementa las funcionalidades
-    propias de las comunicaciones vía \emph{Bluetooth} entre dispositivos.
+    propias de las comunicaciones vía \texttt{Bluetooth} entre dispositivos.
     \item \textbf{\acs{JSR}-257}. Que implementa las funcionalidades propias
     de las comunicaciones \acs{NFC}.
     \end{itemize}
@@ -1377,7 +746,7 @@ desarrollo de este \acs{PFC}.
   En este caso, se utiliza \acs{XML} para mandar información estructurada 
   entre las aplicaciones del restaurante y los servicios web (a través de la
   red) y entre los dispositivos móviles y las aplicaciones del restaurante 
-  (esta vez vía \emph{Bluetooth}). El anexo \ref{chap:xmls} muestra los 
+  (esta vez vía \texttt{Bluetooth}). El anexo \ref{chap:xmls} muestra los 
   distintos tipos de elementos que han sido definidos utilizando \acs{XML}.
   \end{itemize}
 
@@ -1530,7 +899,7 @@ desarrollo de este \acs{PFC}.
   los siguientes medios hardware:
   \begin{itemize}
   \item \textbf{\emph{Nokia 6131 \acs{NFC}}}. Dispositivo donde se ejecuta
-  la aplicación móvil. Dispone de lector \acs{NFC} y conexión \emph{Bluetooth}.
+  la aplicación móvil. Dispone de lector \acs{NFC} y conexión \texttt{Bluetooth}.
   \item \textbf{\emph{Etiquetas \acs{RFID}}}. Tienen 1KB de capacidad. 
   Almacenan sobre mensajes \acs{NDEF} la información de los productos de la 
   carta y de otras operaciones disponibles para el cliente.

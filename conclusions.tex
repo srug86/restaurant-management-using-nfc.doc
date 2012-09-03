@@ -1,14 +1,123 @@
 % -*- coding: utf-8 -*-
 
-\chapter{Conclusiones y propuestas}
+\chapter{Objetivos alcanzados y propuestas de mejora}
+\drop{E}ste último capítulo resume cuáles han sido los objetivos alcanzados
+y recoge algunas propuestas de cuáles pueden ser las nuevas líneas de trabajo 
+futuro.
+
 \section{Objetivos alcanzados}
-% Bla, bla, bla... menos realizar pagos mediante NFC. Aquí sólo se pueden 
-% simular.
+En el capítulo \ref{chap:objectives}, se proponía como objetivo principal el
+\emph{diseñar e implementar el prototipo de un sistema que fuera capaz de 
+automatizar, complementar y enriquecer algunas de las tareas que se llevan a 
+cabo en un restaurante}, utilizando para ello el potencial que ofrecen los
+dispositivos móviles, a través de tecnologías como \acs{NFC} o
+\texttt{Bluetooth}. Para alcanzar este objetivo final, se especificaron varios
+objetivos específicos (sección \ref{sec:specificO}) a cumplir.
+
+Después de observar los resultados de la evaluación del sistema desarrollado
+(sección \ref{sec:testing}), puede concluirse que, los objetivos específicos y 
+por extensión el objetivo principal, han sido satisfechos con relativo éxito.
+
+El sistema desarrollado permite gestionar toda la información que se genera en
+un restaurante de forma automática: ocupación de mesas, atención de pedidos, 
+generación de facturas, etc. Además, complementa estas funcionalidades con la
+posibilidad de atender de forma eficaz y personalizada a los clientes que
+utilizan la aplicación móvil implementada.
+
+De cara al cliente, el uso de la aplicación móvil le permite: realizar pedidos, 
+conocer el importe total de lo consumido y acceder a un programa de
+fidelización de clientes (todo ello a través de interacciones sencillas e
+intuitivas con su dispositivo móvil).
+
+El programa de fidelización ayuda a incentivar el uso de la
+aplicación móvil y se fundamenta en la implementación de un módulo 
+recomendador. Este módulo utiliza los datos del historial del cliente, generado 
+por sus interacciones con el sistema, para ofrecerle una serie de descuentos
+(que premien su fidelidad) y para recomendarle el consumo de productos que 
+puedan interesarle.
+
+De cara al restaurante, la generación y almacenamiento de datos como: el 
+historial de pedidos o el listado de clientes, puede resultar de gran utilidad
+a la hora de conocer qué productos tienen una mayor aceptación y cuáles son
+los hábitos de los clientes habituales.
+
+El único objetivo específico que no se ha completado es el de la 
+\emph{implementación de una forma de pago mediante \acs{NFC}}. En este caso,
+el sistema sólamente simula la interacción.
+
 \section{Propuestas de mejora}
-% En capítulos anteriores dije lo de adaptar el sistema a otro tipo de
-% restaurantes... e incluso a bares.
-% Es un prototipo, utilizando las pruebas de campo es conveniente seguir las
-% indicaciones que nos han dado los usuarios.
+Aunque el sistema desarrollado cumple con los principales objetivos marcados,
+no hay que olvidar que sólo es un \textbf{prototipo}, no un sistema final. Y 
+por tanto, se han pasado por alto fases tan importantes como la realización de
+pruebas unitarias, de integración, de sistema y funcionales; y esto significa
+que el software puede no estar libre de errores y que la calidad de sus
+elementos no está demostrada.
+
+Por otro lado, conviene tener muy en cuenta las pruebas de campo realizadas
+(sección \ref{sec:testing}), a la hora de mejorar la usabilidad y ampliar las
+funcionalidades de las aplicaciones desarrolladas.
+
+Otros aspectos a mejorar son los siguientes:
+\begin{itemize}
+\item \emph{\textbf{Seguridad}}. El proyecto desarrollado no ha tenido en 
+cuenta la implementación de ningún mecanismo extra de seguridad, más allá de 
+los mecanismos propios de cada una de las tecnologías (\emph{servicios web},
+\emph{bases de datos}, \texttt{Bluetooth} o \acs{NFC}). Uno de los elementos
+que no cuenta con ningún mecanismo de protección son las etiquetas
+\acs{RFID}. Esta información es de carácter público (no es confidencial) pero, 
+al no estar protegida, puede ser modificada ``a drede'' por cualquiera que 
+tenga un programa \emph{escritor} de etiquetas. Otra de las prácticas que
+aumentarían la seguridad sería la implementación de un \emph{login}, con el
+que se controle el acceso a la información con la que trabajan las aplicaciones
+que forman parte del restaurante.
+\item \emph{\textbf{Comunicaciones}}. Las comunicaciones entre el cliente y el
+restaurante se realizan mediante conexiones serie con \texttt{Bluetooth}.
+Esta tecnología cuenta con una serie de desventajas y limitaciones (ver sección
+\ref{subsec:disadvantages}) que podrían solucionarse utilizando la tecnología
+\acs{WiFi}.
+\item \emph{\textbf{Flexibilidad}}. Como ya se comentó en la sección
+\ref{subsec:scenario}, el sistema está diseñado para atender a las necesidades
+de los restaurantes de tipo \emph{gourmet} y de tipo \emph{temático} (que
+son los que cuentan con la figura del \emph{maître}). Una posible mejora
+consistiría en adaptar el sistema a restaurantes de tipo \emph{fast food} o
+\emph{take away} (que no tienen control de entrada).
+\item \emph{\textbf{Funcionalidades}}. Aparte de la función de la \emph{caja 
+registradora} (propuesta realizada por los usuarios durante la etapa de
+pruebas), las funcionalidades del sistema se pueden ampliar añadiendo, por
+ejemplo:
+\begin{itemize}
+\item Un módulo que gestione pedidos \emph{para llevar}.
+\item Un módulo que permita reservar mesas (manual o automáticamente).
+\item Mejorar el visor de estadísticas, que permita, por ejemplo, hacer el 
+balance de ingresos de la jornada.
+\item Completar la información almacenada por las etiquetas de los productos 
+de la carta. De esta forma el cliente podría consultar otros datos de interés 
+como: ingredientes, preparación, precio, etc.
+\item Añadir la opción de imprimir las facturas generadas.
+\item Incluir una sección de manuales y ayuda.
+\item Y por supuesto, implementar las condiciones necesarias para implantar
+un sistema de cobro mediante \acs{NFC}: aprovechando alguno de los
+servicios ya desarrollados, como \texttt{Google Wallet}, o instalando alguno
+de los terminales de pago dedicados, como \texttt{Visa PayWave}.
+\end{itemize}
+\end{itemize}
+
+En cualquier caso, el aspecto más importante para que el sistema desarrollado 
+llegue algún día a implantarse en restaurantes reales, es la \textbf{promoción 
+de la tecnología \acs{NFC}} que, si bien en lugares como Japón, Corea del Sur 
+o Estados Unidos, ya goza de una gran popularidad; todavía no ha logrado 
+establecerse con firmeza en el Europa. Y aquí es donde se plantéa la clásica 
+\emph{pregunta del huevo y la gallina}: ¿debe invertirse dinero en sacar al 
+mercado dispositivos que hagan uso de la tecnología \acs{NFC} en un mercado 
+que no cuenta con aplicaciones que le saquen provecho? O ¿deben primero 
+implementarse aplicaciones que estén preparadas para utilizar esta tecnología, 
+aún sabiendo que todavía son pocos los dispositivos que van a poder aprovechar 
+estos servicios? De momento, según lo visto en figura \ref{fig:nfcGraph} 
+(página \pageref{fig:nfcGraph}), se está apostando por la primera alternativa. 
+Por lo que, no está demás pensar, que la venta de esta clase de dispositivos 
+incentivará la implementación de nuevos sistemas y aplicaciones que los
+aprovechen.
+
 
 
 
